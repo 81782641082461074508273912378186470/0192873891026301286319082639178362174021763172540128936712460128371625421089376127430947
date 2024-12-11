@@ -19,7 +19,7 @@ const HeroSection = () => {
             <span className="text-black bg-white font-bold">Efisien!</span>
           </h1>
 
-          <p className="mt-6 text-xs font-light tracking-widest text-gray-300">
+          <p className="mt-4 pt-2 border-t-[1px] border-white/30 text-xs font-light tracking-widest text-gray-300">
             Autolaku adalah platform modern dengan teknologi otomatisasi pintar
             yang dirancang khusus untuk dropshipper Indonesia. Kelola produk,
             pesanan, dan pengiriman dengan mudah dalam satu tempat.

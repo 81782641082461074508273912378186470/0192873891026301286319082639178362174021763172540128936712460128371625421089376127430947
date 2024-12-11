@@ -16,7 +16,7 @@ const NavBar = () => {
 
   return (
     <>
-      <nav className="fixed flex flex-col items-center justify-center top-0 left-0 w-full transition-transform duration-500 transform z-10">
+      <nav className="fixed flex flex-col items-center justify-center top-0 left-0 w-full transition-transform duration-500 transform z-10 bg-white">
         <div className="flex flex-col justify-center items-center w-full">
           <div className="w-full gap-16 bg-white text-black flex p-3 px-5 lg:px-20 justify-between duration-1000 items-center __container">
             <Link

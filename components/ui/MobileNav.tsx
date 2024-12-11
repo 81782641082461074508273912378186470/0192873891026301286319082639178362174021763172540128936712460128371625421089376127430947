@@ -33,7 +33,7 @@ const MobileNav = () => {
             </Link>
           ))}
         </div>
-        <div className="flex flex-col justify-start items-start py-5 border-t-[1px] border-dark-200 gap-2">
+        <div className="flex flex-col justify-start items-start pb-10 pt-2 border-t-[1px] border-black/30 gap-2">
           <p className="text-xs tracking-widest text-black">
             Platform Canggih yang Membantu Dropshipper Indonesia Meningkatkan
             Efisiensi dan Keuntungan dengan Teknologi Otomasi.
