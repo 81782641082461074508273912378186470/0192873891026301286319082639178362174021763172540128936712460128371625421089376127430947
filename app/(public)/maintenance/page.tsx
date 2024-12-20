@@ -3,7 +3,7 @@ import React from 'react';
 const page = () => {
   return (
     <div className="bg-black w-screen h-screen flex flex-col justify-center items-center z-[999999] text-white">
-      <div className="max-w-lg">
+      <div className="max-w-lg p-10">
         <h2 className="text-xl mb-3">
           Website Sedang Dalam Proses Maintenance
         </h2>
