@@ -5,8 +5,8 @@ import Button from '../buttons/Button';
 
 const HeroSection = () => {
   return (
-    <section className="flex justify-center items-center w-full h-fit px-5 xl:px-20 lg:max-h-[500px] bg-black gap-52">
-      <div className="flex flex-col lg:flex-row text-start items-center">
+    <section className="flex justify-center items-center w-full px-5 xl:px-20 h-fit lg:max-h-[500px] bg-black gap-52">
+      <div className="flex flex-col lg:flex-row text-start items-center border-b-4 border-white">
         <div className="py-10 lg:p-0">
           <h1 className="text-3xl font-bold text-white leading-tight ">
             <span className="text-black bg-white font-bold">

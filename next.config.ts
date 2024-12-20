@@ -5,42 +5,42 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/tentang-kami',
-        destination: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        destination: '/maintenance',
         permanent: false,
       },
       {
         source: '/harga',
-        destination: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        destination: '/maintenance',
         permanent: false,
       },
       {
         source: '/fitur',
-        destination: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        destination: '/maintenance',
         permanent: false,
       },
       {
         source: '/blog',
-        destination: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        destination: '/maintenance',
         permanent: false,
       },
       {
         source: '/bantuan',
-        destination: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        destination: '/maintenance',
         permanent: false,
       },
       {
         source: '/faq',
-        destination: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        destination: '/maintenance',
         permanent: false,
       },
       {
         source: '/hubungi-kami',
-        destination: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        destination: '/maintenance',
         permanent: false,
       },
       {
         source: '/daftar',
-        destination: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        destination: '/maintenance',
         permanent: false,
       },
     ];
