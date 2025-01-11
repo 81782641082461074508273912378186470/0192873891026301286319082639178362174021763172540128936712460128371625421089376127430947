@@ -9,9 +9,8 @@ export async function POST(request: Request) {
   await mongooseConnect();
 
   try {
-    const { name, email, whatsappNumber, deviceName } = await request.json();
+    const { name, email, whatsappNumber } = await request.json();
 
-    // Validation
     if (!name || !email) {
       console.error('Validation error: Name and Email are required');
       return new Response(
@@ -20,30 +19,23 @@ export async function POST(request: Request) {
       );
     }
 
-    // Debugging logs
     console.log('Incoming registration data:', {
       name,
       email,
       whatsappNumber,
-      deviceName,
     });
 
-    // Generate the license
     const license = await License.create({
-      key: uuidv4(), // Unique license key
-      adminId: null, // Default adminId
-      deviceId: null, // Default deviceId
-      deviceName: deviceName || null, // Device name or default to null
-      status: 'active', // Default status
-      expiresAt: null, // Default expiration date
+      key: uuidv4(),
+      adminId: null,
+      deviceInfo: null,
+      status: 'active',
+      expiresAt: null,
     });
 
-    //console.log('License created successfully:', license);
-
-    // Return all license details
     return NextResponse.json({
       message: 'License created successfully',
-      licenseDetails: license, // Include the full license object
+      licenseDetails: license,
     });
   } catch (error: any) {
     console.error('Error creating license:', error.message || error);

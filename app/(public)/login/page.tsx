@@ -82,7 +82,7 @@ export default function LoginPage() {
       }
 
       const data = await response.json(); // Parse the JSON response
-      console.log('Parsed Response Data:', data);
+      // console.log('Parsed Response Data:', data);
 
       const authData =
         loginType === 'account'

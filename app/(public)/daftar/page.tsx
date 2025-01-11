@@ -32,7 +32,7 @@ export default function RegisterPage() {
           whatsappNumber: formData.whatsappNumber,
         };
 
-        const response = await fetch('/api/licenses', {
+        const response = await fetch('/api/licenses/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),

@@ -38,11 +38,6 @@ const nextConfig: NextConfig = {
         destination: '/maintenance',
         permanent: false,
       },
-      {
-        source: '/daftar',
-        destination: '/maintenance',
-        permanent: false,
-      },
     ];
   },
 };
