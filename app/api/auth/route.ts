@@ -3,7 +3,7 @@ import User from '@/models/User';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your_secret_key';
+const JWT_SECRET = process.env.JWT_SECRET || 'perspicacity';
 
 export async function POST(request: Request) {
   await mongooseConnect(); // Connect to the database
