@@ -6,26 +6,32 @@ if (!MONGO_URI) {
   throw new Error('Please define the MONGO_URI environment variable');
 }
 
-let cached = global.mongoose;
-
-if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null };
+// Declare a global interface for caching the mongoose connection
+declare global {
+  // eslint-disable-next-line no-var
+  var mongoose: {
+    conn: mongoose.Mongoose | null;
+    promise: Promise<mongoose.Mongoose> | null;
+  };
 }
 
+// Check if globalThis already has mongoose defined, otherwise define it
+global.mongoose = global.mongoose || { conn: null, promise: null };
+
 async function mongooseConnect() {
-  if (cached.conn) {
-    return cached.conn;
+  if (global.mongoose.conn) {
+    return global.mongoose.conn;
   }
 
-  if (!cached.promise) {
-    cached.promise = mongoose
+  if (!global.mongoose.promise) {
+    global.mongoose.promise = mongoose
       .connect(MONGO_URI, { bufferCommands: false })
-      .then((mongoose) => mongoose);
+      .then((mongooseInstance) => mongooseInstance);
   }
 
-  cached.conn = await cached.promise;
+  global.mongoose.conn = await global.mongoose.promise;
   console.log('Connected to MongoDB');
-  return cached.conn;
+  return global.mongoose.conn;
 }
 
 export default mongooseConnect;
