@@ -60,77 +60,49 @@ export default function LoginPage() {
     setError(null);
 
     try {
-      if (loginType === 'account') {
-        const response = await fetch('/api/auth', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            username: formData.username,
-            password: formData.password,
-          }),
-        });
+      const endpoint =
+        loginType === 'account' ? '/api/auth' : '/api/licenses/validate';
+      const payload =
+        loginType === 'account'
+          ? { username: formData.username, password: formData.password }
+          : { key: formData.licenseKey, context: 'website' };
 
-        if (!response.ok) {
-          const { error } = await response.json();
-          throw new Error(error || 'Login failed');
-        }
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
 
-        // Extract token and user data from response
-        const { token, user } = await response.json();
+      console.log('Raw Response:', response);
 
-        // Prepare full authData object with all user details
-        const authData = {
-          type: 'account',
-          role: user.role,
-          user: {
-            id: user.id,
-            username: user.username,
-            role: user.role,
-            email: user.email,
-            name: user.name,
-            whatsappNumber: user.whatsappNumber,
-            isActive: user.isActive,
-          },
-          token,
-        };
-
-        // Log and save authData to local storage
-        console.log('Saving authData:', authData);
-        localStorage.setItem('authData', JSON.stringify(authData));
-
-        // Redirect to the dashboard
-        router.replace('/dashboard');
-      } else {
-        // Handle license login
-        const response = await fetch('/api/licenses/validate', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            key: formData.licenseKey,
-            context: 'website',
-          }),
-        });
-
-        if (!response.ok) {
-          const { error } = await response.json();
-          throw new Error(error || 'License validation failed');
-        }
-
-        const { license } = await response.json(); // Include license data in response
-
-        const authData = {
-          type: 'license',
-          role: 'user', // License logins are always users
-          licenseKey: formData.licenseKey,
-          license, // Save license data if needed
-        };
-
-        console.log('Saving authData:', authData);
-        localStorage.setItem('authData', JSON.stringify(authData));
-
-        // Stay on /dashboard (no redirect to specific role)
-        router.replace('/dashboard');
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Error Response:', errorText);
+        throw new Error(errorText || 'Unexpected server response');
       }
+
+      const data = await response.json(); // Parse the JSON response
+      console.log('Parsed Response Data:', data);
+
+      const authData =
+        loginType === 'account'
+          ? {
+              type: 'account',
+              role: data.user.role,
+              user: data.user,
+              token: data.token,
+            }
+          : {
+              type: 'license',
+              role: 'user',
+              licenseKey: formData.licenseKey,
+              license: data.license,
+            };
+
+      console.log('Saving authData:', authData);
+      localStorage.setItem('authData', JSON.stringify(authData));
+
+      router.replace('/dashboard');
     } catch (error: any) {
       console.error('Login error:', error.message);
       setError(error.message || 'Something went wrong');

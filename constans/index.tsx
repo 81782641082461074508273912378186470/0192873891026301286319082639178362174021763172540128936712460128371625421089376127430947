@@ -35,4 +35,8 @@ export const navButtons = [
     title: 'Daftar',
     url: '/daftar',
   },
+  {
+    title: 'Login',
+    url: '/login',
+  },
 ];
