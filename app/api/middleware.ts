@@ -2,14 +2,14 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function middleware(request: NextRequest) {
   const authData = request.cookies.get('authData')?.value;
-  console.log('authData in middleware:', authData);
+  //console.log('authData in middleware:', authData);
 
   if (!authData) {
-    console.log('No authData found, redirecting to /login...');
+    //console.log('No authData found, redirecting to /login...');
     return NextResponse.redirect(new URL('/login', request.url));
   }
 
-  console.log('Valid authData, allowing access');
+  //console.log('Valid authData, allowing access');
   return NextResponse.next(); // Let the request proceed
 }
 

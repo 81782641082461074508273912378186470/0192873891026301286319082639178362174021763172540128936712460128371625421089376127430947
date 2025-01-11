@@ -44,7 +44,7 @@ export default function RegisterPage() {
         }
 
         const result = await response.json();
-        console.log('License created:', result);
+        // console.log('License created:', result);
 
         setGeneratedLicenseKey(result.key);
         setSuccessMessage('License registered successfully!');
@@ -67,9 +67,6 @@ export default function RegisterPage() {
           const { error } = await response.json();
           throw new Error(error || 'User registration failed');
         }
-
-        const result = await response.json();
-        console.log('User registered:', result);
 
         setSuccessMessage('Admin registered successfully!');
       }

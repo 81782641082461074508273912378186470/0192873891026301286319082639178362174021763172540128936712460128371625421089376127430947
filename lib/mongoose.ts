@@ -30,7 +30,7 @@ async function mongooseConnect() {
   }
 
   global.mongoose.conn = await global.mongoose.promise;
-  console.log('Connected to MongoDB');
+  //console.log('Connected to MongoDB');
   return global.mongoose.conn;
 }
 

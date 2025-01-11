@@ -9,9 +9,6 @@ export default function DashboardWrapper({
   children: React.ReactNode;
 }) {
   const { role, license, handleLogout, authDetails, type } = useAuth();
-  console.log('WOKWOKWOKWOKWKO', license);
-  console.log('WIKWIKWIKWIK', license);
-  console.log('WEKWEKWEKWEK', authDetails);
   return (
     <div className="flex flex-col w-full h-screen">
       <NavDashboard

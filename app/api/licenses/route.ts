@@ -21,7 +21,7 @@ export async function POST(request: Request) {
     }
 
     // Debugging logs
-    console.log('Incoming registration data:', {
+ //console.log('Incoming registration data:', {
       name,
       email,
       whatsappNumber,
@@ -38,7 +38,7 @@ export async function POST(request: Request) {
       expiresAt: null, // Default expiration date
     });
 
-    console.log('License created successfully:', license);
+ //console.log('License created successfully:', license);
 
     // Return all license details
     return NextResponse.json({

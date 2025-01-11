@@ -9,7 +9,7 @@ export async function POST(request: Request) {
   await mongooseConnect(); // Connect to the database
 
   const { username, password } = await request.json();
-  console.log('Username received:', username); // Log received username
+  //console.log('Username received:', username); // Log received username
 
   // Find user in the database
   const user = await User.findOne({
@@ -17,20 +17,20 @@ export async function POST(request: Request) {
   });
 
   if (!user) {
-    console.log('User not found');
+    //console.log('User not found');
     return new Response(JSON.stringify({ error: 'User not found' }), {
       status: 404,
     });
   }
 
-  console.log('User found in database:', user); // Log user details (if found)
+  //console.log('User found in database:', user); // Log user details (if found)
 
   // Check if the password matches
   try {
     const isPasswordValid = await bcrypt.compare(password, user.password);
-    console.log('Password provided:', password);
-    console.log('Password stored in database:', user.password);
-    console.log('Password valid:', isPasswordValid);
+    //console.log('Password provided:', password);
+    //console.log('Password stored in database:', user.password);
+    //console.log('Password valid:', isPasswordValid);
 
     if (!isPasswordValid) {
       return new Response(JSON.stringify({ error: 'Invalid credentials' }), {
@@ -48,7 +48,7 @@ export async function POST(request: Request) {
   const token = jwt.sign({ id: user._id, role: user.role }, JWT_SECRET, {
     expiresIn: '7d',
   });
-  console.log('JWT Token generated:', token); // Log the generated token
+  //console.log('JWT Token generated:', token); // Log the generated token
   // console.log('USERRR:', user); // Log the generated token
 
   return new Response(

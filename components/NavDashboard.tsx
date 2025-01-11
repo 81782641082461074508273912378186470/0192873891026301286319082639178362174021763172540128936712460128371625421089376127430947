@@ -42,7 +42,6 @@ export default function NavDashboard({
     (type === 'license' && license?.deviceName) ||
     'Belum Terhubung ke Perangkat Manapun';
   const greeting = getGreeting();
-  console.log('hehehehehe', authDetails);
   const user = authDetails?.user;
   return (
     <nav className="fixed top-0 left-0 w-full bg-gray-900 text-white p-4 z-50 shadow-md flex justify-between items-center">
