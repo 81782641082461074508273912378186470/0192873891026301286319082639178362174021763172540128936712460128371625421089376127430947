@@ -1,4 +1,4 @@
-import LoadingAnimation from '@/components/ui/LoadingAnimation';
+import LoadingAnimation from '@/components/LoadingAnimation';
 import React from 'react';
 
 const Loading = () => {

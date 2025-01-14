@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { navButtons } from '@/constans';
-import { Drawer, DrawerContent, DrawerTrigger } from './drawer';
+import { Drawer, DrawerContent, DrawerTrigger } from './ui/drawer';
 import { CiMenuBurger } from 'react-icons/ci';
 
 const MobileNav = () => {

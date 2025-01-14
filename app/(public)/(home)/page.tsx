@@ -13,7 +13,7 @@ export const metadata: Metadata = generateMetadata({
 
 const HomePage = () => {
   return (
-    <div className="w-screen h-screen bg-black">
+    <div className="flex flex-col justify-start items-center w-full h-full">
       <HeroSection />
     </div>
   );
