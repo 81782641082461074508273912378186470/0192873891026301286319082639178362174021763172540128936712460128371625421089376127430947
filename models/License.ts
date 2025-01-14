@@ -22,8 +22,21 @@ const licenseSchema = new Schema({
     enum: ['active', 'expired', 'revoked'],
     default: 'active',
   },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    lowercase: true,
+    trim: true, // Clean up spaces
+    match: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+  },
+  whatsappNumber: {
+    type: String,
+    default: null,
+    match: /^\+?[1-9]\d{1,14}$/,
+  },
   generatedAt: { type: Date, default: Date.now },
-  expiresAt: { type: Date, default: null }, // Allow null for no expiration
+  expiresAt: { type: Date, default: null },
 });
 
 const License = models.License || model('License', licenseSchema);

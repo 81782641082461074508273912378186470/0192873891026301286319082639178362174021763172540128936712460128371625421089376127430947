@@ -147,6 +147,7 @@ export default function LoginPage() {
                 </label>
                 <input
                   type="text"
+                  name="username"
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
                   placeholder="Enter username"
                   value={formData.username}
@@ -161,6 +162,7 @@ export default function LoginPage() {
                 </label>
                 <input
                   type="password"
+                  name="password"
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
                   placeholder="Enter password"
                   value={formData.password}
