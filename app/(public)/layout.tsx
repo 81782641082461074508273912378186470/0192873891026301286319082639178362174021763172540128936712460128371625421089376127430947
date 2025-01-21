@@ -14,7 +14,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body className="font-mono min-h-screen bg-black text-white selection:bg-white/65 selection:text-black">
-        <Navbar />
+        {/* <Navbar /> */}
         <div className="flex flex-col justify-center items-center w-full mt-12 lg:mt-24 ">
           {children}
         </div>
