@@ -44,12 +44,10 @@ export default function RegisterPage() {
         }
 
         const result = await response.json();
-        // console.log('License created:', result);
 
         setGeneratedLicenseKey(result.key);
         setSuccessMessage('License registered successfully!');
       } else {
-        // Call the users API for admin registration
         const response = await fetch('/api/users', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

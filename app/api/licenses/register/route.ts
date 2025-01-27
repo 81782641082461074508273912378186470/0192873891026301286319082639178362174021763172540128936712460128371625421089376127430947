@@ -3,7 +3,50 @@
 import mongooseConnect from '@/lib/mongoose';
 import License from '@/models/License';
 import { NextResponse } from 'next/server';
-import { v4 as uuidv4 } from 'uuid';
+import { randomBytes } from 'crypto';
+
+function generateLicenseKey() {
+  const segmentLength = 4;
+  const segments = 4;
+  let key = '';
+
+  for (let i = 0; i < segments; i++) {
+    const segment = randomBytes(segmentLength).toString('hex').slice(0, segmentLength).toUpperCase();
+    key += segment;
+    if (i < segments - 1) {
+      key += '-';
+    }
+  }
+
+  return key; // Added return statement here
+}
+
+async function createUniqueLicense(email: string, whatsappNumber: string) {
+  let key;
+  let isUnique = false;
+
+  while (!isUnique) {
+    key = generateLicenseKey();
+    // Check if the key already exists in the database
+    const existingLicense = await License.findOne({ key: key });
+    if (!existingLicense) {
+      isUnique = true;
+    }
+  }
+
+  // Create the license with the unique key
+  const license = await License.create({
+    key: key,
+    adminId: null,
+    deviceInfo: null,
+    status: 'active',
+    email: email,
+    whatsappNumber: whatsappNumber, // Added this line back
+    expiresAt: null,
+  });
+
+  return license;
+}
 
 export async function POST(request: Request) {
   await mongooseConnect();
@@ -25,13 +68,7 @@ export async function POST(request: Request) {
       whatsappNumber,
     });
 
-    const license = await License.create({
-      key: uuidv4(),
-      adminId: null,
-      deviceInfo: null,
-      status: 'active',
-      expiresAt: null,
-    });
+    const license = await createUniqueLicense(email, whatsappNumber);
 
     return NextResponse.json({
       message: 'License created successfully',

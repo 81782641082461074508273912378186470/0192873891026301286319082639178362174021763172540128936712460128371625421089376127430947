@@ -30,7 +30,7 @@
     "@types/axios": "^0.9.36",
     "@types/bcrypt": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.7",
-    "@types/node": "^20",
+    "@types/node": "^20.17.16",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^8",

@@ -6,7 +6,6 @@ if (!MONGO_URI) {
   throw new Error('Please define the MONGO_URI environment variable');
 }
 
-// Declare a global interface for caching the mongoose connection
 declare global {
   // eslint-disable-next-line no-var
   var mongoose: {
@@ -15,7 +14,6 @@ declare global {
   };
 }
 
-// Check if globalThis already has mongoose defined, otherwise define it
 global.mongoose = global.mongoose || { conn: null, promise: null };
 
 async function mongooseConnect() {
@@ -25,7 +23,7 @@ async function mongooseConnect() {
 
   if (!global.mongoose.promise) {
     global.mongoose.promise = mongoose
-      .connect(MONGO_URI, { bufferCommands: false })
+      .connect(MONGO_URI, { bufferCommands: false,dbName: 'autolaku'  })
       .then((mongooseInstance) => mongooseInstance);
   }
 
