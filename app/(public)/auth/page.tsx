@@ -24,9 +24,9 @@ const Page = () => {
           </div>
           <div className="text-white font-extralight text-white/80 text-justify">
             <p>
-              "Menggunakan banyak alat terpisah atau metode manual untuk dropshipping hanya
+              Menggunakan banyak alat terpisah atau metode manual untuk dropshipping hanya
               memperlambat Anda. Di dunia yang semakin cepat ini, kita perlu alat yang efisien dan
-              sederhana. Autolaku adalah pilihan tepat dengan kemudahan penggunaan yang luar biasa."
+              sederhana. Autolaku adalah pilihan tepat dengan kemudahan penggunaan yang luar biasa.
             </p>
           </div>
           <div className="absolute bottom-0 left-0 right-0 h-[30%] bg-gradient-to-t from-black to-transparent -z-10"></div>
