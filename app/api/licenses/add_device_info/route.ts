@@ -11,9 +11,7 @@ export async function POST(request: Request) {
     const { key, deviceInfo } = await request.json();
 
     if (!key || !deviceInfo) {
-      console.error(
-        'Validation error: License key and device information are required'
-      );
+      console.error('Validation error: License key and device information are required');
       return new Response(
         JSON.stringify({
           error: 'License key and device information are required',

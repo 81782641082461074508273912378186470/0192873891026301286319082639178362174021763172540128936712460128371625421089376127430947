@@ -20,13 +20,9 @@ const MobileNav = () => {
               href={nav.url}
               key={i}
               className={` w-full flex rounded-sm justify-end text-center items-center md:text-sm font-medium group duration-200 px-2 py-1  ${
-                path === nav.url
-                  ? 'font-black transition-transform duration-700 '
-                  : ''
+                path === nav.url ? 'font-black transition-transform duration-700 ' : ''
               }${
-                path === nav.url
-                  ? ' text-white bg-black '
-                  : ' hover:text-white hover:bg-black/50'
+                path === nav.url ? ' text-white bg-black ' : ' hover:text-white hover:bg-black/50'
               }`}
             >
               {nav.title}
@@ -35,8 +31,8 @@ const MobileNav = () => {
         </div>
         <div className="flex flex-col justify-start items-start pb-10 pt-2 border-t-[1px] border-black/30 gap-2">
           <p className="text-xs tracking-widest text-black">
-            Platform Canggih yang Membantu Dropshipper Indonesia Meningkatkan
-            Efisiensi dan Keuntungan dengan Teknologi Otomasi.
+            Platform Canggih yang Membantu Dropshipper Indonesia Meningkatkan Efisiensi dan
+            Keuntungan dengan Teknologi Otomasi.
           </p>
         </div>
       </DrawerContent>

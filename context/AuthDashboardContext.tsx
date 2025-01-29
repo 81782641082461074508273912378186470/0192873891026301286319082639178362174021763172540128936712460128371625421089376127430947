@@ -20,15 +20,9 @@ interface AuthContextType {
   handleLogout: () => void;
 }
 
-const AuthDashboardContext = createContext<AuthContextType | undefined>(
-  undefined
-);
+const AuthDashboardContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthDashboardProvider = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
+export const AuthDashboardProvider = ({ children }: { children: React.ReactNode }) => {
   const [role, setRole] = useState<string | null>(null);
   const [user, setUser] = useState<any>(null);
   const [license, setLicense] = useState<any | null>(null);
@@ -59,8 +53,7 @@ export const AuthDashboardProvider = ({
 
       // Validate and set auth details based on type and role
       if (
-        (parsedAuthData.type === 'account' &&
-          ['owner', 'admin'].includes(parsedAuthData.role)) ||
+        (parsedAuthData.type === 'account' && ['owner', 'admin'].includes(parsedAuthData.role)) ||
         (parsedAuthData.type === 'license' && parsedAuthData.role === 'user')
       ) {
         setRole(parsedAuthData.role);

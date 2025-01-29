@@ -19,9 +19,7 @@ export default function NavDashboard({
   authDetails,
 }: NavDashboardProps) {
   const formattedRole =
-    role && type === 'account'
-      ? `${role.charAt(0).toUpperCase()}${role.slice(1)}`
-      : null;
+    role && type === 'account' ? `${role.charAt(0).toUpperCase()}${role.slice(1)}` : null;
 
   function getGreeting(): string {
     const currentHour = new Date().getHours();
@@ -39,8 +37,7 @@ export default function NavDashboard({
 
   const licenseKeyDisplay = type === 'license' && license?.key;
   const licenseDeviceNameDisplay =
-    (type === 'license' && license?.deviceName) ||
-    'Belum Terhubung ke Perangkat Manapun';
+    (type === 'license' && license?.deviceName) || 'Belum Terhubung ke Perangkat Manapun';
   const greeting = getGreeting();
   const user = authDetails?.user;
   return (
@@ -51,11 +48,7 @@ export default function NavDashboard({
             <h1 className="text-lg font-bold">
               Hi, {user.name}. {greeting}
             </h1>
-            <Badge
-              text={formattedRole}
-              color="text-white/50"
-              bgColor="bg-white/10"
-            />
+            <Badge text={formattedRole} color="text-white/50" bgColor="bg-white/10" />
           </div>
         )}
         {type === 'license' && (
@@ -79,10 +72,7 @@ export default function NavDashboard({
         <p>{user?.whatsappNumber}</p>
         <p>{user?.username}</p>
       </div>
-      <button
-        onClick={handleLogout}
-        className="mt-6 text-sm text-red-400 underline"
-      >
+      <button onClick={handleLogout} className="mt-6 text-sm text-red-400 underline">
         Logout
       </button>
     </nav>

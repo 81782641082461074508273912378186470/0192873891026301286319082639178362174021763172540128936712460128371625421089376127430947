@@ -11,7 +11,10 @@ function generateLicenseKey() {
   let key = '';
 
   for (let i = 0; i < segments; i++) {
-    const segment = randomBytes(segmentLength).toString('hex').slice(0, segmentLength).toUpperCase();
+    const segment = randomBytes(segmentLength)
+      .toString('hex')
+      .slice(0, segmentLength)
+      .toUpperCase();
     key += segment;
     if (i < segments - 1) {
       key += '-';
@@ -41,7 +44,7 @@ async function createUniqueLicense(email: string, whatsappNumber: string) {
     deviceInfo: null,
     status: 'active',
     email: email,
-    whatsappNumber: whatsappNumber, // Added this line back
+    whatsappNumber: whatsappNumber,
     expiresAt: null,
   });
 
@@ -56,10 +59,9 @@ export async function POST(request: Request) {
 
     if (!name || !email) {
       console.error('Validation error: Name and Email are required');
-      return new Response(
-        JSON.stringify({ error: 'Name and Email are required' }),
-        { status: 400 }
-      );
+      return new Response(JSON.stringify({ error: 'Name and Email are required' }), {
+        status: 400,
+      });
     }
 
     console.log('Incoming registration data:', {
@@ -76,9 +78,8 @@ export async function POST(request: Request) {
     });
   } catch (error: any) {
     console.error('Error creating license:', error.message || error);
-    return new Response(
-      JSON.stringify({ error: error.message || 'Failed to create license' }),
-      { status: 500 }
-    );
+    return new Response(JSON.stringify({ error: error.message || 'Failed to create license' }), {
+      status: 500,
+    });
   }
 }

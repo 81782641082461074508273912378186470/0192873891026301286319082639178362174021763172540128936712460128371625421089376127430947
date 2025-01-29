@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-.__container {
-  @apply max-w-[1900px];
+.rounded-button {
+  @apply flex gap-2 bg-dark-700 hover:bg-dark-600 px-3 py-2 rounded-full border-white/10 border-[1px] text-white/70 hover:text-white;
+}
+
+.no-scrollbar {
+  @apply scrollbar-none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  @apply hidden;
+}
+
+.scrollbar-none {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
 }

@@ -8,11 +8,7 @@ export const metadata = {
   description: 'Your central dashboard for managing everything.',
 };
 
-export default function DashboardLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className="flex w-full h-screen">

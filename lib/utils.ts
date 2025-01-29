@@ -22,8 +22,7 @@ export const generateMetadata = ({
 }): Metadata => {
   const defaultKeywords =
     'Dropshipping Indonesia, Otomasi dropshipping, Dropshipping yang efisien, Alat dropshipping pintar, Solusi dropshipping modern,Dropshipping untuk pemula, Dropshipping profesional, Otomasi bisnis e-commerce, Fitur dropshipping Indonesia, Bot dropshipping pintar, Alat bisnis e-commerce, Panduan dropshipping Indonesia, Cara sukses dropshipping, Otomasi bisnis e-commerce, Tips dropshipping pemula';
-  const defaultTitle =
-    'Autolaku | Automation Modern untuk Dropshipping yang Cepat dan Efisien';
+  const defaultTitle = 'Autolaku | Automation Modern untuk Dropshipping yang Cepat dan Efisien';
   const defaultDescription =
     'Autolaku adalah platform dropshipping modern yang dirancang untuk membantu dropshipper Indonesia mengelola produk, pesanan, dan pengiriman secara efisien. Dengan teknologi otomatisasi canggih, Anda dapat menjalankan bisnis lebih cepat, mudah, dan bebas repot.';
   const defaultImage = 'https://autolaku.com/images/og-images.webp';

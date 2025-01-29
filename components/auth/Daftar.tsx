@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 
-export default function RegisterPage() {
+const Daftar = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -82,7 +82,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
+    <div className="flex flex-col items-center justify-center ">
       <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 w-full max-w-md">
         <h2 className="text-2xl font-bold mb-4 text-center">Register</h2>
 
@@ -180,4 +180,6 @@ export default function RegisterPage() {
       </div>
     </div>
   );
-}
+};
+
+export default Daftar;

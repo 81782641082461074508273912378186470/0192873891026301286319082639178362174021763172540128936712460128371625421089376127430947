@@ -45,11 +45,8 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error('Error validating license:', error);
-    return new Response(
-      JSON.stringify({ error: error || 'Something went wrong' }),
-      {
-        status: 500,
-      }
-    );
+    return new Response(JSON.stringify({ error: error || 'Something went wrong' }), {
+      status: 500,
+    });
   }
 }

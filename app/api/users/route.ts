@@ -7,14 +7,11 @@ import bcrypt from 'bcrypt';
 export async function GET(request: Request) {
   await mongooseConnect();
 
-  const query = request.url.includes('?')
-    ? new URL(request.url).searchParams
-    : null;
+  const query = request.url.includes('?') ? new URL(request.url).searchParams : null;
 
   const filters: Record<string, any> = {};
   if (query?.get('role')) filters.role = query.get('role');
-  if (query?.get('isActive'))
-    filters.isActive = query.get('isActive') === 'true';
+  if (query?.get('isActive')) filters.isActive = query.get('isActive') === 'true';
 
   const users = await User.find(filters).populate(['ownerId', 'adminId']);
   return NextResponse.json(users);
@@ -25,16 +22,7 @@ export async function POST(request: Request) {
 
   try {
     const data = await request.json();
-    const {
-      username,
-      password,
-      role,
-      ownerId,
-      adminId,
-      name,
-      email,
-      whatsappNumber,
-    } = data;
+    const { username, password, role, ownerId, adminId, name, email, whatsappNumber } = data;
 
     if (!username || !password || !role || !name) {
       return NextResponse.json(
@@ -57,20 +45,14 @@ export async function POST(request: Request) {
     if (ownerId) {
       const owner = await User.findById(ownerId);
       if (!owner) {
-        return NextResponse.json(
-          { error: 'Owner ID provided does not exist.' },
-          { status: 400 }
-        );
+        return NextResponse.json({ error: 'Owner ID provided does not exist.' }, { status: 400 });
       }
     }
 
     if (adminId) {
       const admin = await User.findById(adminId);
       if (!admin) {
-        return NextResponse.json(
-          { error: 'Admin ID provided does not exist.' },
-          { status: 400 }
-        );
+        return NextResponse.json({ error: 'Admin ID provided does not exist.' }, { status: 400 });
       }
     }
 
@@ -94,10 +76,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json(newUser, { status: 201 });
   } catch (error: any) {
-    return NextResponse.json(
-      { error: error.message || 'Failed to create user.' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: error.message || 'Failed to create user.' }, { status: 500 });
   }
 }
 
@@ -108,10 +87,7 @@ export async function PATCH(request: Request) {
   const { id, ...updates } = data;
 
   if (!id) {
-    return NextResponse.json(
-      { error: 'User ID is required.' },
-      { status: 400 }
-    );
+    return NextResponse.json({ error: 'User ID is required.' }, { status: 400 });
   }
 
   try {
@@ -129,10 +105,7 @@ export async function PATCH(request: Request) {
 
     return NextResponse.json(updatedUser, { status: 200 });
   } catch (error: any) {
-    return NextResponse.json(
-      { error: error.message || 'Failed to update user.' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: error.message || 'Failed to update user.' }, { status: 500 });
   }
 }
 
@@ -142,18 +115,11 @@ export async function DELETE(request: Request) {
   const { id } = await request.json();
 
   if (!id) {
-    return NextResponse.json(
-      { error: 'User ID is required.' },
-      { status: 400 }
-    );
+    return NextResponse.json({ error: 'User ID is required.' }, { status: 400 });
   }
 
   try {
-    const user = await User.findByIdAndUpdate(
-      id,
-      { isActive: false },
-      { new: true }
-    );
+    const user = await User.findByIdAndUpdate(id, { isActive: false }, { new: true });
 
     if (!user) {
       return NextResponse.json({ error: 'User not found.' }, { status: 404 });
@@ -161,9 +127,6 @@ export async function DELETE(request: Request) {
 
     return NextResponse.json({ message: 'User soft-deleted successfully.' });
   } catch (error: any) {
-    return NextResponse.json(
-      { error: error.message || 'Failed to delete user.' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: error.message || 'Failed to delete user.' }, { status: 500 });
   }
 }

@@ -14,9 +14,7 @@ export default function Badge({
   bgColor = 'bg-white/20',
 }: BadgeProps) {
   return (
-    <span
-      className={`text-xs font-bold rounded px-2 py-1 ${color} ${bgColor} ${className}`}
-    >
+    <span className={`text-xs font-bold rounded px-2 py-1 ${color} ${bgColor} ${className}`}>
       {text}
     </span>
   );

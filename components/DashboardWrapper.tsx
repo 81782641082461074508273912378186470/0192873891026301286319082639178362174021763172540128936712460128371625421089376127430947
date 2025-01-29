@@ -3,11 +3,7 @@
 import { useAuth } from '@/context/AuthDashboardContext';
 import NavDashboard from '@/components/NavDashboard';
 
-export default function DashboardWrapper({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function DashboardWrapper({ children }: { children: React.ReactNode }) {
   const { role, license, handleLogout, authDetails, type } = useAuth();
   return (
     <div className="flex flex-col w-full h-screen">
@@ -35,9 +31,7 @@ export default function DashboardWrapper({
           )}
           {type === 'license' && role === 'user' && (
             <div>
-              <h1 className="text-2xl font-bold sm:text-xl">
-                Welcome, Licensed User
-              </h1>
+              <h1 className="text-2xl font-bold sm:text-xl">Welcome, Licensed User</h1>
               <p className="sm:text-sm">View your license details here.</p>
             </div>
           )}

@@ -23,7 +23,7 @@ async function mongooseConnect() {
 
   if (!global.mongoose.promise) {
     global.mongoose.promise = mongoose
-      .connect(MONGO_URI, { bufferCommands: false,dbName: 'autolaku'  })
+      .connect(MONGO_URI, { bufferCommands: false, dbName: 'autolaku' })
       .then((mongooseInstance) => mongooseInstance);
   }
 
