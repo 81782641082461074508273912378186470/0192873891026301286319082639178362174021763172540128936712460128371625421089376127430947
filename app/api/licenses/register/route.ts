@@ -72,10 +72,14 @@ export async function POST(request: Request) {
 
     const license = await createUniqueLicense(email, whatsappNumber);
 
-    return NextResponse.json({
-      message: 'License created successfully',
-      licenseDetails: license,
-    });
+    return NextResponse.json(
+      {
+        message: 'License created successfully',
+        key: license.key,
+        name: name,
+      },
+      { status: 201 }
+    );
   } catch (error: any) {
     console.error('Error creating license:', error.message || error);
     return new Response(JSON.stringify({ error: error.message || 'Failed to create license' }), {

@@ -13,7 +13,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     const authData = localStorage.getItem('authData');
 
     if (!authData) {
-      router.push('/login');
+      router.push('/auth');
       return;
     }
 
@@ -30,12 +30,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         setRole('user'); // Set the role as user and allow access
       } else {
         localStorage.removeItem('authData'); // Clear invalid data
-        router.push('/login'); // Redirect to login
+        router.push('/auth'); // Redirect to login
       }
     } catch (error) {
       console.error('Invalid authData format:', error);
       localStorage.removeItem('authData');
-      router.push('/login'); // Redirect to login
+      router.push('/auth'); // Redirect to login
     } finally {
       setLoading(false);
     }
@@ -43,7 +43,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   const handleLogout = () => {
     localStorage.removeItem('authData'); // Clear auth data
-    router.push('/login'); // Redirect to login
+    router.push('/auth'); // Redirect to login
   };
 
   if (loading) {

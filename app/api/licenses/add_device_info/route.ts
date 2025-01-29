@@ -20,10 +20,10 @@ export async function POST(request: Request) {
       );
     }
 
-    console.log('Incoming device info update:', {
-      key,
-      deviceInfo,
-    });
+    // console.log('Incoming device info update:', {
+    //   key,
+    //   deviceInfo,
+    // });
 
     // Find the license by key
     const license = await License.findOne({ key });

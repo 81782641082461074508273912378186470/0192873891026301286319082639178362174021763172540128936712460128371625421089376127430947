@@ -100,7 +100,7 @@ const NavBar = () => {
 
   return (
     <nav className="fixed top-0 left-0 w-full flex justify-center items-center z-50 shadow-md border-b-[1px] border-white/10 bg-dark-800">
-      <div className="max-w-screen-xl flex items-center justify-between w-full text-white 2xl:border-x-[1px] 2xl:border-white/10 py-3 px-5 ">
+      <div className="max-w-screen-xl flex items-center justify-between w-full text-white border-x-[1px] border-white/10 py-3 px-5 ">
         <Link href="/" className="flex items-center gap-4">
           <svg
             id="A"
@@ -144,13 +144,13 @@ const NavBar = () => {
                 {openDropdown === 'pricing' ? <IoIosArrowUp /> : <IoIosArrowDown />}
               </button>
               {openDropdown === 'pricing' && (
-                <div className="absolute mt-5 w-fit flex flex-col justify-end shadow-lg p-4 shadow-black bg-dark-800 border-[1px] border-white/20 backdrop-blur rounded ">
+                <div className="absolute mt-5 w-fit flex flex-col justify-end shadow-lg p-4 shadow-black bg-dark-800 border-[1px] border-white/10 backdrop-blur rounded ">
                   {pricingAndFeatures.map((button, index) => (
                     <Link
                       key={index}
                       href={button.url}
                       className="flex items-center gap-4 px-4 py-2 rounded group">
-                      <span className="border border-white/20 rounded p-2 group-hover:bg-white group-hover:text-black">
+                      <span className="border border-white/10 rounded p-2 group-hover:bg-white group-hover:text-black">
                         {React.cloneElement(button.icon, {
                           className: 'text-xl text-white/50 group-hover:text-black',
                         })}
@@ -180,13 +180,13 @@ const NavBar = () => {
                 Help & Info {openDropdown === 'help' ? <IoIosArrowUp /> : <IoIosArrowDown />}
               </button>
               {openDropdown === 'help' && (
-                <div className="absolute mt-5 w-fit flex flex-col justify-end shadow-lg p-4 shadow-black bg-dark-800 border-[1px] border-white/20 backdrop-blur rounded ">
+                <div className="absolute mt-5 w-fit flex flex-col justify-end shadow-lg p-4 shadow-black bg-dark-800 border-[1px] border-white/10 backdrop-blur rounded ">
                   {helpAndInfo.map((button, index) => (
                     <Link
                       key={index}
                       href={button.url}
                       className="flex items-center gap-4 px-4 py-2 rounded group">
-                      <span className="border border-white/20 rounded p-2 group-hover:bg-white group-hover:text-black">
+                      <span className="border border-white/10 rounded p-2 group-hover:bg-white group-hover:text-black">
                         {React.cloneElement(button.icon, {
                           className: 'text-xl text-white/50 group-hover:text-black',
                         })}
@@ -230,7 +230,7 @@ const NavBar = () => {
                       key={index}
                       href={button.url}
                       className="flex items-center gap-4 py-1 rounded group">
-                      <span className="border border-white/20 rounded p-2 group-hover:bg-white group-hover:text-black">
+                      <span className="border border-white/10 rounded p-2 group-hover:bg-white group-hover:text-black">
                         {React.cloneElement(button.icon, {
                           className: 'text-white/50 group-hover:text-black',
                         })}

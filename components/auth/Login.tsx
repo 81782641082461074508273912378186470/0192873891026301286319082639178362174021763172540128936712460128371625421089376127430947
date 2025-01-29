@@ -4,6 +4,8 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { GrLicense } from 'react-icons/gr';
+import { IoMdPerson } from 'react-icons/io';
 
 const Login = () => {
   const [loginType, setLoginType] = useState<'account' | 'license'>('account');
@@ -21,7 +23,7 @@ const Login = () => {
     if (authData) {
       try {
         const parsedAuthData = JSON.parse(authData);
-        console.log('Parsed authData:', parsedAuthData);
+        // console.log('Parsed authData:', parsedAuthData);
 
         // Ensure the required fields are present
         if (
@@ -30,7 +32,7 @@ const Login = () => {
           (parsedAuthData.type === 'account' ? parsedAuthData.user : parsedAuthData.licenseKey)
         ) {
           if (parsedAuthData.user && parsedAuthData.user.role) {
-            console.log('Valid auth data, redirecting:', parsedAuthData);
+            // console.log('Valid auth data, redirecting:', parsedAuthData);
             router.replace('/dashboard');
           } else {
             console.error('Invalid user data in authData, clearing:', parsedAuthData);
@@ -64,7 +66,7 @@ const Login = () => {
         body: JSON.stringify(payload),
       });
 
-      console.log('Raw Response:', response);
+      // console.log('Raw Response:', response);
 
       if (!response.ok) {
         const errorText = await response.text();
@@ -101,81 +103,89 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center ">
-      <div
-        key={loginType}
-        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-4 text-center">
-          {loginType === 'account' ? 'Account Login' : 'License Login'}
-        </h2>
+    <div className="bg-dark-800 shadow-md rounded px-8 pt-6 pb-8 w-full max-w-md border border-white/10">
+      <h2 className="text-2xl font-bold mb-4 text-center">
+        {loginType === 'account' ? 'Account Login' : 'License Login'}
+      </h2>
 
-        <div className="flex justify-around mb-4">
-          <button
-            className={`px-4 py-2 rounded ${
-              loginType === 'account' ? 'bg-blue-500 text-white' : 'bg-gray-200'
-            }`}
-            onClick={() => setLoginType('account')}>
-            Account Login
-          </button>
-          <button
-            className={`px-4 py-2 rounded ${
-              loginType === 'license' ? 'bg-blue-500 text-white' : 'bg-gray-200'
-            }`}
-            onClick={() => setLoginType('license')}>
-            License Login
+      <div className="flex gap-3 justify-between mb-5">
+        <button
+          type="button"
+          onClick={() => setLoginType('account')}
+          className={`flex flex-col w-full items-start text-start p-5 rounded ${
+            loginType === 'account'
+              ? 'bg-dark-700 border-white/50 border-[1px] text-white'
+              : 'bg-dark-800 border-[1px] border-white/5 text-white/50'
+          }`}>
+          <span className="flex gap-2 items-center">
+            <IoMdPerson className="text-lg" />
+            Akun
+          </span>
+          <p className="text-xs mt-2">Username & Password.</p>
+        </button>
+        <button
+          type="button"
+          onClick={() => setLoginType('license')}
+          className={`flex flex-col items-start text-start p-5 rounded ${
+            loginType === 'license'
+              ? 'bg-dark-700 border-white/50 border-[1px] text-white'
+              : 'bg-dark-800 border-[1px] border-white/5 text-white/50'
+          }`}>
+          <span className="flex gap-2 items-center">
+            <GrLicense className="text-lg" />
+            License Key
+          </span>
+          <p className="text-sm mt-2">For users with a license key.</p>
+        </button>
+      </div>
+
+      <form onSubmit={handleSubmit}>
+        {loginType === 'account' ? (
+          <>
+            <div className="mb-5">
+              <label className="block text-gray-300 text-sm font-bold mb-2">Username</label>
+              <input
+                type="text"
+                name="username"
+                className="shadow appearance-none border border-white/10 rounded w-full py-2 px-3 text-white bg-dark-600"
+                placeholder="Enter username"
+                value={formData.username}
+                onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+              />
+            </div>
+            <div className="mb-5">
+              <label className="block text-gray-300 text-sm font-bold mb-2">Password</label>
+              <input
+                type="password"
+                name="password"
+                className="shadow appearance-none border border-white/10 rounded w-full py-2 px-3 text-white bg-dark-600"
+                placeholder="Enter password"
+                value={formData.password}
+                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+              />
+            </div>
+          </>
+        ) : (
+          <div className="mb-5">
+            <label className="block text-gray-300 text-sm font-bold mb-2">License Key</label>
+            <input
+              type="text"
+              className="shadow appearance-none border border-white/10 rounded w-full py-2 px-3 text-white bg-dark-600"
+              placeholder="Enter license key"
+              value={formData.licenseKey}
+              onChange={(e) => setFormData({ ...formData, licenseKey: e.target.value })}
+            />
+          </div>
+        )}
+
+        <div className="flex items-center justify-between">
+          <button type="submit" className="bg-white text-black font-bold py-2 px-4 rounded w-full">
+            {loginType === 'account' ? 'Login' : 'Validate License'}
           </button>
         </div>
 
-        <form onSubmit={handleSubmit}>
-          {loginType === 'account' ? (
-            <>
-              <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2">Username</label>
-                <input
-                  type="text"
-                  name="username"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
-                  placeholder="Enter username"
-                  value={formData.username}
-                  onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2">Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
-                  placeholder="Enter password"
-                  value={formData.password}
-                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                />
-              </div>
-            </>
-          ) : (
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">License Key</label>
-              <input
-                type="text"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
-                placeholder="Enter license key"
-                value={formData.licenseKey}
-                onChange={(e) => setFormData({ ...formData, licenseKey: e.target.value })}
-              />
-            </div>
-          )}
-
-          <div className="flex items-center justify-between">
-            <button
-              type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-              {loginType === 'account' ? 'Login' : 'Validate License'}
-            </button>
-          </div>
-
-          {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
-        </form>
-      </div>
+        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+      </form>
     </div>
   );
 };

@@ -9,8 +9,9 @@ const HeroSection = () => {
         src={grid}
         layout="fill"
         objectFit="cover"
-        className="absolute top-0 left-0 w-full h-full opacity-20"
+        className="absolute top-0 left-0 w-full h-full opacity-20 select-none"
         alt="Autolaku | Grid Picture"
+        draggable={false}
       />
       {/* <div className="max-w-screen-xl mx-auto flex flex-col items-center justify-center h-full text-center text-white z-10 px-5">
         <h1 className="text-4xl font-bold mb-4">Lorem Ipsum</h1>

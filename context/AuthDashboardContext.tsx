@@ -49,7 +49,7 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
 
     try {
       const parsedAuthData = JSON.parse(authData);
-      console.log('Parsed authData:', parsedAuthData);
+      // console.log('Parsed authData:', parsedAuthData);
 
       // Validate and set auth details based on type and role
       if (
@@ -111,7 +111,7 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
     router.push('/login');
   };
 
-  console.log(authDetails);
+  // console.log(authDetails);
   return (
     <AuthDashboardContext.Provider
       value={{
@@ -123,8 +123,7 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
         authDetails,
         setAuthData,
         handleLogout,
-      }}
-    >
+      }}>
       {children}
     </AuthDashboardContext.Provider>
   );

@@ -21,7 +21,7 @@ export default function LoginPage() {
     if (authData) {
       try {
         const parsedAuthData = JSON.parse(authData);
-        console.log('Parsed authData:', parsedAuthData);
+        // console.log('Parsed authData:', parsedAuthData);
 
         // Ensure the required fields are present
         if (
@@ -30,7 +30,7 @@ export default function LoginPage() {
           (parsedAuthData.type === 'account' ? parsedAuthData.user : parsedAuthData.licenseKey)
         ) {
           if (parsedAuthData.user && parsedAuthData.user.role) {
-            console.log('Valid auth data, redirecting:', parsedAuthData);
+            // console.log('Valid auth data, redirecting:', parsedAuthData);
             router.replace('/dashboard');
           } else {
             console.error('Invalid user data in authData, clearing:', parsedAuthData);
@@ -64,7 +64,7 @@ export default function LoginPage() {
         body: JSON.stringify(payload),
       });
 
-      console.log('Raw Response:', response);
+      // console.log('Raw Response:', response);
 
       if (!response.ok) {
         const errorText = await response.text();
