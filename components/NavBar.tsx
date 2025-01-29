@@ -229,17 +229,17 @@ const NavBar = () => {
                     <Link
                       key={index}
                       href={button.url}
-                      className="flex items-center gap-4 px-4 py-2 rounded group">
+                      className="flex items-center gap-4 py-1 rounded group">
                       <span className="border border-white/20 rounded p-2 group-hover:bg-white group-hover:text-black">
                         {React.cloneElement(button.icon, {
-                          className: 'text-xl text-white/50 group-hover:text-black',
+                          className: 'text-white/50 group-hover:text-black',
                         })}
                       </span>
                       <div>
-                        <span className="font-semibold text-white/70 group-hover:text-white">
+                        <span className="font-semibold text-sm text-white/70 group-hover:text-white">
                           {button.title}
                         </span>
-                        <p className="text-sm text-white/50 group-hover:text-white/60 whitespace-nowrap">
+                        <p className="text-xs text-white/50 group-hover:text-white/60 whitespace-nowrap">
                           {button.description}
                         </p>
                       </div>
