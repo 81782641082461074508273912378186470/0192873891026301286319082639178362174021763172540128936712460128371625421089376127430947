@@ -27,6 +27,7 @@ const Daftar = () => {
   const [name, setName] = useState<string | null>(null);
   const [messageProgress, setMessageProgress] = useState<number>(0);
   const [copied, setCopied] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const startTimer = (messageType: 'error' | 'success', message: string) => {
     if (messageType === 'error') {
@@ -56,6 +57,7 @@ const Daftar = () => {
     setGeneratedLicenseKey(null);
 
     try {
+      setLoading(true);
       if (!formData.name || !formData.email) {
         startTimer('error', 'Name and Email are required');
         return;
@@ -119,6 +121,8 @@ const Daftar = () => {
     } catch (error: any) {
       console.error('Registration error:', error.message);
       setError(error.message || 'Something went wrong');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -143,7 +147,6 @@ const Daftar = () => {
     if (generatedLicenseKey) {
       navigator.clipboard.writeText(generatedLicenseKey).then(() => {
         setCopied(true);
-        // Reset the icon after a short delay, e.g., 2 seconds
         setTimeout(() => setCopied(false), 2000);
       });
     }
@@ -325,8 +328,11 @@ const Daftar = () => {
                 <button
                   type="button" // Changed to type="button" to prevent form submission on enter key
                   onClick={handleSubmit}
-                  className="bg-white text-sm lg:text-base text-black font-bold py-2 px-4 rounded ">
-                  Daftar Sekarang
+                  className={`text-sm lg:text-base text-white font-bold py-2 px-4 rounded ${
+                    loading ? 'bg-dark-600' : 'bg-white text-black'
+                  }`}
+                  disabled={loading}>
+                  {loading ? 'Mohon Tunggu' : 'Daftar Sekarang'}
                 </button>
               </div>
             </>
