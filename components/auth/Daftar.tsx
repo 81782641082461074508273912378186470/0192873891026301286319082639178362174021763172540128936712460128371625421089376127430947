@@ -163,7 +163,7 @@ const Daftar = () => {
 
   return (
     <>
-      <div className="flex flex-col justify-center items-center w-full pt-20 max-w-[350px]">
+      <div className="flex flex-col justify-center items-center w-full max-w-[350px]">
         {(error || successMessage) && (
           <div>
             <p

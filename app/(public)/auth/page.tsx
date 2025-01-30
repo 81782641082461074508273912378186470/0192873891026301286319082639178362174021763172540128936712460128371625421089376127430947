@@ -66,7 +66,7 @@ const Page = () => {
             </div>
           </div>
 
-          <div className="h-full  flex flex-col justify-center items-center p-10 relative">
+          <div className="h-full  flex flex-col justify-center items-center px-10 relative">
             <button
               onClick={() => toggleSection(activeSection === 'daftar' ? 'login' : 'daftar')}
               className="absolute top-0 right-0 m-5 px-4 py-2 hover:bg-white/10 rounded-[5px]">
