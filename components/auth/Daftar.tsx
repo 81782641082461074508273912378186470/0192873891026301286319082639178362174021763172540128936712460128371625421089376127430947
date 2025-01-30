@@ -9,6 +9,7 @@ import { MdDownload } from 'react-icons/md';
 import { IoCloseSharp } from 'react-icons/io5';
 import { GrLicense } from 'react-icons/gr';
 import { IoMdPerson } from 'react-icons/io';
+import Link from 'next/link';
 
 const Daftar = () => {
   const [formData, setFormData] = useState({
@@ -340,13 +341,13 @@ const Daftar = () => {
         </div>
         <p className="text-sm text-gray-400 mt-10 text-center">
           Dengan mendaftar, Anda setuju dengan{' '}
-          <a href="#" className="text-blue-400">
+          <Link href="/ketentuan-layanan" className="text-blue-400">
             Ketentuan Layanan
-          </a>{' '}
+          </Link>{' '}
           dan{' '}
-          <a href="#" className="text-blue-400">
+          <Link href="kebijakan-privasi" className="text-blue-400">
             Kebijakan Privasi
-          </a>
+          </Link>
         </p>
       </div>
 

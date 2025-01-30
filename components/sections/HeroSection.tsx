@@ -16,12 +16,12 @@ const HeroSection = () => {
         draggable={false}
       />
       <div className="max-w-screen-xl mx-auto flex flex-col items-center justify-center h-full text-center text-white z-10 px-5">
-        <h1 className="lg:text-5xl text-xl font-extrabold mb-4">
+        <h1 className="lg:text-6xl text-2xl font-extrabold mb-4 __gradient_text">
           Dropship ribet bikin kalah saing?
         </h1>
-        <p className="mb-8 lg:text-3xl flex text-white/70">
+        <p className="mb-8 lg:text-3xl flex text-white/70 ">
           Sekarang bisa
-          <strong className="flex flex-col items-center justify-center mx-2 text-white">
+          <strong className="flex flex-col items-center justify-center mx-2 text-white ">
             cepat & profesional
             <div className="brush-underline" />
           </strong>

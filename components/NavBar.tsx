@@ -123,10 +123,10 @@ const NavBar = () => {
             />
           </svg>
           <div className="w-[0.5px] h-8 bg-white/20 rotate-12" />
-          <span className="text-xl lg:text-3xl text-white ">Autolaku</span>
+          <span className="text-xl lg:text-3xl text-white">Autolaku</span>
         </Link>
 
-        <ul className="hidden lg:flex items-center gap-16">
+        <ul className="hidden lg:flex items-center gap-16 text-white/70">
           {homeButton && (
             <Link href={homeButton.url} aria-label="Home">
               Home
@@ -140,8 +140,7 @@ const NavBar = () => {
                   openDropdown === 'pricing' ? 'text-white' : 'text-white/70'
                 }`}
                 onClick={() => toggleDropdown('pricing')}>
-                Pricing & Features{' '}
-                {openDropdown === 'pricing' ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                Harga & Fitur {openDropdown === 'pricing' ? <IoIosArrowUp /> : <IoIosArrowDown />}
               </button>
               {openDropdown === 'pricing' && (
                 <div className="absolute mt-5 w-fit flex flex-col justify-end shadow-lg p-4 shadow-black bg-dark-800 border-[1px] border-white/10 backdrop-blur rounded ">
@@ -177,7 +176,8 @@ const NavBar = () => {
                   openDropdown === 'help' ? 'text-white' : 'text-white/70'
                 }`}
                 onClick={() => toggleDropdown('help')}>
-                Help & Info {openDropdown === 'help' ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                Bantuan & Informasi{' '}
+                {openDropdown === 'help' ? <IoIosArrowUp /> : <IoIosArrowDown />}
               </button>
               {openDropdown === 'help' && (
                 <div className="absolute mt-5 w-fit flex flex-col justify-end shadow-lg p-4 shadow-black bg-dark-800 border-[1px] border-white/10 backdrop-blur rounded ">

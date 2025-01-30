@@ -17,9 +17,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen bg-black text-white selection:bg-white/65 selection:text-black no-scrollbar">
         <Navbar />
-        <div className="flex flex-col justify-center items-center w-full mt-12 lg:mt-24 ">
-          {children}
-        </div>
+        <div className="flex flex-col justify-center items-center w-full mt-12">{children}</div>
 
         {/* <div className="w-full font-mono h-5 fixed bottom-0 flex justify-center items-center bg-cyan-500 sm:bg-blue-500 md:bg-green-500 lg:bg-yellow-500 xl:bg-orange-500 2xl:bg-red-500 ">
           <p className="hidden sm:block md:hidden">sm</p>
