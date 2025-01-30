@@ -101,14 +101,14 @@ const NavBar = () => {
   return (
     <nav className="fixed top-0 left-0 w-full flex justify-center items-center z-50 shadow-md border-b-[1px] border-white/10 bg-dark-800">
       <div className="max-w-screen-xl flex items-center justify-between w-full text-white border-x-[1px] border-white/10 py-3 px-5 ">
-        <Link href="/" className="flex items-center gap-4">
+        <Link href="/" className="flex items-center gap-2 lg:gap-4">
           <svg
             id="A"
             data-name="A"
             fill="#fff"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 4389.67 5000"
-            className="h-auto w-7">
+            className="h-auto w-5 lg:w-7">
             <polygon
               className="cls-1"
               points="2304.85 2826.47 1426.69 5000 0 5000 1813.03 512.61 2304.85 2826.47"
@@ -123,7 +123,7 @@ const NavBar = () => {
             />
           </svg>
           <div className="w-[0.5px] h-8 bg-white/20 rotate-12" />
-          <h1 className="text-2xl lg:text-4xl font-semibold">Autolaku</h1>
+          <h1 className="text-xl lg:text-4xl font-semibold">Autolaku</h1>
         </Link>
 
         <ul className="hidden lg:flex items-center gap-16">
@@ -217,9 +217,9 @@ const NavBar = () => {
           <Sheet>
             <SheetTrigger asChild>
               <button
-                className="!block lg:!hidden items-center rounded-button !p-3"
+                className="!block lg:!hidden items-center rounded-button lg:!p-3"
                 title="Mobile screen sidebar menu">
-                <HiMenuAlt4 className="text-xl" />
+                <HiMenuAlt4 className="lg:text-xl" />
               </button>
             </SheetTrigger>
             <SheetContent className="w-fit">
