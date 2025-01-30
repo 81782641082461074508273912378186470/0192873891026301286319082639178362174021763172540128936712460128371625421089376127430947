@@ -101,7 +101,7 @@ const NavBar = () => {
   return (
     <nav className="fixed top-0 left-0 w-full flex justify-center items-center z-50 shadow-md border-b-[1px] border-white/10 bg-dark-800">
       <div className="max-w-screen-xl flex items-center justify-between w-full text-white border-x-[1px] border-white/10 py-3 px-5 ">
-        <Link href="/" className="flex items-center gap-2 lg:gap-4">
+        <Link href="/" className="flex items-center gap-2 lg:gap-4 __gradient_text">
           <svg
             id="A"
             data-name="A"
@@ -123,7 +123,7 @@ const NavBar = () => {
             />
           </svg>
           <div className="w-[0.5px] h-8 bg-white/20 rotate-12" />
-          <h1 className="text-xl lg:text-4xl font-semibold">Autolaku</h1>
+          <h1 className="text-xl lg:text-4xl text-white ">Autolaku</h1>
         </Link>
 
         <ul className="hidden lg:flex items-center gap-16">

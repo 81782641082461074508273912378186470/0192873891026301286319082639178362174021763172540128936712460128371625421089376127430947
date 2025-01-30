@@ -22,7 +22,7 @@ const Page = () => {
             <div className="bottom-0 left-0 border-l-[1px] border-white/50 h-10 -mb-5" />
             <div className="bottom-0 left-0 border-b-[1px] border-white/50 w-10 -ml-5" />
           </div>
-          <div className="text-white text-xs lg:text-base font-extralight text-white/80 lg:p-0 pl-32 text-end lg:text-justify ml-5 lg:m-0 mb-10">
+          <div className="text-white text-xs lg:text-base font-extralight text-white/80 lg:p-0 pl-32 text-end lg:text-justify ml-5 lg:m-0 mb-10 __gradient_text">
             <p>
               Menggunakan banyak alat terpisah atau metode manual untuk dropshipping hanya
               memperlambat Anda. Di dunia yang semakin cepat ini, kita perlu alat yang efisien dan
@@ -66,7 +66,7 @@ const Page = () => {
             </div>
           </div>
 
-          <div className="h-full  flex flex-col justify-center items-center px-10 relative">
+          <div className="h-full gap-10 flex flex-col justify-center items-center px-10 relative">
             <button
               onClick={() => toggleSection(activeSection === 'daftar' ? 'login' : 'daftar')}
               className="absolute top-0 right-0 m-5 px-4 py-2 hover:bg-white/10 rounded-[5px]">

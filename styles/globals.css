@@ -24,5 +24,5 @@
 }
 
 .__gradient_text {
-  @apply bg-gradient-to-t from-black to-transparent bg-clip-text text-transparent;
+  @apply bg-gradient-to-t from-black/20 from-10% via-black/10 via-30% to-white to-90% bg-clip-text text-transparent;
 }

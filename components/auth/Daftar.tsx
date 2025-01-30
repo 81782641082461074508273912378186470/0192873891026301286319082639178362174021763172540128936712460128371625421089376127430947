@@ -224,7 +224,7 @@ const Daftar = () => {
               <button
                 type="button"
                 onClick={handleContinue}
-                className="bg-white text-black font-bold py-2 px-4 rounded w-full">
+                className="bg-white text-sm lg:text-base text-black font-bold py-2 px-4 rounded w-full">
                 Lanjutkan Pendaftaran
               </button>
             </>
@@ -247,13 +247,13 @@ const Daftar = () => {
                 <button
                   type="button"
                   onClick={handleBack}
-                  className="bg-dark-700 text-white font-bold py-2 px-4 rounded">
-                  Back
+                  className="bg-dark-700 text-sm lg:text-base text-white font-bold py-2 px-4 rounded">
+                  Kembali
                 </button>
                 <button
                   type="button"
                   onClick={handleContinue}
-                  className="bg-white text-black font-bold py-2 px-4 rounded ">
+                  className="bg-white text-sm lg:text-base text-black font-bold py-2 px-4 rounded ">
                   Lanjutkan Pendaftaran
                 </button>
               </div>
@@ -319,13 +319,13 @@ const Daftar = () => {
                 <button
                   type="button"
                   onClick={handleBack}
-                  className="bg-dark-700 text-white font-bold py-2 px-4 rounded">
-                  Back
+                  className="bg-dark-700 text-sm lg:text-base text-white font-bold py-2 px-4 rounded">
+                  Kembali
                 </button>
                 <button
                   type="button" // Changed to type="button" to prevent form submission on enter key
                   onClick={handleSubmit}
-                  className="bg-white text-black font-bold py-2 px-4 rounded ">
+                  className="bg-white text-sm lg:text-base text-black font-bold py-2 px-4 rounded ">
                   Daftar Sekarang
                 </button>
               </div>
