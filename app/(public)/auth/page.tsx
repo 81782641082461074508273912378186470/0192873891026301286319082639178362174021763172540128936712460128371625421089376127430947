@@ -17,12 +17,12 @@ const Page = () => {
     <div className="flex flex-col items-center w-full h-screen lg:-mt-24 max-w-screen-xl justify-center text-white border-x-[1px] border-b-[1px] my-10 px-10 xl:p-0  border-white/10">
       <div className="flex flex-col-reverse lg:flex-row w-full h-[650px]">
         {/* Information */}
-        <div className="flex w-full p-10 border-y-[1px] border-l-[1px] xl:border-l-0 border-white/10 relative">
+        <div className="flex w-full p-10 border-y-[1px] border-l-[1px] xl:border-l-0 border-white/10 relative ">
           <div className="relative -mt-16 -ml-10">
             <div className="bottom-0 left-0 border-l-[1px] border-white/50 h-10 -mb-5" />
             <div className="bottom-0 left-0 border-b-[1px] border-white/50 w-10 -ml-5" />
           </div>
-          <div className="text-white font-extralight text-white/80 text-justify">
+          <div className="text-white text-xs lg:text-base font-extralight text-white/80 lg:p-0 pl-32 text-end lg:text-justify ml-5 lg:m-0 mb-10">
             <p>
               Menggunakan banyak alat terpisah atau metode manual untuk dropshipping hanya
               memperlambat Anda. Di dunia yang semakin cepat ini, kita perlu alat yang efisien dan
@@ -32,7 +32,7 @@ const Page = () => {
           <div className="absolute bottom-0 left-0 right-0 h-[30%] bg-gradient-to-t from-black to-transparent -z-10"></div>
           <Image
             src={robot}
-            alt="Background Image"
+            alt="Autolaku"
             objectFit="cover"
             width={750}
             height={750}
