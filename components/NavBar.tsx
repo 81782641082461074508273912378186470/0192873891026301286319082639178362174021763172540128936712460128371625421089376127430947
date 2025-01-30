@@ -123,7 +123,7 @@ const NavBar = () => {
             />
           </svg>
           <div className="w-[0.5px] h-8 bg-white/20 rotate-12" />
-          <h1 className="text-xl lg:text-4xl text-white ">Autolaku</h1>
+          <span className="text-xl lg:text-3xl text-white ">Autolaku</span>
         </Link>
 
         <ul className="hidden lg:flex items-center gap-16">
