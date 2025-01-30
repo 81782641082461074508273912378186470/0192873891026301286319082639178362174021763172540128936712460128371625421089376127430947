@@ -124,7 +124,7 @@ const Login = () => {
   };
 
   return (
-    <div className="pt-20 w-full max-w-[450px]">
+    <div className="pt-20 w-full max-w-[350px]">
       <div className="flex flex-col gap-3 justify-center w-full mb-5">
         <button
           type="button"

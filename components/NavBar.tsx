@@ -217,7 +217,7 @@ const NavBar = () => {
           <Sheet>
             <SheetTrigger asChild>
               <button
-                className="!block lg:!hidden items-center rounded-button lg:!p-3"
+                className="!block lg:!hidden items-center rounded-button !p-2 lg:!p-3"
                 title="Mobile screen sidebar menu">
                 <HiMenuAlt4 className="lg:text-xl" />
               </button>

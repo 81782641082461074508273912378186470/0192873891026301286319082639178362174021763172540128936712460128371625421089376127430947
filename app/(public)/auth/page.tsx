@@ -17,7 +17,7 @@ const Page = () => {
     <div className="flex flex-col items-center w-full h-screen mt-52 max-w-screen-xl justify-center text-white border-x-[1px] border-b-[1px] px-10 xl:p-0  border-white/10">
       <div className="flex flex-col-reverse lg:flex-row w-full h-[650px]">
         {/* Information */}
-        <div className="flex w-full p-10 border-y-[1px] border-l-[1px] xl:border-l-0 border-white/10 relative ">
+        <div className="lg:flex w-full hidden p-10 border-y-[1px] border-l-[1px] xl:border-l-0 border-white/10 relative ">
           <div className="relative -mt-16 -ml-10">
             <div className="bottom-0 left-0 border-l-[1px] border-white/50 h-10 -mb-5" />
             <div className="bottom-0 left-0 border-b-[1px] border-white/50 w-10 -ml-5" />
