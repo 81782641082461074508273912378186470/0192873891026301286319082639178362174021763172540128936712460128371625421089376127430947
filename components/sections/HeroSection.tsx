@@ -21,7 +21,7 @@ const HeroSection = () => {
         </h1>
         <p className="mb-8 lg:text-3xl flex text-white/70">
           Sekarang bisa
-          <strong className="flex flex-col gap-2 items-center justify-center mx-2 text-white">
+          <strong className="flex flex-col items-center justify-center mx-2 text-white">
             cepat & profesional
             <div className="brush-underline" />
           </strong>
