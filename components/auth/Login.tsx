@@ -17,6 +17,7 @@ const Login = () => {
 
   const [error, setError] = useState<string | null>(null);
   const [messageProgress, setMessageProgress] = useState<number>(0);
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
 
@@ -28,7 +29,6 @@ const Login = () => {
         const parsedAuthData = JSON.parse(authData);
         // console.log('Parsed authData:', parsedAuthData);
 
-        // Ensure the required fields are present
         if (
           parsedAuthData.type &&
           parsedAuthData.role &&
@@ -75,6 +75,7 @@ const Login = () => {
     setError(null);
 
     try {
+      setLoading(true);
       const endpoint = loginType === 'account' ? '/api/auth' : '/api/licenses/validate';
       const payload =
         loginType === 'account'
@@ -120,6 +121,8 @@ const Login = () => {
     } catch (error: any) {
       console.error('Login error:', error.message);
       startTimer('error', 'Terjadi Kesalahan.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -199,9 +202,25 @@ const Login = () => {
         )}
 
         <div className="flex items-center justify-between mt-10">
-          <button type="submit" className="bg-white text-black font-bold py-2 px-4 rounded w-full">
-            {loginType === 'account' ? 'Masuk' : 'Validasi License Key'}
-          </button>
+          {loginType === 'account' ? (
+            <button
+              type="submit"
+              className={`font-bold py-2 px-4 rounded w-full ${
+                loading ? 'bg-dark-600 text-white' : 'bg-white text-black'
+              }`}
+              disabled={loading}>
+              {loading ? 'Mohon Tunggu...' : 'Masuk'}
+            </button>
+          ) : (
+            <button
+              type="submit"
+              className={`font-bold py-2 px-4 rounded w-full ${
+                loading ? 'bg-dark-600 text-white' : 'bg-white text-black'
+              }`}
+              disabled={loading}>
+              {loading ? 'Mohon Tunggu...' : 'Validasi License'}
+            </button>
+          )}
         </div>
 
         {error && (

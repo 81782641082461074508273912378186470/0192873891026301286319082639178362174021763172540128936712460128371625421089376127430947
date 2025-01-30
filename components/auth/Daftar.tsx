@@ -328,11 +328,11 @@ const Daftar = () => {
                 <button
                   type="button" // Changed to type="button" to prevent form submission on enter key
                   onClick={handleSubmit}
-                  className={`text-sm lg:text-base text-white font-bold py-2 px-4 rounded ${
-                    loading ? 'bg-dark-600' : 'bg-white text-black'
+                  className={`text-sm lg:text-base font-bold py-2 px-4 rounded ${
+                    loading ? 'bg-dark-600 text-white' : 'bg-white text-black'
                   }`}
                   disabled={loading}>
-                  {loading ? 'Mohon Tunggu' : 'Daftar Sekarang'}
+                  {loading ? 'Mohon Tunggu..' : 'Daftar Sekarang'}
                 </button>
               </div>
             </>
@@ -353,20 +353,20 @@ const Daftar = () => {
       {showPopup && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur shadow-xl shadow-black flex items-center justify-center z-50">
           <div className="bg-dark-800 border-[1px] border-white/10 p-6 roundelg shadow-lg w-full max-w-md text-star t">
-            <div className=" w-full flex justify-between items-start  mb-10">
+            <div className=" w-full flex justify-between items-start mb-10">
               <h3 className="text-xl font-bold text-white">Pendaftaran Berhasil!</h3>
               <button
                 onClick={closePopup}
-                className="bg-dark-600 hover:!bg-dark-500 border-[1px] border-white/10 rounded-xl p-2 text-white font-bold items-center">
+                className="bg-dark-600 hover:!bg-dark-500 border-[1px] border-white/10 rounded-[5px] p-2 text-white font-bold items-center">
                 <IoCloseSharp className="text-xl" />
               </button>
             </div>
             <p className="text-white/80 text-sm mb-2">
-              Silakan simpan kunci lisensi Anda dengan aman. Jangan sampai hilang atau lupa Anda
+              Silakan simpan kunci lisensi Anda dengan aman. Jangan sampai hilang atau lupa
             </p>
             <p className="text-white/50 text-xs mb-5">
-              dapat menyimpannya dengan tombol unduh, dan kunci lisensi tersebut akan disimpan di
-              komputer Anda sebagai cadangan jika Anda lupa.
+              Anda dapat menyimpannya dengan tombol unduh, dan kunci lisensi tersebut akan disimpan
+              di komputer Anda sebagai cadangan jika Anda lupa.
             </p>
             <div className="mb-5 mt-10">
               {generatedLicenseKey && (
