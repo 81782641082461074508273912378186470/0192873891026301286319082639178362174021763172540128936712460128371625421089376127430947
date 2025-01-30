@@ -18,3 +18,7 @@
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   scrollbar-width: none; /* Firefox */
 }
+
+.__input {
+  @apply appearance-none w-full p-2 text-sm bg-transparent border-b-[1px] border-white/20 focus:border-white/50 focus:ring-0 focus:outline-none;
+}

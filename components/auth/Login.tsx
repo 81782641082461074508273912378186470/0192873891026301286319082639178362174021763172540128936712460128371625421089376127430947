@@ -14,7 +14,10 @@ const Login = () => {
     password: '',
     licenseKey: '',
   });
+
   const [error, setError] = useState<string | null>(null);
+  const [messageProgress, setMessageProgress] = useState<number>(0);
+
   const router = useRouter();
 
   useEffect(() => {
@@ -49,6 +52,24 @@ const Login = () => {
     }
   }, [router]);
 
+  const startTimer = (messageType: 'error' | 'success', message: string) => {
+    if (messageType === 'error') {
+      setError(message);
+    }
+    setMessageProgress(100);
+    const timer = setInterval(() => {
+      setMessageProgress((prevProgress) => {
+        if (prevProgress > 0) {
+          return prevProgress - 20; // Decrease by 20% every second for 5 seconds
+        } else {
+          clearInterval(timer);
+          setError(null);
+          return 0;
+        }
+      });
+    }, 1000);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -74,7 +95,7 @@ const Login = () => {
         throw new Error(errorText || 'Unexpected server response');
       }
 
-      const data = await response.json(); // Parse the JSON response
+      const data = await response.json();
       // console.log('Parsed Response Data:', data);
 
       const authData =
@@ -98,31 +119,13 @@ const Login = () => {
       router.replace('/dashboard');
     } catch (error: any) {
       console.error('Login error:', error.message);
-      setError(error.message || 'Something went wrong');
+      startTimer('error', 'Terjadi Kesalahan.');
     }
   };
 
   return (
-    <div className="bg-dark-800 shadow-md rounded px-8 pt-6 pb-8 w-full max-w-md border border-white/10">
-      <h2 className="text-2xl font-bold mb-4 text-center">
-        {loginType === 'account' ? 'Account Login' : 'License Login'}
-      </h2>
-
-      <div className="flex gap-3 justify-between mb-5">
-        <button
-          type="button"
-          onClick={() => setLoginType('account')}
-          className={`flex flex-col w-full items-start text-start p-5 rounded ${
-            loginType === 'account'
-              ? 'bg-dark-700 border-white/50 border-[1px] text-white'
-              : 'bg-dark-800 border-[1px] border-white/5 text-white/50'
-          }`}>
-          <span className="flex gap-2 items-center">
-            <IoMdPerson className="text-lg" />
-            Akun
-          </span>
-          <p className="text-xs mt-2">Username & Password.</p>
-        </button>
+    <div className="pt-20 w-full max-w-[450px]">
+      <div className="flex flex-col gap-3 justify-center w-full mb-5">
         <button
           type="button"
           onClick={() => setLoginType('license')}
@@ -132,10 +135,24 @@ const Login = () => {
               : 'bg-dark-800 border-[1px] border-white/5 text-white/50'
           }`}>
           <span className="flex gap-2 items-center">
-            <GrLicense className="text-lg" />
+            <GrLicense className="lg:text-lg" />
             License Key
           </span>
-          <p className="text-sm mt-2">For users with a license key.</p>
+          <p className="text-xs lg:text-sm mt-2">Masuk menggunakan License Key</p>
+        </button>
+        <button
+          type="button"
+          onClick={() => setLoginType('account')}
+          className={`flex flex-col items-start text-start p-5 rounded ${
+            loginType === 'account'
+              ? 'bg-dark-700 border-white/50 border-[1px] text-white'
+              : 'bg-dark-800 border-[1px] border-white/5 text-white/50'
+          }`}>
+          <span className="flex gap-2 items-center">
+            <IoMdPerson className="lg:text-lg" />
+            Akun
+          </span>
+          <p className="text-xs lg:text-sm mt-2">Masuk dengan username dan password.</p>
         </button>
       </div>
 
@@ -147,8 +164,9 @@ const Login = () => {
               <input
                 type="text"
                 name="username"
-                className="shadow appearance-none border border-white/10 rounded w-full py-2 px-3 text-white bg-dark-600"
-                placeholder="Enter username"
+                className="__input"
+                placeholder="TonaldDrump01"
+                required
                 value={formData.username}
                 onChange={(e) => setFormData({ ...formData, username: e.target.value })}
               />
@@ -158,8 +176,9 @@ const Login = () => {
               <input
                 type="password"
                 name="password"
-                className="shadow appearance-none border border-white/10 rounded w-full py-2 px-3 text-white bg-dark-600"
-                placeholder="Enter password"
+                required
+                className="__input"
+                placeholder="DruMpTonaLd01#"
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
               />
@@ -170,21 +189,38 @@ const Login = () => {
             <label className="block text-gray-300 text-sm font-bold mb-2">License Key</label>
             <input
               type="text"
-              className="shadow appearance-none border border-white/10 rounded w-full py-2 px-3 text-white bg-dark-600"
-              placeholder="Enter license key"
+              className="__input"
+              placeholder="ABCD-1234-EFGH-5678"
+              required
               value={formData.licenseKey}
               onChange={(e) => setFormData({ ...formData, licenseKey: e.target.value })}
             />
           </div>
         )}
 
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mt-10">
           <button type="submit" className="bg-white text-black font-bold py-2 px-4 rounded w-full">
-            {loginType === 'account' ? 'Login' : 'Validate License'}
+            {loginType === 'account' ? 'Masuk' : 'Validasi License Key'}
           </button>
         </div>
 
-        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+        {error && (
+          <div>
+            <p
+              className={`px-3 py-1 w-fit ${
+                error
+                  ? 'text-red-500 bg-red-500/20 text-sm'
+                  : 'bg-green-500/20 text-green-500 text-sm'
+              }`}>
+              {error}
+            </p>
+            <div className="h-0.5 bg-dark-700 absolute bottom-0 left-0 w-full ">
+              <div
+                className={`h-full ${error ? 'bg-red-500 bg-sm' : 'text-green-500 text-sm'}}`}
+                style={{ width: `${messageProgress}%` }}></div>
+            </div>
+          </div>
+        )}
       </form>
     </div>
   );

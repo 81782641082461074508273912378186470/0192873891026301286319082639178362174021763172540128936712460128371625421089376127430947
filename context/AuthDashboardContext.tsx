@@ -43,7 +43,7 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
       setType(null);
       setAuthDetails(null);
       setIsAuthenticated(false);
-      router.push('/login');
+      router.push('/auth');
       return;
     }
 
@@ -71,7 +71,7 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
         setType(null);
         setAuthDetails(null);
         setIsAuthenticated(false);
-        router.push('/login');
+        router.push('/auth');
       }
     } catch (error) {
       console.error('Failed to parse authData:', error);
@@ -82,7 +82,7 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
       setType(null);
       setAuthDetails(null);
       setIsAuthenticated(false);
-      router.push('/login');
+      router.push('/auth');
     }
   }, [router]);
 
@@ -108,7 +108,7 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
     setType(null);
     setAuthDetails(null);
     setIsAuthenticated(false);
-    router.push('/login');
+    router.push('/auth');
   };
 
   // console.log(authDetails);

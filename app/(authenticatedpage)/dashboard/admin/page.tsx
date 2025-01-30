@@ -10,22 +10,21 @@ export default function AdminDashboardPage() {
     const authData = localStorage.getItem('authData');
 
     if (!authData) {
-      router.replace('/login'); // Redirect if no auth data
+      router.replace('/auth');
       return;
     }
 
     try {
       const { type, role } = JSON.parse(authData);
 
-      // Validate the type and role
       if (type !== 'account' || role !== 'admin') {
-        localStorage.removeItem('authData'); // Clear invalid auth data
-        router.replace('/login'); // Redirect to login
+        localStorage.removeItem('authData');
+        router.replace('/auth');
       }
     } catch (error) {
       console.error('Invalid authData format, clearing localStorage:', error);
-      localStorage.removeItem('authData'); // Clear invalid auth data
-      router.replace('/login'); // Redirect to login
+      localStorage.removeItem('authData');
+      router.replace('/auth');
     }
   }, [router]);
 

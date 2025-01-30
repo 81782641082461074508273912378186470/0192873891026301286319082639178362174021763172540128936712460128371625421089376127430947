@@ -14,7 +14,7 @@ const Page = () => {
   };
 
   return (
-    <div className="flex flex-col items-center w-full h-screen -mt-24 max-w-screen-xl justify-center text-white border-x-[1px] border-b-[1px] px-10 xl:p-0  border-white/10">
+    <div className="flex flex-col items-center w-full h-screen lg:-mt-24 max-w-screen-xl justify-center text-white border-x-[1px] border-b-[1px] my-10 px-10 xl:p-0  border-white/10">
       <div className="flex flex-col-reverse lg:flex-row w-full h-[650px]">
         {/* Information */}
         <div className="flex w-full p-10 border-y-[1px] border-l-[1px] xl:border-l-0 border-white/10 relative">

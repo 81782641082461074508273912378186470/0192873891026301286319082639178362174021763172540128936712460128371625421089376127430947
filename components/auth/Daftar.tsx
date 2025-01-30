@@ -163,7 +163,7 @@ const Daftar = () => {
 
   return (
     <>
-      <div className="flex flex-col justify-center items-center w-full py-10 max-w-[450px]">
+      <div className="flex flex-col justify-center items-center w-full pt-20 max-w-[450px]">
         {(error || successMessage) && (
           <div>
             <p
@@ -181,11 +181,11 @@ const Daftar = () => {
             </div>
           </div>
         )}
-        <div className="px-10 w-full">
+        <div className="lg:px-10 w-full">
           {step === 1 && (
             <>
-              <div className="mb-5">
-                <div className="flex gap-3 justify-between">
+              <div className="mb-10">
+                <div className="flex flex-col gap-3 justify-center w-full">
                   <button
                     type="button"
                     onClick={() => setFormData({ ...formData, role: 'user' })}
@@ -195,10 +195,10 @@ const Daftar = () => {
                         : 'bg-dark-800 border-[1px] border-white/5 text-white/50'
                     }`}>
                     <span className="flex gap-2 items-center">
-                      <GrLicense className="text-lg" />
+                      <GrLicense className="lg:text-lg" />
                       User
                     </span>
-                    <p className=" text-sm mt-2">
+                    <p className="text-xs lg:text-sm mt-2">
                       Untuk individu, satu perangkat, akses fitur dasar.
                     </p>
                   </button>
@@ -211,10 +211,10 @@ const Daftar = () => {
                         : 'bg-dark-800 border-[1px] border-white/5 text-white/50'
                     }`}>
                     <span className="flex gap-2 items-center">
-                      <IoMdPerson className="text-lg" />
+                      <IoMdPerson className="lg:text-lg" />
                       Admin
                     </span>
-                    <p className="text-sm mt-2">
+                    <p className="text-xs lg:text-sm mt-2">
                       Untuk pemilik bisnis, akun dengan username dan password, manajemen kunci
                       lisensi dan karyawan.
                     </p>
@@ -225,18 +225,18 @@ const Daftar = () => {
                 type="button"
                 onClick={handleContinue}
                 className="bg-white text-black font-bold py-2 px-4 rounded w-full">
-                Continue
+                Lanjutkan Pendaftaran
               </button>
             </>
           )}
 
           {step === 2 && (
             <>
-              <div className="mb-5">
+              <div className="mb-10">
                 <label className="block text-gray-300 text-sm font-bold mb-2">Nama Lengkap</label>
                 <input
                   type="text"
-                  className="shadow appearance-none border border-white/10 rounded w-full py-2 px-3 text-white bg-dark-600"
+                  className="__input"
                   placeholder="Tonald Drump"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -254,7 +254,7 @@ const Daftar = () => {
                   type="button"
                   onClick={handleContinue}
                   className="bg-white text-black font-bold py-2 px-4 rounded ">
-                  Continue
+                  Lanjutkan Pendaftaran
                 </button>
               </div>
             </>
@@ -266,7 +266,7 @@ const Daftar = () => {
                 <label className="block text-gray-300 text-sm font-bold mb-2">Email</label>
                 <input
                   type="email"
-                  className="shadow appearance-none border border-white/10 rounded w-full py-2 px-3 text-white bg-dark-600"
+                  className="__input"
                   placeholder="tonalddrump01@email.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -274,14 +274,14 @@ const Daftar = () => {
                 />
               </div>
 
-              <div className="mb-5">
+              <div className="mb-10">
                 <label className=" text-gray-300 text-sm font-bold mb-2">
                   <p className="text-xs text-white/70">* Awalan 62</p>
                   WhatsApp Number
                 </label>
                 <input
                   type="number"
-                  className="shadow appearance-none border border-white/10 rounded w-full py-2 px-3 text-white bg-dark-600 [-moz-appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                  className="__input [-moz-appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   placeholder="628123456789"
                   value={formData.whatsappNumber}
                   onChange={(e) => setFormData({ ...formData, whatsappNumber: e.target.value })}
@@ -290,22 +290,22 @@ const Daftar = () => {
 
               {formData.role === 'admin' && (
                 <>
-                  <div className="mb-5">
+                  <div className="mb-10">
                     <label className="block text-gray-300 text-sm font-bold mb-2">Username</label>
                     <input
                       type="text"
-                      className="shadow appearance-none border border-white/10 rounded w-full py-2 px-3 text-white bg-dark-600"
+                      className="__input"
                       placeholder="drumptonald01"
                       value={formData.username}
                       onChange={(e) => setFormData({ ...formData, username: e.target.value })}
                       required
                     />
                   </div>
-                  <div className="mb-5">
+                  <div className="mb-10">
                     <label className="block text-gray-300 text-sm font-bold mb-2">Password</label>
                     <input
                       type="password"
-                      className="shadow appearance-none border border-white/10 rounded w-full py-2 px-3 text-white bg-dark-600"
+                      className="__input"
                       placeholder="t0n4LdDrump01"
                       value={formData.password}
                       onChange={(e) => setFormData({ ...formData, password: e.target.value })}
@@ -326,7 +326,7 @@ const Daftar = () => {
                   type="button" // Changed to type="button" to prevent form submission on enter key
                   onClick={handleSubmit}
                   className="bg-white text-black font-bold py-2 px-4 rounded ">
-                  Register
+                  Daftar Sekarang
                 </button>
               </div>
             </>

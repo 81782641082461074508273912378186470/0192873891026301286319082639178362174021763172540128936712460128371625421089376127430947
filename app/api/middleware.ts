@@ -5,8 +5,8 @@ export async function middleware(request: NextRequest) {
   //console.log('authData in middleware:', authData);
 
   if (!authData) {
-    //console.log('No authData found, redirecting to /login...');
-    return NextResponse.redirect(new URL('/login', request.url));
+    //console.log('No authData found, redirecting to /auth...');
+    return NextResponse.redirect(new URL('/auth', request.url));
   }
 
   //console.log('Valid authData, allowing access');

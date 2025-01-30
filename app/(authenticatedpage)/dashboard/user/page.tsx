@@ -13,17 +13,17 @@ export default function UserDashboardPage() {
       try {
         const authData = JSON.parse(authDataString); // Parse stored auth data
         if (authData.role !== 'user' || authData.type !== 'license') {
-          router.push('/login'); // Redirect if role or type is incorrect
+          router.push('/auth'); // Redirect if role or type is incorrect
         } else {
           setLoading(false); // Set loading to false if user is authenticated
         }
       } catch {
-        console.error('Invalid auth data, redirecting to login');
+        console.error('Invalid auth data, redirecting to Auth');
         localStorage.removeItem('authData'); // Clear invalid data
-        router.push('/login');
+        router.push('/auth');
       }
     } else {
-      router.push('/login'); // Redirect if no auth data
+      router.push('/auth'); // Redirect if no auth data
     }
   }, [router]);
 
