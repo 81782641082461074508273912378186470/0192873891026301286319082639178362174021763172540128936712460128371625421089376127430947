@@ -4,10 +4,12 @@ const PrivacyPolicy: NextPage = () => {
   return (
     <div className="flex flex-col items-start w-full py-24 max-w-screen-xl gap-10 text-white border-x-[1px] border-b-[1px] border-white/10">
       <div className="w-full justify-center flex">
-        <h1 className="text-5xl font-bold mb-4 __gradient_text">Kebijakan Privasi Autolaku</h1>
+        <h1 className="lg:text-5xl text-xl font-bold mb-4 __gradient_text">
+          Kebijakan Privasi Autolaku
+        </h1>
       </div>
 
-      <section className="border-white/10 border-y-[1px] px-20 py-5 w-full text-white/70 font-light">
+      <section className="border-white/10 border-y-[1px] px-10 py-5 w-full text-white/70 font-light">
         <h2 className="text-xl font-semibold mb-2 text-white">Informasi yang Kami Kumpulkan</h2>
         <ul className="list-disc pl-5">
           <li>
@@ -26,7 +28,7 @@ const PrivacyPolicy: NextPage = () => {
         </ul>
       </section>
 
-      <section className="border-white/10 border-y-[1px] px-20 py-5 w-full text-white/70 font-light">
+      <section className="border-white/10 border-y-[1px] px-10 py-5 w-full text-white/70 font-light">
         <h2 className="text-xl font-semibold mb-2 text-white">Penggunaan Informasi</h2>
         <ul className="list-disc pl-5">
           <li>
@@ -47,7 +49,7 @@ const PrivacyPolicy: NextPage = () => {
         </ul>
       </section>
 
-      <section className="border-white/10 border-y-[1px] px-20 py-5 w-full text-white/70 font-light">
+      <section className="border-white/10 border-y-[1px] px-10 py-5 w-full text-white/70 font-light">
         <h2 className="text-xl font-semibold mb-2 text-white">Keamanan Data</h2>
         <p>
           Kami mengimplementasikan langkah-langkah keamanan teknis dan organisasional untuk
@@ -61,7 +63,7 @@ const PrivacyPolicy: NextPage = () => {
         </p>
       </section>
 
-      <section className="border-white/10 border-y-[1px] px-20 py-5 w-full text-white/70 font-light">
+      <section className="border-white/10 border-y-[1px] px-10 py-5 w-full text-white/70 font-light">
         <h2 className="text-xl font-semibold mb-2 text-white">Berbagi Informasi</h2>
         <p>
           Kami tidak menjual, memperdagangkan, atau mentransfer data pribadi Anda ke pihak luar
@@ -80,7 +82,7 @@ const PrivacyPolicy: NextPage = () => {
         </ul>
       </section>
 
-      <section className="border-white/10 border-y-[1px] px-20 py-5 w-full text-white/70 font-light">
+      <section className="border-white/10 border-y-[1px] px-10 py-5 w-full text-white/70 font-light">
         <h2 className="text-xl font-semibold mb-2 text-white">
           Hak-hak Anda Terhadap Data Pribadi
         </h2>
@@ -105,7 +107,7 @@ const PrivacyPolicy: NextPage = () => {
         </p>
       </section>
 
-      <section className="border-white/10 border-y-[1px] px-20 py-5 w-full text-white/70 font-light">
+      <section className="border-white/10 border-y-[1px] px-10 py-5 w-full text-white/70 font-light">
         <h2 className="text-xl font-semibold mb-2 text-white">Retensi Data</h2>
         <p>
           Kami menyimpan data Anda selama diperlukan untuk tujuan yang dikumpulkan atau sebagaimana
@@ -113,7 +115,7 @@ const PrivacyPolicy: NextPage = () => {
         </p>
       </section>
 
-      <section className="border-white/10 border-y-[1px] px-20 py-5 w-full text-white/70 font-light">
+      <section className="border-white/10 border-y-[1px] px-10 py-5 w-full text-white/70 font-light">
         <h2 className="text-xl font-semibold mb-2 text-white">Cookies dan Teknologi Pelacakan</h2>
         <p>
           Kami menggunakan cookies dan teknologi pelacakan serupa untuk mengumpulkan informasi
@@ -122,7 +124,7 @@ const PrivacyPolicy: NextPage = () => {
         </p>
       </section>
 
-      <section className="border-white/10 border-y-[1px] px-20 py-5 w-full text-white/70 font-light">
+      <section className="border-white/10 border-y-[1px] px-10 py-5 w-full text-white/70 font-light">
         <h2 className="text-xl font-semibold mb-2 text-white">Perubahan pada Kebijakan Privasi</h2>
         <p>
           Kebijakan Privasi ini dapat diubah sewaktu-waktu untuk mencerminkan perubahan dalam
@@ -132,7 +134,7 @@ const PrivacyPolicy: NextPage = () => {
         </p>
       </section>
 
-      <section className="border-white/10 border-y-[1px] px-20 py-5 w-full text-white/70 font-light">
+      <section className="border-white/10 border-y-[1px] px-10 py-5 w-full text-white/70 font-light">
         <h2 className="text-xl font-semibold mb-2 text-white">Kontak</h2>
         <p>
           Untuk pertanyaan mengenai Kebijakan Privasi ini atau untuk menggunakan hak-hak Anda

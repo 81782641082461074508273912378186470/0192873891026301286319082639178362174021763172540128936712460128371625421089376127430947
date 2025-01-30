@@ -4,9 +4,11 @@ const TermsOfService: NextPage = () => {
   return (
     <div className="flex flex-col items-start w-full py-24 max-w-screen-xl gap-10 text-white border-x-[1px] border-b-[1px] border-white/10">
       <div className="w-full justify-center flex">
-        <h1 className="text-5xl font-bold mb-4 __gradient_text">Syarat dan Ketentuan Autolaku</h1>
+        <h1 className="lg:text-5xl text-xl font-bold mb-4 __gradient_text">
+          Syarat dan Ketentuan Autolaku
+        </h1>
       </div>
-      <section className="border-white/10 border-y-[1px] px-20 py-5 w-full text-white/70 font-light">
+      <section className="border-white/10 border-y-[1px] px-10 py-5 w-full text-white/70 font-light">
         <h2 className="text-xl font-semibold mb-2 text-white">Pendahuluan</h2>
         <p>
           Selamat datang di Autolaku, platform dropshipping yang dirancang khusus untuk
@@ -17,7 +19,7 @@ const TermsOfService: NextPage = () => {
         </p>
       </section>
 
-      <section className="border-white/10 border-y-[1px] px-20 py-5 w-full text-white/70 font-light">
+      <section className="border-white/10 border-y-[1px] px-10 py-5 w-full text-white/70 font-light">
         <h2 className="text-xl font-semibold mb-2 text-white">Definisi</h2>
         <ul className="list-disc pl-5">
           <li>
@@ -35,7 +37,7 @@ const TermsOfService: NextPage = () => {
         </ul>
       </section>
 
-      <section className="border-white/10 border-y-[1px] px-20 py-5 w-full text-white/70 font-light">
+      <section className="border-white/10 border-y-[1px] px-10 py-5 w-full text-white/70 font-light">
         <h2 className="text-xl font-semibold mb-2 text-white">Pendaftaran dan Akun</h2>
         <p>
           Untuk menggunakan layanan kami, Anda harus mendaftar dan membuat akun. Anda bertanggung
@@ -58,7 +60,7 @@ const TermsOfService: NextPage = () => {
         </ul>
       </section>
 
-      <section className="border-white/10 border-y-[1px] px-20 py-5 w-full text-white/70 font-light">
+      <section className="border-white/10 border-y-[1px] px-10 py-5 w-full text-white/70 font-light">
         <h2 className="text-xl font-semibold mb-2 text-white">Pembayaran dan Langganan</h2>
         <p>Layanan Autolaku tersedia melalui langganan bulanan dengan beberapa tingkatan:</p>
         <ul className="list-disc pl-5">
@@ -86,7 +88,7 @@ const TermsOfService: NextPage = () => {
         </p>
       </section>
 
-      <section className="border-white/10 border-y-[1px] px-20 py-5 w-full text-white/70 font-light">
+      <section className="border-white/10 border-y-[1px] px-10 py-5 w-full text-white/70 font-light">
         <h2 className="text-xl font-semibold mb-2 text-white">Kebijakan Pengembalian</h2>
         <p>
           Tidak ada pengembalian dana untuk langganan yang telah dibayar, kecuali dalam kasus
@@ -95,7 +97,7 @@ const TermsOfService: NextPage = () => {
         </p>
       </section>
 
-      <section className="border-white/10 border-y-[1px] px-20 py-5 w-full text-white/70 font-light">
+      <section className="border-white/10 border-y-[1px] px-10 py-5 w-full text-white/70 font-light">
         <h2 className="text-xl font-semibold mb-2 text-white">6. Hak Kekayaan Intelektual</h2>
         <p>
           Semua hak kekayaan intelektual terkait dengan Autolaku, termasuk tetapi tidak terbatas
@@ -105,7 +107,7 @@ const TermsOfService: NextPage = () => {
         </p>
       </section>
 
-      <section className="border-white/10 border-y-[1px] px-20 py-5 w-full text-white/70 font-light">
+      <section className="border-white/10 border-y-[1px] px-10 py-5 w-full text-white/70 font-light">
         <h2 className="text-xl font-semibold mb-2 text-white">Pembatasan Penggunaan</h2>
         <p>Anda tidak diperbolehkan untuk:</p>
         <ul className="list-disc pl-5">
@@ -115,7 +117,7 @@ const TermsOfService: NextPage = () => {
         </ul>
       </section>
 
-      <section className="border-white/10 border-y-[1px] px-20 py-5 w-full text-white/70 font-light">
+      <section className="border-white/10 border-y-[1px] px-10 py-5 w-full text-white/70 font-light">
         <h2 className="text-xl font-semibold mb-2 text-white">Tanggung Jawab</h2>
         <p>
           Kami tidak bertanggung jawab atas kerugian langsung, tidak langsung, insidental, khusus,
@@ -128,7 +130,7 @@ const TermsOfService: NextPage = () => {
         </p>
       </section>
 
-      <section className="border-white/10 border-y-[1px] px-20 py-5 w-full text-white/70 font-light">
+      <section className="border-white/10 border-y-[1px] px-10 py-5 w-full text-white/70 font-light">
         <h2 className="text-xl font-semibold mb-2 text-white">
           9. Perubahan pada Syarat dan Ketentuan
         </h2>
@@ -139,7 +141,7 @@ const TermsOfService: NextPage = () => {
         </p>
       </section>
 
-      <section className="border-white/10 border-y-[1px] px-20 py-5 w-full text-white/70 font-light">
+      <section className="border-white/10 border-y-[1px] px-10 py-5 w-full text-white/70 font-light">
         <h2 className="text-xl font-semibold mb-2 text-white">Penutupan Akun</h2>
         <p>
           Kami berhak untuk menutup akun Anda jika kami menemukan pelanggaran terhadap Syarat dan
@@ -148,7 +150,7 @@ const TermsOfService: NextPage = () => {
         </p>
       </section>
 
-      <section className="border-white/10 border-y-[1px] px-20 py-5 w-full text-white/70 font-light">
+      <section className="border-white/10 border-y-[1px] px-10 py-5 w-full text-white/70 font-light">
         <h2 className="text-xl font-semibold mb-2 text-white">Kontak</h2>
         <p>
           Untuk pertanyaan atau masalah terkait dengan Syarat dan Ketentuan ini, hubungi kami
