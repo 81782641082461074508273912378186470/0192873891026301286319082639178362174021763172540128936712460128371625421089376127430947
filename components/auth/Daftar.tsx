@@ -181,7 +181,7 @@ const Daftar = () => {
             </div>
           </div>
         )}
-        <div className="lg:px-10 w-full">
+        <div className="w-full">
           {step === 1 && (
             <>
               <div className="mb-10">
