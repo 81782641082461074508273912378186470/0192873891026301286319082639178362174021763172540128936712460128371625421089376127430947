@@ -14,8 +14,8 @@ const Page = () => {
   };
 
   return (
-    <div className="flex flex-col items-center w-full h-screen mt-52 max-w-screen-xl justify-center text-white border-x-[1px] border-b-[1px] px-10 xl:p-0  border-white/10">
-      <div className="flex flex-col-reverse lg:flex-row w-full h-[650px]">
+    <div className="flex flex-col items-center w-full h-screen mt-24 max-w-screen-xl justify-center text-white border-x-[1px] border-b-[1px] px-10 xl:p-0  border-white/10">
+      <div className="flex  w-full h-[650px]">
         {/* Information */}
         <div className="lg:flex w-full hidden p-10 border-y-[1px] border-l-[1px] xl:border-l-0 border-white/10 relative ">
           <div className="relative -mt-16 -ml-10">
@@ -45,7 +45,7 @@ const Page = () => {
             <div className="flex w-full items-center justify-between">
               <div className="w-10 h-10 " />
               <div className="flex w-full h-10 justify-center items-center border-[1px] border-y-0 border-white/10">
-                <h2 className="font-semibold text-center">
+                <h2 className="font-semibold text-sm lg:text-base text-center">
                   {activeSection === 'daftar'
                     ? 'Dropshipping Efisien mulai dari sini.'
                     : 'Lanjutkan perjalanan dropshipping Anda di sini.'}
@@ -56,7 +56,7 @@ const Page = () => {
             <div className="flex w-full items-center justify-between">
               <div className="w-10 h-10 border-y-[1px] border-white/10" />
               <div className="flex w-full h-10 justify-center items-center border-[1px] border-white/10">
-                <p className="font-extralight text-center text-white/70 text-sm">
+                <p className="font-extralight text-center text-white/70 text-xs lg:text-sm">
                   {activeSection === 'daftar'
                     ? 'Daftar Sekarang!'
                     : 'Masuk untuk melanjutkan keberhasilan Anda.'}

@@ -22,3 +22,7 @@
 .__input {
   @apply appearance-none w-full p-2 text-sm bg-transparent border-b-[1px] border-white/20 focus:border-white/50 focus:ring-0 focus:outline-none;
 }
+
+.__gradient_text {
+  @apply bg-gradient-to-t from-black to-transparent bg-clip-text text-transparent;
+}
