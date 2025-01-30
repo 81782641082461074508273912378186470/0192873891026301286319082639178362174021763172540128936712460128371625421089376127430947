@@ -1,5 +1,4 @@
 import { NextPage } from 'next';
-import Head from 'next/head';
 
 const PrivacyPolicy: NextPage = () => {
   return (
