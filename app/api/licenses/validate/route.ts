@@ -1,3 +1,5 @@
+export const runtime = 'nodejs';
+
 import mongooseConnect from '@/lib/mongoose';
 import License from '@/models/License';
 import { NextResponse } from 'next/server';

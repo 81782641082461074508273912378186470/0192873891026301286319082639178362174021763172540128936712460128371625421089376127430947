@@ -1,3 +1,5 @@
+export const runtime = 'nodejs';
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextResponse } from 'next/server';
 import mongooseConnect from '@/lib/mongoose';
