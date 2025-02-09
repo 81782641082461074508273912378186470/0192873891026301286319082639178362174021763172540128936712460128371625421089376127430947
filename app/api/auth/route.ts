@@ -1,4 +1,4 @@
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 
 import mongooseConnect from '@/lib/mongoose';
 import User from '@/models/User';
