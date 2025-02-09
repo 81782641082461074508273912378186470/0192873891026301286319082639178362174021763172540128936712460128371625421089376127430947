@@ -1,4 +1,4 @@
-export const runtime = 'nodejs';
+export const runtime = 'edge';
 
 import mongooseConnect from '@/lib/mongoose';
 import License from '@/models/License';
