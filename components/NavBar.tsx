@@ -156,7 +156,7 @@ const NavBar = () => {
               </button>
             </SheetTrigger>
             <SheetContent className="w-fit">
-              <div className="grid gap-4 py-4 mt-5">
+              <div className="grid gap-4 py-4 mt-10">
                 {navButtons.map((button, index) => (
                   <SheetClose asChild key={index}>
                     <Link
