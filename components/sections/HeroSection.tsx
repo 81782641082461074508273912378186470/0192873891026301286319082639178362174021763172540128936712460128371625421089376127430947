@@ -9,7 +9,7 @@ const HeroSection = () => {
   return (
     <section
       aria-label="Hero Section"
-      className="relative w-full h-[600px] bg-gradient-to-t from-black via-white/10 to-black lg:-mt-10">
+      className="relative w-full h-[900px] bg-gradient-to-t from-black via-white/10 to-black lg:-mt-10">
       <Image
         src={grid}
         layout="fill"
@@ -26,7 +26,7 @@ const HeroSection = () => {
           <p className="lg:text-3xl flex text-light-800 ">
             Sekarang bisa
             <strong className="flex flex-col items-center justify-center mx-2 text-white ">
-              cepat & profesional
+              cepat & efisien
               <div className="brush-underline" />
             </strong>
             tanpa alat lain.
@@ -42,8 +42,8 @@ const HeroSection = () => {
             <DownloadButton
               downloadUrl="/api/download?platform=macos"
               buttonText={
-                <div className="flex gap-2 justify-center items-center w-fit">
-                  <DiApple className="text-xl" /> MacOS
+                <div className="flex gap-2 justify-center lg:text-2xl items-center w-fit">
+                  <DiApple className="text-xl lg:text-4xl " /> MacOS
                 </div>
               }
               downloadingText="Mengunduh..."
@@ -51,8 +51,8 @@ const HeroSection = () => {
             <DownloadButton
               downloadUrl="/api/download?platform=windows"
               buttonText={
-                <div className="flex gap-2 justify-center items-center w-fit">
-                  <DiWindows className="text-xl" /> Windows
+                <div className="flex gap-2 justify-center lg:text-2xl items-center w-fit">
+                  <DiWindows className="text-xl lg:text-4xl " /> Windows
                 </div>
               }
               downloadingText="Mengunduh..."

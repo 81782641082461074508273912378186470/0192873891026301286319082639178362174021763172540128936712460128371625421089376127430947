@@ -21,11 +21,11 @@ export const generateMetadata = ({
   keywords?: string;
 }): Metadata => {
   const defaultKeywords =
-    'Dropshipping Indonesia, Otomasi dropshipping, Dropshipping yang efisien, Alat dropshipping pintar, Solusi dropshipping modern,Dropshipping untuk pemula, Dropshipping profesional, Otomasi bisnis e-commerce, Fitur dropshipping Indonesia, Bot dropshipping pintar, Alat bisnis e-commerce, Panduan dropshipping Indonesia, Cara sukses dropshipping, Otomasi bisnis e-commerce, Tips dropshipping pemula';
+    'Dropshipping di Era Digital, Otomatisasi Proses Dropshipping, Dropshipping dengan Efisiensi Tinggi, Teknologi Dropshipping Cerdas, Platform Dropshipping Terkini, Dropshipping untuk Pengusaha Baru, Dropshipping untuk Ahli, E-commerce Automation, Fitur Canggih Dropshipping, Bot Pintar untuk Dropshipping, Tools E-commerce Modern, Tutorial Dropshipping Indonesia, Rahasia Sukses dalam Dropshipping, Sistem Otomatis E-commerce, Panduan Awal Dropshipping, Strategi Dropshipping Sukses, Tools Dropshipping Inovatif, E-commerce yang Diolah Otomatis, Langkah Awal dalam Dropshipping, Solusi Dropshipping Terintegrasi, Teknik Dropshipping untuk Profesional, Sistem Dropshipping Berteknologi, Dropshipping dengan AI, Pengoptimalan Proses Dropshipping, Alat Dropshipping yang Efektif, Metode Dropshipping Terbaru, Solusi Otomatisasi Dropshipping, Pemula dalam Dunia Dropshipping, E-commerce dengan Otomatisasi Lengkap, Trik Sukses Dropshipping, Solusi Teknologi untuk Dropshipping, Tools Pintar untuk Bisnis Online, Panduan Lengkap Dropshipping, Kiat Sukses Dropshipping, Otomatisasi E-commerce Berbasis AI, Tips dan Trik Dropshipping, Platform Dropshipping dengan Fitur Lengkap, Teknologi Canggih untuk Dropshipping, Solusi Dropshipping untuk Semua Level, Bot Otomatis untuk E-commerce, Alat E-commerce yang Cerdas, Panduan Sukses Dropshipping, Cara Efisien dalam Dropshipping, Teknologi Dropshipping Mutakhir, Solusi Bisnis E-commerce yang Pintar, Dropshipping dengan Alat Canggih, Awal Mula dalam Dropshipping, E-commerce yang Diotomatisasi, Trik dan Tips Dropshipping, Tools E-commerce yang Inovatif, Panduan Praktis Dropshipping, Strategi Sukses Dropshipping, Solusi Teknologi Dropshipping, Tools Online untuk Dropshipping, Panduan Utama Dropshipping, Kiat Sukses dalam Dropshipping, Otomatisasi E-commerce Cerdas, Tips untuk Dropshipper Pemula, Platform Dropshipping dengan Teknologi, Solusi Dropshipping untuk Profesional, Bot Cerdas untuk Proses Dropshipping, Alat E-commerce yang Efisien, Panduan Dropshipping yang Komprehensif, Cara Sukses dalam Dunia Dropshipping, Teknologi Dropshipping yang Inovatif, Solusi Otomatisasi untuk E-commerce, Tools Dropshipping yang Modern, Panduan Awal Dropshipping yang Efektif, Strategi Sukses dalam Dropshipping, Solusi Teknologi untuk Bisnis Dropshipping, Tools Online untuk E-commerce, Panduan Utama dalam Dropshipping, Kiat dan Strategi Dropshipping, Otomatisasi E-commerce yang Canggih, Tips untuk Memulai Dropshipping, Platform Dropshipping dengan Fitur Canggih.';
   const defaultTitle = 'Autolaku | Automation Modern untuk Dropshipping yang Cepat dan Efisien';
   const defaultDescription =
-    'Autolaku adalah platform dropshipping modern yang dirancang untuk membantu dropshipper Indonesia mengelola produk, pesanan, dan pengiriman secara efisien. Dengan teknologi otomatisasi canggih, Anda dapat menjalankan bisnis lebih cepat, mudah, dan bebas repot.';
-  const defaultImage = 'https://autolaku.com/images/og-images.webp';
+    'Platform dropshipping otomatis memberikan efisiensi maksimal dan kompatibel dengan MacOS & Windows sekaligus mudah digunakan.';
+  const defaultImage = 'https://autolaku.com/images/og-autolaku.webp';
   const defaultUrl = 'https://autolaku.com';
   return {
     title: title ? `${title} | Autolaku` : defaultTitle,
@@ -88,7 +88,7 @@ export const generateMetadata = ({
       images: [
         {
           url: image || defaultImage,
-          alt: 'Autolaku | Otomasi Modern untuk Dropshipping yang Cepat dan Efisien',
+          alt: 'Platform dropshipping otomatis memberikan efisiensi maksimal dan kompatibel dengan MacOS & Windows sekaligus mudah digunakan.',
         },
       ],
     },

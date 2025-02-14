@@ -4,9 +4,9 @@ import { Metadata } from 'next';
 export const metadata: Metadata = generateMetadata({
   title: 'Beranda', // Specific title for the homepage
   description:
-    'Selamat datang di Autolaku! Platform dropshipping modern untuk mengelola bisnis Anda dengan efisiensi dan teknologi canggih.',
+    'Platform dropshipping otomatis memberikan efisiensi maksimal dan kompatibel dengan MacOS & Windows sekaligus mudah digunakan.',
   url: 'https://autolaku.com',
-  image: 'https://autolaku.com/images/homepage-banner.webp',
+  image: 'https://autolaku.com/images/og-autolaku.webp',
   keywords:
     'Beranda Autolaku, Dropshipping Indonesia, Otomasi dropshipping, Dropshipping modern, Teknologi canggih dropshipping, Tips dropshipping, Alat dropshipping pintar',
 });

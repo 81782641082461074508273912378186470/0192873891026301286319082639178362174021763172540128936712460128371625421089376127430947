@@ -1,11 +1,11 @@
 {
-  "name": "Autolakura",
+  "name": "Autolaku",
   "short_name": "Autolaku",
-  "description": "Autolaku adalah platform dropshipping modern yang dirancang untuk membantu dropshipper Indonesia mengelola produk, pesanan, dan pengiriman secara efisien. Dengan teknologi otomatisasi canggih, Anda dapat menjalankan bisnis lebih cepat, mudah, dan bebas repot.",
+  "description": "Platform dropshipping otomatis memberikan efisiensi maksimal dan kompatibel dengan MacOS & Windows sekaligus mudah digunakan.",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#FFFFFF",
-  "theme_color": "#FFFFFF",
+  "background_color": "#0000",
+  "theme_color": "#0000",
   "icons": [
     {
       "src": "/icons/favicon.ico",
