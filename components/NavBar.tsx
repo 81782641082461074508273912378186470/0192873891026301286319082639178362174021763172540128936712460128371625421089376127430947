@@ -1,7 +1,7 @@
 // Navbar.tsx
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Link from 'next/link';
 import { IoIosArrowDown, IoIosArrowUp, IoMdPerson } from 'react-icons/io';
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from '@/components/ui/sidebar';
@@ -10,6 +10,8 @@ import { navButtons } from '@/constans';
 
 const NavBar = () => {
   const [openDropdown, setOpenDropdown] = useState<null | 'pricing' | 'help'>(null);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const hideDelay = 350; // delay in ms
 
   const pricingAndFeatures = navButtons.filter(
     (button) => button.title === 'Paket Harga' || button.title === 'Fitur'
@@ -27,8 +29,18 @@ const NavBar = () => {
   );
   const homeButton = navButtons.find((button) => button.title === 'Beranda');
 
-  const toggleDropdown = (dropdown: 'pricing' | 'help' | null) => {
-    setOpenDropdown((prev) => (prev === dropdown ? null : dropdown));
+  const handleMouseEnter = (dropdown: 'pricing' | 'help') => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+    setOpenDropdown(dropdown);
+  };
+
+  const handleMouseLeave = () => {
+    timerRef.current = setTimeout(() => {
+      setOpenDropdown(null);
+    }, hideDelay);
   };
 
   return (
@@ -67,12 +79,14 @@ const NavBar = () => {
           )}
 
           {pricingAndFeatures.length > 0 && (
-            <li className="relative text-white">
+            <li
+              className="relative text-white"
+              onMouseEnter={() => handleMouseEnter('pricing')}
+              onMouseLeave={handleMouseLeave}>
               <button
                 className={`hover:text-white flex gap-2 items-center ${
                   openDropdown === 'pricing' ? 'text-white' : 'text-white/70'
-                }`}
-                onClick={() => toggleDropdown('pricing')}>
+                }`}>
                 Harga & Fitur {openDropdown === 'pricing' ? <IoIosArrowUp /> : <IoIosArrowDown />}
               </button>
               {openDropdown === 'pricing' && (
@@ -103,12 +117,14 @@ const NavBar = () => {
           )}
 
           {helpAndInfo.length > 0 && (
-            <li className="relative">
+            <li
+              className="relative"
+              onMouseEnter={() => handleMouseEnter('help')}
+              onMouseLeave={handleMouseLeave}>
               <button
                 className={`hover:text-white flex gap-2 items-center ${
                   openDropdown === 'help' ? 'text-white' : 'text-white/70'
-                }`}
-                onClick={() => toggleDropdown('help')}>
+                }`}>
                 Bantuan & Informasi{' '}
                 {openDropdown === 'help' ? <IoIosArrowUp /> : <IoIosArrowDown />}
               </button>
@@ -156,7 +172,7 @@ const NavBar = () => {
               </button>
             </SheetTrigger>
             <SheetContent className="w-fit">
-              <div className="grid gap-4 py-4 mt-10">
+              <div className="grid gap-4 py-4 mt-5">
                 {navButtons.map((button, index) => (
                   <SheetClose asChild key={index}>
                     <Link

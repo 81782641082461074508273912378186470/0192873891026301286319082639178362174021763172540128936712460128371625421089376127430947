@@ -42,8 +42,8 @@ const HeroSection = () => {
             <DownloadButton
               downloadUrl="/api/download?platform=macos"
               buttonText={
-                <div className="flex gap-2 justify-center lg:text-2xl items-center w-fit">
-                  <DiApple className="text-xl lg:text-4xl " /> MacOS
+                <div className="flex gap-2 justify-center items-center w-fit">
+                  <DiApple className="text-xl " /> MacOS
                 </div>
               }
               downloadingText="Mengunduh..."
@@ -51,8 +51,8 @@ const HeroSection = () => {
             <DownloadButton
               downloadUrl="/api/download?platform=windows"
               buttonText={
-                <div className="flex gap-2 justify-center lg:text-2xl items-center w-fit">
-                  <DiWindows className="text-xl lg:text-4xl " /> Windows
+                <div className="flex gap-2 justify-center items-center w-fit">
+                  <DiWindows className="text-xl " /> Windows
                 </div>
               }
               downloadingText="Mengunduh..."

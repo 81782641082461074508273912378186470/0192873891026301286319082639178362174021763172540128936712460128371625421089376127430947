@@ -11,7 +11,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="font-geist">
+    <html lang="en" className="font-geist bg-black">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
