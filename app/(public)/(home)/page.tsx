@@ -2,7 +2,7 @@ import HeroSection from '@/components/sections/HeroSection';
 import { generateMetadata } from '@/lib/utils';
 import { Metadata } from 'next';
 export const metadata: Metadata = generateMetadata({
-  title: 'Beranda', // Specific title for the homepage
+  title: 'Dropship Cepat & Efisien',
   description:
     'Platform dropshipping otomatis memberikan efisiensi maksimal dan kompatibel dengan MacOS & Windows sekaligus mudah digunakan.',
   url: 'https://autolaku.com',
