@@ -29,14 +29,14 @@ const Page = () => {
               sederhana. Autolaku adalah pilihan tepat dengan kemudahan penggunaan yang luar biasa.
             </p>
           </div>
-          <div className="absolute bottom-0 left-0 right-0 h-[30%] bg-gradient-to-t from-black to-transparent -z-10"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-[30%] bg-gradient-to-t from-black to-transparent z-10"></div>
           <Image
             src={robot}
             alt="Autolaku"
             objectFit="cover"
             width={750}
             height={750}
-            className="-z-20 absolute bottom-0 left-0 h-[85%] w-auto"
+            className="absolute bottom-0 left-0 h-[85%] w-auto"
           />
         </div>
         {/* Form */}
