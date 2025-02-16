@@ -60,12 +60,7 @@ export const navButtons = [
     icon: <IoMdMail />,
     description: 'Kirim pesan atau hubungi kami',
   },
-  {
-    title: 'Masuk/Daftar',
-    url: '/auth',
-    icon: <IoMdPerson />,
-    description: 'Buat akun baru/Masuk dengan akun mu',
-  },
+
   {
     title: 'Kebijakan Privasi',
     url: '/kebijakan-privasi',
@@ -76,6 +71,12 @@ export const navButtons = [
     title: 'Ketentuan Layanan',
     url: '/ketentuan-layanan',
     icon: <LiaFileContractSolid />,
+    description: 'Buat akun baru/Masuk dengan akun mu',
+  },
+  {
+    title: 'Masuk/Daftar',
+    url: '/auth',
+    icon: <IoMdPerson />,
     description: 'Buat akun baru/Masuk dengan akun mu',
   },
 ];

@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next/link';
 import React from 'react';
 import { RiTwitterXFill } from 'react-icons/ri';
@@ -8,6 +9,7 @@ import DownloadButton from './DownloadButton';
 import { DiApple, DiWindows } from 'react-icons/di';
 import { HiDownload } from 'react-icons/hi';
 import { navButtons } from '@/constans';
+import { usePathname } from 'next/navigation';
 
 const Footer = () => {
   const contacts = [
@@ -32,7 +34,8 @@ const Footer = () => {
       url: 'mailto:support@autolaku.com',
     },
   ];
-
+  const pathname = usePathname();
+  console.log(pathname);
   const pricingAndFeatures = navButtons.filter(
     (button) => button.title === 'Paket Harga' || button.title === 'Fitur'
   );
@@ -52,16 +55,18 @@ const Footer = () => {
   return (
     <footer className="w-full flex justify-center items-center z-50 shadow-md bg-dark-800">
       <div className="flex flex-col items-center justify-between w-full text-white ">
-        <div className="flex flex-col justify-center items-center w-full py-32 gap-10 bg-black/50 border-y-[1px] border-white/10">
-          <h3 className="lg:text-4xl text-3xl font-extrabold mb-5 __gradient_text">
-            Dropship ribet <br className="md:hidden" /> berakhir disini!
-          </h3>
-          <Link
-            href="/auth"
-            className="px-4 py-2 lg:text-lg bg-white/10 rounded hover:bg-white/20 animate-pulse">
-            Mulai dropship dengan Autolaku
-          </Link>
-        </div>
+        {pathname === '/' && (
+          <div className="flex flex-col justify-center items-center w-full py-32 gap-10 bg-black/50 border-y-[1px] border-white/10">
+            <h3 className="lg:text-4xl text-3xl font-extrabold mb-5 __gradient_text">
+              Dropship ribet <br className="md:hidden" /> berakhir disini!
+            </h3>
+            <Link
+              href="/auth"
+              className="px-4 py-2 lg:text-lg bg-white/10 rounded hover:bg-white/20 animate-pulse">
+              Mulai dropship dengan Autolaku
+            </Link>
+          </div>
+        )}
         <div className="flex flex-col lg:flex-row justify-between items-start w-full py-10 gap-20 lg:gap-10 max-w-screen-xl px-5 lg:px-0 ">
           <div className="flex flex-col gap-5">
             <div className="flex items-center gap-2 lg:gap-4 __gradient_text opacity-85 select-none">
@@ -93,6 +98,9 @@ const Footer = () => {
                 </Link>
               ))}
             </div>
+          </div>
+
+          <div className="flex flex-col lg:flex-row items-start lg:justify-end w-full gap-10 lg:gap-20">
             <div className="flex  w-fit justify-center items-center gap-1">
               <HiDownload className="text-2xl text-white/60" />
               <div className="mx-2 w-[1px] h-8 bg-white/20" />
@@ -100,26 +108,23 @@ const Footer = () => {
                 className="!bg-white"
                 downloadUrl="/api/download?platform=macos"
                 buttonText={
-                  <div className="flex gap-2 text-black !text-xs justify-center items-center w-fit">
+                  <div className="flex gap-2 text-black !text-xs justify-center items-end w-fit">
                     <DiApple className="text-lg" /> MacOS
                   </div>
                 }
                 downloadingText="Mengunduh..."
               />
               <DownloadButton
-                className="!bg-blue-400"
+                className="!bg-blue-500"
                 downloadUrl="/api/download?platform=windows"
                 buttonText={
-                  <div className="flex gap-2 !text-xs !text-white justify-center items-center w-fit">
+                  <div className="flex gap-2 !text-xs !text-white justify-center items-end w-fit">
                     <DiWindows className="text-lg" /> Windows
                   </div>
                 }
                 downloadingText="Mengunduh..."
               />
             </div>
-          </div>
-
-          <div className="flex flex-col lg:flex-row items-start lg:justify-end w-full gap-10 lg:gap-20">
             <div className="flex flex-col gap-3 ">
               <p className="font-mono tracking-widest mb-2 font-light">PRODUK</p>
               {pricingAndFeatures.map((buttons, i) => (
