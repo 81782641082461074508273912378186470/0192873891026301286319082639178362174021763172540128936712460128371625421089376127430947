@@ -1,13 +1,11 @@
 'use client';
 
 import React, { useState, MouseEvent } from 'react';
-
-// Define the props interface for the DownloadButton
 interface DownloadButtonProps {
   downloadUrl: string;
   className?: string;
   buttonText: React.ReactNode;
-  downloadingText?: string; // Optional, for custom text during download
+  downloadingText?: string;
 }
 
 const DownloadButton: React.FC<DownloadButtonProps> = ({

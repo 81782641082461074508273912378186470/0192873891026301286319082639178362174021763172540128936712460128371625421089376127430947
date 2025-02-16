@@ -20,7 +20,7 @@ const licenseSchema = new Schema({
   status: {
     type: String,
     enum: ['active', 'expired', 'revoked'],
-    default: 'active',
+    default: 'revoked',
   },
   email: {
     type: String,
