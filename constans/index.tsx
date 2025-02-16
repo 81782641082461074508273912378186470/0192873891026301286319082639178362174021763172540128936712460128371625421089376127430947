@@ -9,7 +9,8 @@ import {
   IoMdPerson,
   IoMdPricetag,
 } from 'react-icons/io';
-
+import { BsShield } from 'react-icons/bs';
+import { LiaFileContractSolid } from 'react-icons/lia';
 export const navButtons = [
   {
     title: 'Beranda',
@@ -63,6 +64,18 @@ export const navButtons = [
     title: 'Masuk/Daftar',
     url: '/auth',
     icon: <IoMdPerson />,
+    description: 'Buat akun baru/Masuk dengan akun mu',
+  },
+  {
+    title: 'Kebijakan Privasi',
+    url: '/kebijakan-privasi',
+    icon: <BsShield />,
+    description: 'Buat akun baru/Masuk dengan akun mu',
+  },
+  {
+    title: 'Ketentuan Layanan',
+    url: '/ketentuan-layanan',
+    icon: <LiaFileContractSolid />,
     description: 'Buat akun baru/Masuk dengan akun mu',
   },
 ];

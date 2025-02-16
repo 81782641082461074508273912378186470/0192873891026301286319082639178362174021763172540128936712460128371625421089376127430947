@@ -4,6 +4,7 @@ import '@/styles/globals.css';
 import '@/styles/fonts.css';
 
 import Navbar from '@/components/NavBar';
+import Footer from '@/components/Footer';
 
 export default function RootLayout({
   children,
@@ -15,7 +16,7 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body className="min-h-screen bg-black text-white selection:bg-white/65 selection:text-black no-scrollbar">
+      <body className="min-h-screen bg-black text-white selection:bg-white/65 selection:text-black no-scrollbar ">
         <Navbar />
         <div className="flex flex-col justify-center items-center w-full mt-12">{children}</div>
 
@@ -26,6 +27,7 @@ export default function RootLayout({
           <p className="hidden xl:block 2xl:hidden">xl</p>
           <p className="hidden 2xl:block">2xl</p>
         </div> */}
+        <Footer />
       </body>
     </html>
   );
