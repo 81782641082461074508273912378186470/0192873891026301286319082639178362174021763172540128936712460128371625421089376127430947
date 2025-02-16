@@ -54,7 +54,7 @@ const Footer = () => {
       <div className="flex flex-col items-center justify-between w-full text-white ">
         <div className="flex flex-col justify-center items-center w-full py-32 gap-10 bg-black/50 border-y-[1px] border-white/10">
           <h3 className="lg:text-4xl text-3xl font-extrabold mb-5 __gradient_text">
-            Dropship ribet berakhir disini!
+            Dropship ribet <br className="md:hidden" /> berakhir disini!
           </h3>
           <Link
             href="/auth"
