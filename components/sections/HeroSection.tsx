@@ -55,7 +55,7 @@ const HeroSection = () => {
             menawarkan solusi terpadu yang menghilangkan kerumitan alat terpisah, memungkinkan
             dropshipper fokus pada pertumbuhan bisnis mereka.
           </h2>
-          <div className="flex mt-5 justify-center items-center w-full">
+          <div className="flex mt-5 gap-5 justify-center items-center w-full">
             <DownloadButton
               className="!bg-white rounded-full"
               downloadUrl="/api/download?platform=macos"
