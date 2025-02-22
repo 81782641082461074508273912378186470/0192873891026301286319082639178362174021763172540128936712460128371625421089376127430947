@@ -9,7 +9,7 @@ import { DiApple } from 'react-icons/di';
 
 const HeroSection = () => {
   return (
-    <section aria-label="Hero Section" className="relative w-full h-[900px] bg-black lg:-mt-10">
+    <section aria-label="Hero Section" className="relative w-full h-[900px] bg-black ">
       <div
         className="absolute inset-0 opacity-20 pointer-events-none"
         style={{
@@ -18,7 +18,7 @@ const HeroSection = () => {
           backgroundPosition: 'center',
         }}
       />
-      <div className="max-w-screen-xl mx-auto flex flex-col items-center justify-center h-full text-center text-white z-10 px-5 gap-16">
+      <div className="max-w-screen-xl mx-auto flex flex-col items-center justify-start h-full text-center text-white z-10 px-5 gap-16 mt-24 lg:mt-32">
         <div className="flex flex-col items-center justify-center">
           <h1 className="lg:text-6xl md:text-5xl text-xl font-extrabold mb-4 __gradient_text">
             Dropship ribet bikin kalah saing?
