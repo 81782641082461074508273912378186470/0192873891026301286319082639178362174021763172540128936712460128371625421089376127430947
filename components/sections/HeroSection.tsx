@@ -20,7 +20,7 @@ const HeroSection = () => {
       />
       <div className="max-w-screen-xl mx-auto flex flex-col items-center justify-start h-full text-center text-white z-10 px-5 gap-16 mt-24 lg:mt-32">
         <div className="flex flex-col items-center justify-center">
-          <h1 className="lg:text-6xl md:text-5xl text-2xl font-extrabold mb-2 __gradient_text">
+          <h1 className="lg:text-6xl md:text-5xl text-xl font-extrabold mb-2 __gradient_text">
             Dropship ribet bikin kalah saing?
           </h1>
           <h3 className="lg:text-3xl md:text-xl flex text-light-800">
@@ -44,16 +44,12 @@ const HeroSection = () => {
         </div>
         <div className="w-full flex-col justify-center items-center gap-5 -mt-44 md:-mt-32 lg:-mt-20">
           <h2 className="text-xs text-justify lg:px-80 text-white/70">
-            Autolaku adalah platform dropshipping canggih yang dirancang khusus untuk mempermudah
-            dan mengoptimalkan proses dropshipping di Indonesia. Platform ini mengintegrasikan
-            teknologi artificial intelligence (AI) dari xAI dan OpenAI untuk otomatisasi cerdas,
-            seperti pembuatan deskripsi produk yang menarik, analisis pasar, dan dukungan pelanggan
-            responsif, yang memungkinkan pengguna menghemat waktu dan meningkatkan efisiensi. Selain
-            itu, Autolaku memanfaatkan layanan Cloudinary untuk pengolahan gambar, memastikan gambar
-            produk dioptimalkan dengan cepat, aman, dan siap digunakan di berbagai marketplace tanpa
-            hambatan teknis. Dengan aplikasi desktop yang tersedia untuk macOS dan Windows, Autolaku
-            menawarkan solusi terpadu yang menghilangkan kerumitan alat terpisah, memungkinkan
-            dropshipper fokus pada pertumbuhan bisnis mereka.
+            Autolaku adalah solusi dropshipping premium di Indonesia, mengintegrasikan teknologi AI
+            dari xAI dan OpenAI untuk menghasilkan otomatisasi cerdas, termasuk deskripsi produk
+            yang optimal, analisis pasar mendalam, dan layanan pelanggan responsif. Dengan dukungan
+            Cloudinary untuk pengolahan gambar yang efisien dan aman, Autolaku menyediakan aplikasi
+            desktop untuk macOS dan Windows, menjamin dropshipper dapat mengembangkan bisnis mereka
+            secara profesional tanpa kompleksitas alat terpisah.
           </h2>
           <div className="flex mt-5 gap-5 justify-center items-center w-full">
             <DownloadButton
