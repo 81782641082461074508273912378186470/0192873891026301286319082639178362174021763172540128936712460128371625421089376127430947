@@ -46,8 +46,8 @@ const HeroSection = () => {
           <h2 className="text-xs text-justify lg:px-80 text-white/70">
             Autolaku adalah platform dropshipping canggih yang dirancang khusus untuk mempermudah
             dan mengoptimalkan proses dropshipping di Indonesia. Platform ini mengintegrasikan
-            teknologi kecerdasan buatan (AI) dari xAI dan OpenAI untuk otomatisasi cerdas, seperti
-            pembuatan deskripsi produk yang menarik, analisis pasar, dan dukungan pelanggan
+            teknologi artificial intelligence (AI) dari xAI dan OpenAI untuk otomatisasi cerdas,
+            seperti pembuatan deskripsi produk yang menarik, analisis pasar, dan dukungan pelanggan
             responsif, yang memungkinkan pengguna menghemat waktu dan meningkatkan efisiensi. Selain
             itu, Autolaku memanfaatkan layanan Cloudinary untuk pengolahan gambar, memastikan gambar
             produk dioptimalkan dengan cepat, aman, dan siap digunakan di berbagai marketplace tanpa
