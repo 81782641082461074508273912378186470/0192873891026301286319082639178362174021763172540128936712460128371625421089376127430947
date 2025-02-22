@@ -43,7 +43,7 @@ const HeroSection = () => {
           />
         </div>
         <div className="w-full flex-col justify-center items-center gap-5 -mt-44 md:-mt-32 lg:-mt-20">
-          <h2 className="text-xs whitespace-normal lg:px-80 text-white/70">
+          <h2 className="text-xs text-justify lg:px-80 text-white/70">
             Autolaku adalah platform dropshipping canggih yang dirancang khusus untuk mempermudah
             dan mengoptimalkan proses dropshipping di Indonesia. Platform ini mengintegrasikan
             teknologi kecerdasan buatan (AI) dari xAI dan OpenAI untuk otomatisasi cerdas, seperti
