@@ -26,7 +26,7 @@ const HeroSection = () => {
         className="absolute inset-0 opacity-20 pointer-events-none object-cover"
         loading="lazy"
       />
-      <div className="max-w-screen-xl mx-auto flex flex-col items-center justify-start min-h-screen text-center text-white z-10 pt-24 md:px-5 lg:mt-40">
+      <div className="max-w-screen-xl mx-auto flex flex-col items-center justify-start min-h-screen text-center text-white z-10 pt-24 px-5 lg:mt-40">
         <div className="flex flex-col items-center justify-center">
           <h1 className="lg:text-6xl md:text-5xl text-xl font-extrabold mb-2 __gradient_text">
             Dropship ribet bikin kalah saing?
@@ -43,11 +43,11 @@ const HeroSection = () => {
         <Swiper
           spaceBetween={0}
           slidesPerView={1}
-          autoplay={{ delay: 5000, disableOnInteraction: false }}
+          autoplay={{ delay: 8000, disableOnInteraction: false }}
           modules={[Autoplay]}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
           onSlideChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
-          className="w-full md:rounded-t-3xl md:border-x border-t border-white/20 border-dashed mt-10 bg-white/10 backdrop-blur-sm">
+          className="w-full rounded-t-xl lg:rounded-t-3xl border-x border-t-[1px] border-white/20 mt-10 bg-white/10 backdrop-blur-sm">
           {autolakuScreenshots.map((screenshot, index) => (
             <SwiperSlide key={index}>
               <Image
@@ -60,7 +60,7 @@ const HeroSection = () => {
           ))}
           <div className="absolute inset-y-0 left-0 w-full bg-gradient-to-t from-black/90 from-5% via-black/30 via-20% to-transparent to-90% z-30 pointer-events-none" />
         </Swiper>
-        <div className="flex justify-between gap-20 items-center w-full pt-10 p-5 lg:p-10 md:border-x border-b md:rounded-b-3xl bg-black/15 backdrop-blur-sm border-dashed border-white/20">
+        <div className="flex justify-between gap-5 md:gap-20 items-center w-full pt-10 p-5 lg:p-10 border-x border-b-[1px] rounded-b-xl lg:rounded-b-3xl bg-black/15 backdrop-blur-sm border-white/20">
           <button
             className=" transform rounded-button !p-2 md:!p-3"
             onClick={() => {
@@ -71,11 +71,11 @@ const HeroSection = () => {
             aria-label="Previous screenshot">
             <IoMdArrowDropleft className="md:text-2xl" />
           </button>{' '}
-          <span>
-            <h4 className="text-lg font-semibold text-white">
+          <span className="w-full ">
+            <h4 className="md:text-lg text-sm font-semibold text-white">
               {autolakuScreenshots[currentIndex].title}
             </h4>
-            <p className="text-sm text-light-700">
+            <p className="md:text-sm text-xs text-light-700">
               {autolakuScreenshots[currentIndex].description}
             </p>
           </span>
