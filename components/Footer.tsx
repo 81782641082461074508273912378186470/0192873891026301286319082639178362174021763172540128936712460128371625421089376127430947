@@ -68,7 +68,7 @@ const Footer = () => {
           </div>
         )}
         <div className="flex flex-col-reverse lg:flex-row justify-between items-start w-full py-10 gap-20 lg:gap-10 max-w-screen-xl px-5 xl:px-0 ">
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-5 ">
             <div className="flex items-center gap-2 lg:gap-4 __gradient_text opacity-85 select-none">
               <svg
                 id="A"
@@ -99,7 +99,7 @@ const Footer = () => {
               ))}
             </div>
           </div>
-          <div className="flex flex-col-reverse lg:flex-row items-start lg:justify-end w-full gap-10 lg:gap-20">
+          <div className="flex flex-col-reverse lg:flex-row items-start lg:justify-end w-full gap-10 lg:gap-20 border-b-[1px] border-white/30 pb-20 lg:p-0 lg:border-0">
             <div className="flex  w-fit justify-center items-center gap-1">
               <HiDownload className="text-2xl text-white/60" />
               <div className="mx-2 w-[1px] h-8 bg-white/20" />

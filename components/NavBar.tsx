@@ -32,7 +32,6 @@ const NavBar = () => {
   const accountButtons = navButtons.filter(
     (button) => button.title === 'Masuk/Daftar' || button.title === 'Masuk/Daftar'
   );
-  const homeButton = navButtons.find((button) => button.title === 'Beranda');
 
   const handleMouseEnter = (dropdown: 'pricing' | 'help' | 'information') => {
     if (timerRef.current) {
@@ -77,12 +76,6 @@ const NavBar = () => {
         </Link>
 
         <ul className="hidden lg:flex items-center gap-16 text-white/70">
-          {homeButton && (
-            <Link href={homeButton.url} aria-label="Home">
-              Home
-            </Link>
-          )}
-
           {pricingAndFeatures.length > 0 && (
             <li
               className="relative text-white"

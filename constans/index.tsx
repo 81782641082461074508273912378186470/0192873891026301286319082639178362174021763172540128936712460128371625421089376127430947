@@ -11,6 +11,15 @@ import {
 } from 'react-icons/io';
 import { BsShield } from 'react-icons/bs';
 import { LiaFileContractSolid } from 'react-icons/lia';
+import AIConfig from '@/assets/images/Screenshot-AI-Config.png';
+import OptimasiInformasiProduk from '@/assets/images/Screenshot-AI-Optimasi-Informasi-Produk.png';
+import ScreenshotAntrianScrape from '@/assets/images/Screenshot-Antrian-Scrape.png';
+import AturKeuntungan from '@/assets/images/Screenshot-Atur-Keuntungan.png';
+import HapusKataTerlarang from '@/assets/images/Screenshot-Hapus-Kata-Terlarang.png';
+import KelolaProduk from '@/assets/images/Screenshot-Kelola-Produk.png';
+import LoginAutolaku from '@/assets/images/Screenshot-Login-Autolaku.png';
+import PencarianProduk from '@/assets/images/Screenshot-Pencarian-Produk.png';
+
 export const navButtons = [
   {
     title: 'Beranda',
@@ -78,5 +87,49 @@ export const navButtons = [
     url: '/auth',
     icon: <IoMdPerson />,
     description: 'Buat akun baru/Masuk dengan akun mu',
+  },
+];
+
+export const autolakuScreenshots = [
+  {
+    title: 'Halaman Masuk Autolaku',
+    description: 'Akses cepat dan aman untuk memulai pengalaman dropshipping Anda.',
+    image: LoginAutolaku,
+  },
+  {
+    title: 'Pencarian Produk',
+    description: 'Cari produk terbaik dengan fitur pencarian cerdas dan efisien.',
+    image: PencarianProduk,
+  },
+  {
+    title: 'Kelola Produk',
+    description:
+      'Kelola produk pilihan Anda secara sistematis untuk memudahkan akses ke koleksi produk terbaik dalam satu lokasi terpadu.',
+    image: KelolaProduk,
+  },
+  {
+    title: 'Antrian Scrape',
+    description: 'Antrian Scrape Antrian Scrape',
+    image: ScreenshotAntrianScrape,
+  },
+  {
+    title: 'Atur Keuntungan',
+    description: 'Atur Keuntungan Atur Keuntungan',
+    image: AturKeuntungan,
+  },
+  {
+    title: 'Hapus Kata Terlarang',
+    description: 'Hapus Kata Terlarang Hapus Kata Terlarang',
+    image: HapusKataTerlarang,
+  },
+  {
+    title: 'Optimasi Informasi Produk',
+    description: 'Optimasi Informasi Produk Optimasi Informasi Produk',
+    image: OptimasiInformasiProduk,
+  },
+  {
+    title: 'AI Config',
+    description: 'AI Config AI Config',
+    image: AIConfig,
   },
 ];

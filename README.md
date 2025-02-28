@@ -84,3 +84,9 @@
 - **Frame Product Picture:** IDR 55k/month
 
 > Add-on pricing adjusts based on the subscription plan. Higher plans have discounted add-on prices.
+
+Autolaku adalah solusi dropshipping premium di Indonesia, mengintegrasikan teknologi AI dari xAI dan
+OpenAI untuk menghasilkan otomatisasi cerdas, termasuk deskripsi produk yang optimal, analisis pasar
+mendalam, dan layanan pelanggan responsif. Dengan dukungan Cloudinary untuk pengolahan gambar yang
+efisien dan aman, Autolaku menyediakan aplikasi desktop untuk macOS dan Windows, menjamin
+dropshipper dapat mengembangkan bisnis mereka secara profesional tanpa kompleksitas alat terpisah.

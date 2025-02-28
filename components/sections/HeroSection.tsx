@@ -1,24 +1,32 @@
+'use client';
+
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Image from 'next/image';
-import React from 'react';
+import { useState, useRef } from 'react';
 import grid from '@/assets/images/perspectivegrid.svg';
-import appScreenshot from '@/assets/images/searchProductSection.png';
+import { IoMdArrowDropright, IoMdArrowDropleft } from 'react-icons/io';
 import DownloadButton from '../DownloadButton';
-import { DiWindows } from 'react-icons/di';
-import { DiApple } from 'react-icons/di';
+import { DiWindows, DiApple } from 'react-icons/di';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper as SwiperType } from 'swiper';
+import { Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { autolakuScreenshots } from '@/constans';
 
 const HeroSection = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const swiperRef = useRef<SwiperType | null>(null);
   return (
-    <section aria-label="Hero Section" className="relative w-full h-[900px] bg-black ">
-      <div
-        className="absolute inset-0 opacity-20 pointer-events-none"
-        style={{
-          backgroundImage: `url(${grid.src})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
+    <section aria-label="Hero Section" className="relative w-full min-h-screen bg-black">
+      <Image
+        src={grid}
+        alt="Background grid pattern"
+        fill
+        className="absolute inset-0 opacity-20 pointer-events-none object-cover"
+        loading="lazy"
       />
-      <div className="max-w-screen-xl mx-auto flex flex-col items-center justify-start h-full text-center text-white z-10 px-5 gap-16 mt-24 lg:mt-32">
+      <div className="max-w-screen-xl mx-auto flex flex-col items-center justify-start min-h-screen text-center text-white z-10 pt-24">
         <div className="flex flex-col items-center justify-center">
           <h1 className="lg:text-6xl md:text-5xl text-xl font-extrabold mb-2 __gradient_text">
             Dropship ribet bikin kalah saing?
@@ -32,48 +40,78 @@ const HeroSection = () => {
             tanpa alat lain.
           </h3>
         </div>
-        <div className="relative w-full max-w-3xl h-[500px] -mt-36 md:-mt-24 lg:-mt-20">
-          <Image
-            src={appScreenshot}
-            layout="fill"
-            objectFit="contain"
-            className="absolute top-0 left-0 z-10"
-            alt="Autolaku App Screenshot"
-            draggable={false}
+        <Swiper
+          spaceBetween={0}
+          slidesPerView={1}
+          autoplay={{ delay: 5000, disableOnInteraction: false }}
+          modules={[Autoplay]}
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
+          onSlideChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
+          className="w-full lg:border-x lg:border-white/20 lg:border-dashed mt-10 lg:m-0">
+          {autolakuScreenshots.map((screenshot, index) => (
+            <SwiperSlide key={index}>
+              <Image
+                src={screenshot.image}
+                alt={`Autolaku screenshot: ${screenshot.title}`}
+                className="w-full h-auto object-contain select-none px-5 lg:p-10"
+                loading="lazy"
+              />
+            </SwiperSlide>
+          ))}
+          <div className="absolute inset-y-0 left-0 w-full bg-gradient-to-t from-black/90 from-5% via-black/30 via-20% to-transparent to-90% z-30 pointer-events-none" />
+        </Swiper>
+        <div className="flex justify-between items-center w-full px-5 lg:px-10">
+          <button
+            className=" transform rounded-button !p-2 md:!p-3"
+            onClick={() => {
+              const newIndex = currentIndex > 0 ? currentIndex - 1 : autolakuScreenshots.length - 1;
+              setCurrentIndex(newIndex);
+              swiperRef.current?.slideTo(newIndex);
+            }}
+            aria-label="Previous screenshot">
+            <IoMdArrowDropleft className="md:text-2xl" />
+          </button>{' '}
+          <span>
+            <h4 className="text-lg font-semibold text-white">
+              {autolakuScreenshots[currentIndex].title}
+            </h4>
+            <p className="text-sm text-gray-300">{autolakuScreenshots[currentIndex].description}</p>
+          </span>
+          <button
+            className=" transform rounded-button !p-2 md:!p-3"
+            onClick={() => {
+              const newIndex = currentIndex < autolakuScreenshots.length - 1 ? currentIndex + 1 : 0;
+              setCurrentIndex(newIndex);
+              swiperRef.current?.slideTo(newIndex);
+            }}
+            aria-label="Next screenshot">
+            <IoMdArrowDropright className="md:text-2xl" />
+          </button>
+        </div>
+        {/* <div className="flex mt-5 gap-5 justify-center items-center">
+          <DownloadButton
+            className="!bg-white rounded-full focus:ring-2 focus:ring-white hover:shadow-lg"
+            downloadUrl="/api/download?platform=macos"
+            buttonText={
+              <div className="flex gap-2 text-black text-sm lg:text-xl items-center">
+                <DiApple className="text-2xl" /> MacOS
+              </div>
+            }
+            downloadingText="Mengunduh..."
+            aria-label="Download for MacOS"
           />
-        </div>
-        <div className="w-full flex-col justify-center items-center gap-5 -mt-44 md:-mt-32 lg:-mt-20">
-          <h2 className="text-xs text-justify lg:px-80 text-white/70">
-            Autolaku adalah solusi dropshipping premium di Indonesia, mengintegrasikan teknologi AI
-            dari xAI dan OpenAI untuk menghasilkan otomatisasi cerdas, termasuk deskripsi produk
-            yang optimal, analisis pasar mendalam, dan layanan pelanggan responsif. Dengan dukungan
-            Cloudinary untuk pengolahan gambar yang efisien dan aman, Autolaku menyediakan aplikasi
-            desktop untuk macOS dan Windows, menjamin dropshipper dapat mengembangkan bisnis mereka
-            secara profesional tanpa kompleksitas alat terpisah.
-          </h2>
-          <div className="flex mt-5 gap-5 justify-center items-center w-full">
-            <DownloadButton
-              className="!bg-white rounded-full"
-              downloadUrl="/api/download?platform=macos"
-              buttonText={
-                <div className="flex gap-2 text-black text-xs lg:text-xl lg:gap-3 justify-center items-center w-fit">
-                  <DiApple className="text-lg" /> MacOS
-                </div>
-              }
-              downloadingText="Mengunduh..."
-            />
-            <DownloadButton
-              className="!bg-blue-500 rounded-full"
-              downloadUrl="/api/download?platform=windows"
-              buttonText={
-                <div className="flex gap-2 text-white text-xs lg:text-xl lg:gap-3 justify-center items-center w-fit">
-                  <DiWindows className="text-lg" /> Windows
-                </div>
-              }
-              downloadingText="Mengunduh..."
-            />
-          </div>
-        </div>
+          <DownloadButton
+            className="!bg-blue-600 rounded-full focus:ring-2 focus:ring-white hover:shadow-lg"
+            downloadUrl="/api/download?platform=windows"
+            buttonText={
+              <div className="flex gap-2 text-white text-sm lg:text-xl items-center ">
+                <DiWindows className="text-2xl" /> Windows
+              </div>
+            }
+            downloadingText="Mengunduh..."
+            aria-label="Download for Windows"
+          />
+        </div> */}
       </div>
     </section>
   );
