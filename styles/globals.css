@@ -56,3 +56,40 @@
     width: 100%;
   }
 }
+
+.styled-container {
+  /* Creates a radial gradient mask for WebKit browsers, fading from transparent to black */
+  -webkit-mask: radial-gradient(
+      120% 100% at 107.1% -9.2%,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 100%
+    )
+    add;
+
+  /* Sets a dark background color using a variable, with #0f1115 as a fallback */
+  background-color: var(--token-f32baa44-90b8-42a5-8bca-ffba9d95b23a, #0f1115);
+
+  /* Applies rounded corners with a 10px radius */
+  border-radius: 10px;
+
+  /* Prevents the element from flexing, maintaining its natural size */
+  flex: none;
+
+  /* Positions the element 1px from all edges of its containing parent */
+  inset: 1px;
+
+  /* Defines a standard radial gradient mask, matching the WebKit version for consistency */
+  mask: radial-gradient(120% 100% at 107.1% -9.2%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%) add;
+
+  /* Ensures any overflowing content is clipped and hidden */
+  overflow: hidden;
+
+  /* Positions the element absolutely within its nearest positioned ancestor */
+  position: absolute;
+
+  /* Hints to the browser to optimize for transformations, improving animation performance */
+  will-change: var(--framer-will-change-override, transform);
+
+  /* Sets the stacking order to 1, placing it above elements with a lower z-index */
+  z-index: 1;
+}

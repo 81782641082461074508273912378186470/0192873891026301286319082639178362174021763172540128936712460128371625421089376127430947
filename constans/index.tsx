@@ -109,27 +109,31 @@ export const autolakuScreenshots = [
   },
   {
     title: 'Antrian Scrape',
-    description: 'Antrian Scrape Antrian Scrape',
+    description:
+      'Menyusun folder secara terstruktur untuk memudahkan pengambilan detail data produk yang rapi dan mudah dipahami oleh manajemen.',
     image: ScreenshotAntrianScrape,
   },
   {
     title: 'Atur Keuntungan',
-    description: 'Atur Keuntungan Atur Keuntungan',
+    description: 'Sesuaikan persentase margin keuntungan Anda dengan fleksibilitas penuh.',
     image: AturKeuntungan,
   },
   {
     title: 'Hapus Kata Terlarang',
-    description: 'Hapus Kata Terlarang Hapus Kata Terlarang',
+    description:
+      'Hapus kata-kata sensitif untuk memastikan listing produk aman dan sesuai dengan regulasi marketplace.',
     image: HapusKataTerlarang,
   },
   {
     title: 'Optimasi Informasi Produk',
-    description: 'Optimasi Informasi Produk Optimasi Informasi Produk',
+    description:
+      'Tingkatkan daya tarik produk Anda dengan informasi yang dioptimalkan oleh kecerdasan buatan (AI) hanya dalam satu klik.',
     image: OptimasiInformasiProduk,
   },
   {
     title: 'AI Config',
-    description: 'AI Config AI Config',
+    description:
+      'Sesuaikan pengaturan AI untuk meningkatkan performa dropshipping yang lebih cerdas dan personal, yang telah terintegrasi dengan xAI dan OpenAI.',
     image: AIConfig,
   },
 ];
