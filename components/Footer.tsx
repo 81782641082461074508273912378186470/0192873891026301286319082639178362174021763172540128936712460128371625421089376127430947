@@ -8,7 +8,7 @@ import { FaWhatsapp } from 'react-icons/fa6';
 import DownloadButton from './DownloadButton';
 import { DiApple, DiWindows } from 'react-icons/di';
 import { HiDownload } from 'react-icons/hi';
-import { navButtons } from '@/constans';
+import { ADotted, navButtons } from '@/constans';
 import { usePathname } from 'next/navigation';
 
 const Footer = () => {
@@ -56,7 +56,7 @@ const Footer = () => {
     <footer className="w-full flex justify-center items-center z-50 shadow-md bg-dark-800">
       <div className="flex flex-col items-center justify-between w-full text-white ">
         {pathname === '/' && (
-          <div className="flex flex-col justify-center items-center w-full py-32 gap-10 bg-black/50 border-y-[1px] border-white/10">
+          <div className="flex relative flex-col h-[400px] justify-center items-center w-full py-32 gap-10 bg-black/50 border-y-[1px] border-white/10 ">
             <h3 className="lg:text-4xl text-3xl font-extrabold mb-5 __gradient_text">
               Dropship ribet <br className="md:hidden" /> berakhir disini!
             </h3>
@@ -65,6 +65,9 @@ const Footer = () => {
               className="px-4 py-2 lg:text-lg bg-white/10 rounded hover:bg-white/20 animate-pulse">
               Mulai dropship dengan Autolaku
             </Link>
+            <div className="absolute right-0 h-full w-fit flex justify-end items-center opacity-10 overflow-hidden ">
+              {ADotted}
+            </div>
           </div>
         )}
         <div className="flex flex-col-reverse lg:flex-row justify-between items-start w-full py-10 gap-20 lg:gap-10 max-w-screen-xl px-5 xl:px-0 ">

@@ -47,7 +47,7 @@ const HeroSection = () => {
           modules={[Autoplay]}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
           onSlideChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
-          className="w-full md:rounded-t-3xl md:border-x border-t border-white/20 border-dashed mt-10 bg-white/5 backdrop-blur-sm">
+          className="w-full md:rounded-t-3xl md:border-x border-t border-white/20 border-dashed mt-10 bg-white/10 backdrop-blur-sm">
           {autolakuScreenshots.map((screenshot, index) => (
             <SwiperSlide key={index}>
               <Image
