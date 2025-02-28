@@ -53,7 +53,7 @@ const Footer = () => {
       button.title === 'Kebijakan Privasi'
   );
   return (
-    <footer className="w-full flex justify-center items-center z-50 shadow-md bg-dark-800">
+    <footer className="w-full flex justify-center items-center z-50 shadow-md bg-dark-800 mt-20 lg:mt-52">
       <div className="flex flex-col items-center justify-between w-full text-white ">
         {pathname === '/' && (
           <div className="flex relative flex-col h-[400px] justify-center items-center w-full py-32 gap-10 bg-black/50 border-y-[1px] border-white/10 ">
@@ -114,7 +114,6 @@ const Footer = () => {
                     <DiApple className="text-lg" /> MacOS
                   </div>
                 }
-                downloadingText="Mengunduh..."
               />
               <DownloadButton
                 className="!bg-blue-500"
@@ -124,7 +123,6 @@ const Footer = () => {
                     <DiWindows className="text-lg" /> Windows
                   </div>
                 }
-                downloadingText="Mengunduh..."
               />
             </div>
             <div className="flex flex-col gap-3 ">

@@ -5,15 +5,9 @@ interface DownloadButtonProps {
   downloadUrl: string;
   className?: string;
   buttonText: React.ReactNode;
-  downloadingText?: string;
 }
 
-const DownloadButton: React.FC<DownloadButtonProps> = ({
-  downloadUrl,
-  buttonText,
-  className,
-  downloadingText = 'Downloading...',
-}) => {
+const DownloadButton: React.FC<DownloadButtonProps> = ({ downloadUrl, buttonText, className }) => {
   const [isDownloading, setIsDownloading] = useState<boolean>(false);
 
   const handleDownload = (e: MouseEvent<HTMLButtonElement>) => {
@@ -29,11 +23,11 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({
   return (
     <button
       onClick={handleDownload}
-      className={`${className} no-underline rounded-button w-fit gap-2 flex justify-center items-center px-2 py-1 ${
-        isDownloading ? 'cursor-wait' : ''
+      className={`${className} no-underline text-xs rounded-button w-fit gap-2 flex justify-center items-center px-2 py-1 ${
+        isDownloading ? 'cursor-wait opacity-55' : ''
       }`}
       disabled={isDownloading}>
-      {isDownloading ? downloadingText : buttonText}
+      {buttonText}
     </button>
   );
 };

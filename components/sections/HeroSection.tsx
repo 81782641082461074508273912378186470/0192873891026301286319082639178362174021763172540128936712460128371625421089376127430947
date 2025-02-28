@@ -1,5 +1,4 @@
 'use client';
-
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Image from 'next/image';
 import { useState, useRef } from 'react';
@@ -13,6 +12,7 @@ import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { autolakuScreenshots } from '@/constans';
+import { HiDownload } from 'react-icons/hi';
 
 const HeroSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -40,6 +40,35 @@ const HeroSection = () => {
             tanpa alat lain.
           </h3>
         </div>
+        <div className="my-16 py-5 px-10 backdrop-blur-sm bg-white/10 shadow-black shadow-xl border-[1px] border-white/10">
+          <p className="__gradient_text font-bold lg:text-xl flex w-full items-center justify-center gap-2">
+            <HiDownload className="lg:text-2xl text-white/80" /> Unduh Sekarang!
+          </p>
+          <div className="flex mt-5 gap-5 justify-center items-center">
+            <DownloadButton
+              className="!bg-white rounded-full focus:ring-2 focus:ring-white hover:shadow-lg"
+              downloadUrl="/api/download?platform=macos"
+              buttonText={
+                <div className="flex gap-2 text-black text-sm lg:text-xl items-center">
+                  <DiApple className="text-xl lg:text-2xl" /> MacOS
+                </div>
+              }
+              aria-label="Download for MacOS"
+            />
+            <div className="w-[1px] h-10 bg-white/50" />
+            <DownloadButton
+              className="!bg-blue-600 rounded-full focus:ring-2 focus:ring-white hover:shadow-lg"
+              downloadUrl="/api/download?platform=windows"
+              buttonText={
+                <div className="flex gap-2 text-white text-sm lg:text-xl items-center ">
+                  <DiWindows className="text-xl lg:text-2xl" /> Windows
+                </div>
+              }
+              aria-label="Download for Windows"
+            />
+          </div>
+        </div>
+
         <Swiper
           spaceBetween={0}
           slidesPerView={1}
@@ -60,7 +89,15 @@ const HeroSection = () => {
           ))}
           <div className="absolute inset-y-0 left-0 w-full bg-gradient-to-t from-black/90 from-5% via-black/30 via-20% to-transparent to-90% z-30 pointer-events-none" />
         </Swiper>
-        <div className="flex justify-between gap-5 md:gap-20 items-center w-full pt-10 p-5 lg:p-10 border-x border-b-[1px] rounded-b-xl lg:rounded-b-3xl bg-black/15 backdrop-blur-sm border-white/20">
+        <div className="flex justify-between items-end gap-5  w-full pt-10 p-5 lg:p-10 border-x border-b-[1px] rounded-b-xl lg:rounded-b-3xl bg-black/15 backdrop-blur-sm border-white/20">
+          <span className="w-full text-start">
+            <h4 className="md:text-lg text-sm font-semibold text-white">
+              {autolakuScreenshots[currentIndex].title}
+            </h4>
+            <p className="md:text-sm text-xs text-light-700">
+              {autolakuScreenshots[currentIndex].description}
+            </p>
+          </span>
           <button
             className=" transform rounded-button !p-2 md:!p-3"
             onClick={() => {
@@ -71,14 +108,6 @@ const HeroSection = () => {
             aria-label="Previous screenshot">
             <IoMdArrowDropleft className="md:text-2xl" />
           </button>{' '}
-          <span className="w-full ">
-            <h4 className="md:text-lg text-sm font-semibold text-white">
-              {autolakuScreenshots[currentIndex].title}
-            </h4>
-            <p className="md:text-sm text-xs text-light-700">
-              {autolakuScreenshots[currentIndex].description}
-            </p>
-          </span>
           <button
             className=" transform rounded-button !p-2 md:!p-3"
             onClick={() => {
@@ -90,30 +119,6 @@ const HeroSection = () => {
             <IoMdArrowDropright className="md:text-2xl" />
           </button>
         </div>
-        {/* <div className="flex mt-5 gap-5 justify-center items-center">
-          <DownloadButton
-            className="!bg-white rounded-full focus:ring-2 focus:ring-white hover:shadow-lg"
-            downloadUrl="/api/download?platform=macos"
-            buttonText={
-              <div className="flex gap-2 text-black text-sm lg:text-xl items-center">
-                <DiApple className="text-2xl" /> MacOS
-              </div>
-            }
-            downloadingText="Mengunduh..."
-            aria-label="Download for MacOS"
-          />
-          <DownloadButton
-            className="!bg-blue-600 rounded-full focus:ring-2 focus:ring-white hover:shadow-lg"
-            downloadUrl="/api/download?platform=windows"
-            buttonText={
-              <div className="flex gap-2 text-white text-sm lg:text-xl items-center ">
-                <DiWindows className="text-2xl" /> Windows
-              </div>
-            }
-            downloadingText="Mengunduh..."
-            aria-label="Download for Windows"
-          />
-        </div> */}
       </div>
     </section>
   );
