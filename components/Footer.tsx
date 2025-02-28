@@ -52,6 +52,8 @@ const Footer = () => {
       button.title === 'Pusat Bantuan' ||
       button.title === 'Kebijakan Privasi'
   );
+
+  const currentYear = new Date().getFullYear();
   return (
     <footer className="w-full flex justify-center items-center z-50 shadow-md bg-dark-800 mt-20 lg:mt-52">
       <div className="flex flex-col items-center justify-between w-full text-white ">
@@ -101,6 +103,9 @@ const Footer = () => {
                 </Link>
               ))}
             </div>
+            <p className="text-sm text-white/50">
+              &copy; {currentYear} Autolaku. All rights reserved.
+            </p>
           </div>
           <div className="flex flex-col-reverse lg:flex-row items-start lg:justify-end w-full gap-10 lg:gap-20 border-b-[1px] border-white/30 pb-20 lg:p-0 lg:border-0">
             <div className="flex  w-fit justify-center items-center gap-1">
