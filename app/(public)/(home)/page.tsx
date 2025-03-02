@@ -1,3 +1,4 @@
+import Integrated from '@/components/Integrated';
 import HeroSection from '@/components/sections/HeroSection';
 import { generateMetadata } from '@/lib/utils';
 import { Metadata } from 'next';
@@ -15,6 +16,7 @@ const HomePage = () => {
   return (
     <div className="flex flex-col justify-start items-center w-full h-full">
       <HeroSection />
+      <Integrated />
     </div>
   );
 };

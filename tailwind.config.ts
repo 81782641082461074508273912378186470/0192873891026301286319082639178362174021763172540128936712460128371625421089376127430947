@@ -59,6 +59,20 @@ export default {
         'geist-extrabold': ['Geist ExtraBold', 'serif'],
         'geist-black': ['Geist Black', 'serif'],
       },
+      animation: {
+        'infinite-scroll': 'scrollLeft 20s linear infinite',
+        'infinite-scroll-right': 'scrollRight 20s linear infinite',
+      },
+      keyframes: {
+        scrollLeft: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        scrollRight: {
+          '0%': { transform: 'translateX(-50%)' },
+          '100%': { transform: 'translateX(0)' },
+        },
+      },
     },
   },
   plugins: [require('tailwindcss-animate')],

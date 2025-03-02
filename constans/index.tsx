@@ -2,7 +2,6 @@ import { MdFormatQuote } from 'react-icons/md';
 import {
   IoMdDocument,
   IoMdHelpCircle,
-  IoMdHome,
   IoMdInformationCircle,
   IoMdListBox,
   IoMdMail,
@@ -19,14 +18,14 @@ import HapusKataTerlarang from '@/assets/images/Screenshot-Hapus-Kata-Terlarang.
 import KelolaProduk from '@/assets/images/Screenshot-Kelola-Produk.png';
 import LoginAutolaku from '@/assets/images/Screenshot-Login-Autolaku.png';
 import PencarianProduk from '@/assets/images/Screenshot-Pencarian-Produk.png';
+import grok from '@/assets/icons/grok.webp';
+import xai from '@/assets/icons/xai.webp';
+import shopee from '@/assets/icons/shopee.webp';
+import openai from '@/assets/icons/openai.webp';
+import cloudinary from '@/assets/icons/cloudinary.webp';
+import akulaku from '@/assets/icons/akulaku.webp';
 
 export const navButtons = [
-  {
-    title: 'Beranda',
-    url: '/',
-    icon: <IoMdHome />,
-    description: 'Kembali ke halaman utama',
-  },
   {
     title: 'Tentang Kami',
     url: '/tentang-kami',
@@ -74,13 +73,13 @@ export const navButtons = [
     title: 'Kebijakan Privasi',
     url: '/kebijakan-privasi',
     icon: <BsShield />,
-    description: 'Buat akun baru/Masuk dengan akun mu',
+    description: 'Pelajari perlindungan data pribadi Anda.',
   },
   {
     title: 'Ketentuan Layanan',
     url: '/ketentuan-layanan',
     icon: <LiaFileContractSolid />,
-    description: 'Buat akun baru/Masuk dengan akun mu',
+    description: 'Kenali syarat penggunaan Autolaku.',
   },
   {
     title: 'Masuk/Daftar',
@@ -131,7 +130,7 @@ export const autolakuScreenshots = [
     image: OptimasiInformasiProduk,
   },
   {
-    title: 'AI Config',
+    title: 'AI Konfigurasi',
     description:
       'Sesuaikan pengaturan AI untuk meningkatkan performa dropshipping yang lebih cerdas dan personal, yang telah terintegrasi dengan xAI dan OpenAI.',
     image: AIConfig,
@@ -1903,3 +1902,30 @@ export const ADotted = (
     <circle cx="312" cy="360" r="2" fill="white" />
   </svg>
 );
+
+export const IntegratedIcon = [
+  {
+    title: 'Shopee',
+    image: shopee,
+  },
+  {
+    title: 'Akulaku',
+    image: akulaku,
+  },
+  {
+    title: 'Grok',
+    image: grok,
+  },
+  {
+    title: 'Open AI',
+    image: openai,
+  },
+  {
+    title: 'xAI',
+    image: xai,
+  },
+  {
+    title: 'Cloudinary',
+    image: cloudinary,
+  },
+];

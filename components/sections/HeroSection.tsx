@@ -12,7 +12,6 @@ import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { autolakuScreenshots } from '@/constans';
-import { HiDownload } from 'react-icons/hi';
 
 const HeroSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -42,7 +41,7 @@ const HeroSection = () => {
             </h2>
           </div>
           <div className="flex w-fit mt-5 justify-center lg:justify-end items-center">
-            <div className="flex gap-3 bg-white/10 backdrop-blur-sm border-[1px] border-black rounded-full p-5">
+            <div className="flex gap-3 bg-white/10 backdrop-blur-sm border-2 border-black rounded-full p-5">
               <DownloadButton
                 className="!bg-white rounded-full focus:ring-2 focus:ring-white hover:shadow-lg"
                 downloadUrl="/api/download?platform=macos"
@@ -64,7 +63,7 @@ const HeroSection = () => {
                 aria-label="Download for Windows"
               />
             </div>
-          </div>{' '}
+          </div>
         </div>
 
         <Swiper
