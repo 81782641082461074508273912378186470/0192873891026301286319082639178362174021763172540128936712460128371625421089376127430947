@@ -9,9 +9,7 @@ import { HiMenuAlt4 } from 'react-icons/hi';
 import { navButtons } from '@/constans';
 
 const NavBar = () => {
-  const [openDropdown, setOpenDropdown] = useState<null | 'pricing' | 'help' | 'information'>(
-    'information'
-  );
+  const [openDropdown, setOpenDropdown] = useState<null | 'pricing' | 'help' | 'information'>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const hideDelay = 350;
 
