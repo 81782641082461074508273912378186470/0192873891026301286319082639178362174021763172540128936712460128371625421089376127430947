@@ -36,7 +36,7 @@ export function GlowingGrid() {
           area="md:[grid-area:2/7/3/13] xl:[grid-area:1/8/2/13]"
           icon={<RiTimerFlashLine className="h-5 w-5 text-white" />}
           title="Optimalkan Waktu Anda dengan Otomatisasi Berbasis AI"
-          description="Manfaatkan kecerdasan buatan untuk mengotomatiskan tugas rutin, menghemat waktu secara signifikan, dan memungkinkan Anda fokus pada strategi bisnis yang menguntungkan."
+          description="Manfaatkan kecerdasan buatan untuk mengotomatiskan tugas rutin, menghemat waktu secara signifikan."
         />
 
         <GridItem
