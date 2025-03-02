@@ -55,19 +55,19 @@ const Footer = () => {
 
   const currentYear = new Date().getFullYear();
   return (
-    <footer className="w-full flex justify-center items-center z-50 shadow-md bg-dark-800 mt-20 lg:mt-52">
+    <footer className="w-full flex justify-center items-center z-50 shadow-md bg-gradient-to-tr from-dark-600 from-10% via-black via-80% to-black to-100% mt-20 lg:mt-52">
       <div className="flex flex-col items-center justify-between w-full text-white ">
         {pathname === '/' && (
-          <div className="flex relative flex-col h-[400px] justify-center items-center w-full py-32 gap-10 bg-black/50 border-y-[1px] border-white/10 ">
+          <div className="flex relative flex-col h-[400px] justify-center items-center w-full py-32 gap-10 bg-black-80 border-y-[1px] border-white/10 ">
             <h3 className="lg:text-4xl text-3xl font-extrabold mb-5 __gradient_text">
               Dropship ribet <br className="md:hidden" /> berakhir disini!
             </h3>
             <Link
               href="/auth"
-              className="px-4 py-2 lg:text-lg bg-white/10 rounded hover:bg-white/20 animate-pulse">
+              className="px-4 py-2 lg:text-lg bg-white text-black lg:text-white font-bold lg:bg-white/15 rounded hover:bg-white/20">
               Mulai dropship dengan Autolaku
             </Link>
-            <div className="absolute right-0 h-full w-fit flex justify-end items-center opacity-10 overflow-hidden ">
+            <div className="absolute right-0 h-full w-fit flex justify-end items-center opacity-10 hover:opacity-15 overflow-hidden animate-pulse">
               {ADotted}
             </div>
           </div>

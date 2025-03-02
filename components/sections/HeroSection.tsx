@@ -26,47 +26,45 @@ const HeroSection = () => {
         className="absolute inset-0 opacity-20 pointer-events-none object-cover"
         loading="lazy"
       />
-      <div className="max-w-screen-xl mx-auto flex flex-col items-center justify-start min-h-screen text-center text-white z-10 pt-24 px-5 lg:mt-40">
-        <div className="flex flex-col items-center justify-center">
-          <h1 className="lg:text-6xl md:text-5xl text-xl font-extrabold mb-2 __gradient_text">
-            Dropship ribet bikin kalah saing?
-          </h1>
-          <h3 className="lg:text-3xl md:text-xl flex text-light-800">
-            Sekarang bisa
-            <strong className="flex flex-col items-center justify-center mx-2 text-white">
-              cepat & efisien
-              <div className="brush-underline" />
-            </strong>
-            tanpa alat lain.
-          </h3>
-        </div>
-        <div className="my-16 py-5 px-10 backdrop-blur-sm bg-white/10 shadow-black shadow-xl border-[1px] border-white/10">
-          <p className="__gradient_text font-bold lg:text-xl flex w-full items-center justify-center gap-2">
-            <HiDownload className="lg:text-2xl text-white/80" /> Unduh Sekarang!
-          </p>
-          <div className="flex mt-5 gap-5 justify-center items-center">
-            <DownloadButton
-              className="!bg-white rounded-full focus:ring-2 focus:ring-white hover:shadow-lg"
-              downloadUrl="/api/download?platform=macos"
-              buttonText={
-                <div className="flex gap-2 text-black text-sm lg:text-xl items-center">
-                  <DiApple className="text-xl lg:text-2xl" /> MacOS
-                </div>
-              }
-              aria-label="Download for MacOS"
-            />
-            <div className="w-[1px] h-10 bg-white/50" />
-            <DownloadButton
-              className="!bg-blue-600 rounded-full focus:ring-2 focus:ring-white hover:shadow-lg"
-              downloadUrl="/api/download?platform=windows"
-              buttonText={
-                <div className="flex gap-2 text-white text-sm lg:text-xl items-center ">
-                  <DiWindows className="text-xl lg:text-2xl" /> Windows
-                </div>
-              }
-              aria-label="Download for Windows"
-            />
+      <div className="max-w-screen-xl mx-auto flex flex-col lg:items-start justify-start min-h-screen text-center text-white z-10 pt-24 px-5 lg:px-0 lg:mt-40">
+        <div className="flex flex-col lg:flex-row  lg:items-start justify-center items-center lg:justify-between w-full">
+          <div className="flex flex-col justify-center ">
+            <h1 className="lg:text-6xl md:text-5xl text-3xl font-extrabold mb-2 __gradient_text">
+              Dropship ribet <br className="lg:hidden" /> bikin kalah saing?
+            </h1>
+            <h2 className="lg:text-3xl md:text-xl justify-center lg:justify-start flex text-light-300">
+              Sekarang bisa
+              <strong className="flex flex-col items-center justify-center mx-2 text-white">
+                cepat & efisien
+                <div className="brush-underline" />
+              </strong>
+              tanpa alat lain.
+            </h2>
           </div>
+          <div className="flex w-fit mt-5 justify-center lg:justify-end items-center">
+            <div className="flex gap-3 bg-white/10 backdrop-blur-sm border-[1px] border-black rounded-full p-5">
+              <DownloadButton
+                className="!bg-white rounded-full focus:ring-2 focus:ring-white hover:shadow-lg"
+                downloadUrl="/api/download?platform=macos"
+                buttonText={
+                  <div className="flex gap-2 text-black text-sm lg:text-xl items-center">
+                    <DiApple className="text-xl lg:text-2xl" /> MacOS
+                  </div>
+                }
+                aria-label="Download for MacOS"
+              />
+              <DownloadButton
+                className="!bg-blue-600 rounded-full focus:ring-2 focus:ring-white hover:shadow-lg"
+                downloadUrl="/api/download?platform=windows"
+                buttonText={
+                  <div className="flex gap-2 text-white text-sm lg:text-xl items-center ">
+                    <DiWindows className="text-xl lg:text-2xl" /> Windows
+                  </div>
+                }
+                aria-label="Download for Windows"
+              />
+            </div>
+          </div>{' '}
         </div>
 
         <Swiper
