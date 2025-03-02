@@ -1,5 +1,52 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-require-imports */
 import type { Config } from 'tailwindcss';
+
+const svgToDataUri = require('mini-svg-data-uri');
+
+const { default: flattenColorPalette } = require('tailwindcss/lib/util/flattenColorPalette');
+
+// Add CSS variables for all colors in the theme
+function addVariablesForColors({ addBase, theme }: any) {
+  const allColors = flattenColorPalette(theme('colors'));
+  const newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+  );
+
+  addBase({
+    ':root': newVars,
+  });
+}
+
+// Add custom utilities for background patterns
+function addCustomUtilities({ matchUtilities, theme }: any) {
+  matchUtilities(
+    {
+      'bg-grid': (value: any) => ({
+        backgroundImage: `url("${svgToDataUri(
+          `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="${value}">
+            <path d="M0 0 H32 M0 8 H32 M0 16 H32 M0 24 H32 M0 32 H32 M0 0 V32 M8 0 V32 M16 0 V32 M24 0 V32 M32 0 V32" />
+          </svg>`
+        )}")`,
+      }),
+      'bg-grid-small': (value: any) => ({
+        backgroundImage: `url("${svgToDataUri(
+          `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="8" height="8" fill="none" stroke="${value}">
+            <path d="M0 0 H32 M0 8 H32 M0 16 H32 M0 24 H32 M0 32 H32 M0 0 V32 M8 0 V32 M16 0 V32 M24 0 V32 M32 0 V32" />
+          </svg>`
+        )}")`,
+      }),
+      'bg-dot': (value: any) => ({
+        backgroundImage: `url("${svgToDataUri(
+          `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="16" height="16" fill="none">
+            <circle fill="${value}" cx="16" cy="16" r="1.5" />
+          </svg>`
+        )}")`,
+      }),
+    },
+    { values: flattenColorPalette(theme('backgroundColor')), type: 'color' }
+  );
+}
 
 export default {
   darkMode: ['class'],
@@ -11,13 +58,9 @@ export default {
   theme: {
     screens: {
       sm: '640px',
-
       md: '768px',
-
       lg: '1024px',
-
       xl: '1280px',
-
       '2xl': '1536px',
     },
     extend: {
@@ -60,8 +103,8 @@ export default {
         'geist-black': ['Geist Black', 'serif'],
       },
       animation: {
-        'infinite-scroll': 'scrollLeft 50s linear infinite',
-        'infinite-scroll-right': 'scrollRight 50s linear infinite',
+        'infinite-scroll': 'scrollLeft 10s linear infinite',
+        'infinite-scroll-right': 'scrollRight 10s linear infinite',
       },
       keyframes: {
         scrollLeft: {
@@ -75,5 +118,5 @@ export default {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [addVariablesForColors, addCustomUtilities, require('tailwindcss-animate')],
 } satisfies Config;

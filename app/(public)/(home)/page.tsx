@@ -1,3 +1,4 @@
+import { GlowingGrid } from '@/components/GlowingGrid';
 import Integrated from '@/components/Integrated';
 import HeroSection from '@/components/sections/HeroSection';
 import { generateMetadata } from '@/lib/utils';
@@ -17,6 +18,7 @@ const HomePage = () => {
     <div className="flex flex-col justify-start items-center w-full h-full">
       <HeroSection />
       <Integrated />
+      <GlowingGrid />
     </div>
   );
 };
