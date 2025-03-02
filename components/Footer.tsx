@@ -67,7 +67,7 @@ const Footer = () => {
               className="px-4 py-2 lg:text-lg bg-white text-black lg:text-white font-bold lg:bg-white/15 rounded hover:bg-white/20">
               Mulai dropship dengan Autolaku
             </Link>
-            <div className="absolute right-0 h-full w-fit flex justify-end items-center opacity-10 hover:opacity-15 overflow-hidden animate-pulse">
+            <div className="absolute right-0 h-full w-fit flex justify-end items-center opacity-15 hover:opacity-25 overflow-hidden">
               {ADotted}
             </div>
           </div>
