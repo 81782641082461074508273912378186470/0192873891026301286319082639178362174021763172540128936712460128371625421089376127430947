@@ -60,8 +60,8 @@ export default {
         'geist-black': ['Geist Black', 'serif'],
       },
       animation: {
-        'infinite-scroll': 'scrollLeft 20s linear infinite',
-        'infinite-scroll-right': 'scrollRight 20s linear infinite',
+        'infinite-scroll': 'scrollLeft 50s linear infinite',
+        'infinite-scroll-right': 'scrollRight 50s linear infinite',
       },
       keyframes: {
         scrollLeft: {

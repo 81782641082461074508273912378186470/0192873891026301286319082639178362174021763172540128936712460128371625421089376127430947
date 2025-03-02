@@ -28,7 +28,7 @@ const Integrated = () => {
             </div>
           ))}
         </div>
-        <div className="flex gap-5 lg:gap-20 animate-infinite-scroll-right will-change-transform mt-10">
+        <div className="flex gap-5 lg:gap-20 animate-infinite-scroll-right will-change-transform mt-10 lg:mt-20">
           {duplicatedIcons.map((icon, i) => (
             <div key={i} className="flex-shrink-0 select-none">
               <Image
