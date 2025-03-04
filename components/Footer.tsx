@@ -72,7 +72,7 @@ const Footer = () => {
             </div>
           </div>
         )}
-        <div className="flex flex-col-reverse lg:flex-row justify-between items-start w-full py-10 gap-20 lg:gap-10 max-w-screen-xl px-5 xl:px-0 ">
+        <div className="flex flex-col-reverse  lg:flex-row justify-between items-start w-full py-10 gap-20 lg:gap-10 max-w-screen-xl px-5 xl:px-0 ">
           <div className="flex flex-col gap-5 ">
             <div className="flex items-center gap-2 lg:gap-4 __gradient_text opacity-85 select-none">
               <svg
@@ -88,7 +88,7 @@ const Footer = () => {
               </svg>
               <span className="text-xl lg:text-2xl text-white">Autolaku</span>
             </div>
-            <p className="text-sm text-white/70">
+            <p className="text-sm text-white/70 select-none">
               Automation Modern untuk Dropshipping yang Cepat & Efisien
             </p>
             <div className="flex gap-3">
@@ -103,10 +103,6 @@ const Footer = () => {
                 </Link>
               ))}
             </div>
-            <p className="text-sm text-white/50">
-              &copy; {currentYear} Autolaku. All rights reserved.
-            </p>
-            <p className="text-sm text-white/50">PT. AUTOLAKU DROPSHIP PINTAR</p>
           </div>
           <div className="flex flex-col-reverse lg:flex-row items-start lg:justify-end w-full gap-10 lg:gap-20 border-b-[1px] border-white/30 pb-20 lg:p-0 lg:border-0">
             <div className="flex  w-fit justify-center items-center gap-1">
@@ -165,6 +161,12 @@ const Footer = () => {
               ))}
             </div>
           </div>
+        </div>
+        <div className="flex flex-col lg:flex-row w-full px-5 justify-center lg:gap-10 mb-3 select-none">
+          <p className="text-sm text-white/50">
+            &copy; {currentYear} Autolaku. All rights reserved.
+          </p>
+          <p className="text-sm font-extralight text-white/80">PT. AUTOLAKU DROPSHIP PINTAR</p>
         </div>
       </div>
     </footer>
