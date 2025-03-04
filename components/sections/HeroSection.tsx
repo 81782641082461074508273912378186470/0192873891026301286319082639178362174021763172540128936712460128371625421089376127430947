@@ -26,10 +26,12 @@ const HeroSection = () => {
         loading="lazy"
       />
       <div className="max-w-screen-xl mx-auto flex flex-col lg:items-start justify-start min-h-screen text-center text-white z-10 pt-24 px-5 lg:px-0 lg:mt-40">
-        <div className="flex flex-col lg:flex-row  lg:items-start justify-center items-center lg:justify-between w-full">
+        <div className="flex flex-col lg:flex-row  lg:items-end justify-center items-center lg:justify-between w-full">
           <div className="flex flex-col justify-center ">
-            <h1 className="lg:text-6xl md:text-5xl text-3xl font-extrabold mb-2 __gradient_text">
-              Dropship ribet <br className="lg:hidden" /> bikin kalah saing?
+            <h1 className="lg:text-7xl md:text-5xl text-3xl lg:text-start font-extrabold mb-2 ">
+              <span className="__gradient_text">Dropship ribet</span>
+              <br />
+              <span className="__gradient_text">bikin kalah saing?</span>
             </h1>
             <h2 className="lg:text-3xl md:text-xl justify-center lg:justify-start flex text-light-300">
               Sekarang bisa
