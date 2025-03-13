@@ -21,12 +21,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // console.log('Incoming device info update:', {
-    //   key,
-    //   deviceInfo,
-    // });
-
-    // Find the license by key
     const license = await License.findOne({ key });
 
     if (!license) {
@@ -35,7 +29,6 @@ export async function POST(request: Request) {
       });
     }
 
-    // Update device info
     license.deviceInfo = deviceInfo;
     await license.save();
 

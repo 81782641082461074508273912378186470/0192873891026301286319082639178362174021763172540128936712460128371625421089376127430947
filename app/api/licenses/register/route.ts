@@ -22,7 +22,7 @@ function generateLicenseKey() {
     }
   }
 
-  return key; // Added return statement here
+  return key;
 }
 
 async function createUniqueLicense(email: string, whatsappNumber: string) {
@@ -31,14 +31,12 @@ async function createUniqueLicense(email: string, whatsappNumber: string) {
 
   while (!isUnique) {
     key = generateLicenseKey();
-    // Check if the key already exists in the database
     const existingLicense = await License.findOne({ key: key });
     if (!existingLicense) {
       isUnique = true;
     }
   }
 
-  // Create the license with the unique key
   const license = await License.create({
     key: key,
     adminId: null,

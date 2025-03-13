@@ -28,7 +28,7 @@ export async function POST(request: Request) {
       license.deviceInfo = {
         ...(license.deviceInfo || {}),
         deviceUniqueID: deviceId,
-      }; // Bind the device info
+      };
       await license.save();
     }
 
