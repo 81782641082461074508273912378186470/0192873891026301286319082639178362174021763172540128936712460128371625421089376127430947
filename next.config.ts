@@ -39,10 +39,20 @@ const nextConfig: NextConfig = {
         permanent: false,
       },
       {
+        source: '/masuk',
+        destination: '/auth',
+        permanent: true,
+      },
+      {
+        source: '/daftar',
+        destination: '/auth',
+        permanent: true,
+      },
+      {
         source: '/kyc',
         destination:
           'https://docs.google.com/forms/d/e/1FAIpQLSd2kB_IuT51S5u3iImu9Fjw_aiOQwkeUy7VRaSNN8qqrIsagw/viewform?usp=sharing',
-        permanent: false,
+        permanent: true,
       },
     ];
   },
