@@ -49,10 +49,16 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: '/kyc',
+        source: '/staff/kyc',
         destination:
           'https://docs.google.com/forms/d/e/1FAIpQLSd2kB_IuT51S5u3iImu9Fjw_aiOQwkeUy7VRaSNN8qqrIsagw/viewform?usp=sharing',
-        permanent: true,
+        permanent: false,
+      },
+      {
+        source: '/staff/katakata',
+        destination:
+          'https://docs.google.com/document/d/1Oryv93pKzKy68JS02Rm7Vt7vlYacWDoGE6WlrWat44w/edit?tab=t.0',
+        permanent: false,
       },
     ];
   },
