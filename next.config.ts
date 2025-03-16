@@ -50,8 +50,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/staff/kyc',
-        destination:
-          'https://docs.google.com/forms/d/e/1FAIpQLSd2kB_IuT51S5u3iImu9Fjw_aiOQwkeUy7VRaSNN8qqrIsagw/viewform?usp=sharing',
+        destination: 'https://forms.gle/aqhWKYU862xqtiCb8',
         permanent: false,
       },
       {
