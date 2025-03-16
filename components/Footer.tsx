@@ -162,11 +162,11 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col lg:flex-row w-full px-5 justify-center lg:gap-10 mb-3 select-none">
+        <div className="flex flex-col lg:flex-row w-full px-5 justify-center items-center lg:gap-10 mb-3 select-none">
           <p className="text-sm text-white/50">
             &copy; {currentYear} Autolaku. All rights reserved.
           </p>
-          <p className="text-sm font-extralight text-white/80">PT. AUTOLAKU DROPSHIP PINTAR</p>
+          <p className="text-[9px] font-extralight text-white/50">PT. AUTOLAKU DROPSHIP PINTAR</p>
         </div>
       </div>
     </footer>

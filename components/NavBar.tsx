@@ -71,7 +71,6 @@ const NavBar = () => {
               points="3911.69 2751.24 2559.33 2751.24 1990.26 73.96 2020.14 0 3326.9 0 3911.69 2751.24"
             />
           </svg>
-          <div className="w-[0.5px] h-8 bg-white/20 rotate-12" />
           <span className="text-xl lg:text-3xl text-white">Autolaku</span>
         </Link>
 
