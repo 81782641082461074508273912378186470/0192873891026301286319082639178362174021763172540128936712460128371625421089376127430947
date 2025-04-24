@@ -27,7 +27,6 @@ const Login = () => {
     if (authData) {
       try {
         const parsedAuthData = JSON.parse(authData);
-        // console.log('Parsed authData:', parsedAuthData);
 
         if (
           parsedAuthData.type &&
@@ -35,7 +34,6 @@ const Login = () => {
           (parsedAuthData.type === 'account' ? parsedAuthData.user : parsedAuthData.licenseKey)
         ) {
           if (parsedAuthData.user && parsedAuthData.user.role) {
-            // console.log('Valid auth data, redirecting:', parsedAuthData);
             router.replace('/dashboard');
           } else {
             console.error('Invalid user data in authData, clearing:', parsedAuthData);
@@ -60,7 +58,7 @@ const Login = () => {
     const timer = setInterval(() => {
       setMessageProgress((prevProgress) => {
         if (prevProgress > 0) {
-          return prevProgress - 20; // Decrease by 20% every second for 5 seconds
+          return prevProgress - 20;
         } else {
           clearInterval(timer);
           setError(null);
@@ -88,8 +86,6 @@ const Login = () => {
         body: JSON.stringify(payload),
       });
 
-      // console.log('Raw Response:', response);
-
       if (!response.ok) {
         const errorText = await response.text();
         console.error('Error Response:', errorText);
@@ -97,7 +93,6 @@ const Login = () => {
       }
 
       const data = await response.json();
-      // console.log('Parsed Response Data:', data);
 
       const authData =
         loginType === 'account'
@@ -226,7 +221,7 @@ const Login = () => {
         {error && (
           <div>
             <p
-              className={`px-3 py-1 w-fit ${
+              className={`px-3 py-1 w-full text-center mt-5 ${
                 error
                   ? 'text-red-500 bg-red-500/20 text-sm'
                   : 'bg-green-500/20 text-green-500 text-sm'
@@ -235,7 +230,9 @@ const Login = () => {
             </p>
             <div className="h-0.5 bg-dark-700 absolute bottom-0 left-0 w-full ">
               <div
-                className={`h-full ${error ? 'bg-red-500 bg-sm' : 'text-green-500 text-sm'}}`}
+                className={`w-full text-center ${
+                  error ? 'bg-red-500 text-sm' : 'text-green-500 text-sm'
+                }}`}
                 style={{ width: `${messageProgress}%` }}></div>
             </div>
           </div>
