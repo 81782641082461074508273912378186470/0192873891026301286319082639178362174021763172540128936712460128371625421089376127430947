@@ -4,8 +4,8 @@ import { AuthDashboardProvider } from '@/context/AuthDashboardContext';
 import '@/styles/globals.css';
 
 export const metadata = {
-  title: 'Dashboard',
-  description: 'Your central dashboard for managing everything.',
+  title: 'App Autolaku',
+  description: 'Autolaku Application Center.',
 };
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {

@@ -21,31 +21,49 @@ const Login = () => {
 
   const router = useRouter();
 
+  // Helper function to get a cookie by name
+  const getCookie = (name: string): string | null => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop()?.split(';').shift() || null;
+    return null;
+  };
+
+  // Helper function to set a cookie with a shared domain
+  const setCookie = (name: string, value: string, days: number) => {
+    const date = new Date();
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+    const expires = `expires=${date.toUTCString()}`;
+    document.cookie = `${name}=${value};${expires};path=/;domain=autolaku.com`;
+  };
+
   useEffect(() => {
-    const authData = localStorage.getItem('authData');
+    const authDataCookie = getCookie('authData');
 
-    if (authData) {
+    if (authDataCookie) {
       try {
-        const parsedAuthData = JSON.parse(authData);
-
+        const parsedAuthData = JSON.parse(authDataCookie);
         if (
           parsedAuthData.type &&
           parsedAuthData.role &&
           (parsedAuthData.type === 'account' ? parsedAuthData.user : parsedAuthData.licenseKey)
         ) {
           if (parsedAuthData.user && parsedAuthData.user.role) {
-            router.replace('/dashboard');
+            window.location.href = 'https://app.autolaku.com';
           } else {
-            console.error('Invalid user data in authData, clearing:', parsedAuthData);
-            localStorage.removeItem('authData');
+            console.error('Invalid user data in authData cookie, clearing:', parsedAuthData);
+            document.cookie =
+              'authData=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=autolaku.com';
           }
         } else {
-          console.error('Invalid authData structure, clearing:', parsedAuthData);
-          localStorage.removeItem('authData');
+          console.error('Invalid authData structure in cookie, clearing:', parsedAuthData);
+          document.cookie =
+            'authData=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=autolaku.com';
         }
       } catch (error) {
-        console.error('Failed to parse authData, clearing authData:', error);
-        localStorage.removeItem('authData');
+        console.error('Failed to parse authData cookie, clearing:', error);
+        document.cookie =
+          'authData=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=autolaku.com';
       }
     }
   }, [router]);
@@ -71,7 +89,6 @@ const Login = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-
     try {
       setLoading(true);
       const endpoint = loginType === 'account' ? '/api/auth' : '/api/licenses/validate';
@@ -109,10 +126,9 @@ const Login = () => {
               license: data.license,
             };
 
-      console.log('Saving authData:', authData);
-      localStorage.setItem('authData', JSON.stringify(authData));
+      console.log('Saving authData to cookie:', authData);
+      setCookie('authData', JSON.stringify(authData), 30); // Save for 30 days
 
-      // Redirect to app.autolaku.com regardless of role
       window.location.href = 'https://app.autolaku.com';
     } catch (error: any) {
       console.error('Login error:', error.message);
