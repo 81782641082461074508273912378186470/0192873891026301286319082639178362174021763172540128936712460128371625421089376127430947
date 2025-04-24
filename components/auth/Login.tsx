@@ -34,7 +34,7 @@ const Login = () => {
           (parsedAuthData.type === 'account' ? parsedAuthData.user : parsedAuthData.licenseKey)
         ) {
           if (parsedAuthData.user && parsedAuthData.user.role) {
-            router.replace('/dashboard');
+            router.replace('/app');
           } else {
             console.error('Invalid user data in authData, clearing:', parsedAuthData);
             localStorage.removeItem('authData');
@@ -112,7 +112,7 @@ const Login = () => {
       console.log('Saving authData:', authData);
       localStorage.setItem('authData', JSON.stringify(authData));
 
-      router.replace('/dashboard');
+      router.replace('/app');
     } catch (error: any) {
       console.error('Login error:', error.message);
       startTimer('error', 'Terjadi Kesalahan.');
@@ -201,7 +201,7 @@ const Login = () => {
             <button
               type="submit"
               className={`font-bold py-2 px-4 rounded w-full ${
-                loading ? 'bg-dark-600 text-white' : 'bg-white text-black'
+                loading ? 'bg-dark-600 text-white opacity-50' : 'bg-white text-black'
               }`}
               disabled={loading}>
               {loading ? 'Mohon Tunggu...' : 'Masuk'}
