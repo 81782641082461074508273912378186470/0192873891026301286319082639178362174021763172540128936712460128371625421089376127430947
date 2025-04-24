@@ -8,7 +8,7 @@ interface AuthContextType {
   role: string | null;
   user: any;
   license?: any;
-  type: 'account' | 'license' | null; // Explicitly define allowed types
+  type: 'account' | 'license' | null;
   isAuthenticated: boolean;
   authDetails: any | null;
   setAuthData: (data: {
@@ -27,16 +27,36 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
   const [user, setUser] = useState<any>(null);
   const [license, setLicense] = useState<any | null>(null);
   const [type, setType] = useState<'account' | 'license' | null>(null);
-
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [authDetails, setAuthDetails] = useState<any | null>(null);
   const router = useRouter();
 
-  useEffect(() => {
-    const authData = localStorage.getItem('authData');
+  // Helper function to get a cookie by name
+  const getCookie = (name: string): string | null => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop()?.split(';').shift() || null;
+    return null;
+  };
 
-    if (!authData) {
-      localStorage.removeItem('authData');
+  // Helper function to set a cookie with a shared domain
+  const setCookie = (name: string, value: string, days: number) => {
+    const date = new Date();
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+    const expires = `expires=${date.toUTCString()}`;
+    document.cookie = `${name}=${value};${expires};path=/;domain=.autolaku.com`;
+  };
+
+  // Helper function to delete a cookie
+  const deleteCookie = (name: string) => {
+    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.autolaku.com`;
+  };
+
+  useEffect(() => {
+    const authDataCookie = getCookie('authData');
+
+    if (!authDataCookie) {
+      deleteCookie('authData');
       setRole(null);
       setUser(null);
       setLicense(null);
@@ -48,10 +68,7 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
     }
 
     try {
-      const parsedAuthData = JSON.parse(authData);
-      // console.log('Parsed authData:', parsedAuthData);
-
-      // Validate and set auth details based on type and role
+      const parsedAuthData = JSON.parse(authDataCookie);
       if (
         (parsedAuthData.type === 'account' && ['owner', 'admin'].includes(parsedAuthData.role)) ||
         (parsedAuthData.type === 'license' && parsedAuthData.role === 'user')
@@ -60,11 +77,11 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
         setUser(parsedAuthData.user || null);
         setLicense(parsedAuthData.license || null);
         setType(parsedAuthData.type || null);
-        setAuthDetails(parsedAuthData); // Store the full authData for detailed use
+        setAuthDetails(parsedAuthData);
         setIsAuthenticated(true);
       } else {
         console.error('Invalid authData');
-        localStorage.removeItem('authData');
+        deleteCookie('authData');
         setRole(null);
         setUser(null);
         setLicense(null);
@@ -74,8 +91,8 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
         router.push('/auth');
       }
     } catch (error) {
-      console.error('Failed to parse authData:', error);
-      localStorage.removeItem('authData');
+      console.error('Failed to parse authData cookie:', error);
+      deleteCookie('authData');
       setRole(null);
       setUser(null);
       setLicense(null);
@@ -95,13 +112,14 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
     setRole(data.role);
     setUser(data.user || null);
     setLicense(data.license || null);
-    setType(data.type); // Ensure this matches `'account' | 'license'`
-    setAuthDetails(data); // Store full auth details
+    setType(data.type);
+    setAuthDetails(data);
     setIsAuthenticated(true);
+    setCookie('authData', JSON.stringify(data), 30); // Persist auth data in cookie for 30 days
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('authData');
+    deleteCookie('authData');
     setRole(null);
     setUser(null);
     setLicense(null);
@@ -111,7 +129,6 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
     router.push('/auth');
   };
 
-  // console.log(authDetails);
   return (
     <AuthDashboardContext.Provider
       value={{

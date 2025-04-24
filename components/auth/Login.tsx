@@ -21,7 +21,6 @@ const Login = () => {
 
   const router = useRouter();
 
-  // Helper function to get a cookie by name
   const getCookie = (name: string): string | null => {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
@@ -29,7 +28,6 @@ const Login = () => {
     return null;
   };
 
-  // Helper function to set a cookie with a shared domain
   const setCookie = (name: string, value: string, days: number) => {
     const date = new Date();
     date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
@@ -127,7 +125,7 @@ const Login = () => {
             };
 
       console.log('Saving authData to cookie:', authData);
-      setCookie('authData', JSON.stringify(authData), 30); // Save for 30 days
+      setCookie('authData', JSON.stringify(authData), 30);
 
       window.location.href = 'https://app.autolaku.com';
     } catch (error: any) {
