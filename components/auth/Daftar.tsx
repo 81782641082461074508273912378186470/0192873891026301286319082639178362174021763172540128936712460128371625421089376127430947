@@ -225,18 +225,18 @@ const Daftar = () => {
                   </button>
                 </div>
               </div>
-              {/* <button
+              <button
                 type="button"
                 onClick={handleContinue}
                 className="bg-white text-sm lg:text-base text-black font-bold py-2 px-4 rounded w-full">
                 Lanjutkan Pendaftaran
-              </button> */}
-              <button
+              </button>
+              {/* <button
                 type="button"
                 disabled
                 className="bg-white text-sm lg:text-base text-black font-bold py-2 px-4 rounded w-full cursor-not-allowed opacity-65">
                 Untuk Sementara <br className="lg:hidden" /> Pendaftaran Ditutup
-              </button>
+              </button> */}
             </>
           )}
 
@@ -333,7 +333,7 @@ const Daftar = () => {
                   Kembali
                 </button>
                 <button
-                  type="button" // Changed to type="button" to prevent form submission on enter key
+                  type="button"
                   onClick={handleSubmit}
                   className={`text-sm lg:text-base font-bold py-2 px-4 rounded ${
                     loading ? 'bg-dark-600 text-white' : 'bg-white text-black'

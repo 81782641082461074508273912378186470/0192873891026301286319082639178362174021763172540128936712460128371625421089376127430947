@@ -17,15 +17,15 @@ const HeroSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const swiperRef = useRef<SwiperType | null>(null);
   return (
-    <section aria-label="Hero Section" className="relative w-full min-h-screen bg-black">
+    <section aria-label="Hero Section" className="relative w-full min-h-screen bg-black ">
       <Image
         src={grid}
-        alt="Background grid pattern"
+        alt="Autolaku Asset"
         fill
         className="absolute inset-0 opacity-20 pointer-events-none object-cover"
         loading="lazy"
       />
-      <div className="max-w-screen-xl mx-auto flex flex-col lg:items-start justify-start min-h-screen text-center text-white z-10 pt-24 px-5 lg:px-0 lg:mt-40">
+      <div className="max-w-screen-xl mx-auto flex flex-col lg:items-start justify-start min-h-screen text-center text-white z-10 pt-24 px-5 2xl:px-0 lg:mt-40">
         <div className="flex flex-col lg:flex-row  lg:items-end justify-center items-center lg:justify-between w-full">
           <div className="flex flex-col justify-center ">
             <h1 className="lg:text-7xl md:text-5xl text-3xl lg:text-start font-extrabold mb-2 ">

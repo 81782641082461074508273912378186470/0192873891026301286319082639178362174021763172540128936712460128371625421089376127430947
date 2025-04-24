@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { MdFormatQuote } from 'react-icons/md';
 import {
   IoMdDocument,
@@ -10,14 +11,16 @@ import {
 } from 'react-icons/io';
 import { BsShield } from 'react-icons/bs';
 import { LiaFileContractSolid } from 'react-icons/lia';
+
 import AIConfig from '@/assets/images/Screenshot-AI-Config.webp';
-import OptimasiInformasiProduk from '@/assets/images/Screenshot-AI-Optimasi-Informasi-Produk.webp';
-import ScreenshotAntrianScrape from '@/assets/images/Screenshot-Antrian-Scrape.webp';
+import AIOptimalisasi from '@/assets/images/AIOptimalisasi.webp';
+import AntrianScrape from '@/assets/images/AntrianScrape.webp';
 import AturKeuntungan from '@/assets/images/Screenshot-Atur-Keuntungan.webp';
 import HapusKataTerlarang from '@/assets/images/Screenshot-Hapus-Kata-Terlarang.webp';
-import KelolaProduk from '@/assets/images/Screenshot-Kelola-Produk.webp';
-import LoginAutolaku from '@/assets/images/Screenshot-Login-Autolaku.webp';
-import PencarianProduk from '@/assets/images/Screenshot-Pencarian-Produk.webp';
+import KelolaProduk from '@/assets/images/KelolaProduk.webp';
+import Login from '@/assets/images/Login.webp';
+import PencarianProduk from '@/assets/images/CariProduk.webp';
+
 import grok from '@/assets/icons/grok.webp';
 import xai from '@/assets/icons/xai.webp';
 import shopee from '@/assets/icons/shopee.webp';
@@ -93,7 +96,7 @@ export const autolakuScreenshots = [
   {
     title: 'Halaman Masuk Autolaku',
     description: 'Akses cepat dan aman untuk memulai pengalaman dropshipping Anda.',
-    image: LoginAutolaku,
+    image: Login,
   },
   {
     title: 'Pencarian Produk',
@@ -110,31 +113,32 @@ export const autolakuScreenshots = [
     title: 'Antrian Scrape',
     description:
       'Menyusun folder secara terstruktur untuk memudahkan pengambilan detail data produk yang rapi dan mudah dipahami oleh manajemen.',
-    image: ScreenshotAntrianScrape,
+    image: AntrianScrape,
   },
-  {
-    title: 'Atur Keuntungan',
-    description: 'Sesuaikan persentase margin keuntungan Anda dengan fleksibilitas penuh.',
-    image: AturKeuntungan,
-  },
-  {
-    title: 'Hapus Kata Terlarang',
-    description:
-      'Hapus kata-kata sensitif untuk memastikan listing produk aman dan sesuai dengan regulasi marketplace.',
-    image: HapusKataTerlarang,
-  },
+  ///Atur Keuntungan
+  // {
+  //   title: 'Atur Keuntungan',
+  //   description: 'Sesuaikan persentase margin keuntungan Anda dengan fleksibilitas penuh.',
+  //   image: AturKeuntungan,
+  // },
+  // {
+  //   title: 'Hapus Kata Terlarang',
+  //   description:
+  //     'Hapus kata-kata sensitif untuk memastikan listing produk aman dan sesuai dengan regulasi marketplace.',
+  //   image: HapusKataTerlarang,
+  // },
   {
     title: 'Optimasi Informasi Produk',
     description:
       'Tingkatkan daya tarik produk Anda dengan informasi yang dioptimalkan oleh kecerdasan buatan (AI) hanya dalam satu klik.',
-    image: OptimasiInformasiProduk,
+    image: AIOptimalisasi,
   },
-  {
-    title: 'AI Konfigurasi',
-    description:
-      'Sesuaikan pengaturan AI untuk meningkatkan performa dropshipping yang lebih cerdas dan personal, yang telah terintegrasi dengan xAI dan OpenAI.',
-    image: AIConfig,
-  },
+  // {
+  //   title: 'AI Konfigurasi',
+  //   description:
+  //     'Sesuaikan pengaturan AI untuk meningkatkan performa dropshipping yang lebih cerdas dan personal, yang telah terintegrasi dengan xAI dan OpenAI.',
+  //   image: AIConfig,
+  // },
 ];
 
 export const ADotted = (
