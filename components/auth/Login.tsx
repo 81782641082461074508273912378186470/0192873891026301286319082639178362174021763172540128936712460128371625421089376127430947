@@ -34,7 +34,7 @@ const Login = () => {
           (parsedAuthData.type === 'account' ? parsedAuthData.user : parsedAuthData.licenseKey)
         ) {
           if (parsedAuthData.user && parsedAuthData.user.role) {
-            router.replace('/app');
+            router.replace('/dashboard');
           } else {
             console.error('Invalid user data in authData, clearing:', parsedAuthData);
             localStorage.removeItem('authData');
@@ -112,7 +112,8 @@ const Login = () => {
       console.log('Saving authData:', authData);
       localStorage.setItem('authData', JSON.stringify(authData));
 
-      router.replace('/app');
+      // Redirect to app.autolaku.com regardless of role
+      window.location.href = 'https://app.autolaku.com';
     } catch (error: any) {
       console.error('Login error:', error.message);
       startTimer('error', 'Terjadi Kesalahan.');
@@ -232,7 +233,7 @@ const Login = () => {
               <div
                 className={`w-full text-center ${
                   error ? 'bg-red-500 text-sm' : 'text-green-500 text-sm'
-                }}`}
+                }`}
                 style={{ width: `${messageProgress}%` }}></div>
             </div>
           </div>
