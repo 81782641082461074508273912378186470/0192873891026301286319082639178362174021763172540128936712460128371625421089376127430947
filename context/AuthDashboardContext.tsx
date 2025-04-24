@@ -39,12 +39,11 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
     return null;
   };
 
-  // Helper function to set a cookie with a shared domain
   const setCookie = (name: string, value: string, days: number) => {
     const date = new Date();
     date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
     const expires = `expires=${date.toUTCString()}`;
-    document.cookie = `${name}=${value};${expires};path=/;domain=.autolaku.com`;
+    document.cookie = `${name}=${value};${expires};path=/;domain=.autolaku.com;secure`;
   };
 
   // Helper function to delete a cookie
@@ -53,8 +52,19 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
   };
 
   useEffect(() => {
+    const currentUrl = window.location.href;
+    if (currentUrl.includes('autolaku.com/auth')) {
+      return;
+    }
+    if (window.location.href.includes('autolaku.com/auth')) return;
     const authDataCookie = getCookie('authData');
 
+    if (!authDataCookie) {
+      deleteCookie('authData');
+      setRole(null);
+      router.push('https://autolaku.com/auth');
+      return;
+    }
     if (!authDataCookie) {
       deleteCookie('authData');
       setRole(null);
@@ -64,7 +74,7 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
       setAuthDetails(null);
       setIsAuthenticated(false);
 
-      window.location.href = 'https://autolaku.com/auth';
+      router.push('https://autolaku.com/auth');
       return;
     }
 
@@ -90,7 +100,7 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
         setAuthDetails(null);
         setIsAuthenticated(false);
 
-        window.location.href = 'https://autolaku.com/auth';
+        router.push('https://autolaku.com/auth');
       }
     } catch (error) {
       console.error('Failed to parse authData cookie:', error);
@@ -102,7 +112,7 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
       setAuthDetails(null);
       setIsAuthenticated(false);
 
-      window.location.href = 'https://autolaku.com/auth';
+      router.push('https://autolaku.com/auth');
     }
   }, [router]);
 
@@ -118,7 +128,7 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
     setType(data.type);
     setAuthDetails(data);
     setIsAuthenticated(true);
-    setCookie('authData', JSON.stringify(data), 30); // Persist auth data in cookie for 30 days
+    setCookie('authData', JSON.stringify(data), 30);
   };
 
   const handleLogout = () => {
@@ -129,8 +139,7 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
     setType(null);
     setAuthDetails(null);
     setIsAuthenticated(false);
-
-    window.location.href = 'https://autolaku.com/auth';
+    router.push('https://autolaku.com/auth');
   };
 
   return (
