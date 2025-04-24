@@ -126,7 +126,6 @@ const Login = () => {
 
       console.log('Saving authData to cookie:', authData);
       setCookie('authData', JSON.stringify(authData), 30);
-
       window.location.href = 'https://app.autolaku.com';
     } catch (error: any) {
       console.error('Login error:', error.message);
