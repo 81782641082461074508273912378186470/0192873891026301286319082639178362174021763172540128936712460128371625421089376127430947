@@ -72,7 +72,10 @@ const Footer = () => {
             </div>
           </div>
         )}
-        <div className="flex flex-col-reverse  lg:flex-row justify-between items-start w-full py-10 gap-20 lg:gap-10 max-w-screen-xl px-5 xl:px-0 ">
+        <div
+          className={`flex flex-col-reverse ${
+            pathname !== '/' && 'border-t-[1px] border-white/20'
+          } lg:flex-row justify-between items-start w-full py-10 gap-20 lg:gap-10 max-w-screen-xl px-5 xl:px-0 `}>
           <div className="flex flex-col gap-5 ">
             <div className="flex items-center gap-2 lg:gap-4 __gradient_text opacity-85 select-none">
               <svg
