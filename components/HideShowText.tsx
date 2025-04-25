@@ -10,7 +10,7 @@ const HideShowText = ({ text }: any) => {
     setIsHidden(!isHidden);
   };
 
-  const placeholder = '*'.repeat(text.length);
+  const placeholder = '●'.repeat(text.length);
 
   return (
     <div className="flex items-center gap-2">
