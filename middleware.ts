@@ -14,9 +14,7 @@ export async function middleware(req: NextRequest) {
   ) {
     return NextResponse.next();
   }
-  if (!hostname?.includes('localhost') && path.startsWith('/app')) {
-    return NextResponse.rewrite(new URL(`/app${path}`, req.url));
-  }
+
   if (
     hostname !== 'app.autolaku.com' &&
     !hostname?.includes('localhost') &&
@@ -25,7 +23,6 @@ export async function middleware(req: NextRequest) {
   ) {
     return new Response(null, { status: 403, headers: { 'Content-Type': 'text/html' } });
   }
-
   if (hostname === 'app.autolaku.com') {
     return NextResponse.rewrite(new URL(`/app${path}`, req.url));
   }
