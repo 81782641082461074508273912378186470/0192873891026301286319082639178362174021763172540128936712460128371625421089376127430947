@@ -4,10 +4,24 @@ import type { Config } from 'tailwindcss';
 
 const svgToDataUri = require('mini-svg-data-uri');
 
-const { default: flattenColorPalette } = require('tailwindcss/lib/util/flattenColorPalette');
+function flattenColors(colors: any): Record<string, string> {
+  const flatColors: Record<string, string> = {};
+  function recurse(obj: any, prefix: string = '') {
+    for (const [key, value] of Object.entries(obj)) {
+      const newKey = prefix ? `${prefix}-${key}` : key;
+      if (typeof value === 'string') {
+        flatColors[newKey] = value;
+      } else if (value && typeof value === 'object') {
+        recurse(value, newKey);
+      }
+    }
+  }
+  recurse(colors);
+  return flatColors;
+}
 
 function addVariablesForColors({ addBase, theme }: any) {
-  const allColors = flattenColorPalette(theme('colors'));
+  const allColors = flattenColors(theme('colors'));
   const newVars = Object.fromEntries(
     Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
   );
@@ -42,12 +56,11 @@ function addCustomUtilities({ matchUtilities, theme }: any) {
         )}")`,
       }),
     },
-    { values: flattenColorPalette(theme('backgroundColor')), type: 'color' }
+    { values: flattenColors(theme('backgroundColor')), type: 'color' }
   );
 }
 
 export default {
-  darkMode: ['class'],
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -123,5 +136,20 @@ export default {
       },
     },
   },
-  plugins: [addVariablesForColors, addCustomUtilities, require('tailwindcss-animate')],
+  plugins: [
+    addVariablesForColors,
+    addCustomUtilities,
+    require('tailwindcss-animate'),
+    // function ({ addUtilities }: any) {
+    //   addUtilities({
+    //     '.scrollbar-none': {
+    //       '-ms-overflow-style': 'none', // For IE/Edge
+    //       'scrollbar-width': 'none', // For Firefox
+    //       '&::-webkit-scrollbar': {
+    //         display: 'none', // For Chrome, Safari, and Opera
+    //       },
+    //     },
+    //   });
+    // },
+  ],
 } satisfies Config;

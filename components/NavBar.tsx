@@ -86,7 +86,7 @@ const NavBar = () => {
                 Produk {openDropdown === 'pricing' ? <IoIosArrowUp /> : <IoIosArrowDown />}
               </button>
               {openDropdown === 'pricing' && (
-                <div className="absolute mt-5 w-fit flex flex-col justify-end shadow-lg p-4 shadow-black bg-dark-800 border-[1px] border-white/10 backdrop-blur rounded ">
+                <div className="absolute mt-5 w-fit flex flex-col justify-end shadow-lg p-4 shadow-black bg-dark-800 border-[1px] border-white/10 backdrop-blur-sm rounded ">
                   {pricingAndFeatures.map((button, index) => (
                     <Link
                       key={index}
@@ -124,7 +124,7 @@ const NavBar = () => {
                 {openDropdown === 'help' ? <IoIosArrowUp /> : <IoIosArrowDown />}
               </button>
               {openDropdown === 'help' && (
-                <div className="absolute mt-5 w-fit flex flex-col justify-end shadow-lg p-4 shadow-black bg-dark-800 border-[1px] border-white/10 backdrop-blur rounded ">
+                <div className="absolute mt-5 w-fit flex flex-col justify-end shadow-lg p-4 shadow-black bg-dark-800 border-[1px] border-white/10 backdrop-blur-sm rounded ">
                   {Helps.map((button, index) => (
                     <Link
                       key={index}
@@ -162,7 +162,7 @@ const NavBar = () => {
                 {openDropdown === 'information' ? <IoIosArrowUp /> : <IoIosArrowDown />}
               </button>
               {openDropdown === 'information' && (
-                <div className="absolute mt-5 w-fit flex flex-col justify-end shadow-lg p-4 shadow-black bg-dark-800 border-[1px] border-white/10 backdrop-blur rounded ">
+                <div className="absolute mt-5 w-fit flex flex-col justify-end shadow-lg p-4 shadow-black bg-dark-800 border-[1px] border-white/10 backdrop-blur-sm rounded ">
                   {Informations.map((button, index) => (
                     <Link
                       key={index}
@@ -192,14 +192,14 @@ const NavBar = () => {
         <div>
           <Link
             href={accountButtons[0]?.url || '#'}
-            className="!hidden lg:!flex items-start rounded-button">
+            className="hidden! lg:flex! items-start rounded-button">
             <IoMdPerson className="text-xl" />
             <span>Masuk/Daftar</span>
           </Link>
           <Sheet>
             <SheetTrigger asChild>
               <button
-                className="!block lg:!hidden items-center rounded-button !p-2 lg:!p-3"
+                className="block! lg:hidden! items-center rounded-button p-2! lg:p-3!"
                 title="Mobile screen sidebar menu">
                 <HiMenuAlt4 className="lg:text-xl" />
               </button>

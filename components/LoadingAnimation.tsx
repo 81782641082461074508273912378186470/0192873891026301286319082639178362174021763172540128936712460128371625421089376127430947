@@ -2,7 +2,7 @@
 
 const LoadingAnimation = ({ text }: { text?: string }) => {
   return (
-    <div className="fixed top-0 left-0 z-[100] w-screen h-screen flex flex-col justify-center items-center bg-dark-800">
+    <div className="fixed top-0 left-0 z-100 w-screen h-screen flex flex-col justify-center items-center bg-dark-800">
       <div className="relative flex items-center justify-center">
         <div className="absolute w-20 h-20 border-y-white border-x-[1px] rounded-full animate-spin"></div>
 

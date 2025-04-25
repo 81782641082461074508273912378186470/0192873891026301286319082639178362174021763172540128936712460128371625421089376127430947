@@ -3,8 +3,8 @@
 'use client';
 
 import React from 'react';
-import AccountDropdown from './app/AccountDropdown';
-import HideShowText from './HideShowText';
+import AccountDropdown from './AccountDropdown';
+import HideShowText from '../HideShowText';
 import { usePathname } from 'next/navigation';
 
 interface NavDashboardProps {
@@ -51,7 +51,9 @@ export default function NavDashboard({
               />
             </svg>
             <div className="w-0.5 h-7 bg-white/10 rotate-12" />
-            <span className="text-white/40 hover:text-white/70 select-none">App Center</span>
+            <span className="text-white/40 hover:text-white/70 select-none font-bold __gradient_text">
+              App Center
+            </span>
 
             {type === 'license' && license?.key && (
               <>

@@ -1,30 +1,47 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@config '../tailwind.config.ts';
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
 .rounded-button {
   @apply flex gap-2 bg-dark-700 hover:bg-dark-600 px-3 py-2 rounded-full border-white/10 border-[1px] text-white/70 hover:text-white;
 }
 
 .no-scrollbar {
-  @apply scrollbar-none;
+  /* Firefox */
+  scrollbar-width: none;
+  /* Internet Explorer and Edge */
+  -ms-overflow-style: none;
 }
 
-.scrollbar-none::-webkit-scrollbar {
-  @apply hidden;
-}
-
-.scrollbar-none {
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
-  scrollbar-width: none; /* Firefox */
+/* Chrome, Safari, and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 .__input {
-  @apply appearance-none w-full p-2 text-sm bg-transparent border-b-[1px] border-white/20 focus:border-white/50 focus:ring-0 focus:outline-none;
+  @apply appearance-none w-full p-2 text-sm bg-transparent border-b-[1px] border-white/20 focus:border-white/50 focus:ring-0 focus:outline-hidden;
 }
 
 .__gradient_text {
-  @apply bg-gradient-to-t from-dark-100 from-10% via-light-500 via-30% to-white to-70% bg-clip-text text-transparent;
+  @apply bg-linear-to-t from-dark-100 from-10% via-light-500 via-30% to-white to-70% bg-clip-text text-transparent;
 }
 
 .brush-underline {

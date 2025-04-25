@@ -358,13 +358,13 @@ const Daftar = () => {
       </div>
 
       {showPopup && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur shadow-xl shadow-black flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm shadow-xl shadow-black flex items-center justify-center z-50">
           <div className="bg-dark-800 border-[1px] border-white/10 p-6 roundelg shadow-lg w-full max-w-md text-star t">
             <div className=" w-full flex justify-between items-start mb-10">
               <h3 className="text-xl font-bold text-white">Pendaftaran Berhasil!</h3>
               <button
                 onClick={closePopup}
-                className="bg-dark-600 hover:!bg-dark-500 border-[1px] border-white/10 rounded-[5px] p-2 text-white font-bold items-center">
+                className="bg-dark-600 hover:bg-dark-500! border-[1px] border-white/10 rounded-[5px] p-2 text-white font-bold items-center">
                 <IoCloseSharp className="text-xl" />
               </button>
             </div>

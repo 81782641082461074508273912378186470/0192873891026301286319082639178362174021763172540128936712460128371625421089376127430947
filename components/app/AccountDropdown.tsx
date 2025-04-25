@@ -47,15 +47,15 @@ export default function AccountDropdown({
         {displayName ? (
           <p className="text-sm rounded-button">{displayName}</p>
         ) : (
-          <button className="h-10 w-10 !p-0 !flex items-center justify-center rounded-button">
+          <button className="h-10 w-10 p-0! flex! items-center justify-center rounded-button">
             <BiSolidUserDetail className="text-xl" />
           </button>
         )}
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end" forceMount>
-        <DropdownMenuLabel className="font-normal">
+        <DropdownMenuLabel>
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">{displayName}</p>
+            <p className="text-sm font-bold __gradient_text">{displayName}</p>
             {type === 'account' && role && (
               <p className="text-xs leading-none text-muted-foreground">Role: {role}</p>
             )}
@@ -81,7 +81,7 @@ export default function AccountDropdown({
         <DropdownMenuItem>
           <button
             onClick={handleLogout}
-            className="!flex !gap-1 !items-center rounded-button !bg-red-500/20 !text-red-500">
+            className="flex! gap-1! items-center! rounded-button bg-red-500/20! text-red-500!">
             <IoMdLogOut className="text-lg" /> Logout
           </button>
         </DropdownMenuItem>

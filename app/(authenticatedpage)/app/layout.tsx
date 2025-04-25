@@ -1,4 +1,4 @@
-import DashboardWrapper from '@/components/DashboardWrapper';
+import DashboardWrapper from '@/components/app/DashboardWrapper';
 import { AuthDashboardProvider } from '@/context/AuthDashboardContext';
 
 import '@/styles/globals.css';

@@ -80,7 +80,7 @@ const GridItem = ({ area, icon, title, description }: GridItemProps) => {
                 {title}
               </h3>
               <h2
-                className="[&_b]:md:font-semibold [&_strong]:md:font-semibold font-sans text-sm/[1.125rem] 
+                className="md:[&_b]:font-semibold md:[&_strong]:font-semibold font-sans text-sm/[1.125rem] 
               md:text-base/[1.375rem]  text-light-400">
                 {description}
               </h2>
