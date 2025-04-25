@@ -4,11 +4,6 @@ import { AuthDashboardProvider } from '@/context/AuthDashboardContext';
 import '@/styles/globals.css';
 import '@/styles/fonts.css';
 
-export const metadata = {
-  title: 'App Center Autolaku',
-  description: 'Autolaku Application Center.',
-};
-
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="font-geist bg-black">
