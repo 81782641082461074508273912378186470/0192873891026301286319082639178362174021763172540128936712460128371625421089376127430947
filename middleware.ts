@@ -14,7 +14,9 @@ export async function middleware(req: NextRequest) {
   ) {
     return NextResponse.next();
   }
-
+  if (hostname?.includes('localhost') && path.startsWith('/app')) {
+    return NextResponse.next();
+  }
   if (
     hostname !== 'app.autolaku.com' &&
     !hostname?.includes('localhost') &&
@@ -28,10 +30,6 @@ export async function middleware(req: NextRequest) {
   }
   if (hostname === 'app.autolaku.com') {
     return NextResponse.rewrite(new URL(`/app${path}`, req.url));
-  }
-
-  if (hostname?.includes('localhost') && path.startsWith('/app')) {
-    return NextResponse.next();
   }
 
   return NextResponse.next();
