@@ -6,7 +6,7 @@ import '@/styles/fonts.css';
 
 import Navbar from '@/components/NavBar';
 import Footer from '@/components/Footer';
-import BreakPointChecker from '@/components/BreakPointChecker';
+// import BreakPointChecker from '@/components/BreakPointChecker';
 
 export default function RootLayout({
   children,
@@ -21,8 +21,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-black text-white selection:bg-white/65 selection:text-black no-scrollbar ">
         <Navbar />
         <div className="flex flex-col justify-center items-center w-full mt-12">{children}</div>
-        <BreakPointChecker />
-
+        {/* <BreakPointChecker /> */}
         <Footer />
       </body>
     </html>
