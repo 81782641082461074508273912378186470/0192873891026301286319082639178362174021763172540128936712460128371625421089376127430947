@@ -38,9 +38,33 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
     return null;
   };
 
+  const setCookie = (name: string, value: string, days: number) => {
+    const date = new Date();
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+    const expires = `expires=${date.toUTCString()}`;
+    const isLocalhost = window.location.hostname === 'localhost';
+    document.cookie = `${name}=${value};${expires};path=/${
+      isLocalhost ? '' : ';domain=.autolaku.com'
+    }`;
+  };
+
+  const deleteCookie = (name: string) => {
+    const isLocalhost = window.location.hostname === 'localhost';
+    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/${
+      isLocalhost ? '' : ';domain=.autolaku.com'
+    }`;
+  };
+
   useEffect(() => {
     const authDataCookie = getCookie('authData');
     const isLocalhost = window.location.hostname === 'localhost';
+    const currentPath = window.location.pathname;
+
+    // Prevent redirect if already on the auth page
+    if (currentPath === '/app/auth' || currentPath === '/auth') {
+      return;
+    }
+
     if (!authDataCookie) {
       deleteCookie('authData');
       setRole(null);
@@ -101,22 +125,6 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
     }
   }, [router]);
 
-  const setCookie = (name: string, value: string, days: number) => {
-    const date = new Date();
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    const expires = `expires=${date.toUTCString()}`;
-    const isLocalhost = window.location.hostname === 'localhost';
-    document.cookie = `${name}=${value};${expires};path=/${
-      isLocalhost ? '' : ';domain=.autolaku.com'
-    }`;
-  };
-
-  const deleteCookie = (name: string) => {
-    const isLocalhost = window.location.hostname === 'localhost';
-    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/${
-      isLocalhost ? '' : ';domain=.autolaku.com'
-    }`;
-  };
   const setAuthData = (data: {
     role: string;
     user: any;
