@@ -60,7 +60,7 @@ interface GridItemProps {
 const GridItem = ({ area, icon, title, description }: GridItemProps) => {
   return (
     <li className={`min-h-[14rem] list-none ${area}`}>
-      <div className="relative h-full rounded-2xl border border-light-500 p-5 md:rounded-3xl ">
+      <div className="relative h-full rounded-2xl border border-white/50 p-5 md:rounded-3xl ">
         <GlowingEffect
           blur={1}
           borderWidth={4}
@@ -72,7 +72,7 @@ const GridItem = ({ area, icon, title, description }: GridItemProps) => {
         />
         <div className="relative flex h-full flex-col justify-between gap-6 overflow-hidden bg-dark-800/30 rounded-xl border-0.75 p-6 shadow-[0px_0px_27px_0px_#2D2D2D] md:p-6">
           <div className="relative flex flex-1 flex-col justify-between gap-3">
-            <div className="w-fit rounded border-[1px] border-white/30 bg-white/20 p-2 ">
+            <div className="w-fit rounded border-[1px] border-white/30 bg-dark-700 p-2 ">
               {icon}
             </div>
             <div className="space-y-3">
