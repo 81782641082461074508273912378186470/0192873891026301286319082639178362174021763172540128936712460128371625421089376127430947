@@ -40,12 +40,12 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/masuk',
-        destination: '/auth',
+        destination: 'https://app.autolaku.com/auth',
         permanent: true,
       },
       {
         source: '/daftar',
-        destination: '/auth',
+        destination: 'https://app.autolaku.com/auth',
         permanent: true,
       },
       {

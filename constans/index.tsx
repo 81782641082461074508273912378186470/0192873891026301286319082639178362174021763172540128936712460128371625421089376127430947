@@ -87,7 +87,7 @@ export const navButtons = [
   },
   {
     title: 'Masuk/Daftar',
-    url: '/auth',
+    url: 'https://app.autolaku.com/auth',
     icon: <IoMdPerson />,
     description: 'Buat akun baru/Masuk dengan akun mu',
   },

@@ -50,9 +50,9 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
       setAuthDetails(null);
       setIsAuthenticated(false);
       if (isLocalhost) {
-        router.push('/auth');
+        router.push('/app/auth');
       } else {
-        window.location.href = 'https://autolaku.com/auth';
+        window.location.href = 'https://app.autolaku.com/auth';
       }
       return;
     }
@@ -79,9 +79,9 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
         setAuthDetails(null);
         setIsAuthenticated(false);
         if (isLocalhost) {
-          router.push('/auth');
+          router.push('/app/auth');
         } else {
-          window.location.href = 'https://autolaku.com/auth';
+          window.location.href = 'https://app.autolaku.com/auth';
         }
       }
     } catch (error) {
@@ -94,9 +94,9 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
       setAuthDetails(null);
       setIsAuthenticated(false);
       if (isLocalhost) {
-        router.push('/auth');
+        router.push('/app/auth');
       } else {
-        window.location.href = 'https://autolaku.com/auth';
+        window.location.href = 'https://app.autolaku.com/auth';
       }
     }
   }, [router]);
@@ -142,9 +142,9 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
     setIsAuthenticated(false);
     const isLocalhost = window.location.hostname === 'localhost';
     if (isLocalhost) {
-      router.push('/auth');
+      router.push('/app/auth');
     } else {
-      window.location.href = 'https://autolaku.com/auth';
+      window.location.href = 'https://app.autolaku.com/auth';
     }
   };
 

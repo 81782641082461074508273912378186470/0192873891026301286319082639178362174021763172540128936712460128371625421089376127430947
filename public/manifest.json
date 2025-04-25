@@ -30,7 +30,7 @@
       "name": "Daftar",
       "short_name": "Daftar",
       "description": "Daftar dan mulai Dropship secara cepat & efisien",
-      "url": "/auth",
+      "url": "https://appp.autolaku.com/auth",
       "icons": [
         {
           "src": "/icons/favicon-512x512.png",

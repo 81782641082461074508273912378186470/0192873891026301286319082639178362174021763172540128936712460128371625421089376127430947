@@ -62,7 +62,7 @@ const Footer = () => {
               Dropship ribet <br className="md:hidden" /> berakhir disini!
             </h3>
             <Link
-              href="/auth"
+              href="https://app.autolaku.com/auth"
               className="px-4 py-2 lg:text-lg bg-white text-black lg:text-white font-bold lg:bg-white/15 rounded hover:bg-white/20">
               Mulai dropship dengan Autolaku
             </Link>
