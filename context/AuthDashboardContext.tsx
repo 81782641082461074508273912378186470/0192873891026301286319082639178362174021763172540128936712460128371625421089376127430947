@@ -31,7 +31,6 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
   const [authDetails, setAuthDetails] = useState<any | null>(null);
   const router = useRouter();
 
-  // Helper function to get a cookie by name
   const getCookie = (name: string): string | null => {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
@@ -39,32 +38,9 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
     return null;
   };
 
-  const setCookie = (name: string, value: string, days: number) => {
-    const date = new Date();
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    const expires = `expires=${date.toUTCString()}`;
-    document.cookie = `${name}=${value};${expires};path=/;domain=.autolaku.com;secure`;
-  };
-
-  // Helper function to delete a cookie
-  const deleteCookie = (name: string) => {
-    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.autolaku.com`;
-  };
-
   useEffect(() => {
-    const currentUrl = window.location.href;
-    if (currentUrl.includes('autolaku.com/auth')) {
-      return;
-    }
-    if (window.location.href.includes('autolaku.com/auth')) return;
     const authDataCookie = getCookie('authData');
-
-    if (!authDataCookie) {
-      deleteCookie('authData');
-      setRole(null);
-      router.push('https://autolaku.com/auth');
-      return;
-    }
+    const isLocalhost = window.location.hostname === 'localhost';
     if (!authDataCookie) {
       deleteCookie('authData');
       setRole(null);
@@ -73,8 +49,11 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
       setType(null);
       setAuthDetails(null);
       setIsAuthenticated(false);
-
-      router.push('https://autolaku.com/auth');
+      if (isLocalhost) {
+        router.push('/auth');
+      } else {
+        window.location.href = 'https://autolaku.com/auth';
+      }
       return;
     }
 
@@ -99,8 +78,11 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
         setType(null);
         setAuthDetails(null);
         setIsAuthenticated(false);
-
-        router.push('https://autolaku.com/auth');
+        if (isLocalhost) {
+          router.push('/auth');
+        } else {
+          window.location.href = 'https://autolaku.com/auth';
+        }
       }
     } catch (error) {
       console.error('Failed to parse authData cookie:', error);
@@ -111,11 +93,30 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
       setType(null);
       setAuthDetails(null);
       setIsAuthenticated(false);
-
-      router.push('https://autolaku.com/auth');
+      if (isLocalhost) {
+        router.push('/auth');
+      } else {
+        window.location.href = 'https://autolaku.com/auth';
+      }
     }
   }, [router]);
 
+  const setCookie = (name: string, value: string, days: number) => {
+    const date = new Date();
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+    const expires = `expires=${date.toUTCString()}`;
+    const isLocalhost = window.location.hostname === 'localhost';
+    document.cookie = `${name}=${value};${expires};path=/${
+      isLocalhost ? '' : ';domain=.autolaku.com'
+    }`;
+  };
+
+  const deleteCookie = (name: string) => {
+    const isLocalhost = window.location.hostname === 'localhost';
+    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/${
+      isLocalhost ? '' : ';domain=.autolaku.com'
+    }`;
+  };
   const setAuthData = (data: {
     role: string;
     user: any;
@@ -139,7 +140,12 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
     setType(null);
     setAuthDetails(null);
     setIsAuthenticated(false);
-    router.push('https://autolaku.com/auth');
+    const isLocalhost = window.location.hostname === 'localhost';
+    if (isLocalhost) {
+      router.push('/auth');
+    } else {
+      window.location.href = 'https://autolaku.com/auth';
+    }
   };
 
   return (

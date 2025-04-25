@@ -7,7 +7,7 @@ const userSchema = new Schema(
       required: true,
       unique: true,
       lowercase: true,
-      trim: true, // Removes extra spaces
+      trim: true,
     },
     password: { type: String, required: true },
     role: {
@@ -18,44 +18,43 @@ const userSchema = new Schema(
     adminId: {
       type: mongoose.Types.ObjectId,
       ref: 'User',
-      default: null, // Null for non-admin accounts
+      default: null,
     },
     deviceId: {
       type: String,
-      default: null, // Null for accounts without a specific device
+      default: null,
     },
     email: {
       type: String,
-      required: true, // Ensure all accounts have an email
+      required: true,
       unique: true,
       lowercase: true,
-      trim: true, // Clean up spaces
-      match: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, // Email validation regex
+      trim: true,
+      match: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
     },
     name: {
       type: String,
       required: true,
-      trim: true, // Clean up spaces
+      trim: true,
     },
     whatsappNumber: {
       type: String,
-      default: null, // Optional for users without a WhatsApp number
-      match: /^\+?[1-9]\d{1,14}$/, // Validate international phone numbers
+      default: null,
+      match: /^\+?[1-9]\d{1,14}$/,
     },
     subscription: {
       type: {
         expireDate: {
           type: Date,
-          default: null, // Optional for accounts without expiration
+          default: null,
         },
         isActive: {
           type: Boolean,
-          default: true, // Active by default
+          default: true,
         },
       },
-      default: null, // Null for accounts without subscriptions
+      default: null,
     },
-    // Status flag for soft delete or account suspension
     isActive: {
       type: Boolean,
       default: true,
@@ -64,7 +63,6 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
-// Efficient indexing for faster lookups
 userSchema.index({ username: 1, email: 1 }, { unique: true });
 userSchema.index({ role: 1 });
 userSchema.index({ isActive: 1 });

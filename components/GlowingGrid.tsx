@@ -9,7 +9,7 @@ import { PiChartLineUp } from 'react-icons/pi';
 
 export function GlowingGrid() {
   return (
-    <div className=" max-w-screen-xl w-full bg-black bg-dot-white/[0.3] relative flex items-center justify-center">
+    <div className="max-w-screen-xl w-full px-5 2xl:px-0  bg-black bg-dot-white/[0.3] relative flex items-center justify-center">
       <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
       <ul className="grid grid-cols-1 grid-rows-none gap-5 md:grid-cols-12 md:grid-rows-3 xl:max-h-[34rem] xl:grid-rows-2 px-5 lg:px-0 ">
         <GridItem

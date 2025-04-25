@@ -25,7 +25,7 @@ const HeroSection = () => {
         className="absolute inset-0 opacity-20 pointer-events-none object-cover"
         loading="lazy"
       />
-      <div className="max-w-screen-xl mx-auto flex flex-col lg:items-start justify-start min-h-screen text-center text-white z-10 pt-24 px-5 2xl:px-0 lg:mt-40">
+      <div className="max-w-screen-xl mx-auto flex flex-col lg:items-start justify-start min-h-screen text-center  text-white z-10 pt-24 px-5 2xl:px-0 lg:mt-40">
         <div className="flex flex-col lg:flex-row  lg:items-end justify-center items-center lg:justify-between w-full">
           <div className="flex flex-col justify-center ">
             <h1 className="lg:text-7xl md:text-5xl text-3xl lg:text-start font-extrabold mb-2 ">
@@ -75,7 +75,7 @@ const HeroSection = () => {
           modules={[Autoplay]}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
           onSlideChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
-          className="w-full rounded-t-xl lg:rounded-t-3xl border-x border-t-[1px] border-white/20 mt-10 bg-white/10 backdrop-blur-sm">
+          className="w-full rounded-t-xl lg:rounded-t-3xl border-x border-t-[1px] border-white/20 mt-10 bg-white/10 backdrop-blur-sm shadow-white/20">
           {autolakuScreenshots.map((screenshot, index) => (
             <SwiperSlide key={index}>
               <Image
@@ -88,7 +88,7 @@ const HeroSection = () => {
           ))}
           <div className="absolute inset-y-0 left-0 w-full bg-gradient-to-t from-black/90 from-5% via-black/30 via-20% to-transparent to-90% z-30 pointer-events-none" />
         </Swiper>
-        <div className="flex justify-between items-end gap-5  w-full pt-10 p-5 lg:p-10 border-x border-b-[1px] rounded-b-xl lg:rounded-b-3xl bg-black/15 backdrop-blur-sm border-white/20">
+        <div className="flex justify-between items-end gap-5 w-full pt-10 p-5 lg:p-10 border-x border-b-[1px] rounded-b-xl lg:rounded-b-3xl bg-black/15 backdrop-blur-sm border-white/20">
           <span className="w-full text-start">
             <h4 className="md:text-lg text-sm font-semibold text-white">
               {autolakuScreenshots[currentIndex].title}

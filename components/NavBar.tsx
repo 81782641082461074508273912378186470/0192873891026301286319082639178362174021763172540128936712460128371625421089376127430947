@@ -73,7 +73,6 @@ const NavBar = () => {
           </svg>
           <span className="text-xl lg:text-3xl text-white">Autolaku</span>
         </Link>
-
         <ul className="hidden lg:flex items-center gap-16 text-white/70">
           {pricingAndFeatures.length > 0 && (
             <li

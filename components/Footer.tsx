@@ -35,7 +35,6 @@ const Footer = () => {
     },
   ];
   const pathname = usePathname();
-  console.log(pathname);
   const pricingAndFeatures = navButtons.filter(
     (button) => button.title === 'Paket Harga' || button.title === 'Fitur'
   );

@@ -4,7 +4,7 @@ import { AuthDashboardProvider } from '@/context/AuthDashboardContext';
 import '@/styles/globals.css';
 
 export const metadata = {
-  title: 'App Autolaku',
+  title: 'App Center Autolaku',
   description: 'Autolaku Application Center.',
 };
 

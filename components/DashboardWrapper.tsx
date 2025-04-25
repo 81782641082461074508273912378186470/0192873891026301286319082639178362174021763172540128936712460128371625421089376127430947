@@ -14,31 +14,7 @@ export default function DashboardWrapper({ children }: { children: React.ReactNo
         authDetails={authDetails}
         handleLogout={handleLogout}
       />
-
-      <main className="flex-1 p-6 overflow-y-auto bg-gray-50 sm:p-4">
-        <div>
-          {type === 'account' && role === 'owner' && (
-            <div>
-              <h1 className="text-2xl font-bold sm:text-xl">Welcome, Owner</h1>
-              <p className="sm:text-sm">Manage your business here.</p>
-            </div>
-          )}
-          {type === 'account' && role === 'admin' && (
-            <div>
-              <h1 className="text-2xl font-bold sm:text-xl">Welcome, Admin</h1>
-              <p className="sm:text-sm">Manage administrative tasks here.</p>
-            </div>
-          )}
-          {type === 'license' && role === 'user' && (
-            <div>
-              <h1 className="text-2xl font-bold sm:text-xl">Welcome, Licensed User</h1>
-              <p className="sm:text-sm">View your license details here.</p>
-            </div>
-          )}
-        </div>
-
-        {children}
-      </main>
+      <main className="flex-1 p-6 overflow-y-auto bg-gray-50 sm:p-4">{children}</main>
     </div>
   );
 }
