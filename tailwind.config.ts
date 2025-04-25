@@ -103,6 +103,8 @@ export default {
       animation: {
         'infinite-scroll': 'scrollLeft 10s linear infinite',
         'infinite-scroll-right': 'scrollRight 10s linear infinite',
+        scroll:
+          'scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite',
       },
       keyframes: {
         scrollLeft: {
@@ -112,6 +114,11 @@ export default {
         scrollRight: {
           '0%': { transform: 'translateX(-50%)' },
           '100%': { transform: 'translateX(0)' },
+        },
+        scroll: {
+          to: {
+            transform: 'translate(calc(-50% - 0.5rem))',
+          },
         },
       },
     },
