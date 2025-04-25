@@ -18,8 +18,8 @@ import { BiSolidUserDetail } from 'react-icons/bi';
 interface AccountDropdownProps {
   type: 'account' | 'license' | null;
   role: string | null;
-  user: any; // User object if type is 'account', else null
-  license: any; // License object if type is 'license', else null
+  user: any;
+  license: any;
   handleLogout: () => void;
 }
 

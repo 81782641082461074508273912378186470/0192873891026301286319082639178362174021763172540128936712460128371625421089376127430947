@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import AuthForm from '@/components/auth/AuthForm';
 import { generateMetadata } from '@/lib/utils';
 import { Metadata } from 'next';
@@ -15,7 +14,7 @@ export const metadata: Metadata = generateMetadata({
 const Page = () => {
   return (
     <div className="flex flex-col items-center w-full h-screen pt-24 max-w-screen-xl justify-center text-white border-x-[1px] px-10 xl:p-0  border-white/10">
-      {/* <AuthForm /> */}
+      <AuthForm />
       <div className="w-auto hidden 2xl:block fixed h-[50%] bottom-0 right-0 z-10 opacity-10">
         <svg xmlns="http://www.w3.org/2000/svg" className="w-full h-full" viewBox="0 0 317 362">
           <circle cx="150" cy="0" r="2" fill="white" />
