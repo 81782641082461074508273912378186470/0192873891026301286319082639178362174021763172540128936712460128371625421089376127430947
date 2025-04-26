@@ -24,13 +24,23 @@ export async function POST(request: Request) {
     const license = await License.findOne({ key });
 
     if (!license) {
-      return new Response(JSON.stringify({ error: 'License not found' }), {
-        status: 404,
-      });
+      return new Response(JSON.stringify({ error: 'License not found' }), { status: 404 });
+    }
+
+    if (license.deviceInfo) {
+      const { deviceName, platform } = license.deviceInfo;
+      return new Response(
+        JSON.stringify({
+          error: 'Unauthorized: License Login Di Perangkat Lain',
+          existingDevice: { deviceName, platform },
+        }),
+        { status: 401 }
+      );
     }
 
     license.deviceInfo = deviceInfo;
     await license.save();
+
     return NextResponse.json({
       message: 'Device information updated successfully',
       licenseDetails: license,
