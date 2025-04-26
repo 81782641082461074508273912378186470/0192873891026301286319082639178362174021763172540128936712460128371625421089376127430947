@@ -39,7 +39,7 @@ export async function POST(request: Request) {
         const { deviceName, platform } = license.deviceInfo;
         return new Response(
           JSON.stringify({
-            error: 'Unauthorized: License is already linked to a different device',
+            error: 'License Login Di Perangkat Lain',
             existingDevice: { deviceName, platform },
           }),
           { status: 401 }
