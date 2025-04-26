@@ -54,7 +54,7 @@ export async function POST(request: Request) {
       });
     }
   } catch (error: any) {
-    console.error('Error updating device information:', error.message || error);
+    console.log('Error updating device information:', error.message || error);
     return new Response(
       JSON.stringify({
         error: error.message || 'Failed to update device information',
