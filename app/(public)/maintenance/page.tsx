@@ -63,7 +63,7 @@ const page = () => {
     getImageUrl(Login),
   ];
   return (
-    <div className="flex h-screen w-screen z-[99999] absolute top-0 left-0 flex-col items-center justify-center overflow-hidden border-y-[1px] border-white/10">
+    <div className="flex h-screen w-screen z-[99999] absolute bg-dark-800 top-0 left-0 flex-col items-center justify-center overflow-hidden border-y-[1px] border-white/10">
       <div className="relative z-20 flex flex-col items-center justify-center gap-2 drop-shadow-lg">
         <p className="tracking-widest text-gray-200 font-thin ">Maintenance</p>
         <button className="rounded-button">Back Home</button>
