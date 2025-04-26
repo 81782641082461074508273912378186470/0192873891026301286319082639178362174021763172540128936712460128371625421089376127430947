@@ -61,16 +61,13 @@ const Feature = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-dark-800">
         {stepByStep.map((feature, i) => (
-          <>
-            {console.log(i)}
-            <FeatureCard
-              key={i}
-              stepNumber={i + 1}
-              icon={feature.icon}
-              title={feature.title}
-              description={feature.description}
-            />
-          </>
+          <FeatureCard
+            key={i}
+            stepNumber={i + 1}
+            icon={feature.icon}
+            title={feature.title}
+            description={feature.description}
+          />
         ))}
       </div>
     </div>
