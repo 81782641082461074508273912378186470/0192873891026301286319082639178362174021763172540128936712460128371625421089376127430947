@@ -65,9 +65,9 @@ const page = () => {
   ];
   return (
     <div className="flex h-screen w-screen z-50 absolute bg-dark-800 top-0 left-0 flex-col items-center justify-center overflow-hidden border-y-[1px] border-white/10">
-      <div className="flex relative z-[99999999999999] flex-col items-center justify-center gap-5 backdrop-blur !bg-black/5 border-[1px] border-white/10 py-5 px-10 rounded">
+      <div className="flex relative z-[99999999999999] flex-col items-center justify-center gap-5 ">
         <p className="tracking-widest text-gray-200 font-thin ">Maintenance</p>
-        <Link className="rounded-button" href="/">
+        <Link className="!text-xs font-thin underline" href="/">
           Back Home
         </Link>
       </div>
