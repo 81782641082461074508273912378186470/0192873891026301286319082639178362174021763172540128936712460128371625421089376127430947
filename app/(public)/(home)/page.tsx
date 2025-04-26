@@ -1,3 +1,4 @@
+import Feature from '@/components/Feature';
 import { GlowingGrid } from '@/components/GlowingGrid';
 import Integrated from '@/components/Integrated';
 import HeroSection from '@/components/sections/HeroSection';
@@ -17,6 +18,7 @@ const HomePage = () => {
   return (
     <div className="flex flex-col justify-start items-center w-full h-full">
       <HeroSection />
+      <Feature />
       <Integrated />
       <GlowingGrid />
     </div>

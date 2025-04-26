@@ -6,7 +6,7 @@ import '@/styles/fonts.css';
 
 import Navbar from '@/components/NavBar';
 import Footer from '@/components/Footer';
-// import BreakPointChecker from '@/components/BreakPointChecker';
+import BreakPointChecker from '@/components/BreakPointChecker';
 
 export default function RootLayout({
   children,
