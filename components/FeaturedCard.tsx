@@ -13,11 +13,11 @@ interface FeatureCardProps {
 
 export function FeatureCard({ stepNumber, icon, title, description, badge }: FeatureCardProps) {
   return (
-    <div className="group transition-opacity duration-300 relative flex flex-col p-8 bg-black text-white lg:border-l-[0.5px] hover:border-[0.5px] border-dark-600 hover:border-dark-200 transition-all duration-300">
-      <div className="absolute top-0 left-0 w-2 h-2 border-t border-l opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
-      <div className="absolute top-0 right-0 w-2 h-2 border-t border-r opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
-      <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
-      <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
+    <div className="group transition-opacity duration-300 relative flex flex-col p-5 bg-black text-white max-sm:border-[0.5px] lg:border-l-[0.5px] hover:border-[0.5px] border-dark-600 hover:border-dark-200 transition-all duration-300">
+      <div className="absolute top-0 left-0 w-2 h-2 border-t border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
+      <div className="absolute top-0 right-0 w-2 h-2 border-t border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
+      <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
+      <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
       <div className="w-full flex justify-between mb-5">
         <div className="text-3xl">{icon}</div>
         <div className="tracking-widest text-neutral-300 flex items-center gap-2 text-sm">

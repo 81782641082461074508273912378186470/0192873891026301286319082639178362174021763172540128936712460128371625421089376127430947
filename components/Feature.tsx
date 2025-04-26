@@ -59,7 +59,7 @@ const Feature = () => {
           Dropship Mudah, Cepat, Efisien, dan Pintar
         </h2>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-dark-800">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-[1px] bg-dark-800">
         {stepByStep.map((feature, i) => (
           <FeatureCard
             key={i}
