@@ -1,22 +1,30 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import type { ReactNode } from 'react';
 
 interface FeatureCardProps {
+  stepNumber: any;
   icon: ReactNode;
   title: string;
   description: string;
   badge?: string;
 }
 
-export function FeatureCard({ icon, title, description, badge }: FeatureCardProps) {
+export function FeatureCard({ stepNumber, icon, title, description, badge }: FeatureCardProps) {
   return (
     <div className="group transition-opacity duration-300 relative flex flex-col p-8 bg-black text-white lg:border-l-[0.5px] hover:border-[0.5px] border-dark-600 hover:border-dark-200 transition-all duration-300">
       <div className="absolute top-0 left-0 w-2 h-2 border-t border-l opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
       <div className="absolute top-0 right-0 w-2 h-2 border-t border-r opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
       <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
       <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
-      <div className="mb-5 text-xl">{icon}</div>
+      <div className="w-full flex justify-between mb-5">
+        <div className="text-3xl">{icon}</div>
+        <div className="tracking-widest text-neutral-300 flex items-center gap-2 text-sm">
+          <span>[</span> <span>{stepNumber}</span> <span>]</span>
+        </div>
+      </div>
+
       <div className="flex items-center mb-5">
         <h3 className="text-xl font-medium">{title}</h3>
         {badge && (

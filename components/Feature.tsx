@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { LuScanSearch } from 'react-icons/lu';
-import { HiMiniRectangleStack } from 'react-icons/hi2';
 import { PiChartLineUpBold } from 'react-icons/pi';
-import { LuBrainCircuit } from 'react-icons/lu';
-import { MdFileUpload } from 'react-icons/md';
+import { IoFileTrayStackedOutline } from 'react-icons/io5';
 import { IoFlashOutline } from 'react-icons/io5';
+import { RiFolderUploadLine } from 'react-icons/ri';
+import { RiRobot2Line } from 'react-icons/ri';
 import React from 'react';
 import { FeatureCard } from './FeaturedCard';
 
@@ -17,7 +17,7 @@ const Feature = () => {
         'Gunakan alat pencarian Autolaku untuk menemukan produk potensial. Terapkan filter seperti peringkat, tipe penjual, dan rentang harga untuk menentukan produk yang sesuai dengan strategi bisnis dan kebutuhan pasar Anda.',
     },
     {
-      icon: <HiMiniRectangleStack />,
+      icon: <IoFileTrayStackedOutline />,
       title: 'Susun Inventaris Anda',
       description:
         'Pilih produk untuk di-scrape dan atur ke dalam folder. Evaluasi setiap item berdasarkan permintaan, persaingan, dan profitabilitas untuk membangun inventaris yang kuat dan sesuai dengan toko Anda.',
@@ -35,13 +35,13 @@ const Feature = () => {
         'Ubah data produk, termasuk dimensi, kategori, dan harga, untuk meningkatkan margin keuntungan. Hapus kata-kata terlarang untuk memastikan kepatuhan terhadap standar marketplace.',
     },
     {
-      icon: <LuBrainCircuit />,
+      icon: <RiRobot2Line />,
       title: 'Optimasi Berbasis AI',
       description:
         'Tingkatkan informasi produk dengan alat AI Autolaku. Optimalkan judul, deskripsi, dan gambar untuk visibilitas dan daya tarik maksimal guna mendorong hasil yang lebih baik di marketplace.',
     },
     {
-      icon: <MdFileUpload />,
+      icon: <RiFolderUploadLine />,
       title: 'Publikasikan Produk Anda',
       description:
         'Unggah listing yang telah diselesaikan ke marketplace. Autolaku menyederhanakan proses upload, memastikan produk Anda siap dan tersedia untuk pelanggan dengan efisien.',
@@ -55,22 +55,22 @@ const Feature = () => {
             <span>[</span> <span>Fitur Autolaku</span> <span>]</span>
           </div>
         </div>
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
-          <div className="max-w-xl space-y-12">
-            <h2 className="text-balance tracking-tight text-3xl __gradient_text">
-              Dropship Mudah, Cepat, Efisien, dan Pintar
-            </h2>
-          </div>
-        </div>
+        <h2 className="whitespace-nowrap tracking-tight w-fit text-3xl __gradient_text font-bold">
+          Dropship Mudah, Cepat, Efisien, dan Pintar
+        </h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-dark-800">
         {stepByStep.map((feature, i) => (
-          <FeatureCard
-            key={i}
-            icon={feature.icon}
-            title={feature.title}
-            description={feature.description}
-          />
+          <>
+            {console.log(i)}
+            <FeatureCard
+              key={i}
+              stepNumber={i + 1}
+              icon={feature.icon}
+              title={feature.title}
+              description={feature.description}
+            />
+          </>
         ))}
       </div>
     </div>
