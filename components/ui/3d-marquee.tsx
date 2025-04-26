@@ -3,6 +3,7 @@
 import { motion } from 'motion/react';
 import { cn } from '@/lib/utils';
 export const ThreeDMarquee = ({ images, className }: { images: string[]; className?: string }) => {
+  // Split the images array into 4 equal parts
   const chunkSize = Math.ceil(images.length / 4);
   const chunks = Array.from({ length: 4 }, (_, colIndex) => {
     const start = colIndex * chunkSize;
@@ -10,11 +11,8 @@ export const ThreeDMarquee = ({ images, className }: { images: string[]; classNa
   });
   return (
     <div
-      className={cn(
-        'mx-auto block h-[600px] overflow-hidden rounded-2xl bg-dark-800 max-sm:h-100',
-        className
-      )}>
-      <div className="flex size-full items-center justify-center ">
+      className={cn('mx-auto block h-[600px] overflow-hidden rounded-2xl max-sm:h-100', className)}>
+      <div className="flex size-full items-center justify-center">
         <div className="size-[1720px] shrink-0 scale-50 sm:scale-75 lg:scale-100">
           <div
             style={{
@@ -46,7 +44,7 @@ export const ThreeDMarquee = ({ images, className }: { images: string[]; classNa
                       key={imageIndex + image}
                       src={image}
                       alt={`Image ${imageIndex + 1}`}
-                      className="aspect-[970/700] w-auto h-full rounded-lg object-cover ring ring-gray-950/5 hover:shadow-2xl"
+                      className="aspect-[970/700] rounded-lg object-cover ring ring-gray-950/5 hover:shadow-2xl"
                       width={970}
                       height={700}
                     />
@@ -77,7 +75,7 @@ const GridLineHorizontal = ({ className, offset }: { className?: string; offset?
         } as React.CSSProperties
       }
       className={cn(
-        'absolute left-[calc(var(--offset)/2*-1)] h-[var(--height)] w-[calc(100%+var(--offset))] ',
+        'absolute left-[calc(var(--offset)/2*-1)] h-[var(--height)] w-[calc(100%+var(--offset))]',
         // "bg-[linear-gradient(to_right,var(--color),var(--color)_50%,transparent_0,transparent)]",
         '[background-size:var(--width)_var(--height)]',
         '[mask:linear-gradient(to_left,var(--background)_var(--fade-stop),transparent),_linear-gradient(to_right,var(--background)_var(--fade-stop),transparent),_linear-gradient(black,black)]',
