@@ -67,7 +67,6 @@ export default function NavDashboard({
             <AccountDropdown
               handleLogout={handleLogout}
               type={type}
-              role={role}
               user={type === 'account' ? user : null}
               license={type === 'license' ? license : null}
             />

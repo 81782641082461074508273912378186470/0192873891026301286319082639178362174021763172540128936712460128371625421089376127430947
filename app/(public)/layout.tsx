@@ -20,7 +20,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen bg-black text-white selection:bg-white/65 selection:text-black no-scrollbar ">
         <Navbar />
-        <div className="flex flex-col justify-center items-center w-full mt-12">{children}</div>
+        <div className="flex flex-col justify-center items-center w-full pt-12">{children}</div>
         {/* <BreakPointChecker /> */}
         <Footer />
       </body>

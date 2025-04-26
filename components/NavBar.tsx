@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // Navbar.tsx
 'use client';
 
@@ -196,6 +197,7 @@ const NavBar = () => {
             <IoMdPerson className="text-xl" />
             <span>Masuk/Daftar</span>
           </Link>
+
           <Sheet>
             <SheetTrigger asChild>
               <button

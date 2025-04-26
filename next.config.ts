@@ -4,16 +4,6 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: '/tentang-kami',
-        destination: '/maintenance',
-        permanent: false,
-      },
-      {
-        source: '/harga',
-        destination: '/maintenance',
-        permanent: false,
-      },
-      {
         source: '/fitur',
         destination: '/maintenance',
         permanent: false,

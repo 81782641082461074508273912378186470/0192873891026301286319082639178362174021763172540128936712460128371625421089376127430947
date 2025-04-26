@@ -54,8 +54,14 @@ const Footer = () => {
 
   const currentYear = new Date().getFullYear();
   return (
-    <footer className="w-full flex justify-center items-center z-50 shadow-md bg-gradient-to-tr from-dark-700 from-10% via-black via-50% to-black to-100% mt-20 lg:mt-52">
-      <div className="flex flex-col items-center justify-between w-full text-white ">
+    <footer
+      className={`w-full flex justify-center items-center z-50 shadow-md bg-gradient-to-tr from-dark-700 from-10% via-black via-50% to-black to-100% ${
+        pathname === '/' && 'mt-20 lg:mt-52'
+      }`}>
+      <div
+        className={`flex flex-col items-center justify-between w-full text-white ${
+          pathname !== '/' && 'border-t-[1px] border-white/10'
+        }`}>
         {pathname === '/' && (
           <div className="flex relative flex-col h-[400px] justify-center items-center w-full py-32 gap-10 bg-black/80 border-y-[1px] border-white/10 ">
             <h3 className="lg:text-4xl text-3xl font-extrabold mb-5 __gradient_text">
@@ -72,9 +78,7 @@ const Footer = () => {
           </div>
         )}
         <div
-          className={`flex flex-col-reverse ${
-            pathname !== '/' && 'border-t-[1px] border-white/20'
-          } lg:flex-row justify-between items-start w-full py-10 gap-20 lg:gap-10 max-w-screen-xl px-5 xl:px-0 `}>
+          className={`flex flex-col-reverse  lg:flex-row justify-between items-start w-full py-10 gap-20 lg:gap-10 max-w-screen-xl px-5 xl:px-0 `}>
           <div className="flex flex-col gap-5 ">
             <div className="flex items-center gap-2 lg:gap-4 __gradient_text opacity-85 select-none">
               <svg
