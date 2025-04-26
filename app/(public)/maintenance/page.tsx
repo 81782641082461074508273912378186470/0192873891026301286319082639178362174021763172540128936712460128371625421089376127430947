@@ -1,17 +1,79 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+import { ThreeDMarquee } from '@/components/ui/3d-marquee';
 import React from 'react';
+import AIConfig from '@/assets/images/AIKonfigurasi.webp';
+import AIOptimalisasi from '@/assets/images/AIOptimalisasi.webp';
+import AntrianScrape from '@/assets/images/AntrianScrape.webp';
+import AturKeuntungan from '@/assets/images/AturKeuntungan.webp';
+import HapusKataTerlarang from '@/assets/images/HapusKataTerlarang.webp';
+import KelolaProduk from '@/assets/images/KelolaProduk.webp';
+import Login from '@/assets/images/Login.webp';
+import PencarianProduk from '@/assets/images/CariProduk.webp';
+import PersiapkanProduk from '@/assets/images/PersiapkanProduk.webp';
 
 const page = () => {
+  function getImageUrl(imageModule: any) {
+    if (typeof imageModule === 'string') {
+      return imageModule;
+    } else if (imageModule && typeof imageModule === 'object') {
+      if (imageModule.src) {
+        return imageModule.src;
+      } else if (imageModule.default) {
+        return imageModule.default;
+      }
+    }
+    throw new Error('Unable to determine image URL');
+  }
+
+  const images = [
+    getImageUrl(PencarianProduk),
+    getImageUrl(AIOptimalisasi),
+    getImageUrl(AntrianScrape),
+    getImageUrl(Login),
+    getImageUrl(PersiapkanProduk),
+    getImageUrl(PencarianProduk),
+    getImageUrl(AturKeuntungan),
+    getImageUrl(AIConfig),
+    getImageUrl(PencarianProduk),
+    getImageUrl(HapusKataTerlarang),
+    getImageUrl(KelolaProduk),
+    getImageUrl(PersiapkanProduk),
+    getImageUrl(HapusKataTerlarang),
+    getImageUrl(AturKeuntungan),
+    getImageUrl(AIOptimalisasi),
+    getImageUrl(AIConfig),
+    getImageUrl(PersiapkanProduk),
+    getImageUrl(AturKeuntungan),
+    getImageUrl(KelolaProduk),
+    getImageUrl(PencarianProduk),
+    getImageUrl(KelolaProduk),
+    getImageUrl(AIConfig),
+    getImageUrl(AntrianScrape),
+    getImageUrl(AntrianScrape),
+    getImageUrl(KelolaProduk),
+    getImageUrl(AIConfig),
+    getImageUrl(AntrianScrape),
+    getImageUrl(AIOptimalisasi),
+    getImageUrl(PersiapkanProduk),
+    getImageUrl(AIOptimalisasi),
+    getImageUrl(HapusKataTerlarang),
+    getImageUrl(AturKeuntungan),
+    getImageUrl(HapusKataTerlarang),
+    getImageUrl(Login),
+  ];
   return (
-    <div className="bg-black w-screen h-screen flex flex-col justify-center items-center z-999999 text-white top-0 left-0 fixed">
-      <div className="max-w-lg p-10">
-        <h2 className="text-xl mb-3">Website Sedang Dalam Proses Maintenance</h2>
-        <p className="text-light-600">
-          Terima kasih atas kunjungan Anda ke Autolaku! Saat ini, kami sedang melakukan proses
-          maintenance untuk memastikan platform kami siap memberikan layanan terbaik yang cepat,
-          aman, dan efisien. Kami berkomitmen untuk memberikan pengalaman terbaik bagi Anda. Mohon
-          bersabar, kami akan segera kembali. Terima kasih atas pengertian Anda!
-        </p>
+    <div className="flex h-screen w-screen z-[99999] absolute top-0 left-0 flex-col items-center justify-center overflow-hidden border-y-[1px] border-white/10">
+      <div className="relative z-20 flex flex-col items-center justify-center gap-2 drop-shadow-lg">
+        <p className="tracking-widest text-gray-200 font-thin ">Maintenance</p>
+        <button className="rounded-button">Back Home</button>
       </div>
+
+      <div className="absolute inset-0 z-10 h-full w-full bg-black/70 " />
+      <ThreeDMarquee
+        className="pointer-events-none absolute inset-0 h-full w-full "
+        images={images}
+      />
     </div>
   );
 };

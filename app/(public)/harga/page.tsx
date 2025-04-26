@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { ThreeDMarquee } from '@/components/ui/3d-marquee';
 import React from 'react';
 import AIConfig from '@/assets/images/AIKonfigurasi.webp';
@@ -75,7 +75,7 @@ const page = () => {
         You are not your job, you&apos;re not how much money you have in the bank. You are not the
         car you drive. You&apos;re not the contents of your wallet.
       </p> */}
-      <p className="relative tracking-widest text-gray-200 font-thin z-20 flex flex-wrap items-center justify-center gap-5">
+      <p className="relative tracking-widest text-gray-200 font-thin z-20 flex flex-wrap items-center justify-center gap-5 drop-shadow-lg">
         Coming Soon
       </p>
       {/* <div className="relative z-20 flex flex-wrap items-center justify-center gap-4 pt-4">
