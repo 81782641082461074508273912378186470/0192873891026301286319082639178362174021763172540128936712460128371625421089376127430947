@@ -9,14 +9,18 @@ export const ThreeDMarquee = ({ images, className }: { images: string[]; classNa
     return images.slice(start, start + chunkSize);
   });
   return (
-    <div className={cn('block overflow-hidden rounded-2xl bg-dark-800', className)}>
-      <div className="flex size-full items-center justify-center">
-        <div className="size-[1720px] shrink-0 scale-50 sm:scale-75 lg:scale-100 ">
+    <div
+      className={cn(
+        'mx-auto block h-[600px] overflow-hidden rounded-2xl bg-dark-800 max-sm:h-100',
+        className
+      )}>
+      <div className="flex size-full items-center justify-center ">
+        <div className="size-[1720px] shrink-0 scale-50 sm:scale-75 lg:scale-100">
           <div
             style={{
               transform: 'rotateX(55deg) rotateY(0deg) rotateZ(-45deg)',
             }}
-            className="relative top-96 right-[50%] grid size-full origin-top-left grid-cols-4 gap-8 transform-3d ">
+            className="relative top-96 right-[50%] grid size-full origin-top-left grid-cols-4 gap-8 transform-3d">
             {chunks.map((subarray, colIndex) => (
               <motion.div
                 animate={{ y: colIndex % 2 === 0 ? 100 : -100 }}
@@ -26,7 +30,7 @@ export const ThreeDMarquee = ({ images, className }: { images: string[]; classNa
                   repeatType: 'reverse',
                 }}
                 key={colIndex + 'marquee'}
-                className="flex flex-col items-start gap-8 ">
+                className="flex flex-col items-start gap-8">
                 <GridLineVertical className="-left-4" offset="80px" />
                 {subarray.map((image, imageIndex) => (
                   <div className="relative" key={imageIndex + image}>
@@ -42,7 +46,7 @@ export const ThreeDMarquee = ({ images, className }: { images: string[]; classNa
                       key={imageIndex + image}
                       src={image}
                       alt={`Image ${imageIndex + 1}`}
-                      className="h-full w-auto rounded-lg object-cover ring ring-gray-950/5 hover:shadow-2xl"
+                      className="aspect-[970/700] w-auto h-full rounded-lg object-cover ring ring-gray-950/5 hover:shadow-2xl"
                       width={970}
                       height={700}
                     />

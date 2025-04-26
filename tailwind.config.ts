@@ -133,23 +133,24 @@ export default {
             transform: 'translate(calc(-50% - 0.5rem))',
           },
         },
+        'accordion-down': {
+          from: {
+            height: '0',
+          },
+          to: {
+            height: 'var(--radix-accordion-content-height)',
+          },
+        },
+        'accordion-up': {
+          from: {
+            height: 'var(--radix-accordion-content-height)',
+          },
+          to: {
+            height: '0',
+          },
+        },
       },
     },
   },
-  plugins: [
-    addVariablesForColors,
-    addCustomUtilities,
-    require('tailwindcss-animate'),
-    // function ({ addUtilities }: any) {
-    //   addUtilities({
-    //     '.scrollbar-none': {
-    //       '-ms-overflow-style': 'none', // For IE/Edge
-    //       'scrollbar-width': 'none', // For Firefox
-    //       '&::-webkit-scrollbar': {
-    //         display: 'none', // For Chrome, Safari, and Opera
-    //       },
-    //     },
-    //   });
-    // },
-  ],
+  plugins: [addVariablesForColors, addCustomUtilities, require('tailwindcss-animate')],
 } satisfies Config;
