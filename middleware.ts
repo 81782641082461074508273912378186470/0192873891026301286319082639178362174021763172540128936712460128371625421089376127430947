@@ -21,7 +21,7 @@ export async function middleware(req: NextRequest) {
     hostname?.endsWith('autolaku.com') &&
     path.startsWith('/app')
   ) {
-    return new Response(null, { status: 403, headers: { 'Content-Type': 'text/html' } });
+    return new Response(null, { status: 404, headers: { 'Content-Type': 'text/html' } });
   }
 
   if (hostname === 'app.autolaku.com') {

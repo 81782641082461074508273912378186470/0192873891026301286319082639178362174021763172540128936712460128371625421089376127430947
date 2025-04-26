@@ -18,9 +18,11 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body className="min-h-screen bg-black text-white selection:bg-white/65 selection:text-black no-scrollbar ">
+      <body className="min-h-screen bg-black text-white selection:bg-white/65 selection:text-black no-scrollbar">
         <Navbar />
-        <div className="flex flex-col justify-center items-center w-full pt-12">{children}</div>
+        <div className="flex flex-col justify-center items-center w-full pt-12 no-scrollbar">
+          {children}
+        </div>
         {/* <BreakPointChecker /> */}
         <Footer />
       </body>

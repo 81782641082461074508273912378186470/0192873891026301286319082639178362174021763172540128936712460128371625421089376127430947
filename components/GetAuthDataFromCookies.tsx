@@ -20,7 +20,8 @@ export async function getAuthDataFromCookie(): Promise<AuthData | null> {
   try {
     const parsedAuthData = JSON.parse(authDataCookie);
 
-    console.log(parsedAuthData);
+    // TODO: parsedAuthData Work, But not Work in /app/page.tsx
+    // console.log(parsedAuthData);
     return parsedAuthData;
   } catch (error) {
     console.error('Failed to parse authData cookie:', error);

@@ -1,21 +1,20 @@
-export const runtime = 'nodejs';
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import mongooseConnect from '@/lib/mongoose';
 import License from '@/models/License';
 import { NextResponse } from 'next/server';
 
-export async function POST(request: Request) {
+export async function DELETE(request: Request) {
   await mongooseConnect();
 
   try {
-    const { key, deviceInfo } = await request.json();
+    const { key } = await request.json();
 
-    if (!key || !deviceInfo) {
-      console.error('Validation error: License key and device information are required');
+    if (!key) {
+      console.error('Validation error: License key is required');
       return new Response(
         JSON.stringify({
-          error: 'License key and device information are required',
+          error: 'License key is required',
         }),
         { status: 400 }
       );
@@ -29,17 +28,18 @@ export async function POST(request: Request) {
       });
     }
 
-    license.deviceInfo = deviceInfo;
+    license.deviceInfo = null;
     await license.save();
+
     return NextResponse.json({
-      message: 'Device information updated successfully',
+      message: 'Device information removed successfully',
       licenseDetails: license,
     });
   } catch (error: any) {
-    console.error('Error updating device information:', error.message || error);
+    console.error('Error removing device information:', error.message || error);
     return new Response(
       JSON.stringify({
-        error: error.message || 'Failed to update device information',
+        error: error.message || 'Failed to remove device information',
       }),
       { status: 500 }
     );

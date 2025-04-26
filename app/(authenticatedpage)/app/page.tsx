@@ -26,17 +26,13 @@ const page = () => {
       </div>
     );
   }
-
+  // TODO: authData Doesnt Work, But Work in GetAuthDataFromCookies Component
   const { role, license, authDetails, type } = authData as unknown as AuthData;
-  console.log('License:', license);
-  console.log('Role:', role);
-  console.log('Type:', type);
-  console.log('AuthDetails:', authDetails);
 
   return (
     <div className="min-h-screen bg-black text-white selection:bg-white/65 selection:text-black no-scrollbar flex flex-col justify-center items-center">
       Hi
-      {license}
+      {authDetails}
     </div>
   );
 };
