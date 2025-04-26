@@ -55,7 +55,7 @@ const Feature = () => {
             <span>[</span> <span>Fitur Autolaku</span> <span>]</span>
           </div>
         </div>
-        <h2 className="whitespace-nowrap tracking-tight w-fit text-3xl __gradient_text font-bold">
+        <h2 className="lg:whitespace-nowrap tracking-tight w-fit text-3xl __gradient_text font-bold">
           Dropship Mudah, Cepat, Efisien, dan Pintar
         </h2>
       </div>

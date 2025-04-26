@@ -19,7 +19,7 @@ const Integrated = () => {
         <InfiniteMovingCards items={IntegratedIcon} direction="right" speed="normal" />
         <InfiniteMovingCards items={IntegratedIcon} direction="left" speed="fast" />
       </div>
-      <div className="absolute bottom-0 left-0 -ml-10 h-full w-auto flex justify-end items-center opacity-20 hover:opacity-40 duration-700 overflow-hidden z-40">
+      <div className="absolute bottom-0 left-0 -ml-10 h-full w-auto hidden lg:flex justify-end items-center opacity-20 hover:opacity-40 duration-700 overflow-hidden z-40">
         <Image
           src={AGrid}
           alt="Autolaku.com"
