@@ -7,6 +7,7 @@ import '@/styles/fonts.css';
 import Navbar from '@/components/NavBar';
 import Footer from '@/components/Footer';
 import BreakPointChecker from '@/components/BreakPointChecker';
+import { Analytics } from '@vercel/analytics/react';
 
 export default function RootLayout({
   children,
@@ -16,6 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="font-geist bg-black">
       <head>
+        <Analytics />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body className="min-h-screen bg-black text-white selection:bg-white/65 selection:text-black no-scrollbar">
