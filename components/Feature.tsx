@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { LuScanSearch } from 'react-icons/lu';
 import { HiMiniRectangleStack } from 'react-icons/hi2';
-import { TbDatabaseShare } from 'react-icons/tb';
 import { PiChartLineUpBold } from 'react-icons/pi';
 import { LuBrainCircuit } from 'react-icons/lu';
 import { MdFileUpload } from 'react-icons/md';
+import { IoFlashOutline } from 'react-icons/io5';
 import React from 'react';
 import { FeatureCard } from './FeaturedCard';
 
@@ -23,8 +23,8 @@ const Feature = () => {
         'Pilih produk untuk di-scrape dan atur ke dalam folder. Evaluasi setiap item berdasarkan permintaan, persaingan, dan profitabilitas untuk membangun inventaris yang kuat dan sesuai dengan toko Anda.',
     },
     {
-      icon: <TbDatabaseShare />,
-      title: 'Otomatisasi Pengumpulan Data',
+      icon: <IoFlashOutline />,
+      title: 'Otomatisasi Pengumpulan Data (Scraping)',
       description:
         'Scrape semua produk dalam folder menggunakan teknologi Autolaku. Kumpulkan detail penting seperti deskripsi, gambar, dan harga dari berbagai sumber secara otomatis dengan mudah.',
     },
