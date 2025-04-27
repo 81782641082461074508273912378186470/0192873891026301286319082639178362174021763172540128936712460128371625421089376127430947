@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { getAuthDataFromCookie } from '@/components/GetAuthDataFromCookies';
+import { HomeWrapper } from '@/components/HomeWrapper';
 import React from 'react';
 
 export const metadata = {
@@ -30,10 +31,12 @@ const page = () => {
   const { role, license, authDetails, type } = authData as unknown as AuthData;
 
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-white/65 selection:text-black no-scrollbar flex flex-col justify-center items-center">
-      Hi
-      {authDetails}
-    </div>
+    <main className="min-h-screen bg-black text-white selection:bg-white/65 selection:text-black no-scrollbar flex flex-col justify-center items-center">
+      <HomeWrapper>
+        Hi
+        {authDetails}
+      </HomeWrapper>
+    </main>
   );
 };
 

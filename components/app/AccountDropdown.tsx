@@ -54,7 +54,6 @@ export default function AccountDropdown({
         <DropdownMenuLabel>
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-bold __gradient_text">{displayName}</p>
-
             <p className="text-xs text-white/70">{secondaryInfo}</p>
           </div>
         </DropdownMenuLabel>
