@@ -1,5 +1,6 @@
 import Feature from '@/components/Feature';
 import { GlowingGrid } from '@/components/GlowingGrid';
+import { HomeWrapper } from '@/components/HomeWrapper';
 import Integrated from '@/components/Integrated';
 import HeroSection from '@/components/sections/HeroSection';
 import { generateMetadata } from '@/lib/utils';
@@ -16,12 +17,14 @@ export const metadata: Metadata = generateMetadata({
 
 const HomePage = () => {
   return (
-    <div className="flex flex-col justify-start items-center w-full h-full">
-      <HeroSection />
-      <Feature />
-      <Integrated />
-      <GlowingGrid />
-    </div>
+    <main className="flex flex-col justify-start items-center w-full h-full">
+      <HomeWrapper>
+        <HeroSection />
+        <Feature />
+        <Integrated />
+        <GlowingGrid />
+      </HomeWrapper>
+    </main>
   );
 };
 

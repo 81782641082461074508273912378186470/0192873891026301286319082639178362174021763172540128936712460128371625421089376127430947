@@ -2,11 +2,9 @@
 import { NextResponse } from 'next/server';
 import axios from 'axios';
 
-// Define your GitHub repo URL here, keep it secret
 const GITHUB_REPO_URL =
   'https://api.github.com/repos/81782641082461074508273912378186470/09712038126784961276312785617824537450173541237412803187134539487604120378162313018351627351267512/releases/latest';
 
-// Define the structure of the GitHub release response
 interface GitHubRelease {
   assets: Array<{
     name: string;
@@ -16,7 +14,7 @@ interface GitHubRelease {
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const platform = searchParams.get('platform') || 'windows'; // Default to windows if no platform is specified
+  const platform = searchParams.get('platform') || 'windows';
 
   let fileExtension = '-win-x64.exe';
   if (platform === 'macos') {
