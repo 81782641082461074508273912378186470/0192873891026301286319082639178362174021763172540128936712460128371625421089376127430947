@@ -48,15 +48,7 @@ export default function AccountDropdown({
             <BiSolidUserDetail className="text-xl lg:text-3xl" />
           </button>
         )} */}
-        {displayName ? (
-          <p className="text-sm rounded-button">{displayName}</p>
-        ) : (
-          <button
-            onClick={handleLogout}
-            className="flex! gap-1! items-center! rounded-button bg-red-500/20! text-red-500!">
-            <IoMdLogOut className="text-lg" /> Logout
-          </button>
-        )}
+        {displayName && <p className="text-sm rounded-button">{displayName}</p>}
       </DropdownMenuTrigger>
       <DropdownMenuContent
         className="w-56 !border-[1px] border-white/20 bg-dark-800 rounded-xl"

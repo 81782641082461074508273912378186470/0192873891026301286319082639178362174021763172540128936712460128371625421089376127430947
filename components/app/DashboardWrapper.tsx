@@ -1,13 +1,13 @@
 'use client';
 
 import { useAuth } from '@/context/AuthDashboardContext';
-import NavDashboard from '@/components/app/NavDashboard';
+import NavApp from '@/components/app/NavApp';
 
 export default function DashboardWrapper({ children }: { children: React.ReactNode }) {
   const { role, license, handleLogout, authDetails, type } = useAuth();
   return (
     <>
-      <NavDashboard
+      <NavApp
         role={role}
         type={type}
         license={license}

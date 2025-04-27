@@ -1,43 +1,58 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { getAuthDataFromCookie } from '@/components/GetAuthDataFromCookies';
 import { HomeWrapper } from '@/components/HomeWrapper';
 import React from 'react';
+import { cookies } from 'next/headers';
 
 export const metadata = {
   title: 'App Center Autolaku',
   description: 'Autolaku Application Center.',
 };
 
+interface AuthDetails {
+  username?: string;
+  [key: string]: unknown;
+}
+
 interface AuthData {
   role: string;
   license: string;
-  authDetails: any;
+  authDetails: AuthDetails;
   type: string;
 }
 
-const page = () => {
-  const authData = getAuthDataFromCookie();
+const Page = async () => {
+  const cookieStore = await cookies();
+  const authDataCookie = cookieStore.get('authData')?.value;
 
-  if (!authData) {
-    console.log('No authData found');
+  if (!authDataCookie) {
+    console.log('No authData cookie found');
     return (
       <div className="min-h-screen bg-black text-white selection:bg-white/65 selection:text-black no-scrollbar flex flex-col justify-center items-center">
         <p>Authentication required</p>
       </div>
     );
   }
-  // TODO: authData Doesnt Work, But Work in GetAuthDataFromCookies Component
-  const { role, license, authDetails, type } = authData as unknown as AuthData;
+  console.log(JSON.parse(authDataCookie));
+  try {
+    const authData: AuthData = JSON.parse(authDataCookie);
 
-  return (
-    <main className="min-h-screen bg-black text-white selection:bg-white/65 selection:text-black no-scrollbar flex flex-col justify-center items-center">
-      <HomeWrapper>
-        Hi
-        {authDetails}
-      </HomeWrapper>
-    </main>
-  );
+    const { role, license, authDetails, type } = authData;
+
+    return (
+      <main className="min-h-screen bg-black text-white selection:bg-white/65 selection:text-black no-scrollbar flex flex-col justify-center items-center">
+        <HomeWrapper>
+          Hi, {role || 'User'} {/* Fallback if username is missing */}
+        </HomeWrapper>
+      </main>
+    );
+  } catch (error) {
+    console.error('Failed to parse authData cookie:', error);
+    return (
+      <div className="min-h-screen bg-black text-white selection:bg-white/65 selection:text-black no-scrollbar flex flex-col justify-center items-center">
+        <p>Invalid authentication data</p>
+      </div>
+    );
+  }
 };
 
-export default page;
+export default Page;

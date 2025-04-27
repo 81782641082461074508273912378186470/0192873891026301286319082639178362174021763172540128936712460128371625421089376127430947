@@ -7,8 +7,8 @@ import { PiCopySimple } from 'react-icons/pi';
 import { FaCheck } from 'react-icons/fa';
 import { MdDownload } from 'react-icons/md';
 import { IoCloseSharp } from 'react-icons/io5';
-import { GrLicense } from 'react-icons/gr';
-import { IoMdPerson } from 'react-icons/io';
+import { GrLicense, GrUserAdmin } from 'react-icons/gr';
+
 import Link from 'next/link';
 
 const Daftar = () => {
@@ -215,7 +215,7 @@ const Daftar = () => {
                         : 'bg-dark-800 border-[1px] border-white/5 text-white/50'
                     }`}>
                     <span className="flex gap-2 items-center">
-                      <IoMdPerson className="lg:text-lg" />
+                      <GrUserAdmin className="lg:text-lg" />
                       Admin
                     </span>
                     <p className="text-xs lg:text-sm mt-2">

@@ -4,8 +4,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { GrLicense } from 'react-icons/gr';
-import { IoMdPerson } from 'react-icons/io';
+import { GrLicense, GrUserAdmin } from 'react-icons/gr';
 
 const Login = () => {
   const [loginType, setLoginType] = useState<'account' | 'license'>('account');
@@ -150,7 +149,7 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full max-w-[350px]">
+    <div className="w-full max-w-[350px] ">
       <div className="flex flex-col gap-3 justify-center w-full mb-5">
         <button
           type="button"
@@ -158,7 +157,7 @@ const Login = () => {
           className={`flex flex-col items-start text-start p-5 rounded ${
             loginType === 'license'
               ? 'bg-dark-700 border-white/50 border-[1px] text-white'
-              : 'bg-dark-800 border-[1px] border-white/5 text-white/50'
+              : 'bg-dark-800 border-[1px] border-white/10 text-white/50'
           }`}>
           <span className="flex gap-2 items-center">
             <GrLicense className="lg:text-lg" />
@@ -172,10 +171,10 @@ const Login = () => {
           className={`flex flex-col items-start text-start p-5 rounded ${
             loginType === 'account'
               ? 'bg-dark-700 border-white/50 border-[1px] text-white'
-              : 'bg-dark-800 border-[1px] border-white/5 text-white/50'
+              : 'bg-dark-800 border-[1px] border-white/10 text-white/50'
           }`}>
           <span className="flex gap-2 items-center">
-            <IoMdPerson className="lg:text-lg" />
+            <GrUserAdmin className="lg:text-lg" />
             Akun
           </span>
           <p className="text-xs lg:text-sm mt-2">Masuk dengan username dan password.</p>

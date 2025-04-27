@@ -7,8 +7,10 @@ import AccountDropdown from './AccountDropdown';
 import HideShowText from '../HideShowText';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { IoMdLogOut } from 'react-icons/io';
+import { GrLicense, GrUserAdmin } from 'react-icons/gr';
 
-interface NavDashboardProps {
+interface NavAppProps {
   role: string | null;
   type: 'account' | 'license' | null;
   license: any;
@@ -16,13 +18,7 @@ interface NavDashboardProps {
   handleLogout: () => void;
 }
 
-export default function NavDashboard({
-  role,
-  type,
-  license,
-  handleLogout,
-  authDetails,
-}: NavDashboardProps) {
+export default function NavApp({ role, type, license, handleLogout, authDetails }: NavAppProps) {
   const user = authDetails?.user;
 
   const pathname = usePathname();
@@ -58,6 +54,18 @@ export default function NavDashboard({
             <span className="text-white/40 hover:text-white/70 select-none font-bold __gradient_text">
               App Center
             </span>
+            <div className="w-0.5 h-7 bg-white/10 rotate-12" />
+            <span className="flex gap-2 items-center text-white/40 text-xs hover:text-white/70 select-none font-bold __gradient_text">
+              {role === 'admin' ? (
+                <>
+                  <GrUserAdmin className="text-white" /> Admin
+                </>
+              ) : (
+                <>
+                  <GrLicense className="text-white" /> User
+                </>
+              )}
+            </span>
 
             {type === 'license' && license?.key && (
               <>
@@ -68,12 +76,20 @@ export default function NavDashboard({
           </div>
 
           <div className="flex items-center justify-between gap-6">
-            <AccountDropdown
-              handleLogout={handleLogout}
-              type={type}
-              user={type === 'account' ? user : null}
-              license={type === 'license' ? license : null}
-            />
+            {type === 'license' ? (
+              <button
+                onClick={handleLogout}
+                className="flex gap-0.5 items-center rounded-button hover:!bg-red-500/25 hover:!text-red-500 hover:!border-[1px] hover:!border-red-500/30 duration-300 transition-all">
+                <IoMdLogOut className="text-lg" /> Logout
+              </button>
+            ) : (
+              <AccountDropdown
+                handleLogout={handleLogout}
+                type={type}
+                user={user}
+                license={license}
+              />
+            )}
           </div>
         </div>
       </nav>
