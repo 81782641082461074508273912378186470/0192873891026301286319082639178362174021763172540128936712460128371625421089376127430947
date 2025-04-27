@@ -82,7 +82,7 @@ export const generateMetadata = ({
     },
     twitter: {
       card: 'summary_large_image',
-      site: '@Autolaku',
+      site: '@AutolakuCom',
       title: title ? `${title} | Autolaku` : defaultTitle,
       description: description || defaultDescription,
       images: [

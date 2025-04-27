@@ -15,8 +15,10 @@ const HideShowText = ({ text }: any) => {
   return (
     <div className="flex items-center gap-2">
       <p
-        className="text-sm font-medium text-white/20 hover:text-white/70 select-none"
-        title={text ? text : undefined}>
+        className={`text-sm font-medium text-white select-none ${
+          isHidden && 'blur-sm line-through'
+        }`}
+        title="License Key">
         {isHidden ? placeholder : text}
       </p>
       <button

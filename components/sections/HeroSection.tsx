@@ -20,7 +20,7 @@ const HeroSection = () => {
     <section aria-label="Hero Section" className="relative w-full min-h-screen bg-black ">
       <Image
         src={grid}
-        alt="Autolaku Asset"
+        alt="Latar belakang grid perspektif dekoratif untuk bagian hero Autolaku"
         fill
         className="absolute inset-0 opacity-20 pointer-events-none object-cover"
         loading="lazy"
