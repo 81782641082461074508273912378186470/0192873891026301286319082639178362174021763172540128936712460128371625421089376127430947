@@ -1,5 +1,14 @@
-import { NextPage } from 'next';
+import { generateMetadata } from '@/lib/utils';
+import { Metadata, NextPage } from 'next';
 
+export const metadata: Metadata = generateMetadata({
+  title: 'Syarat dan Ketentuan | Autolaku - Platform Dropshipping',
+  description:
+    'Pelajari syarat dan ketentuan penggunaan Autolaku, platform dropshipping terkemuka di Indonesia. Pahami hak dan tanggung jawab Anda sebagai pengguna.',
+  url: 'https://autolaku.com/ketentuan-layanan',
+  keywords:
+    'Syarat dan Ketentuan Autolaku, Kebijakan Dropshipping, Lisensi Pengguna, Langganan Autolaku, Hak Kekayaan Intelektual',
+});
 const TermsOfService: NextPage = () => {
   return (
     <div className="flex flex-col items-start w-full py-24 max-w-screen-xl gap-10 text-white border-x-[1px] border-b-[1px] border-white/10">

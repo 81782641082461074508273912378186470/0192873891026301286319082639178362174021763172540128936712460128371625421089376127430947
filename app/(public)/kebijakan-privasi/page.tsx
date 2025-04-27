@@ -1,5 +1,15 @@
-import { NextPage } from 'next';
+import { generateMetadata } from '@/lib/utils';
+import { Metadata, NextPage } from 'next';
 
+export const metadata: Metadata = generateMetadata({
+  title: 'Kebijakan Privasi | Autolaku - Platform Dropshipping',
+  description:
+    'Pahami bagaimana Autolaku mengumpulkan, menggunakan, dan melindungi data Anda. Pelajari hak Anda dan komitmen kami terhadap privasi di dropshipping.',
+  keywords:
+    'Kebijakan Privasi Autolaku, Perlindungan Data, Privasi Dropshipping, Hak Pengguna, Keamanan Data',
+  url: 'https://autolaku.com/kebijakan-privasi',
+  image: 'https://autolaku.com/images/og-privacy.webp',
+});
 const PrivacyPolicy: NextPage = () => {
   return (
     <div className="flex flex-col items-start w-full py-24 max-w-screen-xl gap-10 text-white border-x-[1px] border-b-[1px] border-white/10">

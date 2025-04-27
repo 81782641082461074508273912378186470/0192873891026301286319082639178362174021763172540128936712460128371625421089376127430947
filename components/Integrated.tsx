@@ -8,7 +8,7 @@ import { InfiniteMovingCards } from './ui/infinite-moving-cards';
 
 const Integrated = () => {
   return (
-    <div className="lg:my-60 mb-32 relative pb-20 py-10 w-full flex flex-col justify-center items-center border-y-[1px] border-white/10">
+    <section className="lg:my-60 mb-32 relative pb-20 py-10 w-full flex flex-col justify-center items-center border-y-[1px] border-white/10">
       <h3 className="text-lg items-center font-light tracking-widest select-none flex gap-2 text-white">
         <GrConnect className="text-xl" /> Terintegrasi dengan
       </h3>
@@ -28,7 +28,7 @@ const Integrated = () => {
           className="h-[100%] w-auto"
         />
       </div>
-    </div>
+    </section>
   );
 };
 

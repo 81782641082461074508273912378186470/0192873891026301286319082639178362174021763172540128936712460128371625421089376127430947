@@ -48,8 +48,8 @@ const Feature = () => {
     },
   ];
   return (
-    <div className="max-w-screen-xl mx-auto flex flex-col lg:items-start justify-start text-center  text-white z-10 py-24 px-5 2xl:px-0 lg:my-40">
-      <div className="space-y-8 mb-10">
+    <section className="max-w-screen-xl mx-auto flex flex-col lg:items-start justify-start text-center  text-white z-10 py-24 px-5 2xl:px-0 lg:my-40">
+      <header className="space-y-8 mb-10">
         <div>
           <div className="tracking-widest text-neutral-600 flex items-center gap-2 text-sm">
             <span>[</span> <span>Fitur Autolaku</span> <span>]</span>
@@ -58,7 +58,7 @@ const Feature = () => {
         <h2 className="lg:whitespace-nowrap tracking-tight w-fit text-3xl __gradient_text font-bold">
           Dropship Mudah, Cepat, Efisien, dan Pintar
         </h2>
-      </div>
+      </header>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-[1px] bg-dark-800">
         {stepByStep.map((feature, i) => (
           <FeatureCard
@@ -70,7 +70,7 @@ const Feature = () => {
           />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
