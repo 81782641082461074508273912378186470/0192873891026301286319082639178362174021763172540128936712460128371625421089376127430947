@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
@@ -40,11 +41,20 @@ export default function AccountDropdown({
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild className="cursor-pointer bg-white/10 rounded-sm px-2 py-1">
+        {/* {displayName ? (
+          <p className="text-sm rounded-button">{displayName}</p>
+        ) : (
+          <button className="p-2! flex! items-center justify-center rounded-button">
+            <BiSolidUserDetail className="text-xl lg:text-3xl" />
+          </button>
+        )} */}
         {displayName ? (
           <p className="text-sm rounded-button">{displayName}</p>
         ) : (
-          <button className="h-10 w-10 p-0! flex! items-center justify-center rounded-button">
-            <BiSolidUserDetail className="text-xl" />
+          <button
+            onClick={handleLogout}
+            className="flex! gap-1! items-center! rounded-button bg-red-500/20! text-red-500!">
+            <IoMdLogOut className="text-lg" /> Logout
           </button>
         )}
       </DropdownMenuTrigger>
