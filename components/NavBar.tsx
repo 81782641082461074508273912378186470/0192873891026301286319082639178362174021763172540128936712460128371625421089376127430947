@@ -31,7 +31,7 @@ const NavBar = () => {
       button.title === 'Kebijakan Privasi'
   );
   const accountButtons = navButtons.filter(
-    (button) => button.title === 'Masuk/Daftar' || button.title === 'Masuk/Daftar'
+    (button) => button.title === 'Dashboard' || button.title === 'Dashboard'
   );
 
   const handleMouseEnter = (dropdown: 'pricing' | 'help' | 'information') => {
