@@ -94,7 +94,7 @@ const HeroSection = () => {
             <IoMdArrowDropright className="md:text-2xl" />
           </button>
         </div>
-        <div className="flex flex-col w-fit items-center mt-5 gap-1">
+        <div className="flex flex-col w-fit justify-center items-center mt-5 gap-1">
           <div className="tracking-widest text-neutral-300 flex items-center gap-2 text-sm">
             <span>[</span> <span>Download Sekarang</span> <span>]</span>
           </div>
