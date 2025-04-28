@@ -5,7 +5,7 @@ import { cookies } from 'next/headers';
 import ShowAuthData from '@/components/auth/ShowAuthData';
 
 export const metadata = {
-  title: 'App Center Autolaku',
+  title: 'Dashboard',
   description: 'Autolaku Application Center.',
 };
 

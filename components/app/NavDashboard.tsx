@@ -58,7 +58,7 @@ export default function NavDashboard({
 
             <div className="w-0.5 h-7 bg-white/10 rotate-12" />
             <span className="text-white/40 hover:text-white/70 select-none text-sm font-bold __gradient_text">
-              App Center
+              Dashboard
             </span>
             <div className="w-0.5 h-7 bg-white/10 rotate-12" />
             <span className="flex gap-1 items-center text-white/40 text-xs hover:text-white/70 select-none font-bold __gradient_text">
