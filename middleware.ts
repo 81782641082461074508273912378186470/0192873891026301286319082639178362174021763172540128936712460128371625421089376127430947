@@ -16,19 +16,19 @@ export async function middleware(req: NextRequest) {
   }
 
   if (
-    hostname !== 'app.autolaku.com' &&
+    hostname !== 'dashboard.autolaku.com' &&
     !hostname?.includes('localhost') &&
     hostname?.endsWith('autolaku.com') &&
-    path.startsWith('/app')
+    path.startsWith('/dashboard')
   ) {
     return new Response(null, { status: 404, headers: { 'Content-Type': 'text/html' } });
   }
 
-  if (hostname === 'app.autolaku.com') {
-    return NextResponse.rewrite(new URL(`/app${path}`, req.url));
+  if (hostname === 'dashboard.autolaku.com') {
+    return NextResponse.rewrite(new URL(`/dashboard${path}`, req.url));
   }
 
-  if (hostname?.includes('localhost') && path.startsWith('/app')) {
+  if (hostname?.includes('localhost') && path.startsWith('/dashboard')) {
     return NextResponse.next();
   }
 

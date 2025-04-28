@@ -61,7 +61,7 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
     const currentPath = window.location.pathname;
 
     // Prevent redirect if already on the auth page
-    if (currentPath === '/app/auth' || currentPath === '/auth') {
+    if (currentPath === '/dashboard/auth' || currentPath === '/auth') {
       return;
     }
 
@@ -74,9 +74,9 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
       setAuthDetails(null);
       setIsAuthenticated(false);
       if (isLocalhost) {
-        router.push('/app/auth');
+        router.push('/dashboard/auth');
       } else {
-        window.location.href = 'https://app.autolaku.com/auth';
+        window.location.href = 'https://dashboard.autolaku.com/auth';
       }
       return;
     }
@@ -103,9 +103,9 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
         setAuthDetails(null);
         setIsAuthenticated(false);
         if (isLocalhost) {
-          router.push('/app/auth');
+          router.push('/dashboard/auth');
         } else {
-          window.location.href = 'https://app.autolaku.com/auth';
+          window.location.href = 'https://dashboard.autolaku.com/auth';
         }
       }
     } catch (error) {
@@ -118,9 +118,9 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
       setAuthDetails(null);
       setIsAuthenticated(false);
       if (isLocalhost) {
-        router.push('/app/auth');
+        router.push('/dashboard/auth');
       } else {
-        window.location.href = 'https://app.autolaku.com/auth';
+        window.location.href = 'https://dashboard.autolaku.com/auth';
       }
     }
   }, [router]);
@@ -150,9 +150,9 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
     setIsAuthenticated(false);
     const isLocalhost = window.location.hostname === 'localhost';
     if (isLocalhost) {
-      router.push('/app/auth');
+      router.push('/dashboard/auth');
     } else {
-      window.location.href = 'https://app.autolaku.com/auth';
+      window.location.href = 'https://dashboard.autolaku.com/auth';
     }
   };
 

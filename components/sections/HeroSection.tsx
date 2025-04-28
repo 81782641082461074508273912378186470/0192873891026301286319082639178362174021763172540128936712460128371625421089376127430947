@@ -26,14 +26,14 @@ const HeroSection = () => {
         loading="lazy"
       />
       <div className="max-w-screen-xl mx-auto flex flex-col lg:items-start justify-start min-h-screen text-center  text-white z-10 pt-24 px-5 2xl:px-0 lg:mt-40">
-        <div className="flex flex-col lg:flex-row  lg:items-end justify-center items-center lg:justify-between w-full">
+        <div className="flex justify-center items-center w-full">
           <div className="flex flex-col justify-center ">
-            <h1 className="lg:text-7xl md:text-5xl text-3xl lg:text-start font-extrabold mb-2 ">
+            <h1 className="lg:text-7xl md:text-5xl text-3xl font-extrabold mb-2 ">
               <span className="__gradient_text">Dropship ribet</span>
               <br />
               <span className="__gradient_text">bikin kalah saing?</span>
             </h1>
-            <h2 className="lg:text-3xl md:text-xl justify-center lg:justify-start flex text-light-300">
+            <h2 className="lg:text-4xl md:text-xl justify-center lg:justify-start flex text-light-300">
               Sekarang bisa
               <strong className="flex flex-col items-center justify-center mx-2 text-white">
                 cepat & efisien
@@ -41,30 +41,6 @@ const HeroSection = () => {
               </strong>
               tanpa alat lain.
             </h2>
-          </div>
-          <div className="flex w-fit mt-5 justify-center lg:justify-end items-center">
-            <div className="flex gap-3 bg-white/10 backdrop-blur-sm border-2 border-black rounded-full p-5">
-              <DownloadButton
-                className="!bg-white rounded-full focus:ring-2 focus:ring-white hover:shadow-lg"
-                downloadUrl="/api/download?platform=macos"
-                buttonText={
-                  <div className="flex gap-2 text-black text-sm lg:text-xl items-center">
-                    <DiApple className="text-xl lg:text-2xl" /> MacOS
-                  </div>
-                }
-                aria-label="Download for MacOS"
-              />
-              <DownloadButton
-                className="!bg-blue-600 rounded-full focus:ring-2 focus:ring-white hover:shadow-lg"
-                downloadUrl="/api/download?platform=windows"
-                buttonText={
-                  <div className="flex gap-2 text-white text-sm lg:text-xl items-center ">
-                    <DiWindows className="text-xl lg:text-2xl" /> Windows
-                  </div>
-                }
-                aria-label="Download for Windows"
-              />
-            </div>
           </div>
         </div>
 
@@ -117,6 +93,33 @@ const HeroSection = () => {
             aria-label="Next screenshot">
             <IoMdArrowDropright className="md:text-2xl" />
           </button>
+        </div>
+        <div className="flex flex-col w-fit items-center mt-5 gap-1">
+          <div className="tracking-widest text-neutral-300 flex items-center gap-2 text-sm">
+            <span>[</span> <span>Download Sekarang</span> <span>]</span>
+          </div>
+          <div className="flex gap-3 bg-white/10 backdrop-blur-sm border-2 border-black rounded-full p-3">
+            <DownloadButton
+              className="!bg-white rounded-full focus:ring-2 focus:ring-white hover:shadow-lg"
+              downloadUrl="/api/download?platform=macos"
+              buttonText={
+                <div className="flex gap-2 text-black text-sm lg:text-xl items-center">
+                  <DiApple className="text-xl lg:text-2xl" /> MacOS
+                </div>
+              }
+              aria-label="Download for MacOS"
+            />
+            <DownloadButton
+              className="!bg-blue-600 rounded-full focus:ring-2 focus:ring-white hover:shadow-lg"
+              downloadUrl="/api/download?platform=windows"
+              buttonText={
+                <div className="flex gap-2 text-white text-sm lg:text-xl items-center ">
+                  <DiWindows className="text-xl lg:text-2xl" /> Windows
+                </div>
+              }
+              aria-label="Download for Windows"
+            />
+          </div>
         </div>
       </div>
     </section>

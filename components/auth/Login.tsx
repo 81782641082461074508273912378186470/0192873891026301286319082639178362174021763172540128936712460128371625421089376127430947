@@ -54,8 +54,8 @@ const Login = () => {
               parsedAuthData.license)
           ) {
             window.location.href = isLocalhost
-              ? 'http://localhost:3000/app'
-              : 'https://app.autolaku.com';
+              ? 'http://localhost:3000/dashboard'
+              : 'https://dashboard.autolaku.com';
           } else {
             console.error('Invalid authData structure in cookie, clearing:', parsedAuthData);
             document.cookie = `authData=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/${
@@ -139,7 +139,9 @@ const Login = () => {
       console.log('Saving authData to cookie:', authData);
       setCookie('authData', JSON.stringify(authData), 30);
       const isLocalhost = window.location.hostname === 'localhost';
-      window.location.href = isLocalhost ? 'http://localhost:3000/app' : 'https://app.autolaku.com';
+      window.location.href = isLocalhost
+        ? 'http://localhost:3000/dashboard'
+        : 'https://dashboard.autolaku.com';
     } catch (error: any) {
       console.error('Login error:', error.message);
       startTimer('error', 'Terjadi Kesalahan.');

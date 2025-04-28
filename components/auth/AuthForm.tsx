@@ -10,7 +10,7 @@ const AuthForm = () => {
     setActiveSection(section);
   };
   return (
-    <div className="flex w-full h-[650px]">
+    <div className="flex w-full h-fit min-h-[650px]">
       <div className="w-full flex flex-col justify-start border-[1px] xl:border-r-0 border-white/10 ">
         <div className="flex flex-col w-full h-fit items-center justify-center">
           <div className="flex w-full items-center justify-between">

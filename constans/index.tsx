@@ -86,10 +86,10 @@ export const navButtons = [
     description: 'Kenali syarat penggunaan Autolaku.',
   },
   {
-    title: 'Masuk/Daftar',
-    url: 'https://app.autolaku.com/auth',
+    title: 'Dashboard',
+    url: 'https://dashboard.autolaku.com/auth',
     icon: <IoMdPerson />,
-    description: 'Buat akun baru/Masuk dengan akun mu',
+    description: 'Dashboard Autolaku',
   },
 ];
 

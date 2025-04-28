@@ -6,7 +6,7 @@ import React from 'react';
 export const metadata: Metadata = generateMetadata({
   title: 'Daftar Autolaku Sekarang!',
   description: 'Halaman Autentikasi autolaku.com',
-  url: 'https://app.autolaku.co/auth',
+  url: 'https://dashboard.autolaku.co/auth',
   image: 'https://autolaku.com/images/Autolaku-Login.webp',
   keywords: 'Halaman Autentikasi Autolaku,Login, Daftar, License Key, Admin',
 });

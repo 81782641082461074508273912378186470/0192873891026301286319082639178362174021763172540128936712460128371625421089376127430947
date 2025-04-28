@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-// Navbar.tsx
+
 'use client';
 
 import React, { useState, useRef } from 'react';
 import Link from 'next/link';
-import { IoIosArrowDown, IoIosArrowUp, IoMdPerson } from 'react-icons/io';
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from '@/components/ui/sidebar';
 import { HiMenuAlt4 } from 'react-icons/hi';
 import { navButtons } from '@/constans';
@@ -193,9 +193,8 @@ const NavBar = () => {
         <div>
           <Link
             href={accountButtons[0]?.url || '#'}
-            className="hidden! lg:flex! items-start rounded-button">
-            <IoMdPerson className="text-xl" />
-            <span>Masuk/Daftar</span>
+            className="hidden! lg:!block !px-4 items-center rounded-button">
+            Dashboard
           </Link>
 
           <Sheet>

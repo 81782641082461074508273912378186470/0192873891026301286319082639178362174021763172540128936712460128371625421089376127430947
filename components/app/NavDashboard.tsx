@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { IoMdLogOut } from 'react-icons/io';
 import { GrLicense, GrUserAdmin } from 'react-icons/gr';
 
-interface NavAppProps {
+interface NavDashboardProps {
   role: string | null;
   type: 'account' | 'license' | null;
   license: any;
@@ -18,7 +18,13 @@ interface NavAppProps {
   handleLogout: () => void;
 }
 
-export default function NavApp({ role, type, license, handleLogout, authDetails }: NavAppProps) {
+export default function NavDashboard({
+  role,
+  type,
+  license,
+  handleLogout,
+  authDetails,
+}: NavDashboardProps) {
   const user = authDetails?.user;
 
   const pathname = usePathname();
