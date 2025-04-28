@@ -198,8 +198,8 @@ const Daftar = () => {
                         ? 'bg-dark-700 border-white/50 border-[1px] text-white'
                         : 'bg-dark-800 border-[1px] border-white/5 text-white/50'
                     }`}>
-                    <span className="flex gap-2 items-center">
-                      <GrLicense className="lg:text-lg" />
+                    <span className="flex gap-2 items-center font-bold __gradient_text">
+                      <GrLicense className="lg:text-lg text-white" />
                       User
                     </span>
                     <p className="text-xs lg:text-sm mt-2">
@@ -214,8 +214,8 @@ const Daftar = () => {
                         ? 'bg-dark-700 border-white/50 border-[1px] text-white'
                         : 'bg-dark-800 border-[1px] border-white/5 text-white/50'
                     }`}>
-                    <span className="flex gap-2 items-center">
-                      <GrUserAdmin className="lg:text-lg" />
+                    <span className="flex gap-2 items-center font-bold __gradient_text">
+                      <GrUserAdmin className="lg:text-lg text-white" />
                       Admin
                     </span>
                     <p className="text-xs lg:text-sm mt-2">
