@@ -46,7 +46,7 @@ interface FieldConfig {
 }
 
 const renderKeyValue = (label: string, value: any) => (
-  <div key={label} className="flex justify-between my-2 pb-2 border-b border-white/10">
+  <div key={label} className="flex justify-between my-2 pb-2 border-b border-white/10 ">
     <p className="text-sm font-light select-none text-white/50">{label}</p>
     <p className="text-sm font-medium text-white select-none">{value ?? 'N/A'}</p>
   </div>
@@ -62,7 +62,6 @@ const renderFields = (data: any, fields: FieldConfig[]) =>
 const ShowAuthData = ({ authData }: { authData: AuthData }) => {
   const { type } = authData;
 
-  // Field configurations
   const accountFields: FieldConfig[] = [
     { key: 'username', label: 'Username' },
     { key: 'role', label: 'Role' },
@@ -92,17 +91,22 @@ const ShowAuthData = ({ authData }: { authData: AuthData }) => {
     { key: 'deviceUniqueID', label: 'Device Unique ID' },
   ];
 
-  return (
-    <div className="p-5 border rounded-sm shadow-xl border-white/25 shadow-black/40 bg-black/10 backdrop-blur">
-      <h3 className="text-lg font-semibold text-white select-none mb-5">
-        {type === 'account' ? 'Account Details' : 'License Details'}
-      </h3>
-      <div className="grid grid-cols-2 gap-5">
-        {type === 'account' && authData.user && renderFields(authData.user, accountFields)}
+  const LicenseDetails = () => {
+    return (
+      <div className="bg-fuchsia-500/30 flex flex-col p-5">
+        <h3 className="text-lg font-semibold text-white select-none mb-5">License Details</h3>
+        {renderFields(authData.license, licenseFields)}
+      </div>
+    );
+  };
 
+  return (
+    <>
+      <div className="p-5 border rounded-sm shadow-xl border-white/25 shadow-black/40 bg-black/10 backdrop-blur z-50">
+        {type === 'account' && authData.user && renderFields(authData.user, accountFields)}
+        <LicenseDetails />
         {type === 'license' && authData.license && (
           <>
-            {renderFields(authData.license, licenseFields)}
             {authData.license.deviceInfo && (
               <>
                 <div className="col-span-2 mt-5">
@@ -114,7 +118,27 @@ const ShowAuthData = ({ authData }: { authData: AuthData }) => {
           </>
         )}
       </div>
-    </div>
+      <svg
+        id="A"
+        data-name="A"
+        fill="#fff"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 4389.67 5000"
+        className="w-auto h-[125%] absolute -bottom-20 -left-[90%] lg:left-10 z-10 opacity-5">
+        <polygon
+          className="cls-1"
+          points="2304.85 2826.47 1426.69 5000 0 5000 1813.03 512.61 2304.85 2826.47"
+        />
+        <polygon
+          className="cls-1"
+          points="3967.92 3015.8 2615.57 3015.8 2513.7 3015.8 1979.25 4338.6 2896.73 4338.6 3037.32 5000 4389.67 5000 3967.92 3015.8"
+        />
+        <polygon
+          className="cls-1"
+          points="3911.69 2751.24 2559.33 2751.24 1990.26 73.96 2020.14 0 3326.9 0 3911.69 2751.24"
+        />
+      </svg>
+    </>
   );
 };
 

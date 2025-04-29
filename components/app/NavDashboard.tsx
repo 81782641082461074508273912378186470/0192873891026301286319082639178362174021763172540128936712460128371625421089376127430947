@@ -33,7 +33,9 @@ export default function NavDashboard({
       <nav className="fixed top-0 left-0 w-full flex justify-center items-center z-50 shadow-md border-b-[1px] border-white/10 bg-dark-800">
         <div className="max-w-screen-xl flex items-center justify-between w-full text-white border-x-[1px] border-white/10 py-3 px-5">
           <div className="flex items-center gap-2 lg:gap-6 __gradient_text">
-            <Link href="https://autolaku.com/" className="!p-3 rounded-button rounded-full">
+            <Link
+              href="https://autolaku.com/"
+              className="!p-3  hover:bg-dark-700 rounded-full hover:border-white/10 border-transparent border-[1px] text-white/70 hover:text-white">
               <svg
                 id="A"
                 data-name="A"
@@ -72,13 +74,6 @@ export default function NavDashboard({
                 </>
               )}
             </span>
-
-            {type === 'license' && license?.key && (
-              <>
-                <div className="w-0.5 h-7 bg-white/10 rotate-12" />
-                <HideShowText text={license.key} />
-              </>
-            )}
           </div>
 
           <div className="flex items-center justify-between gap-6">

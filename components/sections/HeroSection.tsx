@@ -94,31 +94,33 @@ const HeroSection = () => {
             <IoMdArrowDropright className="md:text-2xl" />
           </button>
         </div>
-        <div className="flex flex-col w-fit justify-center items-center mt-5 gap-1">
-          <div className="tracking-widest text-neutral-300 flex items-center gap-2 text-sm">
-            <span>[</span> <span>Download Sekarang</span> <span>]</span>
-          </div>
-          <div className="flex gap-3 bg-white/10 backdrop-blur-sm border-2 border-black rounded-full p-3">
-            <DownloadButton
-              className="!bg-white rounded-full focus:ring-2 focus:ring-white hover:shadow-lg"
-              downloadUrl="/api/download?platform=macos"
-              buttonText={
-                <div className="flex gap-2 text-black text-sm lg:text-xl items-center">
-                  <DiApple className="text-xl lg:text-2xl" /> MacOS
-                </div>
-              }
-              aria-label="Download for MacOS"
-            />
-            <DownloadButton
-              className="!bg-blue-600 rounded-full focus:ring-2 focus:ring-white hover:shadow-lg"
-              downloadUrl="/api/download?platform=windows"
-              buttonText={
-                <div className="flex gap-2 text-white text-sm lg:text-xl items-center ">
-                  <DiWindows className="text-xl lg:text-2xl" /> Windows
-                </div>
-              }
-              aria-label="Download for Windows"
-            />
+        <div className="w-full flex items-start justify-center md:justify-end">
+          <div className="flex flex-col w-fit justify-center items-center mt-5 gap-1">
+            <div className="tracking-widest text-neutral-300 flex items-center gap-2 text-sm">
+              <span>[</span> <span>Download Sekarang</span> <span>]</span>
+            </div>
+            <div className="flex gap-3 bg-white/10 backdrop-blur-sm border-2 border-black rounded-full p-3">
+              <DownloadButton
+                className="!bg-white rounded-full focus:ring-2 focus:ring-white hover:!bg-white/80 hover:shadow-lg"
+                downloadUrl="/api/download?platform=macos"
+                buttonText={
+                  <div className="flex gap-2 text-black text-sm lg:text-xl items-center">
+                    <DiApple className="text-xl lg:text-2xl" /> MacOS
+                  </div>
+                }
+                aria-label="Download for MacOS"
+              />
+              <DownloadButton
+                className="!bg-blue-600 rounded-full focus:ring-2 focus:ring-white hover:!bg-blue-500 hover:shadow-lg"
+                downloadUrl="/api/download?platform=windows"
+                buttonText={
+                  <div className="flex gap-2 text-white text-sm lg:text-xl items-center ">
+                    <DiWindows className="text-xl lg:text-2xl" /> Windows
+                  </div>
+                }
+                aria-label="Download for Windows"
+              />
+            </div>
           </div>
         </div>
       </div>
