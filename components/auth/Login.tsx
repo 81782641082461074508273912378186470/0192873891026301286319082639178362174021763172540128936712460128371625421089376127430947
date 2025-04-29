@@ -230,7 +230,7 @@ const Login = () => {
             <button
               type="submit"
               className={`font-bold py-2 px-4 rounded w-full ${
-                loading ? 'bg-dark-600 text-white opacity-50' : 'bg-white text-black'
+                loading ? 'bg-dark-600 text-white opacity-50 cursor-loading' : 'bg-white text-black'
               }`}
               disabled={loading}>
               {loading ? 'Mohon Tunggu...' : 'Masuk'}
