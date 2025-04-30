@@ -105,9 +105,6 @@ const ShowAuthData = ({ authData }: { authData: AuthData }) => {
           <span>[</span> <span>License Details</span> <span>]</span>
         </div>
         <div className="z-40 w-full">{renderFields(authData.license, licenseFields)}</div>
-        <div className="justify-start items-end w-full h-full transition-opacity duration-300 hidden group-hover:flex left-10 bottom-10 absolute w-full">
-          <GrLicense className="text-9xl text-dark-700 z-10" />
-        </div>
       </div>
     );
   };
@@ -120,19 +117,33 @@ const ShowAuthData = ({ authData }: { authData: AuthData }) => {
         <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
 
         <div className="tracking-widest text-light-800 flex items-center gap-2 text-xl mb-10">
-          <span>[</span> <span>Device Information</span> <span>]</span>
+          <span>[</span> <span>Informasi Perangkat</span> <span>]</span>
         </div>
         <div className="z-40 w-full">{renderFields(deviceInfo, deviceInfoFields)}</div>
-        <div className="justify-start items-end w-full h-full transition-opacity duration-300 hidden group-hover:flex left-10 bottom-10 absolute w-full">
-          <GrLicense className="text-9xl text-dark-700 z-10" />
+      </div>
+    );
+  };
+  const AccountInfo = () => {
+    return (
+      <div className="group transition-opacity w-full duration-300 relative flex flex-col p-5 bg-black hover:bg-gradient-to-tr hover:from-dark-700 hover:from-5% hover:via-dark-800 hover:via-50% hover:to-dark-800 hover:to-90% text-white border-[1px] lg:border-l-[0.5px] hover:border-[0.5px] border-dark-600 hover:border-dark-200 transition-all duration-300">
+        <div className="absolute top-0 left-0 w-2 h-2 border-t border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
+        <div className="absolute top-0 right-0 w-2 h-2 border-t border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
+        <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
+        <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
+
+        <div className="tracking-widest text-light-800 flex items-center gap-2 text-xl mb-10">
+          <span>[</span> <span>Informasi User</span> <span>]</span>
         </div>
+        <div className="z-40 w-full">{renderFields(authData.user, accountFields)}</div>
       </div>
     );
   };
 
   return (
     <div className="w-full max-w-screen-xl z-40">
-      <div className="flex flex-col lg:flex-row justify-center p-5 lg:p-0 items-start gap-5 xl:gap-10 shadow-xl shadow-black/50 backdrop-blur z-40">
+      <div className="flex flex-col md:flex-row justify-center p-5 lg:p-0 items-start gap-5 xl:gap-10 shadow-xl shadow-black/50 backdrop-blur z-40">
+        {type === 'account' && authData.user && <AccountInfo />}
+
         <LicenseDetails />
         {type === 'license' && authData.license && (
           <>
@@ -140,11 +151,7 @@ const ShowAuthData = ({ authData }: { authData: AuthData }) => {
           </>
         )}
       </div>
-      {/* <div className="p-5 rounded-sm flex flex-col justify-start gap-20 shadow-xl shadow-black/50 bg-white/10 backdrop-blur ">
-        use this later
-        {type === 'account' && authData.user && renderFields(authData.user, accountFields)}
-        
-      </div> */}
+
       <svg
         id="A"
         data-name="A"

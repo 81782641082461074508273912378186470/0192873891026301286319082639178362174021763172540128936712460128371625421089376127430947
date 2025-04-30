@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import DashboardWrapper from '@/components/app/DashboardWrapper';
 import { AuthDashboardProvider } from '@/context/AuthDashboardContext';
 
@@ -16,7 +17,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             <DashboardWrapper>{children}</DashboardWrapper>
           </AuthDashboardProvider>
         </div>
-        <BreakPointChecker />
+        {/* <BreakPointChecker /> */}
       </body>
     </html>
   );
