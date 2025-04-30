@@ -1,8 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
-import { GrLicense } from 'react-icons/gr';
+import { GrLicense, GrUserAdmin } from 'react-icons/gr';
+import { GoCpu } from 'react-icons/go';
 
+// Interfaces (unchanged from original)
 interface UserDetails {
   username: string;
   role: string;
@@ -61,6 +62,60 @@ const renderFields = (data: any, fields: FieldConfig[]) =>
     return renderKeyValue(label, displayValue);
   });
 
+const AccountInfo = ({ user, fields }: { user: UserDetails; fields: FieldConfig[] }) => (
+  <div className="group transition-opacity w-full duration-300 relative flex flex-col p-5 bg-black hover:bg-gradient-to-tr hover:from-dark-700 hover:from-5% hover:via-dark-800 hover:via-50% hover:to-dark-800 hover:to-90% text-white border-[1px] lg:border-l-[0.5px] hover:border-[0.5px] border-dark-600 hover:border-dark-200 transition-all duration-300">
+    <div className="absolute top-0 left-0 w-2 h-2 border-t border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
+    <div className="absolute top-0 right-0 w-2 h-2 border-t border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
+    <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
+    <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
+    <div className="flex w-full justify-between items-start mb-10">
+      <GrUserAdmin className="text-3xl text-white/80" />
+      <div className="tracking-widest text-light-700 font-thin flex items-center gap-2 text-sm">
+        <span>[</span> <span>Informasi PeraAkunngkat</span> <span>]</span>
+      </div>
+    </div>
+    <div className="z-40 w-full">{renderFields(user, fields)}</div>
+  </div>
+);
+
+const LicenseDetails = ({
+  license,
+  fields,
+}: {
+  license: LicenseDetails;
+  fields: FieldConfig[];
+}) => (
+  <div className="group transition-opacity w-full duration-300 relative flex flex-col p-5 bg-black hover:bg-gradient-to-tr hover:from-dark-700 hover:from-5% hover:via-dark-800 hover:via-50% hover:to-dark-800 hover:to-90% text-white border-[1px] lg:border-l-[0.5px] hover:border-[0.5px] border-dark-600 hover:border-dark-200 transition-all duration-300">
+    <div className="absolute top-0 left-0 w-2 h-2 border-t border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
+    <div className="absolute top-0 right-0 w-2 h-2 border-t border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
+    <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
+    <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
+    <div className="flex w-full justify-between items-start mb-10">
+      <GrLicense className="text-3xl text-white/80" />
+      <div className="tracking-widest __gradient_text font-thin flex items-center gap-2 text-sm">
+        <span>[</span> <span>License Details</span> <span>]</span>
+      </div>
+    </div>
+    <div className="z-40 w-full">{renderFields(license, fields)}</div>
+  </div>
+);
+
+const DeviceInfo = ({ deviceInfo, fields }: { deviceInfo: DeviceInfo; fields: FieldConfig[] }) => (
+  <div className="group transition-opacity w-full duration-300 relative flex flex-col p-5 bg-black hover:bg-gradient-to-tr hover:from-dark-700 hover:from-5% hover:via-dark-800 hover:via-50% hover:to-dark-800 hover:to-90% text-white border-[1px] lg:border-l-[0.5px] hover:border-[0.5px] border-dark-600 hover:border-dark-200 transition-all duration-300">
+    <div className="absolute top-0 left-0 w-2 h-2 border-t border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
+    <div className="absolute top-0 right-0 w-2 h-2 border-t border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
+    <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
+    <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
+    <div className="flex w-full justify-between items-start mb-10">
+      <GoCpu className="text-3xl text-white/80" />
+      <div className="tracking-widest text-light-700 font-thin flex items-center gap-2 text-sm">
+        <span>[</span> <span>Informasi Perangkat</span> <span>]</span>
+      </div>
+    </div>
+    <div className="z-40 w-full">{renderFields(deviceInfo, fields)}</div>
+  </div>
+);
+
 const ShowAuthData = ({ authData }: { authData: AuthData }) => {
   const { type } = authData;
 
@@ -73,91 +128,55 @@ const ShowAuthData = ({ authData }: { authData: AuthData }) => {
     { key: 'isActive', label: 'Active', format: (value: boolean) => (value ? 'Yes' : 'No') },
   ];
 
+  const licenseKeyField: FieldConfig = { key: 'key', label: 'License Key' };
+  const adminIdField: FieldConfig = { key: 'adminId', label: 'Admin ID' };
+  const statusField: FieldConfig = { key: 'status', label: 'Status' };
+  const expiresAtField: FieldConfig = { key: 'expiresAt', label: 'Expires At' };
+  const generatedAtField: FieldConfig = { key: 'generatedAt', label: 'Generated At' };
   const licenseFields: FieldConfig[] = [
-    { key: 'key', label: 'License Key' },
-    { key: 'adminId', label: 'Admin ID' },
-    { key: 'status', label: 'Status' },
-    { key: 'expiresAt', label: 'Expires At' },
-    { key: 'generatedAt', label: 'Generated At' },
+    licenseKeyField,
+    adminIdField,
+    statusField,
+    expiresAtField,
+    generatedAtField,
   ];
 
+  const deviceNameField: FieldConfig = { key: 'deviceName', label: 'Device Name' };
+  const platformField: FieldConfig = { key: 'platform', label: 'Platform' };
+  const architectureField: FieldConfig = { key: 'architecture', label: 'Architecture' };
+  const cpuCoresField: FieldConfig = { key: 'cpuCores', label: 'CPU Cores' };
+  const osVersionField: FieldConfig = { key: 'osVersion', label: 'OS Version' };
+  const totalMemoryField: FieldConfig = { key: 'totalMemory', label: 'Total Memory' };
+  const graphicsCardField: FieldConfig = { key: 'graphicsCard', label: 'Graphics Card' };
+  const totalStorageField: FieldConfig = { key: 'totalStorage', label: 'Total Storage' };
+  const deviceUniqueIDField: FieldConfig = { key: 'deviceUniqueID', label: 'Device Unique ID' };
   const deviceInfoFields: FieldConfig[] = [
-    { key: 'deviceName', label: 'Device Name' },
-    { key: 'platform', label: 'Platform' },
-    { key: 'architecture', label: 'Architecture' },
-    { key: 'cpuCores', label: 'CPU Cores' },
-    { key: 'osVersion', label: 'OS Version' },
-    { key: 'totalMemory', label: 'Total Memory' },
-    { key: 'graphicsCard', label: 'Graphics Card' },
-    { key: 'totalStorage', label: 'Total Storage' },
-    { key: 'deviceUniqueID', label: 'Device Unique ID' },
+    deviceNameField,
+    platformField,
+    architectureField,
+    cpuCoresField,
+    osVersionField,
+    totalMemoryField,
+    graphicsCardField,
+    totalStorageField,
+    deviceUniqueIDField,
   ];
-
-  const LicenseDetails = () => {
-    return (
-      <div className="group transition-opacity w-full duration-300 relative flex flex-col p-5 bg-black hover:bg-gradient-to-tr hover:from-dark-700 hover:from-5% hover:via-dark-800 hover:via-50% hover:to-dark-800 hover:to-90% text-white border-[1px] lg:border-l-[0.5px] hover:border-[0.5px] border-dark-600 hover:border-dark-200 transition-all duration-300">
-        <div className="absolute top-0 left-0 w-2 h-2 border-t border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
-        <div className="absolute top-0 right-0 w-2 h-2 border-t border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
-        <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
-        <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
-        <div className="flex w-full justify-between items-start mb-10">
-          <GrLicense className="text-3xl text-white/80" />
-          <div className="tracking-widest text-light-700 font-thin flex items-center gap-2 text-sm">
-            <span>[</span> <span>License Details</span> <span>]</span>
-          </div>
-        </div>
-
-        <div className="z-40 w-full">{renderFields(authData.license, licenseFields)}</div>
-      </div>
-    );
-  };
-  const DeviceInfo = ({ deviceInfo }: any) => {
-    return (
-      <div className="group transition-opacity w-full duration-300 relative flex flex-col p-5 bg-black hover:bg-gradient-to-tr hover:from-dark-700 hover:from-5% hover:via-dark-800 hover:via-50% hover:to-dark-800 hover:to-90% text-white border-[1px] lg:border-l-[0.5px] hover:border-[0.5px] border-dark-600 hover:border-dark-200 transition-all duration-300">
-        <div className="absolute top-0 left-0 w-2 h-2 border-t border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
-        <div className="absolute top-0 right-0 w-2 h-2 border-t border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
-        <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
-        <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
-
-        <div className="flex w-full justify-between items-start mb-10">
-          <GrLicense className="text-3xl text-white/80" />
-          <div className="tracking-widest text-light-700 font-thin flex items-center gap-2 text-sm">
-            <span>[</span> <span>Informasi Perangkat</span> <span>]</span>
-          </div>
-        </div>
-        <div className="z-40 w-full">{renderFields(deviceInfo, deviceInfoFields)}</div>
-      </div>
-    );
-  };
-  const AccountInfo = () => {
-    return (
-      <div className="group transition-opacity w-full duration-300 relative flex flex-col p-5 bg-black hover:bg-gradient-to-tr hover:from-dark-700 hover:from-5% hover:via-dark-800 hover:via-50% hover:to-dark-800 hover:to-90% text-white border-[1px] lg:border-l-[0.5px] hover:border-[0.5px] border-dark-600 hover:border-dark-200 transition-all duration-300">
-        <div className="absolute top-0 left-0 w-2 h-2 border-t border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
-        <div className="absolute top-0 right-0 w-2 h-2 border-t border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
-        <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
-        <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
-
-        <div className="tracking-widest text-light-800 flex items-center gap-2 text-xl mb-10">
-          <span>[</span> <span>Informasi User</span> <span>]</span>
-        </div>
-        <div className="z-40 w-full">{renderFields(authData.user, accountFields)}</div>
-      </div>
-    );
-  };
 
   return (
     <div className="w-full max-w-screen-xl z-40">
-      <div className="flex flex-col md:flex-row justify-center p-5 lg:p-0 items-start gap-5 xl:gap-10 shadow-xl shadow-black/50 backdrop-blur z-40">
-        {type === 'account' && authData.user && <AccountInfo />}
-
-        <LicenseDetails />
+      <div className="flex flex-col md:flex-row justify-center p-10 lg:p-0 items-start gap-10 shadow-xl shadow-black/50 backdrop-blur z-40">
+        {type === 'account' && authData.user && (
+          <AccountInfo user={authData.user} fields={accountFields} />
+        )}
         {type === 'license' && authData.license && (
           <>
-            {authData.license.deviceInfo && <DeviceInfo deviceInfo={authData.license.deviceInfo} />}
+            <LicenseDetails license={authData.license} fields={licenseFields} />
+            {authData.license.deviceInfo && (
+              <DeviceInfo deviceInfo={authData.license.deviceInfo} fields={deviceInfoFields} />
+            )}
           </>
         )}
       </div>
-
       <svg
         id="A"
         data-name="A"
