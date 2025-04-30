@@ -22,7 +22,7 @@ export default function RootLayout({
         <div className="flex flex-col justify-center items-center w-full pt-12 no-scrollbar">
           {children}
         </div>
-        <BreakPointChecker />
+        {/* <BreakPointChecker /> */}
         <Footer />
       </body>
     </html>

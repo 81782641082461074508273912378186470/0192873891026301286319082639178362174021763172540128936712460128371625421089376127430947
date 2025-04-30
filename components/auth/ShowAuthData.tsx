@@ -100,10 +100,13 @@ const ShowAuthData = ({ authData }: { authData: AuthData }) => {
         <div className="absolute top-0 right-0 w-2 h-2 border-t border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
         <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
         <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
-
-        <div className="tracking-widest text-light-800 flex items-center gap-2 text-xl mb-10">
-          <span>[</span> <span>License Details</span> <span>]</span>
+        <div className="flex w-full justify-between items-start mb-10">
+          <GrLicense className="text-3xl text-white/80" />
+          <div className="tracking-widest text-light-700 font-thin flex items-center gap-2 text-sm">
+            <span>[</span> <span>License Details</span> <span>]</span>
+          </div>
         </div>
+
         <div className="z-40 w-full">{renderFields(authData.license, licenseFields)}</div>
       </div>
     );
@@ -116,8 +119,11 @@ const ShowAuthData = ({ authData }: { authData: AuthData }) => {
         <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
         <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
 
-        <div className="tracking-widest text-light-800 flex items-center gap-2 text-xl mb-10">
-          <span>[</span> <span>Informasi Perangkat</span> <span>]</span>
+        <div className="flex w-full justify-between items-start mb-10">
+          <GrLicense className="text-3xl text-white/80" />
+          <div className="tracking-widest text-light-700 font-thin flex items-center gap-2 text-sm">
+            <span>[</span> <span>Informasi Perangkat</span> <span>]</span>
+          </div>
         </div>
         <div className="z-40 w-full">{renderFields(deviceInfo, deviceInfoFields)}</div>
       </div>

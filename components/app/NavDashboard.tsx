@@ -76,12 +76,12 @@ export default function NavDashboard({
             </span>
           </div>
 
-          <div className="flex items-center justify-between gap-6">
+          <div className="flex items-center justify-between gap-5 ">
             {type === 'license' ? (
               <button
                 onClick={handleLogout}
-                className="flex gap-0.5 items-center rounded-button hover:!bg-red-500/25 hover:!text-red-500 hover:!border-[1px] hover:!border-red-500/30 duration-300 transition-all">
-                <IoMdLogOut className="text-lg" /> Logout
+                className="flex lg:!gap-0.5 text-xs xl:text-md max-sm:!py-1 max-sm:!px-2 items-center rounded-button hover:!bg-red-500/25 hover:!text-red-500 hover:!border-[1px] hover:!border-red-500/30 duration-300 transition-all">
+                <IoMdLogOut className="text-md" /> Logout
               </button>
             ) : (
               <AccountDropdown
