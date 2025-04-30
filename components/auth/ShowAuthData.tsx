@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
+import { GrLicense } from 'react-icons/gr';
 
 interface UserDetails {
   username: string;
@@ -46,8 +48,8 @@ interface FieldConfig {
 }
 
 const renderKeyValue = (label: string, value: any) => (
-  <div key={label} className="flex justify-between my-2 pb-2 border-b border-white/10 ">
-    <p className="text-sm font-light select-none text-white/50">{label}</p>
+  <div key={label} className="flex w-full justify-between my-2 pb-2 border-b border-white/10">
+    <p className="text-sm font-light select-none text-white/70">{label}</p>
     <p className="text-sm font-medium text-white select-none">{value ?? 'N/A'}</p>
   </div>
 );
@@ -93,38 +95,63 @@ const ShowAuthData = ({ authData }: { authData: AuthData }) => {
 
   const LicenseDetails = () => {
     return (
-      <div className="bg-fuchsia-500/30 flex flex-col p-5">
-        <h3 className="text-lg font-semibold text-white select-none mb-5">License Details</h3>
-        {renderFields(authData.license, licenseFields)}
+      <div className="group transition-opacity w-full duration-300 relative flex flex-col p-5 bg-black hover:bg-gradient-to-tr hover:from-dark-700 hover:from-5% hover:via-dark-800 hover:via-50% hover:to-dark-800 hover:to-90% text-white border-[1px] lg:border-l-[0.5px] hover:border-[0.5px] border-dark-600 hover:border-dark-200 transition-all duration-300">
+        <div className="absolute top-0 left-0 w-2 h-2 border-t border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
+        <div className="absolute top-0 right-0 w-2 h-2 border-t border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
+        <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
+        <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
+
+        <div className="tracking-widest text-light-800 flex items-center gap-2 text-xl mb-10">
+          <span>[</span> <span>License Details</span> <span>]</span>
+        </div>
+        <div className="z-40 w-full">{renderFields(authData.license, licenseFields)}</div>
+        <div className="justify-start items-end w-full h-full transition-opacity duration-300 hidden group-hover:flex left-10 bottom-10 absolute w-full">
+          <GrLicense className="text-9xl text-dark-700 z-10" />
+        </div>
+      </div>
+    );
+  };
+  const DeviceInfo = ({ deviceInfo }: any) => {
+    return (
+      <div className="group transition-opacity w-full duration-300 relative flex flex-col p-5 bg-black hover:bg-gradient-to-tr hover:from-dark-700 hover:from-5% hover:via-dark-800 hover:via-50% hover:to-dark-800 hover:to-90% text-white border-[1px] lg:border-l-[0.5px] hover:border-[0.5px] border-dark-600 hover:border-dark-200 transition-all duration-300">
+        <div className="absolute top-0 left-0 w-2 h-2 border-t border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
+        <div className="absolute top-0 right-0 w-2 h-2 border-t border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
+        <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
+        <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
+
+        <div className="tracking-widest text-light-800 flex items-center gap-2 text-xl mb-10">
+          <span>[</span> <span>Device Information</span> <span>]</span>
+        </div>
+        <div className="z-40 w-full">{renderFields(deviceInfo, deviceInfoFields)}</div>
+        <div className="justify-start items-end w-full h-full transition-opacity duration-300 hidden group-hover:flex left-10 bottom-10 absolute w-full">
+          <GrLicense className="text-9xl text-dark-700 z-10" />
+        </div>
       </div>
     );
   };
 
   return (
-    <>
-      <div className="p-5 border rounded-sm shadow-xl border-white/25 shadow-black/40 bg-black/10 backdrop-blur z-50">
-        {type === 'account' && authData.user && renderFields(authData.user, accountFields)}
+    <div className="w-full max-w-screen-xl z-40">
+      <div className="flex flex-col lg:flex-row justify-center p-5 lg:p-0 items-start gap-5 xl:gap-10 shadow-xl shadow-black/50 backdrop-blur z-40">
         <LicenseDetails />
         {type === 'license' && authData.license && (
           <>
-            {authData.license.deviceInfo && (
-              <>
-                <div className="col-span-2 mt-5">
-                  <h4 className="text-md font-semibold text-white select-none mb-5">Device Info</h4>
-                </div>
-                {renderFields(authData.license.deviceInfo, deviceInfoFields)}
-              </>
-            )}
+            {authData.license.deviceInfo && <DeviceInfo deviceInfo={authData.license.deviceInfo} />}
           </>
         )}
       </div>
+      {/* <div className="p-5 rounded-sm flex flex-col justify-start gap-20 shadow-xl shadow-black/50 bg-white/10 backdrop-blur ">
+        use this later
+        {type === 'account' && authData.user && renderFields(authData.user, accountFields)}
+        
+      </div> */}
       <svg
         id="A"
         data-name="A"
         fill="#fff"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 4389.67 5000"
-        className="w-auto h-[125%] absolute -bottom-20 -left-[90%] lg:left-10 z-10 opacity-5">
+        className="w-auto h-[125%] absolute -bottom-20 -left-[90%] lg:left-10 -z-10 opacity-5">
         <polygon
           className="cls-1"
           points="2304.85 2826.47 1426.69 5000 0 5000 1813.03 512.61 2304.85 2826.47"
@@ -138,7 +165,7 @@ const ShowAuthData = ({ authData }: { authData: AuthData }) => {
           points="3911.69 2751.24 2559.33 2751.24 1990.26 73.96 2020.14 0 3326.9 0 3911.69 2751.24"
         />
       </svg>
-    </>
+    </div>
   );
 };
 

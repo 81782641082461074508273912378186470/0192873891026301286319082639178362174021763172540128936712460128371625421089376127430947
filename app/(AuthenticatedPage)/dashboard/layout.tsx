@@ -4,6 +4,7 @@ import { AuthDashboardProvider } from '@/context/AuthDashboardContext';
 import '@/styles/globals.css';
 import '@/styles/fonts.css';
 import { Analytics } from '@vercel/analytics/react';
+import BreakPointChecker from '@/components/BreakPointChecker';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -15,6 +16,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             <DashboardWrapper>{children}</DashboardWrapper>
           </AuthDashboardProvider>
         </div>
+        <BreakPointChecker />
       </body>
     </html>
   );
