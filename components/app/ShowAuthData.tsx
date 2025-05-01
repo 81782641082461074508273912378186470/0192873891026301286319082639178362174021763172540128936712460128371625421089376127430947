@@ -76,7 +76,7 @@ const InfoCard = ({
   fields: FieldConfig[];
   data: any;
 }) => (
-  <div className="group transition-opacity shadow-xl shadow-black/50 w-full duration-300 relative flex flex-col p-5 bg-black hover:bg-gradient-to-tr hover:from-dark-700 hover:from-5% hover:via-dark-800 hover:via-50% hover:to-dark-800 hover:to-90% text-white border-[1px] lg:border-l-[1px] hover:border-[1px] border-dark-600 hover:border-dark-200 transition-all duration-300">
+  <div className="group transition-opacity shadow-xl shadow-black/50 w-full duration-300 relative flex flex-col p-5 bg-black md:hover:bg-gradient-to-tr md:hover:from-dark-700 md:hover:from-5% md:hover:via-dark-800 md:hover:via-50% md:hover:to-dark-800 md:hover:to-90% text-white border-[1px] lg:border-l-[1px] hover:border-[1px] border-dark-600 hover:border-dark-200 max-sm:bg-gradient-to-tr max-sm:from-dark-700 max-sm:from-5% max-sm:via-dark-800 max-sm:via-50% max-sm:to-dark-800 max-sm:to-90% text-white border-[1px] lg:border-l-[1px] hover:border-[1px] border-dark-600 hover:border-dark-200 transition-all duration-300">
     <div className="absolute top-0 left-0 w-2 h-2 border-t border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
     <div className="absolute top-0 right-0 w-2 h-2 border-t border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
     <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
