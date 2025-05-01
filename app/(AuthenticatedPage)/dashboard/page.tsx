@@ -2,11 +2,12 @@
 import { HomeWrapper } from '@/components/HomeWrapper';
 import React from 'react';
 import { cookies } from 'next/headers';
-import ShowAuthData from '@/components/auth/ShowAuthData';
+import ShowAuthData from '@/components/app/ShowAuthData';
 
 export const metadata = {
-  title: 'Dashboard',
-  description: 'Autolaku Application Center.',
+  title: 'Dashboard Autolaku',
+  description: 'Autolaku Dashboard Panel.',
+  manifest: '/manifest-admin.json',
 };
 
 interface UserDetails {
@@ -63,6 +64,7 @@ const Page = async () => {
 
   try {
     const authData: AuthData = JSON.parse(authDataCookie);
+    console.log(authData);
     return (
       <main className="min-h-screen w-full bg-black text-white selection:bg-white/65 selection:text-black no-scrollbar flex flex-col justify-center items-center">
         <HomeWrapper>
