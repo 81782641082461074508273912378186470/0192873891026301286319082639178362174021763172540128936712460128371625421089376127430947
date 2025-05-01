@@ -2,7 +2,7 @@ import mongoose, { Schema, model, models } from 'mongoose';
 
 const licenseSchema = new Schema({
   key: { type: String, required: true, unique: true },
-  adminId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null }, // Allow null values
+  adminId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null },
   deviceInfo: {
     type: {
       deviceName: { type: String, default: null },
@@ -27,7 +27,7 @@ const licenseSchema = new Schema({
     required: true,
     unique: true,
     lowercase: true,
-    trim: true, // Clean up spaces
+    trim: true,
     match: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
   },
   whatsappNumber: {

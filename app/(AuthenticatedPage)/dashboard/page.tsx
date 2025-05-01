@@ -54,17 +54,17 @@ const Page = async () => {
   const authDataCookie = cookieStore.get('authData')?.value;
 
   if (!authDataCookie) {
-    console.log('No authData cookie found');
+    // console.log('No authData cookie found');
     return (
       <div className="min-h-screen bg-black text-white selection:bg-white/65 selection:text-black no-scrollbar flex flex-col justify-center items-center">
-        <p>Authentication required</p>
+        <p>Dibutuhkan Autentikasi</p>
       </div>
     );
   }
 
   try {
     const authData: AuthData = JSON.parse(authDataCookie);
-    console.log(authData);
+    // console.log(authData);
     return (
       <main className="min-h-screen w-full bg-black text-white selection:bg-white/65 selection:text-black no-scrollbar flex flex-col justify-center items-center">
         <HomeWrapper>
