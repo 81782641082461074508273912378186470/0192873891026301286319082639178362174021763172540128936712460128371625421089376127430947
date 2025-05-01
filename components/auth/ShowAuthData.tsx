@@ -72,7 +72,7 @@ const AccountInfo = ({ user, fields }: { user: UserDetails; fields: FieldConfig[
     <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
     <div className="flex w-full justify-between items-start mb-10">
       <GrUserAdmin className="text-3xl text-white/80" />
-      <div className="tracking-widest text-light-700 font-thin flex items-center gap-2 text-sm">
+      <div className="tracking-widest __gradient_text flex items-center gap-2 text-sm">
         <span>[</span> <span>Informasi Akun</span> <span>]</span>
       </div>
     </div>
@@ -94,7 +94,7 @@ const LicenseDetails = ({
     <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
     <div className="flex w-full justify-between items-start mb-10">
       <GrLicense className="text-3xl text-white/80" />
-      <div className="tracking-widest __gradient_text font-thin flex items-center gap-2 text-sm">
+      <div className="tracking-widest __gradient_text flex items-center gap-2 text-sm">
         <span>[</span> <span>License Details</span> <span>]</span>
       </div>
     </div>
@@ -110,7 +110,7 @@ const DeviceInfo = ({ deviceInfo, fields }: { deviceInfo: DeviceInfo; fields: Fi
     <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
     <div className="flex w-full justify-between items-start mb-10">
       <GoCpu className="text-3xl text-white/80" />
-      <div className="tracking-widest text-light-700 font-thin flex items-center gap-2 text-sm">
+      <div className="tracking-widest __gradient_text flex items-center gap-2 text-sm">
         <span>[</span> <span>Informasi Perangkat</span> <span>]</span>
       </div>
     </div>
