@@ -7,7 +7,7 @@ import ShowAuthData from '@/components/app/ShowAuthData';
 export const metadata = {
   title: 'Dashboard Autolaku',
   description: 'Autolaku Dashboard Panel.',
-  manifest: '/manifest-admin.json',
+  manifest: '/manifest-dashboard.json',
 };
 
 interface UserDetails {
