@@ -63,7 +63,7 @@ const renderFields = (data: any, fields: FieldConfig[]) =>
   });
 
 const AccountInfo = ({ user, fields }: { user: UserDetails; fields: FieldConfig[] }) => (
-  <div className="group transition-opacity w-full duration-300 relative flex flex-col p-5 bg-black hover:bg-gradient-to-tr hover:from-dark-700 hover:from-5% hover:via-dark-800 hover:via-50% hover:to-dark-800 hover:to-90% text-white border-[1px] lg:border-l-[0.5px] hover:border-[0.5px] border-dark-600 hover:border-dark-200 transition-all duration-300">
+  <div className="group transition-opacity shadow-xl shadow-black/50 w-full duration-300 relative flex flex-col p-5 bg-black hover:bg-gradient-to-tr hover:from-dark-700 hover:from-5% hover:via-dark-800 hover:via-50% hover:to-dark-800 hover:to-90% text-white border-[1px] lg:border-l-[0.5px] hover:border-[0.5px] border-dark-600 hover:border-dark-200 transition-all duration-300">
     <div className="absolute top-0 left-0 w-2 h-2 border-t border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
     <div className="absolute top-0 right-0 w-2 h-2 border-t border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
     <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
@@ -71,7 +71,7 @@ const AccountInfo = ({ user, fields }: { user: UserDetails; fields: FieldConfig[
     <div className="flex w-full justify-between items-start mb-10">
       <GrUserAdmin className="text-3xl text-white/80" />
       <div className="tracking-widest text-light-700 font-thin flex items-center gap-2 text-sm">
-        <span>[</span> <span>Informasi PeraAkunngkat</span> <span>]</span>
+        <span>[</span> <span>Informasi Akun</span> <span>]</span>
       </div>
     </div>
     <div className="z-40 w-full">{renderFields(user, fields)}</div>
@@ -85,7 +85,7 @@ const LicenseDetails = ({
   license: LicenseDetails;
   fields: FieldConfig[];
 }) => (
-  <div className="group transition-opacity w-full duration-300 relative flex flex-col p-5 bg-black hover:bg-gradient-to-tr hover:from-dark-700 hover:from-5% hover:via-dark-800 hover:via-50% hover:to-dark-800 hover:to-90% text-white border-[1px] lg:border-l-[0.5px] hover:border-[0.5px] border-dark-600 hover:border-dark-200 transition-all duration-300">
+  <div className="group transition-opacity shadow-xl shadow-black/50 w-full duration-300 relative flex flex-col p-5 bg-black hover:bg-gradient-to-tr hover:from-dark-700 hover:from-5% hover:via-dark-800 hover:via-50% hover:to-dark-800 hover:to-90% text-white border-[1px] lg:border-l-[0.5px] hover:border-[0.5px] border-dark-600 hover:border-dark-200 transition-all duration-300">
     <div className="absolute top-0 left-0 w-2 h-2 border-t border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
     <div className="absolute top-0 right-0 w-2 h-2 border-t border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
     <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
@@ -101,7 +101,7 @@ const LicenseDetails = ({
 );
 
 const DeviceInfo = ({ deviceInfo, fields }: { deviceInfo: DeviceInfo; fields: FieldConfig[] }) => (
-  <div className="group transition-opacity w-full duration-300 relative flex flex-col p-5 bg-black hover:bg-gradient-to-tr hover:from-dark-700 hover:from-5% hover:via-dark-800 hover:via-50% hover:to-dark-800 hover:to-90% text-white border-[1px] lg:border-l-[0.5px] hover:border-[0.5px] border-dark-600 hover:border-dark-200 transition-all duration-300">
+  <div className="group transition-opacity w-full shadow-xl shadow-black/50 duration-300 relative flex flex-col p-5 bg-black hover:bg-gradient-to-tr hover:from-dark-700 hover:from-5% hover:via-dark-800 hover:via-50% hover:to-dark-800 hover:to-90% text-white border-[1px] lg:border-l-[0.5px] hover:border-[0.5px] border-dark-600 hover:border-dark-200 transition-all duration-300">
     <div className="absolute top-0 left-0 w-2 h-2 border-t border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
     <div className="absolute top-0 right-0 w-2 h-2 border-t border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
     <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
@@ -164,7 +164,7 @@ const ShowAuthData = ({ authData }: { authData: AuthData }) => {
 
   return (
     <div className="w-full max-w-screen-xl z-40">
-      <div className="flex flex-col md:flex-row justify-center p-10 lg:p-0 items-start gap-10 shadow-xl shadow-black/50 backdrop-blur z-40">
+      <div className="flex flex-col md:flex-row justify-center p-10 lg:p-0 items-start gap-10 backdrop-blur z-40">
         {type === 'account' && authData.user && (
           <AccountInfo user={authData.user} fields={accountFields} />
         )}
