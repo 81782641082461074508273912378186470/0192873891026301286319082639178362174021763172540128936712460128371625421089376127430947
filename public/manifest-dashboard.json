@@ -1,6 +1,6 @@
 {
-  "name": "Autolaku",
-  "short_name": "Autolaku",
+  "name": "Dashboard Autolaku",
+  "short_name": "Dashboard Autolaku",
   "description": "Platform dropshipping otomatis memberikan efisiensi maksimal dan kompatibel dengan MacOS & Windows sekaligus mudah digunakan.",
   "start_url": ".",
   "display": "standalone",
