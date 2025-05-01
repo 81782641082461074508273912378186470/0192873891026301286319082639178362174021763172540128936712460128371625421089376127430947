@@ -73,7 +73,7 @@ const Footer = () => {
               Mulai dropship dengan Autolaku
             </Link>
             <div className="absolute right-0 h-full w-fit flex justify-end items-center overflow-hidden">
-              <ADotted color="#2b2b2b" />
+              <ADotted color="#212121" />
             </div>
           </div>
         )}

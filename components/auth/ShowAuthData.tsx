@@ -2,6 +2,7 @@
 import React from 'react';
 import { GrLicense, GrUserAdmin } from 'react-icons/gr';
 import { GoCpu } from 'react-icons/go';
+import { ADotted } from '@/constans';
 
 // Interfaces (unchanged from original)
 interface UserDetails {
@@ -189,7 +190,11 @@ const ShowAuthData = ({ authData }: { authData: AuthData }) => {
           </>
         )}
       </div>
-      <svg
+      <div className="w-auto h-[125%] absolute -bottom-20 -left-[90%] lg:left-10 -z-10 opacity-70">
+        <ADotted color="#1a1a1a" />
+      </div>
+
+      {/* <svg
         id="A"
         data-name="A"
         fill="#fff"
@@ -208,7 +213,7 @@ const ShowAuthData = ({ authData }: { authData: AuthData }) => {
           className="cls-1"
           points="3911.69 2751.24 2559.33 2751.24 1990.26 73.96 2020.14 0 3326.9 0 3911.69 2751.24"
         />
-      </svg>
+      </svg> */}
     </div>
   );
 };
