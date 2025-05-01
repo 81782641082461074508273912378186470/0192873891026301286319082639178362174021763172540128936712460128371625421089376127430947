@@ -5,7 +5,7 @@ import { GoCpu } from 'react-icons/go';
 import { ADotted } from '@/constans';
 import HideShowText from '../HideShowText';
 
-// Interfaces (unchanged from original)
+// Interfaces (unchanged)
 interface UserDetails {
   username: string;
   role: string;
@@ -47,7 +47,7 @@ interface AuthData {
 interface FieldConfig {
   key: string;
   label: string;
-  format?: any;
+  format?: (value: any) => any;
 }
 
 const renderKeyValue = (label: string, value: any) => (
@@ -60,24 +60,43 @@ const renderKeyValue = (label: string, value: any) => (
 const renderFields = (data: any, fields: FieldConfig[]) =>
   fields.map(({ key, label, format }) => {
     const value = data[key];
-    const displayValue = format ? format(value) : value;
+    const displayValue = typeof format === 'function' ? format(value) : value;
     return renderKeyValue(label, displayValue);
   });
 
-const AccountInfo = ({ user, fields }: { user: UserDetails; fields: FieldConfig[] }) => (
-  <div className="group transition-opacity shadow-xl shadow-black/50 w-full duration-300 relative flex flex-col p-5 bg-black hover:bg-gradient-to-tr hover:from-dark-700 hover:from-5% hover:via-dark-800 hover:via-50% hover:to-dark-800 hover:to-90% text-white border-[1px] lg:border-l-[0.5px] hover:border-[0.5px] border-dark-600 hover:border-dark-200 transition-all duration-300">
+const InfoCard = ({
+  icon,
+  title,
+  fields,
+  data,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  fields: FieldConfig[];
+  data: any;
+}) => (
+  <div className="group transition-opacity shadow-xl shadow-black/50 w-full duration-300 relative flex flex-col p-5 bg-black hover:bg-gradient-to-tr hover:from-dark-700 hover:from-5% hover:via-dark-800 hover:via-50% hover:to-dark-800 hover:to-90% text-white border-[1px] lg:border-l-[1px] hover:border-[1px] border-dark-600 hover:border-dark-200 transition-all duration-300">
     <div className="absolute top-0 left-0 w-2 h-2 border-t border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
     <div className="absolute top-0 right-0 w-2 h-2 border-t border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
     <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
     <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
     <div className="flex w-full justify-between items-start mb-10">
-      <GrUserAdmin className="text-3xl text-white/80" />
+      {icon}
       <div className="tracking-widest __gradient_text flex items-center gap-2 text-sm">
-        <span>[</span> <span>Informasi Akun</span> <span>]</span>
+        <span>[</span> <span>{title}</span> <span>]</span>
       </div>
     </div>
-    <div className="z-40 w-full">{renderFields(user, fields)}</div>
+    <div className="z-40 w-full">{renderFields(data, fields)}</div>
   </div>
+);
+
+const AccountInfo = ({ user, fields }: { user: UserDetails; fields: FieldConfig[] }) => (
+  <InfoCard
+    icon={<GrUserAdmin className="text-3xl text-white/80" />}
+    title="Informasi Akun"
+    fields={fields}
+    data={user}
+  />
 );
 
 const LicenseDetails = ({
@@ -87,35 +106,21 @@ const LicenseDetails = ({
   license: LicenseDetails;
   fields: FieldConfig[];
 }) => (
-  <div className="group transition-opacity shadow-xl shadow-black/50 w-full duration-300 relative flex flex-col p-5 bg-black hover:bg-gradient-to-tr hover:from-dark-700 hover:from-5% hover:via-dark-800 hover:via-50% hover:to-dark-800 hover:to-90% text-white border-[1px] lg:border-l-[0.5px] hover:border-[0.5px] border-dark-600 hover:border-dark-200 transition-all duration-300">
-    <div className="absolute top-0 left-0 w-2 h-2 border-t border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
-    <div className="absolute top-0 right-0 w-2 h-2 border-t border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
-    <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
-    <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
-    <div className="flex w-full justify-between items-start mb-10">
-      <GrLicense className="text-3xl text-white/80" />
-      <div className="tracking-widest __gradient_text flex items-center gap-2 text-sm">
-        <span>[</span> <span>License Details</span> <span>]</span>
-      </div>
-    </div>
-    <div className="z-40 w-full">{renderFields(license, fields)}</div>
-  </div>
+  <InfoCard
+    icon={<GrLicense className="text-3xl text-white/80" />}
+    title="License Details"
+    fields={fields}
+    data={license}
+  />
 );
 
 const DeviceInfo = ({ deviceInfo, fields }: { deviceInfo: DeviceInfo; fields: FieldConfig[] }) => (
-  <div className="group transition-opacity w-full shadow-xl shadow-black/50 duration-300 relative flex flex-col p-5 bg-black hover:bg-gradient-to-tr hover:from-dark-700 hover:from-5% hover:via-dark-800 hover:via-50% hover:to-dark-800 hover:to-90% text-white border-[1px] lg:border-l-[0.5px] hover:border-[0.5px] border-dark-600 hover:border-dark-200 transition-all duration-300">
-    <div className="absolute top-0 left-0 w-2 h-2 border-t border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
-    <div className="absolute top-0 right-0 w-2 h-2 border-t border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
-    <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
-    <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 border-white" />
-    <div className="flex w-full justify-between items-start mb-10">
-      <GoCpu className="text-3xl text-white/80" />
-      <div className="tracking-widest __gradient_text flex items-center gap-2 text-sm">
-        <span>[</span> <span>Informasi Perangkat</span> <span>]</span>
-      </div>
-    </div>
-    <div className="z-40 w-full">{renderFields(deviceInfo, fields)}</div>
-  </div>
+  <InfoCard
+    icon={<GoCpu className="text-3xl text-white/80" />}
+    title="Informasi Perangkat"
+    fields={fields}
+    data={deviceInfo}
+  />
 );
 
 const ShowAuthData = ({ authData }: { authData: AuthData }) => {
@@ -130,12 +135,20 @@ const ShowAuthData = ({ authData }: { authData: AuthData }) => {
     { key: 'isActive', label: 'Active', format: (value: boolean) => (value ? 'Yes' : 'No') },
   ];
 
+  const formatLicenseKey = (value: string) => <HideShowText text={value} />;
+  const formatDeviceUniqueID = (value: string) => {
+    if (value) {
+      const firstPart = value.slice(0, 5);
+      const lastPart = value.slice(-5);
+      return `${firstPart}...${lastPart}`;
+    }
+    return 'N/A';
+  };
+
   const licenseKeyField: FieldConfig = {
     key: 'key',
     label: 'License Key',
-    format: (value: string) => {
-      return <HideShowText text={value} />;
-    },
+    format: formatLicenseKey,
   };
   const adminIdField: FieldConfig = { key: 'adminId', label: 'Admin ID' };
   const statusField: FieldConfig = { key: 'status', label: 'Status' };
@@ -160,16 +173,8 @@ const ShowAuthData = ({ authData }: { authData: AuthData }) => {
   const deviceUniqueIDField: FieldConfig = {
     key: 'deviceUniqueID',
     label: 'Device Unique ID',
-    format: (value: string) => {
-      if (value) {
-        const firstPart = value.slice(0, 5);
-        const lastPart = value.slice(-5);
-        return `${firstPart}...${lastPart}`;
-      }
-      return 'N/A';
-    },
+    format: formatDeviceUniqueID,
   };
-
   const deviceInfoFields: FieldConfig[] = [
     deviceNameField,
     platformField,
