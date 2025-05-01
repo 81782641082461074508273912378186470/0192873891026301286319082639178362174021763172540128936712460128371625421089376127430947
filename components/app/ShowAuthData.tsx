@@ -54,7 +54,7 @@ interface FieldConfig {
 const renderKeyValue = (label: string, value: any) => (
   <div key={label} className="flex w-full justify-between my-2 pb-2 border-b border-white/10">
     <p className="text-sm font-light select-none text-white/70">{label}</p>
-    <p className="text-sm font-medium text-white select-none">{value ?? 'N/A'}</p>
+    <p className="text-sm font-medium text-white select-none">{value ?? '-'}</p>
   </div>
 );
 
@@ -158,7 +158,7 @@ const ShowAuthData = ({ authData }: { authData: AuthData }) => {
         </div>
       );
     }
-    return 'N/A';
+    return '-';
   };
   const formatTime = (timestamp: string | null) => {
     if (!timestamp) return 'No activity';
@@ -173,7 +173,7 @@ const ShowAuthData = ({ authData }: { authData: AuthData }) => {
         })
         .replace(' at ', ', ');
     } catch {
-      return 'N/A';
+      return '-';
     }
   };
   const accountFields: FieldConfig[] = [
