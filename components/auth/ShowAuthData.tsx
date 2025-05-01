@@ -184,7 +184,7 @@ const ShowAuthData = ({ authData }: { authData: AuthData }) => {
 
   return (
     <div className="w-full max-w-screen-xl z-40">
-      <div className="flex flex-col md:flex-row justify-center p-10 lg:p-0 items-start gap-10 backdrop-blur z-40">
+      <div className="flex flex-col md:flex-row justify-center p-10 lg:p-0 items-start gap-10 z-40">
         {type === 'account' && authData.user && (
           <AccountInfo user={authData.user} fields={accountFields} />
         )}
