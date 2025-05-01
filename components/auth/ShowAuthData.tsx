@@ -3,6 +3,7 @@ import React from 'react';
 import { GrLicense, GrUserAdmin } from 'react-icons/gr';
 import { GoCpu } from 'react-icons/go';
 import { ADotted } from '@/constans';
+import HideShowText from '../HideShowText';
 
 // Interfaces (unchanged from original)
 interface UserDetails {
@@ -46,7 +47,7 @@ interface AuthData {
 interface FieldConfig {
   key: string;
   label: string;
-  format?: (value: any) => string;
+  format?: any;
 }
 
 const renderKeyValue = (label: string, value: any) => (
@@ -129,7 +130,13 @@ const ShowAuthData = ({ authData }: { authData: AuthData }) => {
     { key: 'isActive', label: 'Active', format: (value: boolean) => (value ? 'Yes' : 'No') },
   ];
 
-  const licenseKeyField: FieldConfig = { key: 'key', label: 'License Key' };
+  const licenseKeyField: FieldConfig = {
+    key: 'key',
+    label: 'License Key',
+    format: (value: string) => {
+      return <HideShowText text={value} />;
+    },
+  };
   const adminIdField: FieldConfig = { key: 'adminId', label: 'Admin ID' };
   const statusField: FieldConfig = { key: 'status', label: 'Status' };
   const expiresAtField: FieldConfig = { key: 'expiresAt', label: 'Expires At' };

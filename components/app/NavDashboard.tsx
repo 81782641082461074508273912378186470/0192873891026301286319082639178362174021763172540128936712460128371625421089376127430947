@@ -4,7 +4,6 @@
 
 import React from 'react';
 import AccountDropdown from './AccountDropdown';
-import HideShowText from '../HideShowText';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { IoMdLogOut } from 'react-icons/io';
