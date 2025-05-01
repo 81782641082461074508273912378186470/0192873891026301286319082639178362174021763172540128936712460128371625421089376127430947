@@ -149,7 +149,19 @@ const ShowAuthData = ({ authData }: { authData: AuthData }) => {
   const totalMemoryField: FieldConfig = { key: 'totalMemory', label: 'Total Memory' };
   const graphicsCardField: FieldConfig = { key: 'graphicsCard', label: 'Graphics Card' };
   const totalStorageField: FieldConfig = { key: 'totalStorage', label: 'Total Storage' };
-  const deviceUniqueIDField: FieldConfig = { key: 'deviceUniqueID', label: 'Device Unique ID' };
+  const deviceUniqueIDField: FieldConfig = {
+    key: 'deviceUniqueID',
+    label: 'Device Unique ID',
+    format: (value: string) => {
+      if (value) {
+        const firstPart = value.slice(0, 5);
+        const lastPart = value.slice(-5);
+        return `${firstPart}...${lastPart}`;
+      }
+      return 'N/A';
+    },
+  };
+
   const deviceInfoFields: FieldConfig[] = [
     deviceNameField,
     platformField,

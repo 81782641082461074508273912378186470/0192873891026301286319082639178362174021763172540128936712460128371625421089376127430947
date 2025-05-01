@@ -64,16 +64,16 @@ const Footer = () => {
         }`}>
         {pathname === '/' && (
           <div className="flex relative flex-col h-[400px] justify-center items-center w-full py-32 gap-10 bg-black/80 border-y-[1px] border-white/10 ">
-            <h3 className="lg:text-4xl text-3xl font-extrabold mb-5 __gradient_text">
+            <h3 className="lg:text-4xl text-3xl font-extrabold mb-5 __gradient_text z-30">
               Dropship ribet <br className="md:hidden" /> berakhir disini!
             </h3>
             <Link
               href="https://dashboard.autolaku.com/auth"
-              className="px-4 py-2 lg:text-lg bg-white text-black lg:text-white font-bold lg:bg-white/15 rounded hover:bg-white/20">
+              className="px-4 py-2 lg:text-lg bg-white text-black lg:text-white font-bold lg:bg-white/15 rounded hover:bg-neutral-300 z-20">
               Mulai dropship dengan Autolaku
             </Link>
-            <div className="absolute right-0 h-full w-fit flex justify-end items-center opacity-15 hover:opacity-25 overflow-hidden">
-              {ADotted}
+            <div className="absolute right-0 h-full w-fit flex justify-end items-center overflow-hidden">
+              <ADotted color="#2b2b2b" />
             </div>
           </div>
         )}
