@@ -126,13 +126,13 @@ const DeviceInfo = ({ deviceInfo, fields }: { deviceInfo: DeviceInfo; fields: Fi
 const getStatusStyle = (status: string): string => {
   switch (status) {
     case 'active':
-      return 'text-green-500 bg-green-500/20 border-green-500/30 border-[0.5px] ';
+      return 'text-green-500 bg-green-500/20 border-green-500/30 border-[0.5px]';
     case 'expired':
-      return 'text-yellow-500 bg-yellow-500/20 border-yellow-500/30 border-[0.5px] ';
-    case 'revoke':
-      return 'bg-red-500 bg-red-500/20 border-red-500/30border-[0.5px] ';
+      return 'text-yellow-500 bg-yellow-500/20 border-yellow-500/30 border-[0.5px]';
+    case 'revoked':
+      return 'text-red-500 bg-red-500/20 border-red-500/30 border-[0.5px]';
     default:
-      return 'border-neutral-500 bg-neutral-500/20 border-neutral-500/30 border-[0.5px] ';
+      return 'text-neutral-500 bg-neutral-500/20 border-neutral-500/30 border-[0.5px]';
   }
 };
 const BadgeStatus = ({ status }: { status: string }) => (
@@ -182,7 +182,7 @@ const ShowAuthData = ({ authData }: { authData: AuthData }) => {
     { key: 'email', label: 'Email' },
     { key: 'name', label: 'Name' },
     { key: 'whatsappNumber', label: 'WhatsApp Number' },
-    { key: 'isActive', label: 'Active', format: formatStatus },
+    // { key: 'isActive', label: 'Status', format: formatStatus },
   ];
 
   const licenseKeyField: FieldConfig = {

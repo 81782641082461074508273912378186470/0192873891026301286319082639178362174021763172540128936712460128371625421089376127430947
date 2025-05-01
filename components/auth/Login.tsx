@@ -101,7 +101,7 @@ const Login = () => {
     setError(null);
     try {
       setLoading(true);
-      const endpoint = loginType === 'account' ? '/api/auth' : '/api/licenses/validate';
+      const endpoint = loginType === 'account' ? '/api/auth' : '/api/licenses/dashboard_login';
       const payload =
         loginType === 'account'
           ? { username: formData.username, password: formData.password }
