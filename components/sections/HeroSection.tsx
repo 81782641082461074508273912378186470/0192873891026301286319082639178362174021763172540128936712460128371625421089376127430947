@@ -96,10 +96,10 @@ const HeroSection = () => {
         </div>
         <div className="w-full flex items-start justify-center md:justify-end">
           <div className="flex flex-col w-fit justify-center items-center mt-5 gap-1">
-            <div className="tracking-widest text-neutral-300 flex items-center gap-2 text-sm">
+            <div className="tracking-widest text-neutral-400 flex items-center gap-2 text-sm">
               <span>[</span> <span>Download Sekarang</span> <span>]</span>
             </div>
-            <div className="flex gap-3 bg-white/10 backdrop-blur-sm border-2 border-black rounded-full p-3">
+            <div className="flex gap-3 bg-dark-700 backdrop-blur-sm border-2 border-white/10 rounded-full p-3">
               <DownloadButton
                 className="!bg-white rounded-full focus:ring-2 focus:ring-white hover:!bg-white/80 hover:shadow-lg"
                 downloadUrl="/api/download?platform=macos"
