@@ -4,6 +4,7 @@ import { GrLicense, GrUserAdmin } from 'react-icons/gr';
 import { GoCpu } from 'react-icons/go';
 import { ADotted } from '@/constans';
 import HideShowText from '../HideShowText';
+import CopyToClipboard from '../CopyToClipboard';
 
 // Interfaces (unchanged)
 interface UserDetails {
@@ -122,28 +123,67 @@ const DeviceInfo = ({ deviceInfo, fields }: { deviceInfo: DeviceInfo; fields: Fi
     data={deviceInfo}
   />
 );
+const getStatusStyle = (status: string): string => {
+  switch (status) {
+    case 'active':
+      return 'text-green-500 bg-green-500/20 border-green-500/30 border-[0.5px] ';
+    case 'expired':
+      return 'text-yellow-500 bg-yellow-500/20 border-yellow-500/30 border-[0.5px] ';
+    case 'revoke':
+      return 'bg-red-500 bg-red-500/20 border-red-500/30border-[0.5px] ';
+    default:
+      return 'border-neutral-500 bg-neutral-500/20 border-neutral-500/30 border-[0.5px] ';
+  }
+};
+const BadgeStatus = ({ status }: { status: string }) => (
+  <p className={`${getStatusStyle(status)} text-xs px-2 py-1 rounded`}>{status}</p>
+);
 
 const ShowAuthData = ({ authData }: { authData: AuthData }) => {
   const { type } = authData;
-
+  const formatLicenseKey = (value: string) => (
+    <div className="flex gap-2 ml-2">
+      <HideShowText text={value} /> <CopyToClipboard textToCopy={value} />
+    </div>
+  );
+  const formatStatus = (value: string) => <BadgeStatus status={value} />;
+  const formatDeviceUniqueID = (value: string) => {
+    if (value) {
+      const firstPart = value.slice(0, 5);
+      const lastPart = value.slice(-5);
+      return (
+        <div className="flex gap-2 ml-2">
+          {`${firstPart}...${lastPart}`}
+          <CopyToClipboard textToCopy={value} />
+        </div>
+      );
+    }
+    return 'N/A';
+  };
+  const formatTime = (timestamp: string | null) => {
+    if (!timestamp) return 'No activity';
+    try {
+      return new Date(timestamp)
+        .toLocaleDateString('en-GB', {
+          day: 'numeric',
+          month: 'long',
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false,
+        })
+        .replace(' at ', ', ');
+    } catch {
+      return 'N/A';
+    }
+  };
   const accountFields: FieldConfig[] = [
     { key: 'username', label: 'Username' },
     { key: 'role', label: 'Role' },
     { key: 'email', label: 'Email' },
     { key: 'name', label: 'Name' },
     { key: 'whatsappNumber', label: 'WhatsApp Number' },
-    { key: 'isActive', label: 'Active', format: (value: boolean) => (value ? 'Yes' : 'No') },
+    { key: 'isActive', label: 'Active', format: formatStatus },
   ];
-
-  const formatLicenseKey = (value: string) => <HideShowText text={value} />;
-  const formatDeviceUniqueID = (value: string) => {
-    if (value) {
-      const firstPart = value.slice(0, 5);
-      const lastPart = value.slice(-5);
-      return `${firstPart}...${lastPart}`;
-    }
-    return 'N/A';
-  };
 
   const licenseKeyField: FieldConfig = {
     key: 'key',
@@ -151,9 +191,14 @@ const ShowAuthData = ({ authData }: { authData: AuthData }) => {
     format: formatLicenseKey,
   };
   const adminIdField: FieldConfig = { key: 'adminId', label: 'Admin ID' };
-  const statusField: FieldConfig = { key: 'status', label: 'Status' };
-  const expiresAtField: FieldConfig = { key: 'expiresAt', label: 'Expires At' };
-  const generatedAtField: FieldConfig = { key: 'generatedAt', label: 'Generated At' };
+  const statusField: FieldConfig = { key: 'status', label: 'Status', format: formatStatus };
+  const expiresAtField: FieldConfig = { key: 'expiresAt', label: 'Kedaluwarsa' };
+  const generatedAtField: FieldConfig = {
+    key: 'generatedAt',
+    label: 'Tanggal Daftar',
+    format: formatTime,
+  };
+
   const licenseFields: FieldConfig[] = [
     licenseKeyField,
     adminIdField,
@@ -162,17 +207,17 @@ const ShowAuthData = ({ authData }: { authData: AuthData }) => {
     generatedAtField,
   ];
 
-  const deviceNameField: FieldConfig = { key: 'deviceName', label: 'Device Name' };
-  const platformField: FieldConfig = { key: 'platform', label: 'Platform' };
+  const deviceNameField: FieldConfig = { key: 'deviceName', label: 'Nama Perangkat' };
+  const platformField: FieldConfig = { key: 'platform', label: 'OS' };
   const architectureField: FieldConfig = { key: 'architecture', label: 'Architecture' };
   const cpuCoresField: FieldConfig = { key: 'cpuCores', label: 'CPU Cores' };
   const osVersionField: FieldConfig = { key: 'osVersion', label: 'OS Version' };
-  const totalMemoryField: FieldConfig = { key: 'totalMemory', label: 'Total Memory' };
+  const totalMemoryField: FieldConfig = { key: 'totalMemory', label: 'RAM' };
   const graphicsCardField: FieldConfig = { key: 'graphicsCard', label: 'Graphics Card' };
-  const totalStorageField: FieldConfig = { key: 'totalStorage', label: 'Total Storage' };
+  const totalStorageField: FieldConfig = { key: 'totalStorage', label: 'Penyimpanan' };
   const deviceUniqueIDField: FieldConfig = {
     key: 'deviceUniqueID',
-    label: 'Device Unique ID',
+    label: 'Kode Unik Perangkat',
     format: formatDeviceUniqueID,
   };
   const deviceInfoFields: FieldConfig[] = [

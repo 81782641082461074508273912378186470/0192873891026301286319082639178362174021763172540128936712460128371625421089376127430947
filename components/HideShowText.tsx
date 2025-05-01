@@ -23,7 +23,7 @@ const HideShowText = ({ text }: any) => {
       </p>
       <button
         onClick={toggleVisibility}
-        className="text-white/20 hover:text-white/70 focus:outline-hidden"
+        className="text-light-800 hover:text-white focus:outline-hidden"
         title={isHidden ? 'Show' : 'Hide'}>
         {isHidden ? <AiOutlineEyeInvisible size={16} /> : <AiOutlineEye size={16} />}
       </button>
