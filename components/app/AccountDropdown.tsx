@@ -11,7 +11,6 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { IoMdLogOut } from 'react-icons/io';
-import { BiSolidUserDetail } from 'react-icons/bi';
 import { MdAlternateEmail, MdOutlineMail } from 'react-icons/md';
 import { FaWhatsapp } from 'react-icons/fa';
 
@@ -32,16 +31,11 @@ export default function AccountDropdown({
 
   const displayName = type === 'account' && user?.name && user.name;
 
-  const secondaryInfo =
-    type === 'account'
-      ? user?.email ?? user?.username ?? user?.whatsappNumber ?? user?.isActive ?? null
-      : type === 'license' && license?.deviceInfo
-      ? `Device: ${license.deviceName ?? 'Unknown'}`
-      : null;
-
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>
-      <DropdownMenuTrigger asChild className="cursor-pointer bg-white/10 rounded-sm px-2 py-1">
+      <DropdownMenuTrigger
+        asChild
+        className="cursor-pointer bg-white/10 rounded-sm px-2 py-1 text-xs">
         {displayName && <p className="text-sm rounded-button">{displayName}</p>}
       </DropdownMenuTrigger>
       <DropdownMenuContent

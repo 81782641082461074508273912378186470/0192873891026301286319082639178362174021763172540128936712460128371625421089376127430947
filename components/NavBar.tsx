@@ -193,7 +193,7 @@ const NavBar = () => {
         <div>
           <Link
             href={accountButtons[0]?.url || '#'}
-            className="hidden! lg:!block !px-4 items-center rounded-button">
+            className="hidden! lg:!block items-center rounded-button text-xs">
             Dashboard
           </Link>
 

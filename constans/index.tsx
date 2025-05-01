@@ -8,7 +8,6 @@ import {
   IoMdInformationCircle,
   IoMdListBox,
   IoMdMail,
-  IoMdPerson,
   IoMdPricetag,
 } from 'react-icons/io';
 import { BsShield } from 'react-icons/bs';
@@ -30,6 +29,7 @@ import shopee from '@/assets/icons/shopee.webp';
 import openai from '@/assets/icons/openai.webp';
 import cloudinary from '@/assets/icons/cloudinary.webp';
 import akulaku from '@/assets/icons/akulaku.webp';
+import { RiDashboardFill } from 'react-icons/ri';
 
 export const navButtons = [
   {
@@ -90,7 +90,7 @@ export const navButtons = [
   {
     title: 'Dashboard',
     url: 'https://dashboard.autolaku.com/auth',
-    icon: <IoMdPerson />,
+    icon: <RiDashboardFill />,
     description: 'Dashboard Autolaku',
   },
 ];

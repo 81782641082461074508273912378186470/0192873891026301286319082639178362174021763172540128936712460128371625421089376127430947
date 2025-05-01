@@ -193,27 +193,6 @@ const ShowAuthData = ({ authData }: { authData: AuthData }) => {
       <div className="w-auto h-[125%] absolute -bottom-20 -left-[90%] lg:left-10 -z-10 opacity-70">
         <ADotted color="#1a1a1a" />
       </div>
-
-      {/* <svg
-        id="A"
-        data-name="A"
-        fill="#fff"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 4389.67 5000"
-        className="w-auto h-[125%] absolute -bottom-20 -left-[90%] lg:left-10 -z-10 opacity-5">
-        <polygon
-          className="cls-1"
-          points="2304.85 2826.47 1426.69 5000 0 5000 1813.03 512.61 2304.85 2826.47"
-        />
-        <polygon
-          className="cls-1"
-          points="3967.92 3015.8 2615.57 3015.8 2513.7 3015.8 1979.25 4338.6 2896.73 4338.6 3037.32 5000 4389.67 5000 3967.92 3015.8"
-        />
-        <polygon
-          className="cls-1"
-          points="3911.69 2751.24 2559.33 2751.24 1990.26 73.96 2020.14 0 3326.9 0 3911.69 2751.24"
-        />
-      </svg> */}
     </div>
   );
 };
