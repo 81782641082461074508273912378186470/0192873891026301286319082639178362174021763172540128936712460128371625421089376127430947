@@ -17,7 +17,7 @@ const HeroSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const swiperRef = useRef<SwiperType | null>(null);
   return (
-    <section aria-label="Hero Section" className="relative w-full min-h-screen bg-black ">
+    <section aria-label="Hero Section" className="relative w-full min-h-screen bg-black">
       <Image
         src={grid}
         alt="Latar belakang grid perspektif dekoratif untuk bagian hero Autolaku"

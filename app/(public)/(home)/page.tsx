@@ -19,7 +19,14 @@ export const metadata: Metadata = generateMetadata({
 
 const HomePage = () => {
   return (
-    <main className="flex flex-col justify-start items-center w-full h-full">
+    <main
+      className="flex flex-col justify-start items-center w-full h-full "
+      style={{
+        background:
+          'linear-gradient(to right, rgba(80, 228, 254, 0.07), rgba(243, 190, 255, 0.07), rgba(195, 211, 246, 0.07), rgba(197, 255, 249, 0.07), rgba(245, 151, 255, 0.07))',
+        mask: 'radial-gradient(at center top, black, transparent 90%)',
+        WebkitMask: 'radial-gradient(at center top, black, transparent 90%)',
+      }}>
       <HomeWrapper>
         <HeroSection />
         <Feature />
