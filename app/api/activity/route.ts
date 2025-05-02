@@ -16,6 +16,7 @@ const createActivitySchema = z.object({
     'Scraping_Stop',
     'Searching_Product_Start',
     'Searching_Product_Stop',
+    'Summarizing_Product',
   ]),
   platform: z.enum(['Website', 'App']),
   details: z.record(z.any()).optional(),

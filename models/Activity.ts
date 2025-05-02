@@ -16,6 +16,7 @@ const activitySchema = new Schema({
       'Scraping_Stop',
       'Searching_Product_Start',
       'Searching_Product_Stop',
+      'Summarizing_Product',
     ],
   },
   platform: {

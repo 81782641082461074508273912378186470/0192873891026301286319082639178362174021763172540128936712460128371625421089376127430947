@@ -36,6 +36,7 @@ export async function POST(request: Request) {
       message: 'License validated successfully',
       license: {
         _id: license._id,
+        name: license.name,
         key: license.key,
         adminId: license.adminId,
         deviceInfo: license.deviceInfo,
