@@ -4,12 +4,20 @@ import mongoose from 'mongoose';
 import mongooseConnect from '@/lib/mongoose';
 import Activity from '@/models/Activity';
 
-// Validation schemas
 const createActivitySchema = z.object({
   userId: z.string().optional(),
   licenseId: z.string().optional(),
-  action: z.enum(['login', 'logout', 'license_activation', 'license_update', 'profile_update']),
-  platform: z.enum(['website', 'electronjs']),
+  action: z.enum([
+    'Account_Login',
+    'Account_Logout',
+    'License_Login',
+    'License_Logout',
+    'Scraping_Start',
+    'Scraping_Stop',
+    'Searching_Product_Start',
+    'Searching_Product_Stop',
+  ]),
+  platform: z.enum(['Website', 'App']),
   details: z.record(z.any()).optional(),
   sessionId: z.string().optional(),
 });
@@ -46,13 +54,13 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// DELETE: Delete an activity by ID
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(req: NextRequest) {
   try {
     await mongooseConnect();
-    const { id } = params;
+    const body = await req.json();
+    const { id } = body;
 
-    if (!mongoose.Types.ObjectId.isValid(id)) {
+    if (!id || !mongoose.Types.ObjectId.isValid(id)) {
       return NextResponse.json({ error: 'Invalid activity ID' }, { status: 400 });
     }
 
@@ -70,18 +78,17 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
   }
 }
 
-// PUT: Update an activity by ID
-export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(req: NextRequest) {
   try {
     await mongooseConnect();
-    const { id } = params;
+    const body = await req.json();
+    const { id, ...updateData } = body;
 
-    if (!mongoose.Types.ObjectId.isValid(id)) {
+    if (!id || !mongoose.Types.ObjectId.isValid(id)) {
       return NextResponse.json({ error: 'Invalid activity ID' }, { status: 400 });
     }
 
-    const body = await req.json();
-    const validatedData = updateActivitySchema.parse(body);
+    const validatedData = updateActivitySchema.parse(updateData);
 
     const activity = await Activity.findByIdAndUpdate(id, validatedData, { new: true });
     if (!activity) {

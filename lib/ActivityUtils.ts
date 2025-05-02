@@ -1,15 +1,30 @@
 import { z } from 'zod';
 
-const ActivitySchema = z.object({
-  userId: z.string(),
-  action: z.string(),
-  platform: z.string(),
-  details: z.object({ ip: z.string() }),
+const CreateActivitySchema = z.object({
+  userId: z.string().optional(),
+  licenseId: z.string().optional(),
+  action: z.enum([
+    'Account_Login',
+    'Account_Logout',
+    'License_Login',
+    'License_Logout',
+    'Scraping_Start',
+    'Scraping_Stop',
+    'Searching_Product_Start',
+    'Searching_Product_Stop',
+  ]),
+  platform: z.enum(['Website', 'App']),
+  details: z.record(z.any()).optional(),
+  sessionId: z.string().optional(),
 });
 
-export async function createActivity(data: z.infer<typeof ActivitySchema>) {
+const UpdateActivitySchema = z.object({
+  details: z.record(z.any()).optional(),
+});
+
+export async function createActivity(data: z.infer<typeof CreateActivitySchema>) {
   try {
-    const validatedData = ActivitySchema.parse(data);
+    const validatedData = CreateActivitySchema.parse(data);
     const response = await fetch('/api/activity', {
       method: 'POST',
       body: JSON.stringify(validatedData),
@@ -34,9 +49,9 @@ export async function deleteActivity(id: string) {
   }
 }
 
-export async function updateActivity(id: string, data: Partial<z.infer<typeof ActivitySchema>>) {
+export async function updateActivity(id: string, data: z.infer<typeof UpdateActivitySchema>) {
   try {
-    const validatedData = ActivitySchema.partial().parse(data);
+    const validatedData = UpdateActivitySchema.parse(data);
     const response = await fetch(`/api/activity/${id}`, {
       method: 'PUT',
       body: JSON.stringify(validatedData),

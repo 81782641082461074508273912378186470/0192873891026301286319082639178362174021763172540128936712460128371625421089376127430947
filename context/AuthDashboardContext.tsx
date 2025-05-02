@@ -4,6 +4,8 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { formatTime } from '@/lib/utils';
+import { createActivity } from '@/lib/ActivityUtils';
 
 interface AuthContextType {
   role: string | null;
@@ -140,7 +142,36 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
     setCookie('authData', JSON.stringify(data), 30);
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    try {
+      const currentTime = new Date().toISOString();
+      const currentFormattedTime = formatTime(currentTime);
+      if (type === 'account' && user) {
+        await createActivity({
+          userId: user.id,
+          action: 'Account_Logout',
+          platform: 'Website',
+          details: {
+            timestamp: currentFormattedTime,
+            name: user.name,
+            username: user.username,
+          },
+        });
+      } else if (type === 'license' && license) {
+        await createActivity({
+          licenseId: license._id,
+          action: 'License_Logout',
+          platform: 'Website',
+          details: {
+            timestamp: currentFormattedTime,
+            name: license.name,
+            license: license.key,
+          },
+        });
+      }
+    } catch (activityError) {
+      console.error('Failed to log logout activity:', activityError);
+    }
     deleteCookie('authData');
     setRole(null);
     setUser(null);

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -96,4 +97,32 @@ export const generateMetadata = ({
       canonical: url || defaultUrl,
     },
   };
+};
+
+export async function getClientIp(): Promise<string> {
+  try {
+    const response = await fetch('https://api.ipify.org?format=json');
+    const data = await response.json();
+    return data.ip;
+  } catch (error) {
+    console.error('Failed to get client IP:', error);
+    return 'unknown';
+  }
+}
+
+export const formatTime = (timestamp: string | null) => {
+  if (!timestamp) return 'No activity';
+  try {
+    return new Date(timestamp)
+      .toLocaleDateString('en-GB', {
+        day: 'numeric',
+        month: 'long',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+      })
+      .replace(' at ', ', ');
+  } catch {
+    return '-';
+  }
 };

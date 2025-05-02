@@ -5,10 +5,13 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { GrLicense, GrUserAdmin } from 'react-icons/gr';
+import { createActivity } from '@/lib/ActivityUtils';
+import { formatTime } from '@/lib/utils';
 
 const Login = () => {
   const [loginType, setLoginType] = useState<'account' | 'license'>('account');
   const [formData, setFormData] = useState({
+    name: '',
     username: '',
     password: '',
     licenseKey: '',
@@ -120,6 +123,38 @@ const Login = () => {
       }
 
       const data = await response.json();
+      console.log();
+      if (response.ok) {
+        try {
+          const currentTime = new Date().toISOString();
+          const currentFormattedTime = formatTime(currentTime);
+          if (loginType === 'account') {
+            await createActivity({
+              userId: data.user.id,
+              action: 'Account_Login',
+              platform: 'Website',
+              details: {
+                timestamp: currentFormattedTime,
+                name: data.user.name,
+                username: formData.username,
+              },
+            });
+          } else {
+            await createActivity({
+              licenseId: data.license._id,
+              action: 'License_Login',
+              platform: 'Website',
+              details: {
+                timestamp: currentFormattedTime,
+                name: data.license.name,
+                license: formData.licenseKey,
+              },
+            });
+          }
+        } catch (activityError) {
+          console.error('Failed to log activity:', activityError);
+        }
+      }
 
       const authData =
         loginType === 'account'
@@ -182,7 +217,6 @@ const Login = () => {
           <p className="text-xs lg:text-sm mt-2">Masuk dengan username dan password.</p>
         </button>
       </div>
-
       <form onSubmit={handleSubmit}>
         {loginType === 'account' ? (
           <>
