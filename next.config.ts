@@ -29,16 +29,6 @@ const nextConfig: NextConfig = {
         permanent: false,
       },
       {
-        source: '/masuk',
-        destination: 'https://dashboard.autolaku.com/auth',
-        permanent: true,
-      },
-      {
-        source: '/daftar',
-        destination: 'https://dashboard.autolaku.com/auth',
-        permanent: true,
-      },
-      {
         source: '/auth',
         destination: 'https://dashboard.autolaku.com/auth',
         permanent: true,
