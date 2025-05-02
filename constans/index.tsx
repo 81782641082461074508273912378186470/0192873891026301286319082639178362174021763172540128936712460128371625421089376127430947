@@ -89,7 +89,7 @@ export const navButtons = [
   },
   {
     title: 'Dashboard',
-    url: 'https://dashboard.autolaku.com/auth',
+    url: 'https://dashboard.autolaku.com',
     icon: <RiDashboardFill />,
     description: 'Dashboard Autolaku',
   },

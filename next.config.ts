@@ -28,11 +28,11 @@ const nextConfig: NextConfig = {
         destination: '/maintenance',
         permanent: false,
       },
-      {
-        source: '/auth',
-        destination: 'https://dashboard.autolaku.com/auth',
-        permanent: true,
-      },
+      // {
+      //   source: '/auth',
+      //   destination: 'https://dashboard.autolaku.com/auth',
+      //   permanent: true,
+      // },
       {
         source: '/staff/kyc',
         destination: 'https://forms.gle/aqhWKYU862xqtiCb8',
