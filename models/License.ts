@@ -1,6 +1,7 @@
 import mongoose, { Schema, model, models } from 'mongoose';
 
 const licenseSchema = new Schema({
+  name: { type: String, required: true },
   key: { type: String, required: true, unique: true },
   adminId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null },
   deviceInfo: {

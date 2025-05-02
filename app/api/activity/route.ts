@@ -4,10 +4,9 @@ import mongooseConnect from '@/lib/mongoose';
 
 // Hypothetical function to get current user (replace with your auth logic)
 async function getCurrentUser() {
-  return { role: 'admin' }; // Placeholder; implement actual auth
+  return { role: 'admin' };
 }
 
-// POST /api/activities - Create a new activity
 export async function POST(request: NextRequest) {
   try {
     await mongooseConnect();
@@ -41,7 +40,6 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// GET /api/activities - Retrieve activities with optional filters
 export async function GET(request: NextRequest) {
   try {
     await mongooseConnect();

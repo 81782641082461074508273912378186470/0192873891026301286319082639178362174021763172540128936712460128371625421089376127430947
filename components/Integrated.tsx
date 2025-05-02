@@ -3,18 +3,11 @@ import { IntegratedIcon } from '@/constans';
 import AGrid from '@/assets/icons/Agrid.png';
 import Image from 'next/image';
 import React from 'react';
-import { GrConnect } from 'react-icons/gr';
 import { InfiniteMovingCards } from './ui/infinite-moving-cards';
 
 const Integrated = () => {
   return (
-    <section className="lg:my-60 mb-32 relative pb-20 py-10 w-full flex flex-col justify-center items-center border-y-[1px] border-white/10">
-      <h3 className="text-lg items-center font-light tracking-widest select-none flex gap-2 text-white">
-        <GrConnect className="text-xl" /> Terintegrasi dengan
-      </h3>
-      <p className="text-light-500 font-light tracking-widest select-none flex gap-2">
-        Ecommerce dan Teknologi Terkini
-      </p>
+    <section className="mb-32 relative pb-20 py-10 w-full flex flex-col justify-center items-center border-y-[1px] border-white/10">
       <div className="relative w-full overflow-hidden mt-10 lg:mt-28">
         <InfiniteMovingCards items={IntegratedIcon} direction="right" speed="normal" />
         <InfiniteMovingCards items={IntegratedIcon} direction="left" speed="fast" />

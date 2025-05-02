@@ -64,7 +64,7 @@ const Daftar = () => {
         return;
       }
 
-      if (formData.role === 'user') {
+      if (formData.role === 'license') {
         const payload: Record<string, any> = {
           name: formData.name,
           email: formData.email,
@@ -157,7 +157,7 @@ const Daftar = () => {
     if (generatedLicenseKey) {
       const fileContent = `Name: ${name}\nLicense Key: ${generatedLicenseKey}`;
       const blob = new Blob([fileContent], { type: 'text/plain;charset=utf-8' });
-      saveAs(blob, `License_${name}`);
+      saveAs(blob, `Autolaku LicenseKey ${name}`);
     }
   };
 
@@ -192,15 +192,15 @@ const Daftar = () => {
                 <div className="flex flex-col gap-3 justify-center w-full">
                   <button
                     type="button"
-                    onClick={() => setFormData({ ...formData, role: 'user' })}
+                    onClick={() => setFormData({ ...formData, role: 'license' })}
                     className={`flex flex-col items-start text-start p-5 rounded ${
-                      formData.role === 'user'
+                      formData.role === 'license'
                         ? 'bg-dark-700 border-white/50 border-[1px] text-white'
                         : 'bg-dark-800 border-[1px] border-white/5 text-white/50'
                     }`}>
                     <span className="flex gap-2 items-center font-bold __gradient_text">
                       <GrLicense className="lg:text-lg text-white" />
-                      User
+                      License
                     </span>
                     <p className="text-xs lg:text-sm mt-2">
                       Untuk individu, satu perangkat, akses fitur dasar.
@@ -231,12 +231,6 @@ const Daftar = () => {
                 className="bg-white text-sm lg:text-base text-black font-bold py-2 px-4 rounded w-full">
                 Lanjutkan Pendaftaran
               </button>
-              {/* <button
-                type="button"
-                disabled
-                className="bg-white text-sm lg:text-base text-black font-bold py-2 px-4 rounded w-full cursor-not-allowed opacity-65">
-                Untuk Sementara <br className="lg:hidden" /> Pendaftaran Ditutup
-              </button> */}
             </>
           )}
 

@@ -217,6 +217,7 @@ const Login = () => {
             <input
               type="text"
               className="__input"
+              maxLength={19}
               placeholder="ABCD-1234-EFGH-5678"
               required
               value={formData.licenseKey}

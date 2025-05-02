@@ -31,6 +31,7 @@ export async function POST(request: Request) {
       license: {
         _id: license._id,
         key: license.key,
+        name: license.name,
         adminId: license.adminId,
         deviceInfo: license.deviceInfo,
         status: license.status,

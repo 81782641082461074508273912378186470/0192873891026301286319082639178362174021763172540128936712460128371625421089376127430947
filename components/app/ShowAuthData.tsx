@@ -29,6 +29,7 @@ interface DeviceInfo {
 }
 
 interface LicenseDetails {
+  name: string;
   key: string;
   adminId: null | string;
   deviceInfo: DeviceInfo;
@@ -180,11 +181,15 @@ const ShowAuthData = ({ authData }: { authData: AuthData }) => {
     { key: 'username', label: 'Username' },
     { key: 'role', label: 'Role' },
     { key: 'email', label: 'Email' },
-    { key: 'name', label: 'Name' },
-    { key: 'whatsappNumber', label: 'WhatsApp Number' },
+    { key: 'name', label: 'Nama' },
+    { key: 'whatsappNumber', label: 'Whatsapp' },
     // { key: 'isActive', label: 'Status', format: formatStatus },
   ];
 
+  const nameField: FieldConfig = {
+    key: 'name',
+    label: 'Nama',
+  };
   const licenseKeyField: FieldConfig = {
     key: 'key',
     label: 'License Key',
@@ -200,6 +205,7 @@ const ShowAuthData = ({ authData }: { authData: AuthData }) => {
   };
 
   const licenseFields: FieldConfig[] = [
+    nameField,
     licenseKeyField,
     adminIdField,
     statusField,

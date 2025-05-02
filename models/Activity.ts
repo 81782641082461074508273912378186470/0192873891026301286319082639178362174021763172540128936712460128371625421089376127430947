@@ -33,10 +33,11 @@ const activitySchema = new Schema(
   { timestamps: true }
 );
 
+// Indexes for efficient querying
 activitySchema.index({ entityType: 1, entityId: 1 });
 activitySchema.index({ adminId: 1 });
 activitySchema.index({ action: 1 });
-activitySchema.index({ timestamp: -1 });
+activitySchema.index({ timestamp: -1 }); // For sorting by time
 
 const Activity = models.Activity || model('Activity', activitySchema);
 

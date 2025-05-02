@@ -25,7 +25,7 @@ function generateLicenseKey() {
   return key;
 }
 
-async function createUniqueLicense(email: string, whatsappNumber: string) {
+async function createUniqueLicense(name: string, email: string, whatsappNumber: string) {
   let key;
   let isUnique = false;
 
@@ -38,6 +38,7 @@ async function createUniqueLicense(email: string, whatsappNumber: string) {
   }
 
   const license = await License.create({
+    name: name,
     key: key,
     adminId: null,
     deviceInfo: null,
@@ -63,13 +64,13 @@ export async function POST(request: Request) {
       });
     }
 
-    console.log('Incoming registration data:', {
-      name,
-      email,
-      whatsappNumber,
-    });
+    // console.log('Incoming registration data:', {
+    //   name,
+    //   email,
+    //   whatsappNumber,
+    // });
 
-    const license = await createUniqueLicense(email, whatsappNumber);
+    const license = await createUniqueLicense(name, email, whatsappNumber);
 
     return NextResponse.json(
       {
