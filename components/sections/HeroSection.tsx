@@ -26,7 +26,14 @@ const HeroSection = () => {
         loading="lazy"
       />
       <div className="max-w-screen-xl mx-auto flex flex-col lg:items-start justify-start min-h-screen text-center  text-white z-10 pt-24 px-5 2xl:px-0 lg:mt-40">
-        <div className="flex justify-center items-center w-full">
+        <div
+          className="flex justify-center items-center w-full"
+          style={{
+            background:
+              'linear-gradient(to right, rgba(80, 228, 254, 0.05), rgba(243, 190, 255, 0.05), rgba(195, 211, 246, 0.05), rgba(197, 255, 249, 0.05), rgba(245, 151, 255, 0.05))',
+            mask: 'radial-gradient(at center top, black, transparent 90%)',
+            WebkitMask: 'radial-gradient(at center top, black, transparent 90%)',
+          }}>
           <div className="flex flex-col justify-center ">
             <h1 className="lg:text-7xl md:text-5xl text-3xl font-extrabold mb-2 ">
               <span className="__gradient_text">Dropship ribet</span>
