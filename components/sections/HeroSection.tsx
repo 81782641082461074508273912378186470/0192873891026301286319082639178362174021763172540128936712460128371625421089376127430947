@@ -22,7 +22,7 @@ const HeroSection = () => {
         src={grid}
         alt="Latar belakang grid perspektif dekoratif untuk bagian hero Autolaku"
         fill
-        className="absolute inset-0 opacity-20 pointer-events-none object-cover"
+        className="absolute inset-0 pointer-events-none object-cover opacity-30"
         loading="lazy"
         style={{
           background:
@@ -31,9 +31,9 @@ const HeroSection = () => {
           WebkitMask: 'radial-gradient(at center top, black, transparent 90%)',
         }}
       />
-      <div className="max-w-screen-xl mx-auto flex flex-col lg:items-start justify-start min-h-screen text-center  text-white z-10 pt-24 px-5 2xl:px-0 lg:mt-40">
+      <div className="max-w-screen-xl mx-auto flex flex-col lg:items-start justify-start min-h-screen text-center  text-white z-10 pt-16 px-5 2xl:px-0 lg:mt-28">
         <div className="flex justify-center items-center w-full">
-          <div className="flex flex-col justify-center ">
+          <div className="flex flex-col justify-center mb-5">
             <h1 className="lg:text-7xl md:text-5xl text-3xl font-extrabold mb-2">
               <span className="__gradient_text">Dropship ribet</span>
               <br />
