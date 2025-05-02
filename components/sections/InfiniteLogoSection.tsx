@@ -11,11 +11,11 @@ const InfiniteLogoSection = () => {
       className="mb-32 relative pb-20 py-10 w-full flex flex-col justify-center items-center border-y-[1px] border-white/10"
       style={{
         background:
-          'linear-gradient(to right, rgba(255, 99, 8, 0.1), rgba(255, 99, 8, 0.1), rgba(189, 201, 230, 0.1), rgba(151, 196, 255, 0.1), rgba(151, 196, 255, 0.1))',
+          'linear-gradient(to right, rgba(8, 255, 226, 0.1), rgba(255, 8, 247, 0.1), rgba(189, 216, 230, 0.1), rgba(111, 238, 255, 0.1), rgba(244, 126, 252, 0.1))',
         mask: 'radial-gradient(at center top, black, transparent 90%)',
         WebkitMask: 'radial-gradient(at center top, black, transparent 90%)',
       }}>
-      <div className="relative w-full overflow-hidden mt-10 lg:mt-28">
+      <div className="relative w-full overflow-hidden mt-10 lg:mt-20">
         <InfiniteMovingCards items={IntegratedIcon} direction="right" speed="normal" />
         <InfiniteMovingCards items={IntegratedIcon} direction="left" speed="fast" />
       </div>

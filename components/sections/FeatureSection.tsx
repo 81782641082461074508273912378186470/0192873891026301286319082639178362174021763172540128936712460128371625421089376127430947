@@ -50,10 +50,8 @@ const FeatureSection = () => {
   return (
     <section className="max-w-screen-xl mx-auto flex flex-col lg:items-start justify-start text-center  text-white z-10 py-24 px-5 2xl:px-0 lg:my-40">
       <header className="space-y-8 mb-10">
-        <div>
-          <div className="tracking-widest text-neutral-400 flex items-center gap-2 text-sm">
-            <span>[</span> <span>Fitur Autolaku</span> <span>]</span>
-          </div>
+        <div className="tracking-widest text-neutral-400 flex items-center gap-2 text-sm">
+          <span>[</span> <span>Fitur Autolaku</span> <span>]</span>
         </div>
         <h2 className="lg:whitespace-nowrap tracking-tight w-fit text-3xl __gradient_text font-bold">
           Dropship Mudah, Cepat, Efisien, dan Pintar
