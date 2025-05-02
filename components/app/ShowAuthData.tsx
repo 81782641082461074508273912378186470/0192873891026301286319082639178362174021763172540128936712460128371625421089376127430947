@@ -197,7 +197,11 @@ const ShowAuthData = ({ authData }: { authData: AuthData }) => {
   };
   const adminIdField: FieldConfig = { key: 'adminId', label: 'Admin ID' };
   const statusField: FieldConfig = { key: 'status', label: 'Status', format: formatStatus };
-  const expiresAtField: FieldConfig = { key: 'expiresAt', label: 'Kedaluwarsa' };
+  const expiresAtField: FieldConfig = {
+    key: 'expiresAt',
+    label: 'Kedaluwarsa',
+    format: formatTime,
+  };
   const generatedAtField: FieldConfig = {
     key: 'generatedAt',
     label: 'Tanggal Daftar',
