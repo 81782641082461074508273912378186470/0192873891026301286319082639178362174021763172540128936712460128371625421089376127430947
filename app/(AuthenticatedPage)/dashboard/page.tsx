@@ -65,7 +65,7 @@ const Page = async () => {
 
   try {
     const authData: AuthData = JSON.parse(authDataCookie);
-    console.log(authData);
+    // console.log(authData);
     return (
       <main className="min-h-screen w-full bg-black text-white selection:bg-white/65 selection:text-black no-scrollbar flex flex-col justify-center items-center">
         <HomeWrapper>
