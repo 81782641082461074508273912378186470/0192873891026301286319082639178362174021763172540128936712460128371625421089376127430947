@@ -60,7 +60,6 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
     const isLocalhost = window.location.hostname === 'localhost';
     const currentPath = window.location.pathname;
 
-    // Prevent redirect if already on the auth page
     if (currentPath === '/dashboard/auth' || currentPath === '/auth') {
       return;
     }
