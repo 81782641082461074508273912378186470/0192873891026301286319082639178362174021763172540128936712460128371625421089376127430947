@@ -162,7 +162,7 @@ const ShowAuthData = ({ authData }: { authData: AuthData }) => {
     return '-';
   };
   const formatTime = (timestamp: string | null) => {
-    if (!timestamp) return 'No activity';
+    if (!timestamp) return '-';
     try {
       return new Date(timestamp)
         .toLocaleDateString('en-GB', {

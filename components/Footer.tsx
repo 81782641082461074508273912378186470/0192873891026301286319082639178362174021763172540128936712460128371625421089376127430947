@@ -8,7 +8,7 @@ import { FaWhatsapp } from 'react-icons/fa6';
 import DownloadButton from './DownloadButton';
 import { DiApple, DiWindows } from 'react-icons/di';
 import { HiDownload } from 'react-icons/hi';
-import { ADotted, navButtons } from '@/constans';
+import { navButtons } from '@/constans';
 import { usePathname } from 'next/navigation';
 
 const Footer = () => {
@@ -63,22 +63,26 @@ const Footer = () => {
           pathname !== '/' && 'border-t-[1px] border-white/10'
         }`}>
         {pathname === '/' && (
-          <div className="flex relative flex-col h-[400px] justify-center items-center w-full py-32 gap-10 bg-black/80 border-y-[1px] border-white/10 ">
+          <div
+            style={{
+              background:
+                'linear-gradient(to right, rgba(80, 228, 254, 0.05), rgba(243, 190, 255, 0.05), rgba(195, 211, 246, 0.05), rgba(197, 255, 249, 0.05), rgba(245, 151, 255, 0.05))',
+              mask: 'radial-gradient(at center top, black, transparent 90%)',
+              WebkitMask: 'radial-gradient(at center top, black, transparent 90%)',
+            }}
+            className="flex relative flex-col h-[400px] justify-center items-center w-full py-32 gap-10 bg-black/80 border-y-[1px] border-white/10 ">
             <h3 className="lg:text-4xl text-3xl font-extrabold mb-5 __gradient_text z-30">
               Dropship ribet <br className="md:hidden" /> berakhir disini!
             </h3>
             <Link
               href="https://dashboard.autolaku.com/auth"
-              className="px-4 py-2 lg:text-lg bg-white text-black lg:text-white font-bold lg:bg-white/15 rounded hover:bg-neutral-300 z-20">
+              className="px-4 py-2 lg:text-lg bg-white text-black lg:text-white font-bold lg:bg-white/15 rounded hover:bg-white hover:text-dark-800 z-20 transition-all duration-500">
               Mulai dropship dengan Autolaku
             </Link>
-            <div className="absolute right-0 h-full w-fit flex justify-end items-center overflow-hidden">
-              <ADotted color="#212121" />
-            </div>
           </div>
         )}
         <div
-          className={`flex flex-col-reverse  lg:flex-row justify-between items-start w-full py-10 gap-20 lg:gap-10 max-w-screen-xl px-5 xl:px-0 `}>
+          className={`flex flex-col-reverse lg:flex-row justify-between items-start w-full py-10 gap-20 lg:gap-10 max-w-screen-xl px-5 xl:px-0 `}>
           <div className="flex flex-col gap-5 ">
             <div className="flex items-center gap-2 lg:gap-4 __gradient_text opacity-85 select-none">
               <svg
