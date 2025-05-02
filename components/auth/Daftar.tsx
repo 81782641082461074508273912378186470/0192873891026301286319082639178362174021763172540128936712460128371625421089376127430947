@@ -200,7 +200,7 @@ const Daftar = () => {
                     }`}>
                     <span className="flex gap-2 items-center font-bold __gradient_text">
                       <GrLicense className="lg:text-lg text-white" />
-                      License
+                      License Key
                     </span>
                     <p className="text-xs lg:text-sm mt-2">
                       Untuk individu, satu perangkat, akses fitur dasar.
@@ -216,7 +216,7 @@ const Daftar = () => {
                     }`}>
                     <span className="flex gap-2 items-center font-bold __gradient_text">
                       <GrUserAdmin className="lg:text-lg text-white" />
-                      Admin
+                      Akun
                     </span>
                     <p className="text-xs lg:text-sm mt-2">
                       Untuk pemilik bisnis, akun dengan username dan password, manajemen kunci
