@@ -3,9 +3,9 @@ import { IntegratedIcon } from '@/constans';
 import AGrid from '@/assets/icons/Agrid.png';
 import Image from 'next/image';
 import React from 'react';
-import { InfiniteMovingCards } from './ui/infinite-moving-cards';
+import { InfiniteMovingCards } from '../ui/infinite-moving-cards';
 
-const Integrated = () => {
+const InfiniteLogoSection = () => {
   return (
     <section
       className="mb-32 relative pb-20 py-10 w-full flex flex-col justify-center items-center border-y-[1px] border-white/10"
@@ -32,4 +32,4 @@ const Integrated = () => {
   );
 };
 
-export default Integrated;
+export default InfiniteLogoSection;

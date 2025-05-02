@@ -7,7 +7,7 @@ import { AiOutlineLike } from 'react-icons/ai';
 import { GlowingEffect } from '@/components/ui/glowing-effect';
 import { PiChartLineUp } from 'react-icons/pi';
 
-export function GlowingGrid() {
+export function GlowingGridSection() {
   return (
     <div className="max-w-screen-xl w-full px-5 2xl:px-0  bg-black bg-dot-white/[0.3] relative flex items-center justify-center">
       <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>

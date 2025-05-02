@@ -1,12 +1,11 @@
-import Feature from '@/components/Feature';
-import { GlowingGrid } from '@/components/GlowingGrid';
+import { GlowingGridSection } from '@/components/sections/GlowingGridSection';
 import { HomeWrapper } from '@/components/HomeWrapper';
-import Integrated from '@/components/Integrated';
-import MagicBean from '@/components/MagicBean';
+import FeatureSection from '@/components/sections/FeatureSection';
 import HeroSection from '@/components/sections/HeroSection';
+import IntegratedSection from '@/components/sections/IntegratedSection';
 import { generateMetadata } from '@/lib/utils';
 import { Metadata } from 'next';
-import { GrConnect } from 'react-icons/gr';
+import InfiniteLogoSection from '@/components/sections/InfiniteLogoSection';
 export const metadata: Metadata = generateMetadata({
   title: 'Dropship Cepat & Efisien',
   description:
@@ -19,21 +18,13 @@ export const metadata: Metadata = generateMetadata({
 
 const HomePage = () => {
   return (
-    <main className="flex flex-col justify-start items-center w-full h-full ">
+    <main className="flex flex-col justify-start items-center w-full h-full">
       <HomeWrapper>
         <HeroSection />
-        <Feature />
-        <div className="w-full flex flex-col justify-center items-center">
-          <h3 className="text-lg items-center font-light tracking-widest select-none flex gap-2 text-white">
-            <GrConnect className="text-xl" /> Terintegrasi dengan
-          </h3>
-          <p className="text-light-500 font-light tracking-widest select-none flex gap-2">
-            Ecommerce dan Teknologi Terkini
-          </p>
-          <MagicBean />
-        </div>
-        <Integrated />
-        <GlowingGrid />
+        <FeatureSection />
+        <IntegratedSection />
+        <InfiniteLogoSection />
+        <GlowingGridSection />
       </HomeWrapper>
     </main>
   );

@@ -6,9 +6,9 @@ import { IoFlashOutline } from 'react-icons/io5';
 import { RiFolderUploadLine } from 'react-icons/ri';
 import { RiRobot2Line } from 'react-icons/ri';
 import React from 'react';
-import { FeatureCard } from './FeaturedCard';
+import { FeatureCard } from '../FeaturedCard';
 
-const Feature = () => {
+const FeatureSection = () => {
   const stepByStep = [
     {
       icon: <LuScanSearch />,
@@ -74,4 +74,4 @@ const Feature = () => {
   );
 };
 
-export default Feature;
+export default FeatureSection;
