@@ -1,67 +1,101 @@
 import { NextRequest, NextResponse } from 'next/server';
-import Activity from '@/models/Activity'; // Adjust path to your Activity model
+import { z } from 'zod';
+import mongoose from 'mongoose';
 import mongooseConnect from '@/lib/mongoose';
+import Activity from '@/models/Activity';
 
-// Hypothetical function to get current user (replace with your auth logic)
-async function getCurrentUser() {
-  return { role: 'admin' };
-}
+// Validation schemas
+const createActivitySchema = z.object({
+  userId: z.string().optional(),
+  licenseId: z.string().optional(),
+  action: z.enum(['login', 'logout', 'license_activation', 'license_update', 'profile_update']),
+  platform: z.enum(['website', 'electronjs']),
+  details: z.record(z.any()).optional(),
+  sessionId: z.string().optional(),
+});
 
-export async function POST(request: NextRequest) {
+const updateActivitySchema = z.object({
+  details: z.record(z.any()).optional(),
+});
+
+export async function POST(req: NextRequest) {
   try {
     await mongooseConnect();
+    const body = await req.json();
+    const validatedData = createActivitySchema.parse(body);
 
-    const user = await getCurrentUser();
-    if (user.role !== 'admin') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
-    }
-
-    const body = await request.json();
-    const { entityType, entityId, adminId, action, details } = body;
-
-    if (!entityType || !entityId || !action) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
-    }
-
-    const newActivity = new Activity({
-      entityType,
-      entityId,
-      adminId,
-      action,
-      details,
+    const activity = new Activity({
+      userId: validatedData.userId || null,
+      licenseId: validatedData.licenseId || null,
+      action: validatedData.action,
+      platform: validatedData.platform,
+      details: validatedData.details || {},
+      sessionId: validatedData.sessionId || null,
     });
 
-    await newActivity.save();
-
-    return NextResponse.json(newActivity, { status: 201 });
+    await activity.save();
+    return NextResponse.json(
+      { message: 'Activity created successfully', activity },
+      { status: 201 }
+    );
   } catch (error) {
-    console.error('Error creating activity:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json(
+      { error: error instanceof Error ? error.message : 'Unknown error' },
+      { status: 400 }
+    );
   }
 }
 
-export async function GET(request: NextRequest) {
+// DELETE: Delete an activity by ID
+export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
   try {
     await mongooseConnect();
+    const { id } = params;
 
-    const user = await getCurrentUser();
-    if (user.role !== 'admin') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return NextResponse.json({ error: 'Invalid activity ID' }, { status: 400 });
     }
 
-    const { searchParams } = new URL(request.url);
-    const filters: Record<string, string> = {};
+    const activity = await Activity.findByIdAndDelete(id);
+    if (!activity) {
+      return NextResponse.json({ error: 'Activity not found' }, { status: 404 });
+    }
 
-    if (searchParams.has('entityType')) filters.entityType = searchParams.get('entityType')!;
-    if (searchParams.has('entityId')) filters.entityId = searchParams.get('entityId')!;
-    if (searchParams.has('adminId')) filters.adminId = searchParams.get('adminId')!;
-    if (searchParams.has('action')) filters.action = searchParams.get('action')!;
-
-    const activities = await Activity.find(filters).sort({ timestamp: -1 });
-
-    return NextResponse.json(activities);
+    return NextResponse.json({ message: 'Activity deleted successfully' }, { status: 200 });
   } catch (error) {
-    console.error('Error fetching activities:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json(
+      { error: error instanceof Error ? error.message : 'Unknown error' },
+      { status: 500 }
+    );
+  }
+}
+
+// PUT: Update an activity by ID
+export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
+  try {
+    await mongooseConnect();
+    const { id } = params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return NextResponse.json({ error: 'Invalid activity ID' }, { status: 400 });
+    }
+
+    const body = await req.json();
+    const validatedData = updateActivitySchema.parse(body);
+
+    const activity = await Activity.findByIdAndUpdate(id, validatedData, { new: true });
+    if (!activity) {
+      return NextResponse.json({ error: 'Activity not found' }, { status: 404 });
+    }
+
+    return NextResponse.json(
+      { message: 'Activity updated successfully', activity },
+      { status: 200 }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      { error: error instanceof Error ? error.message : 'Unknown error' },
+      { status: 400 }
+    );
   }
 }
