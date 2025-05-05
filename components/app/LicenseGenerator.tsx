@@ -18,7 +18,7 @@ interface FormData {
 const LicenseGenerator: React.FC = () => {
   const { user, authDetails } = useAuth();
   const licenseLimit = user?.licenseLimit || 0;
-  console.log('user |  LicenseGenerator.tsx', user);
+  // console.log('user |  LicenseGenerator.tsx', user);
   const [formData, setFormData] = useState<FormData>({ name: '', whatsappNumber: '', email: '' });
   const [generatedLicense, setGeneratedLicense] = useState<{ name: string; key: string } | null>(
     null
@@ -104,7 +104,7 @@ const LicenseGenerator: React.FC = () => {
     setShowPopup(false);
   };
 
-  console.log('licenseLimit |  LicenseGenerator.tsx', licenseLimit);
+  // console.log('licenseLimit |  LicenseGenerator.tsx', licenseLimit);
   return (
     <div className="w-full max-w-[350px] p-5 border-[1px] border-white/20">
       <h2 className="text-white text-center text-lg font-bold pb-5 mb-5 border-b-[1px] border-white/20 __gradient_text">

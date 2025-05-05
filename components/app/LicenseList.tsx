@@ -50,7 +50,7 @@ const LicenseList: React.FC<LicenseListProps> = ({ licenses }) => {
     </p>
   );
 
-  console.log('LICENSE LIST:', licenses);
+  //   console.log('LICENSE LIST:', licenses);
   return (
     <div className="w-full p-5 max-w-[350px] bg-dark-500">
       {licenses.length === 0 ? (

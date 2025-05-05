@@ -170,7 +170,7 @@ const Login = () => {
               license: data.license,
             };
 
-      console.log('Login.tsx | Saving authData to cookie:', authData);
+      // console.log('Login.tsx | Saving authData to cookie:', authData);
       setCookie('authData', JSON.stringify(authData), 30);
       const isLocalhost = window.location.hostname === 'localhost';
       window.location.href = isLocalhost

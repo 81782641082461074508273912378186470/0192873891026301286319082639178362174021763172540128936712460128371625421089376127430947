@@ -21,6 +21,7 @@ interface UserDetails {
   email: string;
   name: string;
   whatsappNumber: string;
+  licenseLimit: number;
   isActive: boolean;
 }
 
@@ -70,14 +71,14 @@ const Page = async () => {
 
   try {
     const authData: AuthData = JSON.parse(authDataCookie);
-    console.log('AuthData app/(AuthPage)/dashboard/page.tsx', authData);
+    // console.log('AuthData app/(AuthPage)/dashboard/page.tsx', authData);
     const name = () => {
       if (authData.type === 'account') {
         return authData.user?.name;
       } else if (authData.type === 'license') {
         return authData.license?.name;
       } else {
-        console.log('AuthData app/(AuthPage)/dashboard/page.tsx', authData);
+        // console.log('AuthData app/(AuthPage)/dashboard/page.tsx', authData);
       }
     };
 
@@ -106,7 +107,9 @@ const Page = async () => {
               {greeting}
             </p>
             <div className="flex gap-10 w-full justify-center items-center flex-col lg:flex-row">
-              {authData.type === 'account' && <LicenseGenerator />}
+              {authData.type === 'account' &&
+                authData.user?.licenseLimit !== undefined &&
+                licenses.length < authData.user.licenseLimit && <LicenseGenerator />}
               {authData.type === 'account' &&
                 (authData.user?.role === 'admin' || authData.user?.role === 'owner') && (
                   <LicenseList licenses={licenses} />
