@@ -107,7 +107,7 @@ const LicenseGenerator: React.FC = () => {
 
   // console.log('licenseLimit |  LicenseGenerator.tsx', licenseLimit);
   return (
-    <div className="w-full max-w-[350px] p-5 border-[1px] border-white/20">
+    <div className="w-full max-w-[350px] p-5 border-[1px] bg-dark-700 border-white/20">
       <h2 className="text-white text-center text-lg font-bold pb-5 mb-5 border-b-[1px] border-white/20 __gradient_text">
         Generate License Key
       </h2>
