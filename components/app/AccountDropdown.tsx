@@ -13,20 +13,15 @@ import {
 import { IoMdLogOut } from 'react-icons/io';
 import { MdAlternateEmail, MdOutlineMail } from 'react-icons/md';
 import { FaWhatsapp } from 'react-icons/fa';
+import { GrLicense } from 'react-icons/gr';
 
 interface AccountDropdownProps {
   type: 'account' | 'license' | null;
   user: any;
-  license: any;
   handleLogout: () => void;
 }
 
-export default function AccountDropdown({
-  type,
-  user,
-  license,
-  handleLogout,
-}: AccountDropdownProps) {
+export default function AccountDropdown({ type, user, handleLogout }: AccountDropdownProps) {
   const [open, setOpen] = useState(false);
 
   const displayName = type === 'account' && user?.name && user.name;
@@ -44,9 +39,8 @@ export default function AccountDropdown({
         <DropdownMenuLabel>
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-bold __gradient_text">{displayName}</p>
-            {/* Account Details */}
             {type === 'account' && user && (
-              <div className="text-xs flex flex-col font-thin tracking-widest text-white/70 gap-0.5">
+              <div className="text-xs flex flex-col font-light tracking-widest text-white/70 gap-0.5">
                 <p className="flex gap-1 items-center">
                   <MdAlternateEmail /> {user.username}
                 </p>
@@ -56,9 +50,9 @@ export default function AccountDropdown({
                 <p className="flex gap-1 items-center">
                   <FaWhatsapp /> {user.whatsappNumber}
                 </p>
-                {/* <p className="flex gap-1 items-center">
-                {user.isActive ? 'Yes' : 'No'}
-                </p> */}
+                <p className="flex gap-1 items-center">
+                  <GrLicense /> {user.licenseLimit} Limit
+                </p>
               </div>
             )}
             {/* License Details */}

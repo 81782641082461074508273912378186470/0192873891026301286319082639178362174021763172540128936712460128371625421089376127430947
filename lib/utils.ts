@@ -1,7 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-
 import { Metadata } from 'next';
 
 export function cn(...inputs: ClassValue[]) {
@@ -126,3 +126,63 @@ export const formatTime = (timestamp: string | null) => {
     return '-';
   }
 };
+
+export async function generateLicense(
+  token: string,
+  name?: string,
+  whatsappNumber?: string,
+  email?: string
+) {
+  try {
+    const response = await fetch('/api/users/generate_licenses', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ name, whatsappNumber, email }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'Failed to generate license');
+    }
+
+    const data = await response.json();
+    return data.key;
+  } catch (error) {
+    console.error('Error in utils.ts generating license:', error);
+    throw error;
+  }
+}
+
+export function getRandomGreeting(nama: string) {
+  const greetings = [
+    `Halo, \${nama}. Autolaku membantu Anda mencapai efisiensi maksimal dalam dropshipping.`,
+    `Selamat datang kembali, \${nama}. Autolaku siap meningkatkan performa bisnis dropshipping Anda.`,
+    `Selamat datang kembali, \${nama}. Autolaku mendukung operasional dropshipping Anda dengan baik.`,
+    `Halo, \${nama}. Autolaku menjadi partner Anda untuk sukses di dunia dropshipping.`,
+    `Selamat datang kembali, \${nama}. Autolaku mempermudah langkah Anda dalam bisnis dropshipping.`,
+    `Halo, \${nama}. Autolaku hadir untuk memastikan kelancaran aktivitas dropshipping Anda.`,
+    `Selamat datang kembali, \${nama}. Autolaku siap mengoptimalkan setiap peluang bisnis Anda.`,
+    `Halo, \${nama}. Autolaku mendampingi Anda menuju hasil terbaik di dropshipping.`,
+    `Selamat datang kembali, \${nama}. Autolaku memberikan solusi praktis untuk kebutuhan dropshipping Anda.`,
+    `Halo, \${nama}. Autolaku mendukung pertumbuhan bisnis Anda dengan layanan terbaik.`,
+    `Selamat datang kembali, \${nama}. Autolaku memastikan proses dropshipping Anda lebih efisien.`,
+    `Halo, \${nama}. Autolaku siap menjadi fondasi kesuksesan dropshipping Anda.`,
+    `Selamat datang kembali, \${nama}. Autolaku membantu Anda menavigasi dunia dropshipping dengan mudah.`,
+    `Halo, \${nama}. Autolaku hadir untuk memperkuat strategi bisnis dropshipping Anda.`,
+    `Selamat datang kembali, \${nama}. Autolaku mendukung Anda mencapai target bisnis.`,
+    `Halo, \${nama}. Autolaku memberikan kemudahan dalam setiap langkah dropshipping Anda.`,
+    `Selamat datang kembali, \${nama}. Autolaku siap mengantar Anda pada kesuksesan dropshipping.`,
+    `Halo, \${nama}. Autolaku mendampingi perjalanan bisnis Anda dengan profesionalisme.`,
+    `Selamat datang kembali, \${nama}. Autolaku memastikan operasional Anda berjalan lancar.`,
+    `Halo, \${nama}. Autolaku menjadi mitra terpercaya untuk perkembangan dropshipping Anda.`,
+  ];
+
+  const randomIndex = Math.floor(Math.random() * greetings.length);
+  const selectedGreeting = greetings[randomIndex];
+  const personalizedGreeting = selectedGreeting.replace('${nama}', nama);
+
+  return personalizedGreeting;
+}

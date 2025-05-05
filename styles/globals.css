@@ -127,3 +127,15 @@ html {
   /* Sets the stacking order to 1, placing it above elements with a lower z-index */
   z-index: 1;
 }
+
+.__autolaku_scrollbar::-webkit-scrollbar {
+  @apply w-1 h-1;
+}
+
+.__autolaku_scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-white hover:bg-white/70 shadow;
+}
+
+.__autolaku_scrollbar::-webkit-scrollbar-track {
+  @apply bg-white/40;
+}

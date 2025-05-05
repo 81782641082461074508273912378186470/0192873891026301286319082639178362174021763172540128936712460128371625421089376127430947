@@ -48,12 +48,17 @@ const userSchema = new Schema(
           type: Date,
           default: null,
         },
-        isActive: {
-          type: Boolean,
-          default: true,
-        },
       },
       default: null,
+    },
+    licenseLimit: {
+      type: Number,
+      default: 0,
+      min: 0,
+      validate: {
+        validator: Number.isInteger,
+        message: '{VALUE} is not an integer value',
+      },
     },
     isActive: {
       type: Boolean,

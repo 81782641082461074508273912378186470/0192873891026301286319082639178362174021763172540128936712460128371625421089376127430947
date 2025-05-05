@@ -30,6 +30,7 @@ export default function NavDashboard({
   if (!pathname.includes('/auth')) {
     return (
       <nav className="fixed top-0 left-0 w-full flex justify-center items-center z-50 shadow-md border-b-[1px] border-white/10 bg-dark-800">
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-20" />
         <div className="max-w-screen-xl flex items-center justify-between w-full text-white border-x-[1px] border-white/10 py-3 px-5">
           <div className="flex items-center gap-2 lg:gap-6 __gradient_text">
             <Link
@@ -83,12 +84,7 @@ export default function NavDashboard({
                 <IoMdLogOut className="text-md" /> Logout
               </button>
             ) : (
-              <AccountDropdown
-                handleLogout={handleLogout}
-                type={type}
-                user={user}
-                license={license}
-              />
+              <AccountDropdown handleLogout={handleLogout} type={type} user={user} />
             )}
           </div>
         </div>

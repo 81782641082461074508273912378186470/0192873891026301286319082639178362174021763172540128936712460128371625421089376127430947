@@ -65,7 +65,7 @@ const page = () => {
   ];
   return (
     <div className="flex h-screen w-screen z-50 absolute bg-dark-800 top-0 left-0 flex-col items-center justify-center overflow-hidden border-y-[1px] border-white/10">
-      <div className="flex relative z-[99999999999999] flex-col items-center justify-center gap-5 ">
+      <div className="flex relative z-[999999999] flex-col items-center justify-center gap-5 ">
         <p className="tracking-widest text-gray-200 font-thin ">Maintenance</p>
         <Link className="!text-xs font-thin underline" href="/">
           Back Home
@@ -74,7 +74,7 @@ const page = () => {
 
       <div className="absolute inset-0 z-10 h-full w-full bg-black/70" />
       <ThreeDMarquee
-        className="pointer-events-none absolute inset-0 h-full w-full "
+        className="pointer-events-none absolute inset-0 bottom-0 left-0 h-full w-full "
         images={images}
       />
     </div>

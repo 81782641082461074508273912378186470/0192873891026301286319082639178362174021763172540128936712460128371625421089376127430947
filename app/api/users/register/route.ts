@@ -42,6 +42,10 @@ export async function POST(request: Request) {
       );
     }
 
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
+      return NextResponse.json({ error: 'Username already taken.' }, { status: 400 });
+    }
     const hashedPassword = await bcrypt.hash(password, 10);
 
     if (ownerId) {
@@ -58,11 +62,14 @@ export async function POST(request: Request) {
       }
     }
 
-    let expireDate = data.expireDate;
-    if (role === 'user' && !expireDate) {
-      const now = new Date();
-      expireDate = new Date(now.setFullYear(now.getFullYear() + 1));
-    }
+    const now = new Date();
+    const expireDate = new Date(now);
+    expireDate.setDate(expireDate.getDate() + 7);
+
+    const subscription = {
+      expireDate,
+      isActive: true,
+    };
 
     const newUser = await User.create({
       username,
@@ -74,6 +81,7 @@ export async function POST(request: Request) {
       email: email || null,
       whatsappNumber: whatsappNumber || null,
       expireDate: expireDate || null,
+      subscription,
     });
 
     return NextResponse.json(newUser, { status: 201 });

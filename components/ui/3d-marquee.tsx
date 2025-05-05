@@ -3,14 +3,20 @@
 import { motion } from 'motion/react';
 import { cn } from '@/lib/utils';
 export const ThreeDMarquee = ({ images, className }: { images: string[]; className?: string }) => {
-  // Split the images array into 4 equal parts
   const chunkSize = Math.ceil(images.length / 4);
   const chunks = Array.from({ length: 4 }, (_, colIndex) => {
     const start = colIndex * chunkSize;
     return images.slice(start, start + chunkSize);
   });
   return (
-    <div className={cn('mx-auto block  overflow-hidden rounded-2xl', className)}>
+    <div
+      className={cn('mx-auto block overflow-hidden rounded-2xl', className)}
+      style={{
+        background:
+          'linear-gradient(to right, rgba(80, 228, 254, 0.05), rgba(243, 190, 255, 0.05), rgba(195, 211, 246, 0.05), rgba(197, 255, 249, 0.05), rgba(245, 151, 255, 0.05))',
+        mask: 'radial-gradient(at center top, black, transparent 90%)',
+        WebkitMask: 'radial-gradient(at center top, black, transparent 90%)',
+      }}>
       <div className="flex size-full items-center justify-center">
         <div className="size-[1720px] shrink-0 scale-50 sm:scale-75 lg:scale-100">
           <div

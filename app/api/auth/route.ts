@@ -50,6 +50,8 @@ export async function POST(request: Request) {
         email: user.email,
         name: user.name,
         whatsappNumber: user.whatsappNumber,
+        licenseLimit: user.licenseLimit,
+        subscription: user.subscription,
         isActive: user.isActive,
       },
     }),

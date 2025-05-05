@@ -89,7 +89,7 @@ const Daftar = () => {
         startTimer('success', 'License registered successfully!');
         setShowPopup(true);
       } else {
-        const response = await fetch('/api/users', {
+        const response = await fetch('/api/users/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

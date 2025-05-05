@@ -1942,3 +1942,10 @@ export const IntegratedIcon = [
     image: cloudinary,
   },
 ];
+
+export const GridPattern = () => (
+  <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-40">
+    <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white to-transparent" />
+    <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white to-transparent" />
+  </div>
+);

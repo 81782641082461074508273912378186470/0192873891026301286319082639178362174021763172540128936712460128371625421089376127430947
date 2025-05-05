@@ -3,6 +3,11 @@ import { HomeWrapper } from '@/components/HomeWrapper';
 import React from 'react';
 import { cookies } from 'next/headers';
 import ShowAuthData from '@/components/app/ShowAuthData';
+import { ADotted } from '@/constans';
+import { getRandomGreeting } from '@/lib/utils';
+import LicenseGenerator from '@/components/app/LicenseGenerator';
+import LicenseList from '@/components/app/LicenseList';
+import { showLicenses } from '@/lib/UsersUtils';
 
 export const metadata = {
   title: 'Dashboard Autolaku',
@@ -65,11 +70,53 @@ const Page = async () => {
 
   try {
     const authData: AuthData = JSON.parse(authDataCookie);
-    // console.log(authData);
+    console.log('AuthData app/(AuthPage)/dashboard/page.tsx', authData);
+    const name = () => {
+      if (authData.type === 'account') {
+        return authData.user?.name;
+      } else if (authData.type === 'license') {
+        return authData.license?.name;
+      } else {
+        console.log('AuthData app/(AuthPage)/dashboard/page.tsx', authData);
+      }
+    };
+
+    const greeting = getRandomGreeting(name() as string);
+
+    let licenses: LicenseDetails[] = [];
+    if (
+      authData.type === 'account' &&
+      (authData.user?.role === 'admin' || authData.user?.role === 'owner')
+    ) {
+      try {
+        const token = authData.token;
+        if (token) {
+          licenses = await showLicenses(token);
+        }
+      } catch (error) {
+        console.error('Failed to fetch licenses:', error);
+      }
+    }
+
     return (
-      <main className="min-h-screen w-full bg-black text-white selection:bg-white/65 selection:text-black no-scrollbar flex flex-col justify-center items-center">
+      <main className="min-h-screen w-full overflow-hidden text-white relative selection:bg-white/65 selection:text-black no-scrollbar flex flex-col justify-start items-center bg-gradient-to-t from-white/10 from-5% via-transparent via-50% to-black to-100%">
         <HomeWrapper>
-          <ShowAuthData authData={authData} />
+          <div className="w-full flex flex-col border-[1px] border-white/10 py-24 lg:py-32 px-5 xl:px-0 gap-10 justify-center items-center max-w-screen-xl">
+            <p className="text-neutral-100 font-thin tracking-widest text-xs lg:text-sm w-full text-center p-2">
+              {greeting}
+            </p>
+            <div className="flex gap-10 w-full justify-center items-center flex-col lg:flex-row">
+              {authData.type === 'account' && <LicenseGenerator />}
+              {authData.type === 'account' &&
+                (authData.user?.role === 'admin' || authData.user?.role === 'owner') && (
+                  <LicenseList licenses={licenses} />
+                )}
+            </div>
+          </div>
+          {/* <ShowAuthData authData={authData} /> */}
+          <div className="absolute -right-10 -bottom-10 opacity-10">
+            <ADotted />
+          </div>
         </HomeWrapper>
       </main>
     );

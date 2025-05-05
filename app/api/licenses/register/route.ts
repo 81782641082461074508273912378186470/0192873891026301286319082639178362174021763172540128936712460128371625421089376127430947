@@ -64,12 +64,6 @@ export async function POST(request: Request) {
       });
     }
 
-    // console.log('Incoming registration data:', {
-    //   name,
-    //   email,
-    //   whatsappNumber,
-    // });
-
     const license = await createUniqueLicense(name, email, whatsappNumber);
 
     return NextResponse.json(
