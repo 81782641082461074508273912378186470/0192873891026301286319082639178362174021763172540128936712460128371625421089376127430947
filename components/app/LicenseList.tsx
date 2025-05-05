@@ -52,13 +52,15 @@ const LicenseList: React.FC<LicenseListProps> = ({ licenses }) => {
 
   //   console.log('LICENSE LIST:', licenses);
   return (
-    <div className="w-full p-5 max-w-[350px] bg-dark-500">
+    <div className="w-full p-5 max-w-[350px]">
       {licenses.length === 0 ? (
         <p className="text-neutral-400 tracking-widest font-light text-sm">No licenses found.</p>
       ) : (
-        <div className="flex flex-col gap-5 max-h-[300px] overflow-y-auto __autolaku_scrollbar">
+        <div className="flex flex-col gap-5 bg-dark-800 max-h-[300px] overflow-y-auto __autolaku_scrollbar">
           {licenses.map((license, index) => (
-            <div key={index} className="p-5 gap-2 flex flex-col rounded-lg border border-white/10">
+            <div
+              key={index}
+              className="p-5 gap-2 flex flex-col rounded-lg bg-dark-700 border border-white/10">
               <div className="flex w-full justify-between items-start">
                 <p className="flex gap-1 items-center font-semibold">
                   {license.name} <BadgeStatus status={license.status} />

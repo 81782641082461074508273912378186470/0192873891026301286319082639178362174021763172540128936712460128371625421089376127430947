@@ -8,6 +8,7 @@ import { FaCheck } from 'react-icons/fa';
 import { MdDownload } from 'react-icons/md';
 import { IoCloseSharp } from 'react-icons/io5';
 import { saveAs } from 'file-saver';
+import CopyToClipboard from '../CopyToClipboard';
 
 interface FormData {
   name: string;
@@ -196,11 +197,7 @@ const LicenseGenerator: React.FC = () => {
                 <div className="flex items-center justify-between px-2 border-[1px] border-white/10 rounded-[5px] shadow-md bg-dark-700">
                   <p className="font-bold">{generatedLicense.key}</p>
                   <div className="flex items-center justify-center gap-3">
-                    <button
-                      onClick={() => copyToClipboard(generatedLicense.key, 0)}
-                      className="text-white">
-                      {copiedIndex === 0 ? <FaCheck /> : <PiCopySimple />}
-                    </button>
+                    <CopyToClipboard textToCopy={generatedLicense.key} />
                     <div className="h-8 w-[1px] bg-white/20" />
                     <button
                       onClick={() => saveToTextFile(generatedLicense.name, generatedLicense.key)}
