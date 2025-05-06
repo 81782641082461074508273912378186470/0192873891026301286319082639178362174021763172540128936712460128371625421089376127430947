@@ -8,7 +8,6 @@ import { ADotted } from '@/constans';
 import { getRandomGreeting } from '@/lib/utils';
 import LicenseGenerator from '@/components/app/LicenseGenerator';
 import LicenseList from '@/components/app/LicenseList';
-import { showLicenses } from '@/lib/UsersUtils';
 
 export const metadata = {
   title: 'Dashboard Autolaku',
@@ -85,25 +84,6 @@ const Page = async () => {
 
     const greeting = getRandomGreeting(name() as string);
 
-    let licenses: LicenseDetails[] = [];
-    let licensesError: string | null = null;
-    if (
-      authData.type === 'account' &&
-      (authData.user?.role === 'admin' || authData.user?.role === 'owner')
-    ) {
-      if (!authData.token) {
-        licensesError = 'Authentication token is missing';
-        console.error(licensesError);
-      } else {
-        try {
-          licenses = await showLicenses(authData.token);
-        } catch (error: any) {
-          licensesError = error.message || 'Failed to fetch licenses';
-          console.error('Failed to fetch licenses:', error);
-        }
-      }
-    }
-
     return (
       <main className="min-h-screen w-full overflow-hidden text-white relative selection:bg-white/65 selection:text-black no-scrollbar flex flex-col justify-start items-center bg-gradient-to-t from-white/10 from-5% via-transparent via-50% to-black to-100%">
         <HomeWrapper>
@@ -112,13 +92,15 @@ const Page = async () => {
               {greeting}
             </p>
             <div className="flex gap-10 w-full justify-center items-center flex-col lg:flex-row">
-              {authData.type === 'account' &&
+              {/* {authData.type === 'account' &&
                 authData.user?.licenseLimit !== undefined &&
                 licenses.length < authData.user.licenseLimit && <LicenseGenerator />}
               {authData.type === 'account' &&
                 (authData.user?.role === 'admin' || authData.user?.role === 'owner') && (
-                  <LicenseList licenses={licenses} />
-                )}
+                  <LicenseList />
+                )} */}
+
+              {authData.user?.role === 'admin' && <LicenseList />}
             </div>
           </div>
           {/* <ShowAuthData authData={authData} /> */}

@@ -1,10 +1,15 @@
-'use client';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @next/next/no-async-client-component */
+
 import React from 'react';
+import { cookies } from 'next/headers';
 import HideShowText from '../HideShowText';
 import CopyToClipboard from '../CopyToClipboard';
 import { formatTime } from '@/lib/utils';
 import { RiAddCircleLine } from 'react-icons/ri';
 import { CgSandClock } from 'react-icons/cg';
+import { showLicenses } from '@/lib/UsersUtils';
 
 interface LicenseDetails {
   name: string;
@@ -22,15 +27,12 @@ interface LicenseDetails {
     deviceUniqueID: string;
   };
   status: string;
+  token: string;
   expiresAt: null | string;
   generatedAt: string;
 }
 
-interface LicenseListProps {
-  licenses: LicenseDetails[];
-}
-
-const LicenseList: React.FC<LicenseListProps> = ({ licenses }) => {
+const LicenseList = async () => {
   const getStatusStyle = (status: string): string => {
     switch (status) {
       case 'active':
@@ -50,33 +52,38 @@ const LicenseList: React.FC<LicenseListProps> = ({ licenses }) => {
     </p>
   );
 
-  //   console.log('LICENSE LIST:', licenses);
+  const cookieStore = await cookies();
+  const authDataCookie = cookieStore.get('authData')?.value;
+  const authData = JSON.parse(authDataCookie as string);
+  const token = authData?.token;
+  const licenses = await showLicenses(token);
+  console.log('LICENSE LIST:', licenses);
   return (
     <div className="w-full p-5 max-w-[350px]">
       {licenses.length === 0 ? (
         <p className="text-neutral-400 tracking-widest font-light text-sm">No licenses found.</p>
       ) : (
         <div className="flex flex-col gap-5 bg-dark-800 max-h-[300px] overflow-y-auto __autolaku_scrollbar">
-          {licenses.map((license, index) => (
+          {licenses.map((license: any, index: any) => (
             <div
               key={index}
               className="p-5 gap-2 flex flex-col rounded-lg bg-dark-700 border border-white/10">
               <div className="flex w-full justify-between items-start">
-                <p className="flex gap-1 items-center font-semibold">
+                <div className="flex gap-1 items-center font-semibold">
                   {license.name} <BadgeStatus status={license.status} />
-                </p>{' '}
+                </div>{' '}
                 <div className="flex items-center gap-2">
                   <HideShowText text={license.key} /> <CopyToClipboard textToCopy={license.key} />
                 </div>
               </div>
-              <p className="flex gap-1 items-center">
+              <div className="flex gap-1 items-center">
                 <RiAddCircleLine />
                 Dibuat: {'  '} <strong>{formatTime(license.generatedAt)}</strong>
-              </p>
-              <p className="flex gap-1 items-center">
+              </div>
+              <div className="flex gap-1 items-center">
                 <CgSandClock />
                 Kedaluwarsa: {'  '} <strong>{formatTime(license.expiresAt)}</strong>
-              </p>
+              </div>
               <div className="w-full flex justify-end"></div>
             </div>
           ))}

@@ -12,12 +12,12 @@ export async function showLicenses(token: string) {
     console.log(`${URL}/api/users/licenses`);
     if (!response.ok) {
       const errorData = await response.json();
-      console.log('showLicenses:', errorData);
+      //   console.log('showLicenses:', errorData);
       throw new Error(errorData.error || 'Failed to retrieve licenses');
     }
 
     const data = await response.json();
-    console.log('showLicenses:', data);
+    // console.log('showLicenses:', data);
     return data.licenses;
   } catch (error) {
     console.error('Error retrieving licenses:', error);
