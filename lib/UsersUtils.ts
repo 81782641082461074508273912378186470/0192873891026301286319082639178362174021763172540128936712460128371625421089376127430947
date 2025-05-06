@@ -8,6 +8,7 @@ export async function showLicenses(token: string) {
         Authorization: `Bearer ${token}`,
       },
     });
+    console.log('TOKEN:', token);
     console.log(`${URL}/api/users/licenses`);
     if (!response.ok) {
       const errorData = await response.json();

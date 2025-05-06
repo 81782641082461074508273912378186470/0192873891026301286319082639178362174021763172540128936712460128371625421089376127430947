@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { HomeWrapper } from '@/components/HomeWrapper';
 import React from 'react';
@@ -85,17 +86,21 @@ const Page = async () => {
     const greeting = getRandomGreeting(name() as string);
 
     let licenses: LicenseDetails[] = [];
+    let licensesError: string | null = null;
     if (
       authData.type === 'account' &&
       (authData.user?.role === 'admin' || authData.user?.role === 'owner')
     ) {
-      try {
-        const token = authData.token;
-        if (token) {
-          licenses = await showLicenses(token);
+      if (!authData.token) {
+        licensesError = 'Authentication token is missing';
+        console.error(licensesError);
+      } else {
+        try {
+          licenses = await showLicenses(authData.token);
+        } catch (error: any) {
+          licensesError = error.message || 'Failed to fetch licenses';
+          console.error('Failed to fetch licenses:', error);
         }
-      } catch (error) {
-        console.error('Failed to fetch licenses:', error);
       }
     }
 
