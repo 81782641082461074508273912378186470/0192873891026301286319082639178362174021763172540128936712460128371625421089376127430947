@@ -71,7 +71,7 @@ const Page = async () => {
 
   try {
     const authData: AuthData = JSON.parse(authDataCookie);
-    // console.log('AuthData app/(AuthPage)/dashboard/page.tsx', authData);
+    console.log('AuthData app/(AuthPage)/dashboard/page.tsx', authData);
     const name = () => {
       if (authData.type === 'account') {
         return authData.user?.name;
