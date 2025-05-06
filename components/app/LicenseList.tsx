@@ -8,9 +8,10 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Clock, Copy, Eye, EyeOff, Plus, AlertCircle, ShieldAlert } from 'lucide-react';
+import { Clock, Plus, AlertCircle, ShieldAlert } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useToast } from '@/hook/use-toast';
+import HideShowText from '../HideShowText';
+import CopyToClipboard from '../CopyToClipboard';
 
 interface License {
   key: string;
@@ -25,8 +26,6 @@ export default function LicenseList() {
   const [licenses, setLicenses] = useState<License[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [visibleKeys, setVisibleKeys] = useState<Record<string, boolean>>({});
-  const { toast } = useToast();
 
   useEffect(() => {
     const token = authDetails?.token;
@@ -60,22 +59,6 @@ export default function LicenseList() {
       setLoading(false);
     }
   }, [authDetails]);
-
-  const toggleKeyVisibility = (key: string) => {
-    setVisibleKeys((prev) => ({
-      ...prev,
-      [key]: !prev[key],
-    }));
-  };
-
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
-    toast({
-      title: 'Copied to clipboard',
-      description: 'License key has been copied to clipboard',
-      duration: 2000,
-    });
-  };
 
   const getStatusConfig = (status: License['status']) => {
     switch (status) {
@@ -166,63 +149,48 @@ export default function LicenseList() {
 
   return (
     <div className="w-full max-w-3xl mx-auto p-4 space-y-4">
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-5 md:grid-cols-2">
         {licenses.map((license, index) => {
           const { className, icon: StatusIcon } = getStatusConfig(license.status);
-          const isVisible = visibleKeys[license.key] || false;
-
           return (
             <Card
               key={index}
-              className="w-full bg-black/40 border-zinc-800 backdrop-blur-sm hover:bg-zinc-900/40 transition-all duration-200">
-              <CardHeader className="pb-2">
+              className="w-full bg-black/40 border-zinc-800 backdrop-blur-sm hover:bg-dark-700 transition-all duration-200">
+              <CardHeader className="">
                 <div className="flex justify-between items-center">
                   <div className="font-medium text-zinc-200">{license.name}</div>
-                  <Badge className={cn('font-normal', className)}>
-                    <StatusIcon className="h-3 w-3 mr-1" />
+                  <Badge className={cn('font-normal cursor-default', className)}>
+                    <StatusIcon className="h-3 w-3" />
                     {license.status}
                   </Badge>
                 </div>
               </CardHeader>
-              <CardContent className="pb-2 space-y-3">
-                <div className="flex items-center justify-between gap-2 bg-zinc-900/50 rounded-md p-2 group">
-                  <div className="font-mono text-sm text-zinc-400 truncate">
-                    {isVisible ? license.key : '•'.repeat(Math.min(license.key.length, 20))}
-                  </div>
+              <CardContent className="space-y-3">
+                <div className="flex items-center justify-center gap-2 p-2 group">
                   <div className="flex gap-1">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="h-7 w-7 opacity-70 hover:opacity-100 hover:bg-zinc-800"
-                      onClick={() => toggleKeyVisibility(license.key)}>
-                      {isVisible ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="h-7 w-7 opacity-70 hover:opacity-100 hover:bg-zinc-800"
-                      onClick={() => copyToClipboard(license.key)}>
-                      <Copy className="h-4 w-4" />
-                    </Button>
+                    <HideShowText text={license.key} />
+                    <CopyToClipboard textToCopy={license.key} />
                   </div>
-                </div>{' '}
-                <div className="flex items-center gap-1.5 text-xs">
-                  <Plus className="h-3.5 w-3.5 text-zinc-500" />
-                  <span>Created:</span>
-                  <span className="text-zinc-300 font-medium">
-                    {formatTime(license.generatedAt)}
-                  </span>
                 </div>
-                <div className="flex items-center gap-1.5 text-xs">
-                  <Clock className="h-3.5 w-3.5 text-zinc-500" />
-                  <span>Expires:</span>
-                  <span className="text-zinc-300 font-medium">{formatTime(license.expiresAt)}</span>
+                <div className="flex items-center justify-center gap-2 p-2 group">
+                  {' '}
+                  <div className="flex items-center gap-1.5 text-xs">
+                    <Plus className="h-3.5 w-3.5 text-zinc-500" />
+                    <span>Created:</span>
+                    <span className="text-zinc-300 font-medium">
+                      {formatTime(license.generatedAt)}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-xs">
+                    <Clock className="h-3.5 w-3.5 text-zinc-500" />
+                    <span>Expires:</span>
+                    <span className="text-zinc-300 font-medium">
+                      {formatTime(license.expiresAt)}
+                    </span>
+                  </div>
                 </div>
-                {/* <div className="grid grid-cols-2 gap-2 text-xs text-zinc-400">
-                 
-                </div> */}
               </CardContent>
-              <CardFooter className="pt-0">
+              {/* <CardFooter className="pt-0">
                 <div className="w-full flex justify-end">
                   <Button
                     variant="ghost"
@@ -231,7 +199,7 @@ export default function LicenseList() {
                     Manage
                   </Button>
                 </div>
-              </CardFooter>
+              </CardFooter> */}
             </Card>
           );
         })}
