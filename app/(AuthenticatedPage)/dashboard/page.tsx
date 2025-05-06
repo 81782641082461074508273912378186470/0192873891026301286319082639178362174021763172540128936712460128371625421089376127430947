@@ -61,7 +61,6 @@ const Page = async () => {
   const authDataCookie = cookieStore.get('authData')?.value;
 
   if (!authDataCookie) {
-    // console.log('No authData cookie found');
     return (
       <div className="min-h-screen bg-black text-white selection:bg-white/65 selection:text-black no-scrollbar flex flex-col justify-center items-center">
         <p>Dibutuhkan Autentikasi</p>
