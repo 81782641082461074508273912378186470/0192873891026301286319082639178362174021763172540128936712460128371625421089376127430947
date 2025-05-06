@@ -1,7 +1,7 @@
 export async function showLicenses(token: string) {
   const URL = process.env.NEXT_PUBLIC_API_URL || 'https://autolaku.com';
   try {
-    const response = await fetch(`${URL}/api/users/licenses`, {
+    const response = await fetch(`/api/users/licenses`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
