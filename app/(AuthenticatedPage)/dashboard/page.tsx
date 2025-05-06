@@ -94,11 +94,7 @@ const Page = async () => {
             <div className="flex gap-10 w-full justify-center items-center flex-col lg:flex-row">
               {/* {authData.type === 'account' &&
                 authData.user?.licenseLimit !== undefined &&
-                licenses.length < authData.user.licenseLimit && <LicenseGenerator />}
-              {authData.type === 'account' &&
-                (authData.user?.role === 'admin' || authData.user?.role === 'owner') && (
-                  <LicenseList />
-                )} */}
+                licenses.length < authData.user.licenseLimit && <LicenseGenerator />} */}
 
               {authData.user?.role === 'admin' && <LicenseList />}
             </div>
