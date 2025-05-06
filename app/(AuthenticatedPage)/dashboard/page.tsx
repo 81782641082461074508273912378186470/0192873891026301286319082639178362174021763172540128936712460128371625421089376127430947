@@ -86,7 +86,7 @@ const Page = async () => {
     return (
       <main className="min-h-screen w-full overflow-hidden text-white relative selection:bg-white/65 selection:text-black no-scrollbar flex flex-col justify-start items-center bg-gradient-to-t from-white/10 from-5% via-transparent via-50% to-black to-100%">
         <HomeWrapper>
-          <div className="w-full flex flex-col border-[1px] border-white/10 py-24 lg:py-32 px-5 xl:px-0 gap-10 justify-center items-center max-w-screen-xl">
+          <div className="w-full flex flex-col border-x-[1px] border-white/20 py-24 lg:py-32 px-5 xl:px-0 gap-10 justify-center items-center max-w-screen-xl">
             <p className="text-neutral-100 font-thin tracking-widest text-xs lg:text-sm w-full text-center p-2">
               {greeting}
             </p>
