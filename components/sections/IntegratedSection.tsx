@@ -8,7 +8,7 @@ const IntegratedSection = () => {
         <div className="tracking-widest text-neutral-400 flex items-center gap-2 text-sm">
           <span>[</span> <span>Powered By</span> <span>]</span>
         </div>
-        <h2 className="lg:whitespace-nowrap tracking-tight w-fit text-3xl __gradient_text font-bold">
+        <h2 className="lg:whitespace-nowrap tracking-tight w-fit px-5 text-center lg:text-start lg:px-0 text-3xl __gradient_text font-bold">
           Ecommerce dan Teknologi Terkini
         </h2>
       </header>
