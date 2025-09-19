@@ -86,7 +86,7 @@ const Daftar = () => {
         setName(result.name);
 
         setGeneratedLicenseKey(result.key);
-        startTimer('success', 'License registered successfully!');
+        startTimer('success', 'License registered successfully! (Requires activation)');
         setShowPopup(true);
       } else {
         const response = await fetch('/api/users/register', {
@@ -341,11 +341,17 @@ const Daftar = () => {
         </div>
         <p className="text-sm text-gray-400 mt-10 text-center">
           Dengan mendaftar, Anda setuju dengan{' '}
-          <Link href="/ketentuan-layanan" className="text-blue-400">
+          <Link
+            target="_blank"
+            href="https://autolaku.com/ketentuan-layanan"
+            className="text-blue-400">
             Ketentuan Layanan
           </Link>{' '}
           dan{' '}
-          <Link href="kebijakan-privasi" className="text-blue-400">
+          <Link
+            target="_blank"
+            href="https://autolaku.com/kebijakan-privasi"
+            className="text-blue-400">
             Kebijakan Privasi
           </Link>
         </p>
@@ -365,9 +371,13 @@ const Daftar = () => {
             <p className="text-white/80 text-sm mb-2">
               Silakan simpan kunci lisensi Anda dengan aman. Jangan sampai hilang atau lupa
             </p>
-            <p className="text-white/50 text-xs mb-5">
+            <p className="text-white/50 text-xs mb-2">
               Anda dapat menyimpannya dengan tombol unduh, dan kunci lisensi tersebut akan disimpan
               di komputer Anda sebagai cadangan jika Anda lupa.
+            </p>
+            <p className="text-amber-500/80 text-xs mb-5 font-medium">
+              Catatan: Kunci lisensi ini belum aktif. Silakan hubungi admin untuk mengaktifkan
+              lisensi Anda.
             </p>
             <div className="mb-5 mt-10">
               {generatedLicenseKey && (

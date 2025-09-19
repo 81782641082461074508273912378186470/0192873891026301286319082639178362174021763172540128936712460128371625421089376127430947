@@ -35,6 +35,19 @@ const licenseSchema = new Schema({
     default: null,
     match: /^\+?[1-9]\d{1,14}$/,
   },
+  // Online status tracking
+  isOnline: {
+    type: Boolean,
+    default: false,
+  },
+  lastSeenAt: {
+    type: Date,
+    default: null,
+  },
+  connectionEstablishedAt: {
+    type: Date,
+    default: null,
+  },
   generatedAt: { type: Date, default: Date.now },
   expiresAt: { type: Date, default: null },
 });

@@ -95,7 +95,10 @@ const Page = async () => {
                 authData.user?.licenseLimit !== undefined &&
                 licenses.length < authData.user.licenseLimit && <LicenseGenerator />} */}
 
-              {authData.user?.role === 'admin' && <LicenseList />}
+              {authData.user?.role === 'admin' && (
+                <LicenseList />
+                
+              )}
             </div>
           </div>
           {/* <ShowAuthData authData={authData} /> */}

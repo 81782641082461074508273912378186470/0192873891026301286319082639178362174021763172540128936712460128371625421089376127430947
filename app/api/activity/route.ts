@@ -3,6 +3,7 @@ import { z } from 'zod';
 import mongoose from 'mongoose';
 import mongooseConnect from '@/lib/mongoose';
 import Activity from '@/models/Activity';
+import License from '@/models/License';
 
 const createActivitySchema = z.object({
   userId: z.string().optional(),
@@ -33,9 +34,19 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const validatedData = createActivitySchema.parse(body);
 
+    // If licenseId is provided, get the adminId from the license
+    let adminId = null;
+    if (validatedData.licenseId) {
+      const license = await License.findById(validatedData.licenseId).select('adminId');
+      if (license) {
+        adminId = license.adminId;
+      }
+    }
+
     const activity = new Activity({
       userId: validatedData.userId || null,
       licenseId: validatedData.licenseId || null,
+      adminId: adminId,
       action: validatedData.action,
       platform: validatedData.platform,
       details: validatedData.details || {},

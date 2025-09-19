@@ -42,7 +42,7 @@ async function createUniqueLicense(name: string, email: string, whatsappNumber: 
     key: key,
     adminId: null,
     deviceInfo: null,
-    status: 'active',
+    status: 'revoked', // Set to revoked by default as requested
     email: email,
     whatsappNumber: whatsappNumber,
     expiresAt: null,
