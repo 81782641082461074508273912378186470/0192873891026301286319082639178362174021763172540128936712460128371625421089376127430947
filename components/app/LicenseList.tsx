@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
@@ -8,7 +9,19 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Clock, Plus, AlertCircle, ShieldAlert, LogOut, Activity, Search, Upload, Download, User, ChevronDown } from 'lucide-react';
+import {
+  Clock,
+  Plus,
+  AlertCircle,
+  ShieldAlert,
+  LogOut,
+  Activity,
+  Search,
+  Upload,
+  Download,
+  User,
+  ChevronDown,
+} from 'lucide-react';
 import { cn } from '@/lib/utils';
 import HideShowText from '../HideShowText';
 import CopyToClipboard from '../CopyToClipboard';
@@ -67,7 +80,7 @@ export default function LicenseList() {
     }
 
     if (showLoading) setLoading(true);
-    
+
     try {
       const response = await fetch('/api/license_list?include=activities&activityLimit=10', {
         headers: {
@@ -102,11 +115,14 @@ export default function LicenseList() {
     const newSkip = currentSkip + 10;
 
     try {
-      const response = await fetch(`/api/license_list?include=activities&activityLimit=10&activitySkip=${newSkip}&licenseKey=${licenseKey}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        `/api/license_list?include=activities&activityLimit=10&activitySkip=${newSkip}&licenseKey=${licenseKey}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -114,32 +130,32 @@ export default function LicenseList() {
       }
 
       const data = await response.json();
-      
+
       // Find the license in the response (should be the only one due to licenseKey filter)
       const updatedLicense = data.licenses.find((l: License) => l.key === licenseKey);
-      
+
       if (updatedLicense) {
         // Update the licenses state by merging new activities
-        setLicenses(prevLicenses => 
-          prevLicenses.map(license => {
+        setLicenses((prevLicenses) =>
+          prevLicenses.map((license) => {
             if (license.key === licenseKey) {
               return {
                 ...license,
                 recentActivities: [
                   ...(license.recentActivities || []),
-                  ...(updatedLicense.recentActivities || [])
+                  ...(updatedLicense.recentActivities || []),
                 ],
-                hasMoreActivities: updatedLicense.hasMoreActivities
+                hasMoreActivities: updatedLicense.hasMoreActivities,
               };
             }
             return license;
           })
         );
-        
+
         // Update the skip count for this license
-        setActivitySkips(prev => ({
+        setActivitySkips((prev) => ({
           ...prev,
-          [licenseKey]: newSkip
+          [licenseKey]: newSkip,
         }));
       }
     } catch (err: any) {
@@ -156,7 +172,7 @@ export default function LicenseList() {
   // Setup admin SSE connection for real-time license status updates
   useEffect(() => {
     const token = authDetails?.token;
-    
+
     if (!token) return;
 
     let eventSource: EventSource | null = null;
@@ -172,10 +188,10 @@ export default function LicenseList() {
         eventSource.onmessage = (event) => {
           try {
             const data = JSON.parse(event.data);
-            
+
             if (data.type === 'status_change') {
               console.log(`License status update: ${data.licenseKey} - ${data.message}`);
-              
+
               // Refresh all license data including activities when status changes
               fetchLicenses(false);
             }
@@ -190,7 +206,7 @@ export default function LicenseList() {
             eventSource.close();
             eventSource = null;
           }
-          
+
           // Retry connection after 10 seconds
           setTimeout(() => {
             if (authDetails?.token) {
@@ -215,7 +231,11 @@ export default function LicenseList() {
   }, [authDetails?.token]);
 
   const handleLogoutDevice = async (licenseKey: string) => {
-    if (!confirm('Are you sure you want to logout this device? The user will be logged out immediately.')) {
+    if (
+      !confirm(
+        'Are you sure you want to logout this device? The user will be logged out immediately.'
+      )
+    ) {
       return;
     }
 
@@ -237,7 +257,7 @@ export default function LicenseList() {
       }
 
       const data = await response.json();
-      
+
       // Refresh license data to get updated activities after logout
       fetchLicenses(false);
 
@@ -338,7 +358,9 @@ export default function LicenseList() {
         {/* License Cards Skeleton */}
         <div className="grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
           {[1, 2, 3, 4, 5, 6].map((i) => (
-            <Card key={i} className="bg-gradient-to-br from-zinc-900/90 to-zinc-900/60 border-zinc-800/50 backdrop-blur-sm">
+            <Card
+              key={i}
+              className="bg-gradient-to-br from-zinc-900/90 to-zinc-900/60 border-zinc-800/50 backdrop-blur-sm">
               <div className="h-1 bg-zinc-700 rounded-t-lg"></div>
               <CardHeader className="pb-4">
                 <div className="flex items-start justify-between">
@@ -373,9 +395,11 @@ export default function LicenseList() {
         {/* Header */}
         <div>
           <h2 className="text-2xl font-bold text-white">License Management</h2>
-          <p className="text-zinc-400 text-sm mt-1">Monitor and manage your active licenses in real-time</p>
+          <p className="text-zinc-400 text-sm mt-1">
+            Monitor and manage your active licenses in real-time
+          </p>
         </div>
-        
+
         {/* Error Card */}
         <Card className="bg-gradient-to-br from-red-900/20 to-red-900/10 border-red-800/50 backdrop-blur-sm">
           <CardContent className="p-8">
@@ -405,9 +429,11 @@ export default function LicenseList() {
         {/* Header */}
         <div>
           <h2 className="text-2xl font-bold text-white">License Management</h2>
-          <p className="text-zinc-400 text-sm mt-1">Monitor and manage your active licenses in real-time</p>
+          <p className="text-zinc-400 text-sm mt-1">
+            Monitor and manage your active licenses in real-time
+          </p>
         </div>
-        
+
         {/* Empty State Card */}
         <Card className="bg-gradient-to-br from-zinc-900/90 to-zinc-900/60 border-zinc-800/50 backdrop-blur-sm">
           <CardContent className="p-12">
@@ -418,10 +444,13 @@ export default function LicenseList() {
               <div className="space-y-2">
                 <h3 className="text-2xl font-semibold text-white">No Licenses Found</h3>
                 <p className="text-zinc-400 max-w-md">
-                  You don&apos;t have any licenses yet. Create your first license to get started with the platform.
+                  You don&apos;t have any licenses yet. Create your first license to get started
+                  with the platform.
                 </p>
               </div>
-              <Button variant="outline" className="mt-6 border-zinc-600 text-zinc-300 hover:bg-zinc-800">
+              <Button
+                variant="outline"
+                className="mt-6 border-zinc-600 text-zinc-300 hover:bg-zinc-800">
                 <Plus className="mr-2 h-4 w-4" />
                 Create New License
               </Button>
@@ -465,15 +494,17 @@ export default function LicenseList() {
           const isOnline = license.isOnline && license.deviceInfo;
           const activityCount = license.recentActivities?.length || 0;
           const totalActivityCount = license.activityCount || 0;
-          
+
           return (
             <Card
               key={index}
               className="group relative bg-gradient-to-br from-zinc-900/90 to-zinc-900/60 border-zinc-800/50 backdrop-blur-sm hover:border-zinc-700/50 transition-all duration-300 hover:shadow-xl hover:shadow-black/20">
-              
               {/* Status Indicator Bar */}
-              <div className={`absolute top-0 left-0 right-0 h-1 rounded-t-lg ${isOnline ? 'bg-green-500' : license.deviceInfo ? 'bg-yellow-500' : 'bg-gray-600'}`}></div>
-              
+              <div
+                className={`absolute top-0 left-0 right-0 h-1 rounded-t-lg ${
+                  isOnline ? 'bg-green-500' : license.deviceInfo ? 'bg-yellow-500' : 'bg-gray-600'
+                }`}></div>
+
               <CardHeader className="pb-4">
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
@@ -491,12 +522,14 @@ export default function LicenseList() {
                       {license.status.toUpperCase()}
                     </Badge>
                   </div>
-                  
+
                   {/* Activity Count Badge */}
                   {totalActivityCount > 0 && (
                     <div className="flex items-center gap-1 px-2 py-1 bg-blue-500/20 border border-blue-500/30 rounded-lg">
                       <Activity className="h-3 w-3 text-blue-400" />
-                      <span className="text-blue-400 text-xs font-medium">{totalActivityCount}</span>
+                      <span className="text-blue-400 text-xs font-medium">
+                        {totalActivityCount}
+                      </span>
                     </div>
                   )}
                 </div>
@@ -512,13 +545,16 @@ export default function LicenseList() {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Device Info Section */}
                 {license.deviceInfo ? (
                   <div className="bg-gradient-to-r from-zinc-800/40 to-zinc-800/20 rounded-lg p-4 border border-zinc-700/30">
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center gap-2">
-                        <div className={`h-2 w-2 rounded-full ${isOnline ? 'bg-green-500 animate-pulse' : 'bg-yellow-500'}`}></div>
+                        <div
+                          className={`h-2 w-2 rounded-full ${
+                            isOnline ? 'bg-green-500 animate-pulse' : 'bg-yellow-500'
+                          }`}></div>
                         <span className="text-white font-medium text-sm">
                           {isOnline ? 'Device Online' : 'Device Connected'}
                         </span>
@@ -529,10 +565,12 @@ export default function LicenseList() {
                         </div>
                       )}
                     </div>
-                    
+
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="text-zinc-300 font-medium">{license.deviceInfo.deviceName}</span>
+                        <span className="text-zinc-300 font-medium">
+                          {license.deviceInfo.deviceName}
+                        </span>
                         <span className="text-xs text-zinc-500 bg-zinc-900/50 px-2 py-1 rounded">
                           {license.deviceInfo.platform}
                         </span>
@@ -541,7 +579,7 @@ export default function LicenseList() {
                         {license.deviceInfo.architecture} • {license.deviceInfo.totalMemory}
                       </div>
                     </div>
-                    
+
                     <div className="flex justify-end mt-3">
                       <Button
                         variant="outline"
@@ -584,12 +622,14 @@ export default function LicenseList() {
                         {activityCount} of {totalActivityCount}
                       </div>
                     </div>
-                    
+
                     <div className="space-y-2 max-h-80 overflow-y-auto">
                       {license.recentActivities.map((activity, idx) => {
                         const { icon: ActivityIcon, color } = getActivityIcon(activity.action);
                         return (
-                          <div key={idx} className="flex items-center gap-3 py-2 px-3 bg-zinc-900/30 rounded-lg">
+                          <div
+                            key={idx}
+                            className="flex items-center gap-3 py-2 px-3 bg-zinc-900/30 rounded-lg">
                             <ActivityIcon className={`h-4 w-4 ${color} flex-shrink-0`} />
                             <div className="flex-1 min-w-0">
                               <span className="text-zinc-200 text-sm font-medium">
@@ -603,7 +643,7 @@ export default function LicenseList() {
                         );
                       })}
                     </div>
-                    
+
                     {/* Load More Button */}
                     {license.hasMoreActivities && (
                       <div className="mt-3 pt-3 border-t border-zinc-700/30">
@@ -637,7 +677,7 @@ export default function LicenseList() {
                   </div>
                 )}
               </CardContent>
-              
+
               {/* Footer with License Info */}
               <CardFooter className="bg-zinc-900/30 border-t border-zinc-800/50 pt-4">
                 <div className="w-full grid grid-cols-2 gap-4 text-xs">
@@ -645,14 +685,18 @@ export default function LicenseList() {
                     <Plus className="h-3 w-3 text-zinc-500" />
                     <div>
                       <div className="text-zinc-500">Created</div>
-                      <div className="text-zinc-300 font-medium">{formatTime(license.generatedAt)}</div>
+                      <div className="text-zinc-300 font-medium">
+                        {formatTime(license.generatedAt)}
+                      </div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
                     <Clock className="h-3 w-3 text-zinc-500" />
                     <div>
                       <div className="text-zinc-500">Expires</div>
-                      <div className="text-zinc-300 font-medium">{formatTime(license.expiresAt)}</div>
+                      <div className="text-zinc-300 font-medium">
+                        {formatTime(license.expiresAt)}
+                      </div>
                     </div>
                   </div>
                 </div>

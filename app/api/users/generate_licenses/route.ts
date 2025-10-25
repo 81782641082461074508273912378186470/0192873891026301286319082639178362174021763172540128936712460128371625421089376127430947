@@ -5,6 +5,7 @@ import License from '@/models/License';
 import { NextResponse, NextRequest } from 'next/server';
 import { randomBytes } from 'crypto';
 import { getUserFromRequest } from '@/lib/AuthUtils';
+import { hasActiveSubscription, getUserSubscription } from '@/lib/SubscriptionUtils';
 
 function generateLicenseKey() {
   const segmentLength = 4;
@@ -34,6 +35,15 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
+    // Check if user has an active subscription
+    const hasSubscription = await hasActiveSubscription(user._id);
+    if (!hasSubscription) {
+      return NextResponse.json(
+        { error: 'You need an active subscription to generate licenses' },
+        { status: 403 }
+      );
+    }
+
     const requestData = await request.json();
     const { name, whatsappNumber, email } = requestData;
 
@@ -59,15 +69,19 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // Get user's subscription for expiry date and subscription ID
+    const subscription = await getUserSubscription(user._id);
+
     const license = await License.create({
       name,
       key,
       adminId: user._id,
+      subscriptionId: subscription?._id || null,
       deviceInfo: null,
       status: 'active',
       email: email || null,
       whatsappNumber: whatsappNumber || null,
-      expiresAt: user.subscription?.expireDate || null,
+      expiresAt: subscription?.endDate || user.subscription?.expireDate || null,
     });
 
     return NextResponse.json(

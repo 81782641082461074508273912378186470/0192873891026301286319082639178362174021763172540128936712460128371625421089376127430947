@@ -4,6 +4,7 @@ const licenseSchema = new Schema({
   name: { type: String, required: true },
   key: { type: String, required: true, unique: true },
   adminId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null },
+  subscriptionId: { type: mongoose.Schema.Types.ObjectId, ref: 'Subscription', default: null },
   deviceInfo: {
     type: {
       deviceName: { type: String, default: null },
@@ -51,6 +52,14 @@ const licenseSchema = new Schema({
   generatedAt: { type: Date, default: Date.now },
   expiresAt: { type: Date, default: null },
 });
+
+// Create indexes for better performance
+licenseSchema.index({ key: 1 }, { unique: true });
+licenseSchema.index({ adminId: 1 });
+licenseSchema.index({ subscriptionId: 1 });
+licenseSchema.index({ status: 1 });
+licenseSchema.index({ expiresAt: 1 });
+licenseSchema.index({ email: 1 });
 
 const License = models.License || model('License', licenseSchema);
 

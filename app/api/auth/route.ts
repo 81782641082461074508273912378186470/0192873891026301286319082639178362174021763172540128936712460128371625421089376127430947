@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const runtime = 'nodejs';
 
 import mongooseConnect from '@/lib/mongoose';
 import User from '@/models/User';
+import { hasActiveSubscription, getUserSubscription } from '@/lib/SubscriptionUtils';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
@@ -36,6 +38,36 @@ export async function POST(request: Request) {
     });
   }
 
+  // Check if user has an active subscription (for admin/owner roles)
+  let subscriptionData = null;
+  let subscriptionStatus = { hasActiveSubscription: false, isExpired: false };
+
+  if (user.role === 'admin' || user.role === 'owner') {
+    // Get subscription data
+    const subscription = await getUserSubscription(user._id);
+
+    if (subscription) {
+      subscriptionData = {
+        id: subscription._id,
+        plan: subscription.plan,
+        status: subscription.status,
+        startDate: subscription.startDate,
+        endDate: subscription.endDate,
+        licenseLimit: subscription.licenseLimit,
+        autoRenew: subscription.autoRenew,
+      };
+
+      // Check if subscription is active
+      const isActive = await hasActiveSubscription(user._id);
+      subscriptionStatus = {
+        hasActiveSubscription: isActive,
+        isExpired:
+          subscription.status === 'expired' ||
+          (subscription.status === 'active' && subscription.endDate < new Date()),
+      };
+    }
+  }
+
   const token = jwt.sign({ id: user._id, role: user.role }, JWT_SECRET, {
     expiresIn: '7d',
   });
@@ -51,7 +83,10 @@ export async function POST(request: Request) {
         name: user.name,
         whatsappNumber: user.whatsappNumber,
         licenseLimit: user.licenseLimit,
-        subscription: user.subscription,
+        subscription: user.subscription, // Legacy field
+        subscriptionId: user.subscriptionId,
+        subscriptionData,
+        subscriptionStatus,
         isActive: user.isActive,
       },
     }),

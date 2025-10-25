@@ -42,6 +42,13 @@ const userSchema = new Schema(
       default: null,
       match: /^\+?[1-9]\d{1,14}$/,
     },
+    subscriptionId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Subscription',
+      default: null,
+    },
+    // Keep legacy subscription field for backward compatibility
+    // This will be deprecated in future versions
     subscription: {
       type: {
         expireDate: {
@@ -72,6 +79,7 @@ userSchema.index({ username: 1, email: 1 }, { unique: true });
 userSchema.index({ role: 1 });
 userSchema.index({ isActive: 1 });
 userSchema.index({ 'subscription.expireDate': 1 });
+userSchema.index({ subscriptionId: 1 });
 
 const User = models.User || model('User', userSchema);
 
