@@ -34,12 +34,15 @@ export class FaspayPaymentGateway {
   }
 
   /**
-   * Generate MD5 signature for Faspay requests
-   * Formula: MD5(user_id + password + bill_no)
+   * Generate signature for Faspay Xpress v4 requests
+   * Formula: SHA1(MD5(user_id + password + bill_no + bill_total))
+   * Reference: https://docs.faspay.co.id/merchant-integration/api-reference-1/xpress/xpress-version-4
    */
-  private generateSignature(bill_no: string): string {
-    const signatureString = this.config.userId + this.config.password + bill_no;
-    return crypto.createHash('md5').update(signatureString).digest('hex');
+  private generateSignature(bill_no: string, bill_total: string): string {
+    const signatureString = this.config.userId + this.config.password + bill_no + bill_total;
+    const md5Hash = crypto.createHash('md5').update(signatureString).digest('hex');
+    const sha1Hash = crypto.createHash('sha1').update(md5Hash).digest('hex');
+    return sha1Hash;
   }
 
   /**
@@ -74,8 +77,17 @@ export class FaspayPaymentGateway {
       const now = new Date();
       const expired = new Date(now.getTime() + 24 * 60 * 60 * 1000); // 24 hours from now
 
-      // Generate signature
-      const signature = this.generateSignature(bill_no);
+      // Generate signature with bill_no and bill_total
+      const bill_total = request.amount.toString();
+      const signature = this.generateSignature(bill_no, bill_total);
+
+      console.log('🔐 Signature generation:', {
+        formula: 'SHA1(MD5(user_id + password + bill_no + bill_total))',
+        user_id: this.config.userId,
+        bill_no: bill_no,
+        bill_total: bill_total,
+        signature: signature,
+      });
 
       // Format request for Faspay Xpress API
       const payload: FaspayQRISPaymentRequest = {
@@ -90,7 +102,7 @@ export class FaspayPaymentGateway {
         return_url: request.successRedirectUrl,
         msisdn: request.customerPhone || '',
         email: request.customerEmail,
-        payment_channel: ['qris_shopeepay'], // QRIS only via ShopeePay
+        payment_channel: ['711'], // 711 = ShopeePay QRIS (official Faspay code)
         signature: signature,
         item: [
           {
@@ -246,7 +258,8 @@ export class FaspayPaymentGateway {
   validateWebhookSignature(rawData: FaspayWebhookData): boolean {
     try {
       // Generate expected signature using the same formula as request
-      const expectedSignature = this.generateSignature(rawData.bill_no);
+      // Formula: SHA1(MD5(user_id + password + bill_no + bill_total))
+      const expectedSignature = this.generateSignature(rawData.bill_no, rawData.bill_total);
 
       // Compare with received signature
       return expectedSignature === rawData.signature;
