@@ -1,4 +1,4 @@
-import { Types } from 'mongoose';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { PaymentStatus } from './subscription';
 
 export interface FaspayConfig {

@@ -34,7 +34,7 @@ export class FaspayPaymentGateway {
   }
 
   /**
-   * Generate signature for Faspay Xpress v4 requests
+   * Generate signature for Faspay Xpress v4 payment requests
    * Formula: SHA1(MD5(user_id + password + bill_no + bill_total))
    * Reference: https://docs.faspay.co.id/merchant-integration/api-reference-1/xpress/xpress-version-4
    */
@@ -42,6 +42,28 @@ export class FaspayPaymentGateway {
     const signatureString = this.config.userId + this.config.password + bill_no + bill_total;
     const md5Hash = crypto.createHash('md5').update(signatureString).digest('hex');
     const sha1Hash = crypto.createHash('sha1').update(md5Hash).digest('hex');
+    return sha1Hash;
+  }
+
+  /**
+   * Generate signature for Faspay webhook validation
+   * Formula: SHA1(MD5(user_id + password + bill_no + payment_status_code))
+   * Reference: https://docs.faspay.co.id/merchant-integration/api-reference-1/debit-transaction/payment-notification
+   */
+  private generateWebhookSignature(bill_no: string, payment_status_code: string): string {
+    const signatureString =
+      this.config.userId + this.config.password + bill_no + payment_status_code;
+    const md5Hash = crypto.createHash('md5').update(signatureString).digest('hex');
+    const sha1Hash = crypto.createHash('sha1').update(md5Hash).digest('hex');
+
+    console.log('🔐 Webhook signature validation:', {
+      formula: 'SHA1(MD5(user_id + password + bill_no + payment_status_code))',
+      user_id: this.config.userId,
+      bill_no: bill_no,
+      payment_status_code: payment_status_code,
+      calculated_signature: sha1Hash,
+    });
+
     return sha1Hash;
   }
 
@@ -257,9 +279,19 @@ export class FaspayPaymentGateway {
    */
   validateWebhookSignature(rawData: FaspayWebhookData): boolean {
     try {
-      // Generate expected signature using the same formula as request
-      // Formula: SHA1(MD5(user_id + password + bill_no + bill_total))
-      const expectedSignature = this.generateSignature(rawData.bill_no, rawData.bill_total);
+      // Generate expected signature using WEBHOOK formula (different from payment request!)
+      // Formula: SHA1(MD5(user_id + password + bill_no + payment_status_code))
+      // Reference: https://docs.faspay.co.id/merchant-integration/api-reference-1/debit-transaction/payment-notification
+      const expectedSignature = this.generateWebhookSignature(
+        rawData.bill_no,
+        rawData.payment_status_code
+      );
+
+      console.log('🔍 Signature comparison:', {
+        received: rawData.signature,
+        expected: expectedSignature,
+        match: expectedSignature === rawData.signature,
+      });
 
       // Compare with received signature
       return expectedSignature === rawData.signature;
