@@ -90,15 +90,11 @@ const Page = async () => {
             <p className="text-neutral-100 font-thin tracking-widest text-xs lg:text-sm w-full text-center p-2">
               {greeting}
             </p>
+            {authData.type === 'account' && authData.user?.licenseLimit !== undefined && (
+              <LicenseGenerator />
+            )}
             <div className="flex gap-10 w-full justify-center items-center flex-col lg:flex-row">
-              {/* {authData.type === 'account' &&
-                authData.user?.licenseLimit !== undefined &&
-                licenses.length < authData.user.licenseLimit && <LicenseGenerator />} */}
-
-              {authData.user?.role === 'admin' && (
-                <LicenseList />
-                
-              )}
+              {authData.user?.role === 'admin' && <LicenseList />}
             </div>
           </div>
           {/* <ShowAuthData authData={authData} /> */}

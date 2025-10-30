@@ -38,6 +38,14 @@ export async function POST(request: Request) {
     });
   }
 
+  // Check if user account is activated
+  if (!user.isActive) {
+    return new Response(JSON.stringify({ 
+      error: 'Account not activated. Please complete your payment first.',
+      code: 'ACCOUNT_INACTIVE'
+    }), { status: 403 });
+  }
+
   // Check if user has an active subscription (for admin/owner roles)
   let subscriptionData = null;
   let subscriptionStatus = { hasActiveSubscription: false, isExpired: false };
