@@ -234,20 +234,6 @@ export const PAYMENT_METHODS: Record<PaymentMethod, PaymentMethodConfig> = {
     description: 'Pay at Alfamart stores',
     enabled: true,
   },
-
-  // Online Credit
-  kredivo: {
-    id: 'kredivo',
-    name: 'Kredivo',
-    category: 'online_credit',
-    channelCode: 'kredivo',
-    description: 'Pay later with Kredivo',
-    enabled: true,
-    testCredentials: {
-      fullPayment: { username: '081513114262', password: '663482', otp: '4567' },
-      installment: { username: '081291891818', password: '414141', otp: '4567' },
-    },
-  },
 };
 
 // Helper function to get enabled payment methods

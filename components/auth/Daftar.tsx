@@ -118,6 +118,7 @@ const Daftar = () => {
         username: '',
         password: '',
         plan: '',
+        paymentMethod: 'shopeepay_qris' as PaymentMethod,
       });
       setStep(1);
     } catch (error: any) {
@@ -453,8 +454,8 @@ const Daftar = () => {
                 <div className="mt-8">
                   <PaymentMethodSelector
                     selectedMethod={formData.paymentMethod}
-                    onMethodChange={(method) => 
-                      setFormData(prev => ({ ...prev, paymentMethod: method }))
+                    onMethodChange={(method) =>
+                      setFormData((prev) => ({ ...prev, paymentMethod: method }))
                     }
                   />
                 </div>
@@ -543,12 +544,20 @@ const Daftar = () => {
                       }`}>
                       {loading
                         ? 'Memproses...'
-                        : `Bayar dengan ${formData.paymentMethod === 'shopeepay_qris' ? 'QRIS' : 
-                            formData.paymentMethod === 'credit_card' ? 'Credit Card' :
-                            formData.paymentMethod === 'gopay' ? 'GoPay' :
-                            formData.paymentMethod === 'ovo' ? 'OVO' :
-                            formData.paymentMethod === 'dana' ? 'DANA' :
-                            formData.paymentMethod.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
+                        : `Bayar dengan ${
+                            formData.paymentMethod === 'shopeepay_qris'
+                              ? 'QRIS'
+                              : formData.paymentMethod === 'credit_card'
+                              ? 'Credit Card'
+                              : formData.paymentMethod === 'gopay'
+                              ? 'GoPay'
+                              : formData.paymentMethod === 'ovo'
+                              ? 'OVO'
+                              : formData.paymentMethod === 'dana'
+                              ? 'DANA'
+                              : formData.paymentMethod
+                                  .replace(/_/g, ' ')
+                                  .replace(/\b\w/g, (l) => l.toUpperCase())
                           } - IDR ${planPrices[selectedPlan].toLocaleString()}`}
                     </button>
                   </div>

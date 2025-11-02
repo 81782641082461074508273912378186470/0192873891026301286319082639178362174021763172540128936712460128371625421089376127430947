@@ -2,9 +2,9 @@
 import { PaymentStatus } from './subscription';
 
 // Payment Method Categories
-export type PaymentMethodCategory = 
+export type PaymentMethodCategory =
   | 'qris'
-  | 'credit_card' 
+  | 'credit_card'
   | 'virtual_account'
   | 'e_wallet'
   | 'internet_banking'
@@ -12,7 +12,7 @@ export type PaymentMethodCategory =
   | 'online_credit';
 
 // Individual Payment Methods
-export type PaymentMethod = 
+export type PaymentMethod =
   // QRIS/E-Wallet
   | 'shopeepay_qris'
   | 'gopay'
@@ -40,9 +40,7 @@ export type PaymentMethod =
   | 'octo_clicks'
   // Retail Payment
   | 'indomaret'
-  | 'alfamart'
-  // Online Credit
-  | 'kredivo';
+  | 'alfamart';
 
 // Payment Method Configuration
 export interface PaymentMethodConfig {
