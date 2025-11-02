@@ -14,16 +14,16 @@ import { SubscriptionPlan } from '@/types/subscription';
 export async function POST(request: NextRequest) {
   try {
     await mongooseConnect();
-    
+
     // Authenticate the user
     const user = await getUserFromRequest(request);
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
-    
+
     // Parse request body
     const { plan, durationMonths = 1, addOns = [], autoRenew = true } = await request.json();
-    
+
     // Validate plan
     if (!plan || !['starter', 'basic', 'pro', 'enterprise'].includes(plan)) {
       return NextResponse.json(
@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-    
+
     // Create subscription
     try {
       const subscription = await createSubscription(
@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
         addOns,
         autoRenew
       );
-      
+
       // Initiate QRIS payment
       const paymentResult = await createQRISSubscriptionPayment(
         plan,
@@ -56,27 +56,27 @@ export async function POST(request: NextRequest) {
           durationMonths,
         }
       );
-      
+
       if (!paymentResult.success) {
         return NextResponse.json(
           { error: paymentResult.message || 'Failed to initiate payment' },
           { status: 400 }
         );
       }
-      
+
       // Add payment to subscription history
       subscription.paymentHistory.push({
         transactionId: paymentResult.transactionId!,
         amount: subscription.totalPrice,
         currency: 'IDR',
-        paymentMethod: 'qris_shopeepay',
+        paymentMethod: 'shopeepay_qris',
         paymentGateway: 'faspay',
         status: 'pending',
         paidAt: new Date(),
       });
-      
+
       await subscription.save();
-      
+
       // Return success with QRIS payment URL
       return NextResponse.json({
         success: true,
@@ -93,7 +93,7 @@ export async function POST(request: NextRequest) {
         payment: {
           transactionId: paymentResult.transactionId,
           paymentUrl: paymentResult.paymentUrl,
-          paymentMethod: 'qris_shopeepay',
+          paymentMethod: 'shopeepay_qris',
         },
       });
     } catch (error: any) {

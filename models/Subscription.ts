@@ -92,10 +92,10 @@ subscriptionSchema.statics.getLicenseLimitByPlan = function (plan: string): numb
 // Static method to get base price by plan
 subscriptionSchema.statics.getBasePriceByPlan = function (plan: string): number {
   const prices = {
-    starter: 20000, // IDR 20k
-    basic: 60000, // IDR 60k
-    pro: 85000, // IDR 85k
-    enterprise: 100000, // IDR 100k
+    starter: 5000,
+    basic: 10000,
+    pro: 15000,
+    enterprise: 20000,
   };
   return prices[plan as keyof typeof prices] || 0;
 };

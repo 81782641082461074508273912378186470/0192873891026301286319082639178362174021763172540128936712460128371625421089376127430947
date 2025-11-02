@@ -10,7 +10,9 @@ import { IoCloseSharp } from 'react-icons/io5';
 import { GrLicense, GrUserAdmin } from 'react-icons/gr';
 import PlanSelector from '@/components/subscription/PlanSelector';
 import PaymentStatus from '@/components/subscription/PaymentStatus';
+import PaymentMethodSelector from '@/components/subscription/PaymentMethodSelector';
 import { SubscriptionPlan } from '@/types/subscription';
+import { PaymentMethod } from '@/types/payment';
 
 import Link from 'next/link';
 
@@ -23,6 +25,7 @@ const Daftar = () => {
     username: '',
     password: '',
     plan: '' as SubscriptionPlan | '',
+    paymentMethod: 'shopeepay_qris' as PaymentMethod,
   });
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
@@ -40,10 +43,10 @@ const Daftar = () => {
 
   // Pricing information for plans
   const planPrices = {
-    starter: 20000,
-    basic: 60000,
-    pro: 85000,
-    enterprise: 100000,
+    starter: 5000,
+    basic: 10000,
+    pro: 15000,
+    enterprise: 20000,
   };
 
   const startTimer = (messageType: 'error' | 'success', message: string) => {
@@ -207,6 +210,7 @@ const Daftar = () => {
           username: formData.username,
           password: formData.password,
           plan: selectedPlan,
+          paymentMethod: formData.paymentMethod,
         }),
       });
 
@@ -445,6 +449,17 @@ const Daftar = () => {
             <>
               <PlanSelector selectedPlan={selectedPlan} onSelectPlan={handleSelectPlan} />
 
+              {selectedPlan && (
+                <div className="mt-8">
+                  <PaymentMethodSelector
+                    selectedMethod={formData.paymentMethod}
+                    onMethodChange={(method) => 
+                      setFormData(prev => ({ ...prev, paymentMethod: method }))
+                    }
+                  />
+                </div>
+              )}
+
               <div className="flex items-center justify-between w-full mt-6">
                 <button
                   type="button"
@@ -528,7 +543,13 @@ const Daftar = () => {
                       }`}>
                       {loading
                         ? 'Memproses...'
-                        : `Bayar dengan QRIS - IDR ${planPrices[selectedPlan].toLocaleString()}`}
+                        : `Bayar dengan ${formData.paymentMethod === 'shopeepay_qris' ? 'QRIS' : 
+                            formData.paymentMethod === 'credit_card' ? 'Credit Card' :
+                            formData.paymentMethod === 'gopay' ? 'GoPay' :
+                            formData.paymentMethod === 'ovo' ? 'OVO' :
+                            formData.paymentMethod === 'dana' ? 'DANA' :
+                            formData.paymentMethod.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
+                          } - IDR ${planPrices[selectedPlan].toLocaleString()}`}
                     </button>
                   </div>
                 </div>

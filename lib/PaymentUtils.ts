@@ -10,6 +10,8 @@ import {
   PaymentVerificationRequest,
   PaymentVerificationResponse,
   PaymentWebhookData,
+  PaymentMethod,
+  PaymentMethodConfig,
 } from '@/types/payment';
 
 // Default configuration for Faspay sandbox environment
@@ -20,6 +22,245 @@ const DEFAULT_CONFIG: FaspayConfig = {
   environment: process.env.FASPAY_ENVIRONMENT === 'production' ? 'production' : 'sandbox',
   baseUrl: process.env.FASPAY_BASE_URL || 'https://xpress-sandbox.faspay.co.id',
 };
+
+// Payment Method Configurations
+export const PAYMENT_METHODS: Record<PaymentMethod, PaymentMethodConfig> = {
+  // QRIS/E-Wallet
+  shopeepay_qris: {
+    id: 'shopeepay_qris',
+    name: 'ShopeePay QRIS',
+    category: 'qris',
+    channelCode: '711',
+    description: 'Scan QR code with any e-wallet app',
+    enabled: true,
+  },
+  gopay: {
+    id: 'gopay',
+    name: 'GoPay',
+    category: 'e_wallet',
+    channelCode: '701',
+    description: 'Pay with GoPay e-wallet',
+    enabled: true,
+    testCredentials: { phone: '081234567890' },
+  },
+  dana: {
+    id: 'dana',
+    name: 'DANA',
+    category: 'e_wallet',
+    channelCode: '702',
+    description: 'Pay with DANA e-wallet',
+    enabled: true,
+    testCredentials: { phone: '0817345545', pin: '123321' },
+  },
+  ovo: {
+    id: 'ovo',
+    name: 'OVO',
+    category: 'e_wallet',
+    channelCode: '801',
+    description: 'Pay with OVO e-wallet',
+    enabled: true,
+    testCredentials: { phone: '081234567890' },
+  },
+  linkaja: {
+    id: 'linkaja',
+    name: 'LinkAja',
+    category: 'e_wallet',
+    channelCode: '805',
+    description: 'Pay with LinkAja e-wallet',
+    enabled: true,
+    testCredentials: { phone: '081234567890', pin: '000000', otp: '000000' },
+  },
+  blu_bca: {
+    id: 'blu_bca',
+    name: 'Blu BCA',
+    category: 'e_wallet',
+    channelCode: 'blu',
+    description: 'Pay with Blu by BCA Digital',
+    enabled: true,
+    testCredentials: { phone: '081234567890' },
+  },
+
+  // Credit Card
+  credit_card: {
+    id: 'credit_card',
+    name: 'Credit Card',
+    category: 'credit_card',
+    channelCode: 'credit_card',
+    description: 'Visa, MasterCard, JCB, Amex',
+    enabled: true,
+    testCredentials: {
+      visa: '4440000009900010',
+      mastercard: '5123450000000008',
+      exp: '01/39',
+      cvv: '100',
+    },
+  },
+
+  // Virtual Account
+  bca_va: {
+    id: 'bca_va',
+    name: 'BCA Virtual Account',
+    category: 'virtual_account',
+    channelCode: '402',
+    description: 'Transfer via BCA Virtual Account',
+    enabled: true,
+  },
+  mandiri_va: {
+    id: 'mandiri_va',
+    name: 'Mandiri Virtual Account',
+    category: 'virtual_account',
+    channelCode: '403',
+    description: 'Transfer via Mandiri Virtual Account',
+    enabled: true,
+  },
+  bri_va: {
+    id: 'bri_va',
+    name: 'BRI Virtual Account',
+    category: 'virtual_account',
+    channelCode: '410',
+    description: 'Transfer via BRI Virtual Account',
+    enabled: true,
+  },
+  bni_va: {
+    id: 'bni_va',
+    name: 'BNI Virtual Account',
+    category: 'virtual_account',
+    channelCode: '411',
+    description: 'Transfer via BNI Virtual Account',
+    enabled: true,
+  },
+  permata_va: {
+    id: 'permata_va',
+    name: 'Permata Virtual Account',
+    category: 'virtual_account',
+    channelCode: '408',
+    description: 'Transfer via Permata Virtual Account',
+    enabled: true,
+  },
+  maybank_va: {
+    id: 'maybank_va',
+    name: 'Maybank Virtual Account',
+    category: 'virtual_account',
+    channelCode: '412',
+    description: 'Transfer via Maybank Virtual Account',
+    enabled: true,
+  },
+  danamon_va: {
+    id: 'danamon_va',
+    name: 'Danamon Virtual Account',
+    category: 'virtual_account',
+    channelCode: '413',
+    description: 'Transfer via Danamon Virtual Account',
+    enabled: true,
+  },
+  sinarmas_va: {
+    id: 'sinarmas_va',
+    name: 'Sinarmas Virtual Account',
+    category: 'virtual_account',
+    channelCode: '414',
+    description: 'Transfer via Sinarmas Virtual Account',
+    enabled: true,
+  },
+  cimb_va: {
+    id: 'cimb_va',
+    name: 'CIMB Virtual Account',
+    category: 'virtual_account',
+    channelCode: '415',
+    description: 'Transfer via CIMB Virtual Account',
+    enabled: true,
+  },
+
+  // Internet Banking
+  bca_klikpay: {
+    id: 'bca_klikpay',
+    name: 'BCA KlikPay',
+    category: 'internet_banking',
+    channelCode: 'bca_klikpay',
+    description: 'Pay via BCA KlikPay',
+    enabled: true,
+    testCredentials: { email: 'faspay@faspay.co.id', password: 'password', otp: '101010' },
+  },
+  bri_epay: {
+    id: 'bri_epay',
+    name: 'BRI E-pay',
+    category: 'internet_banking',
+    channelCode: 'bri_epay',
+    description: 'Pay via BRI E-pay',
+    enabled: true,
+    testCredentials: { username: 'faspay', password: 'password', otp: '101010' },
+  },
+  danamon_online: {
+    id: 'danamon_online',
+    name: 'Danamon Online Banking',
+    category: 'internet_banking',
+    channelCode: 'danamon_online',
+    description: 'Pay via Danamon Online Banking',
+    enabled: true,
+    testCredentials: { username: 'faspay', password: 'password', otp: '10101010' },
+  },
+  maybank2u: {
+    id: 'maybank2u',
+    name: 'Maybank2U',
+    category: 'internet_banking',
+    channelCode: 'maybank2u',
+    description: 'Pay via Maybank2U',
+    enabled: true,
+    testCredentials: { username: 'faspay', password: 'Faspay123!@#', otp: '10101010' },
+  },
+  octo_clicks: {
+    id: 'octo_clicks',
+    name: 'CIMB Clicks',
+    category: 'internet_banking',
+    channelCode: 'octo_clicks',
+    description: 'Pay via CIMB Clicks',
+    enabled: true,
+    testCredentials: { username: 'faspay', payCode: '101010' },
+  },
+
+  // Retail Payment
+  indomaret: {
+    id: 'indomaret',
+    name: 'Indomaret',
+    category: 'retail_payment',
+    channelCode: 'indomaret',
+    description: 'Pay at Indomaret stores',
+    enabled: true,
+  },
+  alfamart: {
+    id: 'alfamart',
+    name: 'Alfamart',
+    category: 'retail_payment',
+    channelCode: 'alfamart',
+    description: 'Pay at Alfamart stores',
+    enabled: true,
+  },
+
+  // Online Credit
+  kredivo: {
+    id: 'kredivo',
+    name: 'Kredivo',
+    category: 'online_credit',
+    channelCode: 'kredivo',
+    description: 'Pay later with Kredivo',
+    enabled: true,
+    testCredentials: {
+      fullPayment: { username: '081513114262', password: '663482', otp: '4567' },
+      installment: { username: '081291891818', password: '414141', otp: '4567' },
+    },
+  },
+};
+
+// Helper function to get enabled payment methods
+export function getEnabledPaymentMethods(): PaymentMethodConfig[] {
+  return Object.values(PAYMENT_METHODS).filter((method) => method.enabled);
+}
+
+// Helper function to get payment methods by category
+export function getPaymentMethodsByCategory(category: string): PaymentMethodConfig[] {
+  return Object.values(PAYMENT_METHODS).filter(
+    (method) => method.enabled && method.category === category
+  );
+}
 
 /**
  * FaspayPaymentGateway class for handling Faspay QRIS payment integration
@@ -56,13 +297,15 @@ export class FaspayPaymentGateway {
     const md5Hash = crypto.createHash('md5').update(signatureString).digest('hex');
     const sha1Hash = crypto.createHash('sha1').update(md5Hash).digest('hex');
 
-    console.log('🔐 Webhook signature validation:', {
-      formula: 'SHA1(MD5(user_id + password + bill_no + payment_status_code))',
-      user_id: this.config.userId,
-      bill_no: bill_no,
-      payment_status_code: payment_status_code,
-      calculated_signature: sha1Hash,
-    });
+    if (this.config.environment !== 'production') {
+      console.log('🔐 Webhook signature validation:', {
+        formula: 'SHA1(MD5(user_id + password + bill_no + payment_status_code))',
+        user_id: this.config.userId,
+        bill_no: bill_no,
+        payment_status_code: payment_status_code,
+        calculated_signature: sha1Hash,
+      });
+    }
 
     return sha1Hash;
   }
@@ -86,11 +329,15 @@ export class FaspayPaymentGateway {
   }
 
   /**
-   * Create a new QRIS payment transaction via Faspay
+   * Create a new payment transaction via Faspay
    * @param request Payment request data
-   * @returns Payment response with redirect URL to QRIS page
+   * @param paymentMethod Payment method to use (defaults to ShopeePay QRIS)
+   * @returns Payment response with redirect URL to payment page
    */
-  async createQRISPayment(request: CreatePaymentRequest): Promise<PaymentResponse> {
+  async createPayment(
+    request: CreatePaymentRequest,
+    paymentMethod: PaymentMethod = 'shopeepay_qris'
+  ): Promise<PaymentResponse> {
     try {
       // Generate unique bill number
       const bill_no = this.generateBillNo();
@@ -99,17 +346,31 @@ export class FaspayPaymentGateway {
       const now = new Date();
       const expired = new Date(now.getTime() + 24 * 60 * 60 * 1000); // 24 hours from now
 
+      // Get payment method configuration
+      const methodConfig = PAYMENT_METHODS[paymentMethod];
+      if (!methodConfig || !methodConfig.enabled) {
+        return {
+          success: false,
+          message: `Payment method ${paymentMethod} is not available`,
+          errorCode: 'INVALID_PAYMENT_METHOD',
+        };
+      }
+
       // Generate signature with bill_no and bill_total
       const bill_total = request.amount.toString();
       const signature = this.generateSignature(bill_no, bill_total);
 
-      console.log('🔐 Signature generation:', {
-        formula: 'SHA1(MD5(user_id + password + bill_no + bill_total))',
-        user_id: this.config.userId,
-        bill_no: bill_no,
-        bill_total: bill_total,
-        signature: signature,
-      });
+      if (this.config.environment !== 'production') {
+        console.log('🔐 Signature generation:', {
+          formula: 'SHA1(MD5(user_id + password + bill_no + bill_total))',
+          user_id: this.config.userId,
+          bill_no: bill_no,
+          bill_total: bill_total,
+          signature: signature,
+          paymentMethod: paymentMethod,
+          channelCode: methodConfig.channelCode,
+        });
+      }
 
       // Format request for Faspay Xpress API
       const payload: FaspayQRISPaymentRequest = {
@@ -124,7 +385,7 @@ export class FaspayPaymentGateway {
         return_url: request.successRedirectUrl,
         msisdn: request.customerPhone || '',
         email: request.customerEmail,
-        payment_channel: ['711'], // 711 = ShopeePay QRIS (official Faspay code)
+        payment_channel: [methodConfig.channelCode], // Use selected payment method
         signature: signature,
         item: [
           {
@@ -139,14 +400,18 @@ export class FaspayPaymentGateway {
       };
 
       // Log the request payload for debugging
-      console.log('🚀 Sending Faspay payment request:', {
-        endpoint: `${this.baseUrl}/v4/post`,
-        bill_no: payload.bill_no,
-        bill_total: payload.bill_total,
-        merchant_id: payload.merchant_id,
-        payment_channel: payload.payment_channel,
-        item: payload.item,
-      });
+      if (this.config.environment !== 'production') {
+        console.log('🚀 Sending Faspay payment request:', {
+          endpoint: `${this.baseUrl}/v4/post`,
+          bill_no: payload.bill_no,
+          bill_total: payload.bill_total,
+          merchant_id: payload.merchant_id,
+          payment_channel: payload.payment_channel,
+          payment_method: paymentMethod,
+          method_name: methodConfig.name,
+          item: payload.item,
+        });
+      }
 
       // Call Faspay Xpress API
       const response = await axios.post(`${this.baseUrl}/v4/post`, payload, {
@@ -157,17 +422,19 @@ export class FaspayPaymentGateway {
 
       const responseData = response.data as any;
 
-      console.log('✅ Faspay response received:', {
-        response_code: responseData.response_code,
-        response_desc: responseData.response_desc,
-        redirect_url: responseData.redirect_url ? 'URL provided' : 'No URL',
-      });
+      if (this.config.environment !== 'production') {
+        console.log('✅ Faspay response received:', {
+          response_code: responseData.response_code,
+          response_desc: responseData.response_desc,
+          redirect_url: responseData.redirect_url ? 'URL provided' : 'No URL',
+        });
+      }
 
       // Check if request was successful
       if (responseData.response_code === '00') {
         return {
           success: true,
-          message: 'QRIS payment initiated successfully',
+          message: `${methodConfig.name} payment initiated successfully`,
           transactionId: bill_no,
           paymentUrl: responseData.redirect_url,
           status: 'pending',
@@ -175,7 +442,7 @@ export class FaspayPaymentGateway {
       } else {
         return {
           success: false,
-          message: responseData.response_desc || 'Failed to create QRIS payment',
+          message: responseData.response_desc || `Failed to create ${methodConfig.name} payment`,
           errorCode: responseData.response_code,
         };
       }
@@ -204,10 +471,19 @@ export class FaspayPaymentGateway {
       console.error('Raw error:', error.response?.data || error.message);
       return {
         success: false,
-        message: error.response?.data?.response_desc || 'Failed to create QRIS payment',
+        message: error.response?.data?.response_desc || 'Failed to create payment',
         errorCode: error.response?.data?.response_code || '500',
       };
     }
+  }
+
+  /**
+   * Create a QRIS payment (backward compatibility)
+   * @param request Payment request data
+   * @returns Payment response with redirect URL to QRIS page
+   */
+  async createQRISPayment(request: CreatePaymentRequest): Promise<PaymentResponse> {
+    return this.createPayment(request, 'shopeepay_qris');
   }
 
   /**
@@ -253,7 +529,7 @@ export class FaspayPaymentGateway {
         status = 'failed'; // Expired
         break;
       case '7':
-        status = 'pending';
+        status = 'failed'; // Expired
         break;
       default:
         status = 'pending';
@@ -287,11 +563,13 @@ export class FaspayPaymentGateway {
         rawData.payment_status_code
       );
 
-      console.log('🔍 Signature comparison:', {
-        received: rawData.signature,
-        expected: expectedSignature,
-        match: expectedSignature === rawData.signature,
-      });
+      if (this.config.environment !== 'production') {
+        console.log('🔍 Signature comparison:', {
+          received: rawData.signature,
+          expected: expectedSignature,
+          match: expectedSignature === rawData.signature,
+        });
+      }
 
       // Compare with received signature
       return expectedSignature === rawData.signature;
@@ -305,7 +583,41 @@ export class FaspayPaymentGateway {
 // Export a singleton instance with default configuration
 export const paymentGateway = new FaspayPaymentGateway();
 
-// Helper functions for QRIS payment operations
+// Helper functions for payment operations
+export async function createSubscriptionPayment(
+  plan: string,
+  amount: number,
+  customerName: string,
+  customerEmail: string,
+  customerNumber: string,
+  paymentMethod: PaymentMethod = 'shopeepay_qris',
+  customerPhone?: string,
+  metadata?: Record<string, any>
+): Promise<PaymentResponse> {
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://autolaku.com';
+
+  return paymentGateway.createPayment(
+    {
+      amount,
+      currency: 'IDR',
+      description: `Autolaku ${plan.charAt(0).toUpperCase() + plan.slice(1)} Plan Subscription`,
+      customerName,
+      customerEmail,
+      customerNumber,
+      customerPhone,
+      successRedirectUrl: `${baseUrl}/subscription/success`,
+      failureRedirectUrl: `${baseUrl}/subscription/failure`,
+      metadata: {
+        plan,
+        paymentMethod,
+        ...metadata,
+      },
+    },
+    paymentMethod
+  );
+}
+
+// Backward compatibility function
 export async function createQRISSubscriptionPayment(
   plan: string,
   amount: number,
@@ -315,23 +627,16 @@ export async function createQRISSubscriptionPayment(
   customerPhone?: string,
   metadata?: Record<string, any>
 ): Promise<PaymentResponse> {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://autolaku.com';
-
-  return paymentGateway.createQRISPayment({
+  return createSubscriptionPayment(
+    plan,
     amount,
-    currency: 'IDR',
-    description: `Autolaku ${plan.charAt(0).toUpperCase() + plan.slice(1)} Plan Subscription`,
     customerName,
     customerEmail,
     customerNumber,
+    'shopeepay_qris',
     customerPhone,
-    successRedirectUrl: `${baseUrl}/subscription/success`,
-    failureRedirectUrl: `${baseUrl}/subscription/failure`,
-    metadata: {
-      plan,
-      ...metadata,
-    },
-  });
+    metadata
+  );
 }
 
 export async function verifySubscriptionPayment(

@@ -6,9 +6,10 @@ import mongooseConnect from '@/lib/mongoose';
 import User from '@/models/User';
 import Subscription from '@/models/Subscription';
 import { createSubscription } from '@/lib/SubscriptionUtils';
-import { createQRISSubscriptionPayment } from '@/lib/PaymentUtils';
+import { createSubscriptionPayment } from '@/lib/PaymentUtils';
 import bcrypt from 'bcrypt';
 import { SubscriptionPlan } from '@/types/subscription';
+import { PaymentMethod } from '@/types/payment';
 
 /**
  * Register new admin account with subscription payment requirement
@@ -25,7 +26,7 @@ export async function POST(request: Request) {
     await mongooseConnect();
 
     // Extract registration data
-    const { name, email, whatsappNumber, username, password, plan } = await request.json();
+    const { name, email, whatsappNumber, username, password, plan, paymentMethod } = await request.json();
 
     // Validate required fields
     if (!name || !email || !username || !password || !plan) {
@@ -34,6 +35,9 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
+
+    // Set default payment method if not provided
+    const selectedPaymentMethod: PaymentMethod = paymentMethod || 'shopeepay_qris';
 
     // Validate plan
     const validPlans: SubscriptionPlan[] = ['starter', 'basic', 'pro', 'enterprise'];
@@ -129,19 +133,21 @@ export async function POST(request: Request) {
       newUser.subscriptionId = subscription._id;
       await newUser.save();
 
-      // Initiate QRIS payment via Faspay
-      const paymentResult = await createQRISSubscriptionPayment(
+      // Initiate payment via Faspay with selected payment method
+      const paymentResult = await createSubscriptionPayment(
         plan,
         subscription.totalPrice,
         newUser.name,
         newUser.email,
         newUser._id.toString(), // Customer number
+        selectedPaymentMethod,
         newUser.whatsappNumber || undefined,
         {
           userId: newUser._id.toString(),
           subscriptionId: subscription._id.toString(),
           isNewRegistration: true, // Flag for webhook to activate user
           plan: plan,
+          paymentMethod: selectedPaymentMethod,
         }
       );
 
@@ -172,7 +178,7 @@ export async function POST(request: Request) {
         transactionId: paymentResult.transactionId!,
         amount: subscription.totalPrice,
         currency: 'IDR',
-        paymentMethod: 'qris_shopeepay',
+        paymentMethod: selectedPaymentMethod,
         paymentGateway: 'faspay',
         status: 'pending',
         paidAt: new Date(),

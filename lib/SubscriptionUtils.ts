@@ -23,10 +23,10 @@ export function getLicenseLimitByPlan(plan: SubscriptionPlan): number {
  */
 export function getBasePriceByPlan(plan: SubscriptionPlan): number {
   const prices: Record<SubscriptionPlan, number> = {
-    starter: 20000, // IDR 20k
-    basic: 60000, // IDR 60k
-    pro: 85000, // IDR 85k
-    enterprise: 100000, // IDR 100k
+    starter: 5000,
+    basic: 10000,
+    pro: 15000,
+    enterprise: 20000,
   };
   return prices[plan] || 0;
 }

@@ -30,7 +30,7 @@ export async function GET(request: Request) {
     const release = response.data;
 
     const asset = release.assets.find(
-      (asset) => asset.name.startsWith('Autolaku-') && asset.name.endsWith(fileExtension)
+      (asset) => asset.name.startsWith('A001') && asset.name.endsWith(fileExtension)
     );
 
     if (asset) {

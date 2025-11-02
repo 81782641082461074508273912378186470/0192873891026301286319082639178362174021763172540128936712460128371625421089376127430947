@@ -26,7 +26,7 @@ interface PlanSelectorProps {
 const plans: Record<SubscriptionPlan, PlanDetails> = {
   starter: {
     title: 'Starter',
-    price: 20000,
+    price: 5000,
     description: 'Perfect for beginners and hobbyists exploring the platform.',
     licenseLimit: 5,
     features: [
@@ -39,7 +39,7 @@ const plans: Record<SubscriptionPlan, PlanDetails> = {
   },
   basic: {
     title: 'Basic',
-    price: 60000,
+    price: 10000,
     description: 'Ideal for small-scale dropshippers with moderate product management needs.',
     licenseLimit: 10,
     features: [
@@ -53,7 +53,7 @@ const plans: Record<SubscriptionPlan, PlanDetails> = {
   },
   pro: {
     title: 'Pro',
-    price: 85000,
+    price: 15000,
     description: 'For professional dropshippers scaling their operations.',
     licenseLimit: 20,
     features: [
@@ -68,7 +68,7 @@ const plans: Record<SubscriptionPlan, PlanDetails> = {
   },
   enterprise: {
     title: 'Enterprise',
-    price: 100000,
+    price: 20000,
     description: 'Tailored for large-scale dropshipping businesses with high-volume requirements.',
     licenseLimit: 50,
     features: [

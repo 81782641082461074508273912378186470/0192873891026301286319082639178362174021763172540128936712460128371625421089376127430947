@@ -1,6 +1,68 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { PaymentStatus } from './subscription';
 
+// Payment Method Categories
+export type PaymentMethodCategory = 
+  | 'qris'
+  | 'credit_card' 
+  | 'virtual_account'
+  | 'e_wallet'
+  | 'internet_banking'
+  | 'retail_payment'
+  | 'online_credit';
+
+// Individual Payment Methods
+export type PaymentMethod = 
+  // QRIS/E-Wallet
+  | 'shopeepay_qris'
+  | 'gopay'
+  | 'dana'
+  | 'ovo'
+  | 'linkaja'
+  | 'blu_bca'
+  // Credit Card
+  | 'credit_card'
+  // Virtual Account
+  | 'bca_va'
+  | 'mandiri_va'
+  | 'bri_va'
+  | 'bni_va'
+  | 'permata_va'
+  | 'maybank_va'
+  | 'danamon_va'
+  | 'sinarmas_va'
+  | 'cimb_va'
+  // Internet Banking
+  | 'bca_klikpay'
+  | 'bri_epay'
+  | 'danamon_online'
+  | 'maybank2u'
+  | 'octo_clicks'
+  // Retail Payment
+  | 'indomaret'
+  | 'alfamart'
+  // Online Credit
+  | 'kredivo';
+
+// Payment Method Configuration
+export interface PaymentMethodConfig {
+  id: PaymentMethod;
+  name: string;
+  category: PaymentMethodCategory;
+  channelCode: string;
+  description: string;
+  logo?: string;
+  enabled: boolean;
+  testCredentials?: {
+    [key: string]: string;
+  };
+}
+
+// Extended CreatePaymentRequest with payment method
+export interface CreatePaymentRequestWithMethod extends CreatePaymentRequest {
+  paymentMethod: PaymentMethod;
+}
+
 export interface FaspayConfig {
   merchantId: string;
   userId: string;

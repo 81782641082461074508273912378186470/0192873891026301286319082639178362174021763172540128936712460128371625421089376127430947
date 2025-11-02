@@ -74,7 +74,7 @@ export async function POST(request: NextRequest) {
       transactionId: paymentResult.transactionId!,
       amount: subscription.totalPrice,
       currency: 'IDR',
-      paymentMethod: 'qris_shopeepay',
+      paymentMethod: 'shopeepay_qris',
       paymentGateway: 'faspay',
       status: 'pending',
       paidAt: new Date(),
@@ -100,7 +100,7 @@ export async function POST(request: NextRequest) {
         payment: {
           transactionId: paymentResult.transactionId,
           paymentUrl: paymentResult.paymentUrl,
-          paymentMethod: 'qris_shopeepay',
+          paymentMethod: 'shopeepay_qris',
         },
       });
     } catch (error: any) {
