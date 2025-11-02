@@ -304,7 +304,7 @@ export class FaspayPaymentGateway {
     const random = Math.floor(Math.random() * 1000)
       .toString()
       .padStart(3, '0');
-    return `AUTOLAKU-${timestamp}-${random}`;
+    return `001${timestamp}-${random}`;
   }
 
   /**
