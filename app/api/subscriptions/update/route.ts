@@ -6,7 +6,7 @@ import mongooseConnect from '@/lib/mongoose';
 import { updateSubscription } from '@/lib/SubscriptionUtils';
 import { getUserFromRequest } from '@/lib/AuthUtils';
 import Subscription from '@/models/Subscription';
-import { SubscriptionPlan } from '@/types/subscription';
+import { BillingCycle, SubscriptionPlan } from '@/types/subscription';
 
 /**
  * Update an existing subscription
@@ -22,7 +22,18 @@ export async function PATCH(request: NextRequest) {
     }
     
     // Parse request body
-    const { subscriptionId, plan, addOns, autoRenew, status, notes, cancelReason } = await request.json();
+    const {
+      subscriptionId,
+      plan,
+      planSlug,
+      addOns,
+      addOnKeys = [],
+      autoRenew,
+      status,
+      notes,
+      cancelReason,
+      billingCycle,
+    } = await request.json();
     
     if (!subscriptionId) {
       return NextResponse.json({ error: 'Subscription ID is required' }, { status: 400 });
@@ -35,29 +46,45 @@ export async function PATCH(request: NextRequest) {
       return NextResponse.json({ error: 'Subscription not found' }, { status: 404 });
     }
     
-    // Check if user owns this subscription or is an admin/owner
-    if (subscription.userId.toString() !== user._id.toString() && 
-        user.role !== 'admin' && user.role !== 'owner') {
+    // Check if user owns this subscription or is an admin
+    if (subscription.userId.toString() !== user._id.toString() && user.role !== 'admin') {
       return NextResponse.json({ error: 'Not authorized to update this subscription' }, { status: 403 });
     }
     
     // Validate plan if provided
-    if (plan && !['starter', 'basic', 'pro', 'enterprise'].includes(plan)) {
+    if (
+      plan &&
+      !['starter', 'basic', 'pro', 'enterprise'].includes(plan) &&
+      !planSlug
+    ) {
       return NextResponse.json(
         { error: 'Invalid plan. Must be one of: starter, basic, pro, enterprise' },
         { status: 400 }
       );
     }
+
+    const normalizedBillingCycle: BillingCycle | undefined =
+      billingCycle && ['monthly', 'annual'].includes(billingCycle)
+        ? (billingCycle as BillingCycle)
+        : undefined;
+
+    const normalizedAddOns = Array.isArray(addOns) ? addOns : [];
+    const selectionsFromKeys = Array.isArray(addOnKeys)
+      ? addOnKeys.map((key: string) => ({ key }))
+      : [];
+
+    const mergedAddOns = [...normalizedAddOns, ...selectionsFromKeys];
     
     // Update subscription
     try {
       const updatedSubscription = await updateSubscription(subscriptionId, {
-        plan: plan as SubscriptionPlan | undefined,
-        addOns,
+        plan: (planSlug || plan) as SubscriptionPlan | string | undefined,
+        addOns: mergedAddOns,
         autoRenew,
         status: status as any,
         notes,
         cancelReason,
+        billingCycle: normalizedBillingCycle,
       });
       
       // Return success
@@ -67,6 +94,8 @@ export async function PATCH(request: NextRequest) {
         subscription: {
           id: updatedSubscription._id,
           plan: updatedSubscription.plan,
+          planSlug: updatedSubscription.planSlug,
+          billingCycle: updatedSubscription.billingCycle,
           status: updatedSubscription.status,
           startDate: updatedSubscription.startDate,
           endDate: updatedSubscription.endDate,
@@ -74,6 +103,8 @@ export async function PATCH(request: NextRequest) {
           totalPrice: updatedSubscription.totalPrice,
           autoRenew: updatedSubscription.autoRenew,
           addOns: updatedSubscription.addOns,
+          pricingSnapshot: updatedSubscription.pricingSnapshot,
+          entitlements: updatedSubscription.entitlements,
         },
       });
     } catch (error: any) {

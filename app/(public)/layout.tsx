@@ -16,7 +16,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="font-geist bg-black">
-      <body className="min-h-screen bg-black text-white selection:bg-sky-800/80 selection:text-sky-300 no-scrollbar">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-F8M11Q5S92" />
+
+      <body className="min-h-screen bg-black text-white selection:bg-sky-500/10 selection:text-sky-500 no-scrollbar">
         <Analytics />
         <Navbar />
         <div className="flex flex-col justify-center items-center w-full pt-12 no-scrollbar">

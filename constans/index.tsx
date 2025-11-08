@@ -40,7 +40,7 @@ export const navButtons = [
   },
   {
     title: 'Paket Harga',
-    url: '/harga',
+    url: 'harga',
     icon: <IoMdPricetag />,
     description: 'Lihat berbagai paket harga kami',
   },

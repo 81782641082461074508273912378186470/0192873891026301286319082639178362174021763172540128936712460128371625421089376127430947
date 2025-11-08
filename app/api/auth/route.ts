@@ -46,11 +46,11 @@ export async function POST(request: Request) {
     }), { status: 403 });
   }
 
-  // Check if user has an active subscription (for admin/owner roles)
+  // Check if user has an active subscription (for admin or user roles)
   let subscriptionData = null;
   let subscriptionStatus = { hasActiveSubscription: false, isExpired: false };
 
-  if (user.role === 'admin' || user.role === 'owner') {
+  if (user.role === 'admin' || user.role === 'user') {
     // Get subscription data
     const subscription = await getUserSubscription(user._id);
 

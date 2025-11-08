@@ -18,7 +18,7 @@ import { PaymentMethod } from '@/types/payment';
  * 2. Creates pending subscription
  * 3. Initiates Faspay QRIS payment
  * 4. Returns payment URL for user to complete payment
- * 
+ *
  * User account is activated by webhook after successful payment
  */
 export async function POST(request: Request) {
@@ -26,18 +26,16 @@ export async function POST(request: Request) {
     await mongooseConnect();
 
     // Extract registration data
-    const { name, email, whatsappNumber, username, password, plan, paymentMethod } = await request.json();
+    const { name, email, whatsappNumber, username, password, plan } = await request.json();
 
     // Validate required fields
-    if (!name || !email || !username || !password || !plan) {
-      return NextResponse.json(
-        { error: 'All fields are required: name, email, username, password, plan' },
-        { status: 400 }
-      );
+    if (!name || !email || !plan) {
+      return NextResponse.json({ error: 'Required fields: name, email, plan' }, { status: 400 });
     }
 
     // Set default payment method if not provided
-    const selectedPaymentMethod: PaymentMethod = paymentMethod || 'shopeepay_qris';
+    // Enforce QRIS only
+    const selectedPaymentMethod: PaymentMethod = 'shopeepay_qris';
 
     // Validate plan
     const validPlans: SubscriptionPlan[] = ['starter', 'basic', 'pro', 'enterprise'];
@@ -54,29 +52,38 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Invalid email format' }, { status: 400 });
     }
 
-    // Validate username (alphanumeric, underscore, minimum 3 characters)
-    const usernameRegex = /^[a-zA-Z0-9_]{3,}$/;
-    if (!usernameRegex.test(username)) {
-      return NextResponse.json(
-        { error: 'Username must be at least 3 characters (letters, numbers, underscore only)' },
-        { status: 400 }
-      );
+    // If username/password provided, validate; otherwise generate placeholders
+    let finalUsername = username;
+    let finalPasswordHash = '';
+
+    if (finalUsername) {
+      const usernameRegex = /^[a-zA-Z0-9_]{3,}$/;
+      if (!usernameRegex.test(finalUsername)) {
+        return NextResponse.json(
+          { error: 'Username must be at least 3 characters (letters, numbers, underscore only)' },
+          { status: 400 }
+        );
+      }
     }
 
-    // Validate password strength (minimum 6 characters)
-    if (password.length < 6) {
-      return NextResponse.json(
-        { error: 'Password must be at least 6 characters' },
-        { status: 400 }
-      );
+    if (password) {
+      if (password.length < 6) {
+        return NextResponse.json(
+          { error: 'Password must be at least 6 characters' },
+          { status: 400 }
+        );
+      }
+      finalPasswordHash = await bcrypt.hash(password, 10);
     }
 
     // Check if username already exists
-    const existingUsername = await User.findOne({
-      username: { $regex: `^${username}$`, $options: 'i' },
-    });
-    if (existingUsername) {
-      return NextResponse.json({ error: 'Username already taken' }, { status: 400 });
+    if (finalUsername) {
+      const existingUsername = await User.findOne({
+        username: { $regex: `^${finalUsername}$`, $options: 'i' },
+      });
+      if (existingUsername) {
+        return NextResponse.json({ error: 'Username already taken' }, { status: 400 });
+      }
     }
 
     // Check if email already exists
@@ -87,14 +94,33 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Email already registered' }, { status: 400 });
     }
 
-    // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
+    // Generate placeholder username/password if not provided (payment-first flow)
+    if (!finalUsername) {
+      const base = (email.split('@')[0] || 'user').replace(/[^a-zA-Z0-9_]/g, '_');
+      let candidate = base;
+      let suffix = 0;
+      // ensure uniqueness
+      // eslint-disable-next-line no-constant-condition
+      while (true) {
+        const exists = await User.findOne({ username: candidate.toLowerCase() });
+        if (!exists) break;
+        suffix += 1;
+        candidate = `${base}_${suffix}`;
+      }
+      finalUsername = candidate;
+    }
+
+    if (!finalPasswordHash) {
+      const randomPassword =
+        Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2);
+      finalPasswordHash = await bcrypt.hash(randomPassword, 10);
+    }
 
     // Create PENDING user account (inactive until payment confirmed)
     const newUser = await User.create({
-      username: username.toLowerCase(),
-      password: hashedPassword,
-      role: 'admin',
+      username: (finalUsername as string).toLowerCase(),
+      password: finalPasswordHash,
+      role: 'user',
       name,
       email: email.toLowerCase(),
       whatsappNumber: whatsappNumber || null,
@@ -200,6 +226,7 @@ export async function POST(request: Request) {
             licenseLimit: subscription.licenseLimit,
           },
           user: {
+            id: newUser._id,
             username: newUser.username,
             email: newUser.email,
             name: newUser.name,
@@ -230,4 +257,3 @@ export async function POST(request: Request) {
     );
   }
 }
-

@@ -34,9 +34,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Subscription not found' }, { status: 404 });
     }
     
-    // Check if user owns this subscription or is an admin/owner
-    if (subscription.userId.toString() !== user._id.toString() && 
-        user.role !== 'admin' && user.role !== 'owner') {
+    // Check if user owns this subscription or is an admin
+    if (subscription.userId.toString() !== user._id.toString() && user.role !== 'admin') {
       return NextResponse.json({ error: 'Not authorized to cancel this subscription' }, { status: 403 });
     }
     

@@ -35,7 +35,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Authorize admin
-    if (!authData.user || (authData.user.role !== 'admin' && authData.user.role !== 'owner')) {
+    if (!authData.user || authData.user.role !== 'admin') {
       return new Response('Forbidden: Insufficient permissions', { status: 403 });
     }
 

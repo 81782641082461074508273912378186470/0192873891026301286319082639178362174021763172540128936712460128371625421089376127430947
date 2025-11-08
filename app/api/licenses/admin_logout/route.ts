@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Authorize user based on role
-    if (user.role !== 'admin' && user.role !== 'owner') {
+    if (user.role !== 'admin' && user.role !== 'user') {
       return NextResponse.json({ error: 'Forbidden: Insufficient permissions' }, { status: 403 });
     }
 

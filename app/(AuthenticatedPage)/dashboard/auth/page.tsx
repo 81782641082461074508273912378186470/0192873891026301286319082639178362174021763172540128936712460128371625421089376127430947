@@ -16,8 +16,8 @@ const Page = () => {
   return (
     <div className="flex flex-col items-center w-full h-screen pt-24 max-w-screen-xl justify-center text-white border-x-[1px] px-10 xl:p-0  border-white/10">
       <AuthForm />
-      <div className="w-auto hidden 2xl:block fixed h-[50%] bottom-0 right-0 z-10 opacty-50">
-        <ADotted color="#212121" />
+      <div className="w-auto hidden lg:block fixed h-[50%] -bottom-1 -left-20 z-10 opacty-20">
+        <ADotted color="#0f0f0f" />
         <div />
       </div>
     </div>

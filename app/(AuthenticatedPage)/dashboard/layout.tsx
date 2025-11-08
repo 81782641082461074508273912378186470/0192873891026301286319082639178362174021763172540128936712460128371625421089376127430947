@@ -12,7 +12,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     <html lang="en" className="font-geist bg-black">
       <body className="min-h-screen bg-black text-white selection:bg-white/65 selection:text-black no-scrollbar">
         <Analytics />
-        <div className="flex flex-col justify-center items-center w-full pt-12">
+        <div className="flex flex-col justify-center items-center w-full">
           <AuthDashboardProvider>
             <DashboardWrapper>{children}</DashboardWrapper>
           </AuthDashboardProvider>

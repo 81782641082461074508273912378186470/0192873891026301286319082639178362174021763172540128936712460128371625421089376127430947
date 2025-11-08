@@ -23,9 +23,9 @@ export async function GET(request: NextRequest) {
   try {
     await mongooseConnect();
 
-    // Authenticate user (only admin/owner can access debug info)
+    // Authenticate user (only admin can access debug info)
     const user = await getUserFromRequest(request);
-    if (!user || (user.role !== 'admin' && user.role !== 'owner')) {
+    if (!user || user.role !== 'admin') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 

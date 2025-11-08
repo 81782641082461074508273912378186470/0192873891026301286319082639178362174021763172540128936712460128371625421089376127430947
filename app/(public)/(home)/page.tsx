@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { GlowingGridSection } from '@/components/sections/GlowingGridSection';
 import { HomeWrapper } from '@/components/HomeWrapper';
 import FeatureSection from '@/components/sections/FeatureSection';
@@ -6,6 +7,7 @@ import IntegratedSection from '@/components/sections/IntegratedSection';
 import { generateMetadata } from '@/lib/utils';
 import { Metadata } from 'next';
 import InfiniteLogoSection from '@/components/sections/InfiniteLogoSection';
+import BreakPointChecker from '@/components/BreakPointChecker';
 export const metadata: Metadata = generateMetadata({
   title: 'Dropship Cepat & Efisien',
   description:
@@ -26,6 +28,7 @@ const HomePage = () => {
         <InfiniteLogoSection />
         <GlowingGridSection />
       </HomeWrapper>
+      {/* <BreakPointChecker /> */}
     </main>
   );
 };

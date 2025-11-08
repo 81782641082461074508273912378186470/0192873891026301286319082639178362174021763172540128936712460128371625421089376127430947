@@ -86,7 +86,7 @@ export const AuthDashboardProvider = ({ children }: { children: React.ReactNode 
     try {
       const parsedAuthData = JSON.parse(authDataCookie);
       if (
-        (parsedAuthData.type === 'account' && ['owner', 'admin'].includes(parsedAuthData.role)) ||
+        (parsedAuthData.type === 'account' && ['admin', 'user'].includes(parsedAuthData.role)) ||
         (parsedAuthData.type === 'license' && parsedAuthData.role === 'user')
       ) {
         setRole(parsedAuthData.role);

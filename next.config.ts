@@ -2,6 +2,10 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   async redirects() {
+    const isDev = process.env.NODE_ENV !== 'production';
+    const dashboardBase = isDev
+      ? 'http://localhost:3001/dashboard'
+      : 'https://dashboard.autolaku.com';
     return [
       {
         source: '/fitur',
@@ -35,8 +39,8 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/daftar',
-        destination: 'https://dashboard.autolaku.com/auth',
-        permanent: true,
+        destination: `${dashboardBase}/auth`,
+        permanent: false,
       },
       {
         source: '/staff/kyc',

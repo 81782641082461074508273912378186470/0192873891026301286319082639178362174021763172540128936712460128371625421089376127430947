@@ -15,7 +15,7 @@ export async function GET(request: Request) {
   if (query?.get('role')) filters.role = query.get('role');
   if (query?.get('isActive')) filters.isActive = query.get('isActive') === 'true';
 
-  const users = await User.find(filters).populate(['ownerId', 'adminId']);
+  const users = await User.find(filters).populate(['adminId']);
   return NextResponse.json(users);
 }
 
@@ -24,7 +24,7 @@ export async function POST(request: Request) {
 
   try {
     const data = await request.json();
-    const { username, password, role, ownerId, adminId, name, email, whatsappNumber } = data;
+    const { username, password, role, adminId, name, email, whatsappNumber } = data;
 
     if (!username || !password || !role || !name) {
       return NextResponse.json(
@@ -35,9 +35,9 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!['owner', 'admin', 'user'].includes(role)) {
+    if (!['admin', 'user'].includes(role)) {
       return NextResponse.json(
-        { error: 'Invalid role provided. Must be one of: owner, admin, user.' },
+        { error: 'Invalid role provided. Must be one of: admin, user.' },
         { status: 400 }
       );
     }
@@ -47,13 +47,6 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Username already taken.' }, { status: 400 });
     }
     const hashedPassword = await bcrypt.hash(password, 10);
-
-    if (ownerId) {
-      const owner = await User.findById(ownerId);
-      if (!owner) {
-        return NextResponse.json({ error: 'Owner ID provided does not exist.' }, { status: 400 });
-      }
-    }
 
     if (adminId) {
       const admin = await User.findById(adminId);
@@ -75,7 +68,6 @@ export async function POST(request: Request) {
       username,
       password: hashedPassword,
       role,
-      ownerId: ownerId || null,
       adminId: adminId || null,
       name,
       email: email || null,
@@ -107,7 +99,7 @@ export async function PATCH(request: Request) {
 
     const updatedUser = await User.findByIdAndUpdate(id, updates, {
       new: true,
-    }).populate(['ownerId', 'adminId']);
+    }).populate(['adminId']);
 
     if (!updatedUser) {
       return NextResponse.json({ error: 'User not found.' }, { status: 404 });

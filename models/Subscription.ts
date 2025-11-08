@@ -22,11 +22,45 @@ const paymentHistorySchema = new Schema(
 );
 
 // Define add-on schema as a subdocument
-const addOnSchema = new Schema({
-  name: { type: String, required: true },
-  price: { type: Number, required: true },
+const addOnSchema = new Schema(
+  {
+    key: { type: String },
+    name: { type: String },
+    cycle: { type: String, enum: ['monthly', 'annual'], default: 'monthly' },
+    quantity: { type: Number, default: 1, min: 1 },
+    unitPrice: { type: Number },
+    totalPrice: { type: Number },
+    price: { type: Number }, // legacy support
   active: { type: Boolean, default: true },
-});
+    startedAt: { type: Date, default: Date.now },
+    expiresAt: { type: Date },
+    metadata: { type: Schema.Types.Mixed },
+  },
+  { _id: true }
+);
+
+const entitlementSchema = new Schema(
+  {
+    featureKey: { type: String, required: true },
+    enabled: { type: Boolean, default: true },
+    limit: { type: Number, default: null },
+    source: { type: String, enum: ['plan', 'add_on'], required: true },
+    sourceKey: { type: String, required: true },
+  },
+  { _id: false }
+);
+
+const pricingSnapshotSchema = new Schema(
+  {
+    basePrice: { type: Number, required: true },
+    addOnTotal: { type: Number, required: true },
+    discountAmount: { type: Number, default: 0 },
+    total: { type: Number, required: true },
+    currency: { type: String, required: true, default: 'IDR' },
+    catalogVersion: { type: Number },
+  },
+  { _id: false }
+);
 
 // Main subscription schema
 const subscriptionSchema = new Schema(
@@ -41,6 +75,17 @@ const subscriptionSchema = new Schema(
       type: String,
       enum: ['starter', 'basic', 'pro', 'enterprise'],
       required: true,
+    },
+    planSlug: {
+      type: String,
+    },
+    planVersion: {
+      type: Number,
+    },
+    billingCycle: {
+      type: String,
+      enum: ['monthly', 'annual'],
+      default: 'monthly',
     },
     status: {
       type: String,
@@ -62,9 +107,11 @@ const subscriptionSchema = new Schema(
     },
     paymentHistory: [paymentHistorySchema],
     addOns: [addOnSchema],
+    entitlements: { type: [entitlementSchema], default: [] },
     // Pricing information for reference
     basePrice: { type: Number, required: true },
     totalPrice: { type: Number, required: true }, // Including add-ons
+    pricingSnapshot: { type: pricingSnapshotSchema },
     // Metadata
     notes: { type: String },
     cancelReason: { type: String },
@@ -78,28 +125,6 @@ subscriptionSchema.index({ status: 1 });
 subscriptionSchema.index({ endDate: 1 });
 subscriptionSchema.index({ 'paymentHistory.transactionId': 1 });
 
-// Static method to get license limit based on plan
-subscriptionSchema.statics.getLicenseLimitByPlan = function (plan: string): number {
-  const limits = {
-    starter: 5,
-    basic: 10,
-    pro: 20,
-    enterprise: 50, // Default for enterprise, can be customized
-  };
-  return limits[plan as keyof typeof limits] || 0;
-};
-
-// Static method to get base price by plan
-subscriptionSchema.statics.getBasePriceByPlan = function (plan: string): number {
-  const prices = {
-    starter: 5000,
-    basic: 10000,
-    pro: 15000,
-    enterprise: 20000,
-  };
-  return prices[plan as keyof typeof prices] || 0;
-};
-
 // Instance method to check if subscription is active
 subscriptionSchema.methods.isActive = function (): boolean {
   const now = new Date();
@@ -108,14 +133,36 @@ subscriptionSchema.methods.isActive = function (): boolean {
 
 // Pre-save hook to ensure totalPrice is calculated
 subscriptionSchema.pre('save', function (next) {
-  if (this.isModified('basePrice') || this.isModified('addOns')) {
+  if (this.pricingSnapshot && this.pricingSnapshot.total) {
+    this.totalPrice = this.pricingSnapshot.total;
+  } else if (this.isModified('basePrice') || this.isModified('addOns')) {
     let addOnTotal = 0;
     if (this.addOns && this.addOns.length > 0) {
       addOnTotal = this.addOns
         .filter((addon) => addon.active)
-        .reduce((sum, addon) => sum + addon.price, 0);
+        .reduce((sum, addon) => {
+          if (typeof addon.totalPrice === 'number') {
+            return sum + addon.totalPrice;
+          }
+          if (typeof addon.unitPrice === 'number') {
+            const quantity = addon.quantity && addon.quantity > 0 ? addon.quantity : 1;
+            return sum + addon.unitPrice * quantity;
+          }
+          if (typeof addon.price === 'number') {
+            return sum + addon.price;
+          }
+          return sum;
+        }, 0);
     }
     this.totalPrice = this.basePrice + addOnTotal;
+    this.pricingSnapshot = {
+      basePrice: this.basePrice,
+      addOnTotal,
+      discountAmount: 0,
+      total: this.totalPrice,
+      currency: this.pricingSnapshot?.currency || 'IDR',
+      catalogVersion: this.pricingSnapshot?.catalogVersion,
+    };
   }
   next();
 });

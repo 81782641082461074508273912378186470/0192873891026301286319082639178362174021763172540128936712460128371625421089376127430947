@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Authorize user based on role
-    if (user.role !== 'admin' && user.role !== 'owner') {
+    if (user.role !== 'admin' && user.role !== 'user') {
       return NextResponse.json({ error: 'Forbidden: Insufficient permissions' }, { status: 403 });
     }
 
@@ -42,15 +42,15 @@ export async function GET(request: NextRequest) {
       licenses = await License.aggregate([
         // Match licenses for this admin (optionally filtered by specific license key)
         { $match: licenseMatch },
-        
+
         // Join with activities using both licenseId and adminId for better filtering
         // Also include activities that don't have adminId but belong to this license (fallback for existing data)
-        { 
+        {
           $lookup: {
             from: 'activities',
             let: { licenseId: '$_id', adminId: new mongoose.Types.ObjectId(user._id) },
             pipeline: [
-              { 
+              {
                 $match: {
                   $expr: {
                     $and: [
@@ -59,28 +59,28 @@ export async function GET(request: NextRequest) {
                         $or: [
                           { $eq: ['$adminId', '$$adminId'] },
                           { $eq: ['$adminId', null] },
-                          { $not: { $ifNull: ['$adminId', false] } }
-                        ]
-                      }
-                    ]
-                  }
-                }
+                          { $not: { $ifNull: ['$adminId', false] } },
+                        ],
+                      },
+                    ],
+                  },
+                },
               },
               { $sort: { timestamp: -1 } },
               { $skip: activitySkip },
-              { $limit: activityLimit }
+              { $limit: activityLimit },
             ],
-            as: 'recentActivities'
-          }
+            as: 'recentActivities',
+          },
         },
-        
+
         // Get total activity count for pagination
         {
           $lookup: {
             from: 'activities',
             let: { licenseId: '$_id', adminId: new mongoose.Types.ObjectId(user._id) },
             pipeline: [
-              { 
+              {
                 $match: {
                   $expr: {
                     $and: [
@@ -89,42 +89,39 @@ export async function GET(request: NextRequest) {
                         $or: [
                           { $eq: ['$adminId', '$$adminId'] },
                           { $eq: ['$adminId', null] },
-                          { $not: { $ifNull: ['$adminId', false] } }
-                        ]
-                      }
-                    ]
-                  }
-                }
+                          { $not: { $ifNull: ['$adminId', false] } },
+                        ],
+                      },
+                    ],
+                  },
+                },
               },
-              { $count: 'count' }
+              { $count: 'count' },
             ],
-            as: 'activityCountData'
-          }
+            as: 'activityCountData',
+          },
         },
-        
+
         // Add activity count and hasMore flag
         {
           $addFields: {
-            activityCount: { 
-              $ifNull: [
-                { $arrayElemAt: ['$activityCountData.count', 0] },
-                0
-              ]
+            activityCount: {
+              $ifNull: [{ $arrayElemAt: ['$activityCountData.count', 0] }, 0],
             },
             hasMoreActivities: {
               $gt: [
                 { $ifNull: [{ $arrayElemAt: ['$activityCountData.count', 0] }, 0] },
-                { $add: [activitySkip, activityLimit] }
-              ]
-            }
-          }
+                { $add: [activitySkip, activityLimit] },
+              ],
+            },
+          },
         },
-        
+
         // Remove temporary field
         { $unset: 'activityCountData' },
-        
+
         // Sort by name for consistent ordering
-        { $sort: { name: 1 } }
+        { $sort: { name: 1 } },
       ]);
     } else {
       // Simple query for backward compatibility

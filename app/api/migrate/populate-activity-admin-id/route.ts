@@ -8,9 +8,9 @@ export async function POST(request: NextRequest) {
   try {
     await mongooseConnect();
 
-    // Authenticate user (only admin/owner can run migrations)
+    // Authenticate user (only admin can run migrations)
     const user = await getUserFromRequest(request);
-    if (!user || (user.role !== 'admin' && user.role !== 'owner')) {
+    if (!user || user.role !== 'admin') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 

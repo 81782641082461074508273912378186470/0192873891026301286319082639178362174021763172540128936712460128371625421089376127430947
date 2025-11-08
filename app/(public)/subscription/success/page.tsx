@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -30,11 +31,34 @@ export default function SuccessPage() {
     licenseLimit?: number;
   }>({});
 
+  // Completion form states
+  const [pendingReg, setPendingReg] = useState<{
+    userId?: string;
+    transactionId?: string;
+    email?: string;
+    plan?: string;
+    name?: string;
+  } | null>(null);
+  const [completeUsername, setCompleteUsername] = useState('');
+  const [completePassword, setCompletePassword] = useState('');
+  const [completeWhatsapp, setCompleteWhatsapp] = useState('');
+  const [completeError, setCompleteError] = useState<string | null>(null);
+  const [completeSuccess, setCompleteSuccess] = useState<string | null>(null);
+
   // Error handling
   const [error, setError] = useState<string | null>(null);
 
   // Start polling when component mounts
   useEffect(() => {
+    // Load pending registration (if any)
+    try {
+      const raw = window.localStorage.getItem('autolaku_pending_registration');
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        setPendingReg(parsed);
+      }
+    } catch {}
+
     // Validate transaction ID exists
     if (!transactionId) {
       setStatus('error');
@@ -74,6 +98,15 @@ export default function SuccessPage() {
             plan: data.status.plan,
             licenseLimit: data.status.licenseLimit,
           });
+
+          // Pre-fill completion form with saved pending registration
+          try {
+            const raw = window.localStorage.getItem('autolaku_pending_registration');
+            if (raw) {
+              const parsed = JSON.parse(raw);
+              setPendingReg(parsed);
+            }
+          } catch {}
 
           // Clear intervals
           if (intervals.pollInterval) clearInterval(intervals.pollInterval);
@@ -158,6 +191,40 @@ export default function SuccessPage() {
       setError('Failed to check status. Please try again.');
     } finally {
       setIsPolling(false);
+    }
+  };
+
+  // Submit completion form
+  const handleCompleteRegistration = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setCompleteError(null);
+    setCompleteSuccess(null);
+    try {
+      if (!pendingReg?.userId || !pendingReg?.transactionId) {
+        throw new Error('Missing registration context');
+      }
+      const res = await fetch('/api/auth/complete-registration', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userId: pendingReg.userId,
+          transactionId: pendingReg.transactionId,
+          username: completeUsername,
+          password: completePassword,
+          whatsappNumber: completeWhatsapp,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || 'Failed to complete registration');
+      }
+      setCompleteSuccess('Account details saved. You can now login.');
+      // Cleanup localStorage context
+      try {
+        window.localStorage.removeItem('autolaku_pending_registration');
+      } catch {}
+    } catch (err: any) {
+      setCompleteError(err.message || 'Failed to complete registration');
     }
   };
 
@@ -271,6 +338,65 @@ export default function SuccessPage() {
             </ul>
           )}
         </div>
+
+        {/* Post-payment completion form */}
+        {status === 'active' && pendingReg && (
+          <div className="mb-8 mt-4 p-4 border border-white/10 rounded">
+            <h3 className="font-semibold mb-2">Lengkapi Akun Anda</h3>
+            <p className="text-xs text-white/70 mb-3">
+              Silakan atur username, password dan nomor WhatsApp.
+            </p>
+            {completeError && (
+              <div className="bg-red-500/20 text-red-500 p-2 rounded mb-3 text-sm">
+                {completeError}
+              </div>
+            )}
+            {completeSuccess && (
+              <div className="bg-green-500/20 text-green-500 p-2 rounded mb-3 text-sm">
+                {completeSuccess}
+              </div>
+            )}
+            <form onSubmit={handleCompleteRegistration} className="space-y-3">
+              <div>
+                <label className="block text-xs text-white/70 mb-1">Username</label>
+                <input
+                  type="text"
+                  className="__input"
+                  placeholder="your_username"
+                  value={completeUsername}
+                  onChange={(e) => setCompleteUsername(e.target.value)}
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-xs text-white/70 mb-1">Password</label>
+                <input
+                  type="password"
+                  className="__input"
+                  placeholder="••••••••"
+                  value={completePassword}
+                  onChange={(e) => setCompletePassword(e.target.value)}
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-xs text-white/70 mb-1">WhatsApp Number</label>
+                <input
+                  type="text"
+                  className="__input"
+                  placeholder="628123456789"
+                  value={completeWhatsapp}
+                  onChange={(e) => setCompleteWhatsapp(e.target.value)}
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full py-3 bg-white text-black font-bold rounded-md hover:bg-white/90">
+                Simpan dan Selesai
+              </button>
+            </form>
+          </div>
+        )}
 
         {/* Actions */}
         <div className="flex flex-col space-y-3">

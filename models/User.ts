@@ -12,8 +12,9 @@ const userSchema = new Schema(
     password: { type: String, required: true },
     role: {
       type: String,
-      enum: ['owner', 'admin', 'user'],
+      enum: ['admin', 'user'],
       required: true,
+      default: 'user',
     },
     adminId: {
       type: mongoose.Types.ObjectId,

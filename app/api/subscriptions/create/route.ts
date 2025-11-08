@@ -6,7 +6,7 @@ import mongooseConnect from '@/lib/mongoose';
 import { createSubscription } from '@/lib/SubscriptionUtils';
 import { createQRISSubscriptionPayment } from '@/lib/PaymentUtils';
 import { getUserFromRequest } from '@/lib/AuthUtils';
-import { SubscriptionPlan } from '@/types/subscription';
+import { BillingCycle } from '@/types/subscription';
 
 /**
  * Create a new subscription
@@ -22,29 +22,59 @@ export async function POST(request: NextRequest) {
     }
 
     // Parse request body
-    const { plan, durationMonths = 1, addOns = [], autoRenew = true } = await request.json();
+    const {
+      plan: legacyPlan,
+      planSlug,
+      durationMonths = 1,
+      billingCycle,
+      addOns = [],
+      addOnKeys = [],
+      autoRenew = true,
+    } = await request.json();
 
-    // Validate plan
-    if (!plan || !['starter', 'basic', 'pro', 'enterprise'].includes(plan)) {
+    const requestedPlan = planSlug || legacyPlan;
+    if (!requestedPlan) {
+      return NextResponse.json({ error: 'Plan is required' }, { status: 400 });
+    }
+
+    if (
+      legacyPlan &&
+      !['starter', 'basic', 'pro', 'enterprise'].includes(legacyPlan) &&
+      !planSlug
+    ) {
       return NextResponse.json(
         { error: 'Invalid plan. Must be one of: starter, basic, pro, enterprise' },
         { status: 400 }
       );
     }
 
+    const normalizedBillingCycle: BillingCycle | undefined =
+      billingCycle && ['monthly', 'annual'].includes(billingCycle)
+        ? (billingCycle as BillingCycle)
+        : undefined;
+
+    const normalizedAddOns = Array.isArray(addOns) ? addOns : [];
+
+    const selectionsFromKeys = Array.isArray(addOnKeys)
+      ? addOnKeys.map((key: string) => ({ key }))
+      : [];
+
+    const mergedAddOns = [...normalizedAddOns, ...selectionsFromKeys];
+
     // Create subscription
     try {
       const subscription = await createSubscription(
         user._id,
-        plan as SubscriptionPlan,
+        requestedPlan,
         durationMonths,
-        addOns,
-        autoRenew
+        mergedAddOns,
+        autoRenew,
+        normalizedBillingCycle
       );
 
       // Initiate QRIS payment
       const paymentResult = await createQRISSubscriptionPayment(
-        plan,
+        subscription.planSlug || subscription.plan,
         subscription.totalPrice,
         user.name,
         user.email,
@@ -53,7 +83,13 @@ export async function POST(request: NextRequest) {
         {
           userId: user._id.toString(),
           subscriptionId: subscription._id.toString(),
-          durationMonths,
+          durationMonths:
+            subscription.billingCycle === 'annual'
+              ? 12
+              : subscription.billingCycle === 'monthly'
+              ? 1
+              : durationMonths,
+          billingCycle: subscription.billingCycle,
         }
       );
 
@@ -67,8 +103,8 @@ export async function POST(request: NextRequest) {
       // Add payment to subscription history
       subscription.paymentHistory.push({
         transactionId: paymentResult.transactionId!,
-        amount: subscription.totalPrice,
-        currency: 'IDR',
+        amount: subscription.pricingSnapshot?.total ?? subscription.totalPrice,
+        currency: subscription.pricingSnapshot?.currency || 'IDR',
         paymentMethod: 'shopeepay_qris',
         paymentGateway: 'faspay',
         status: 'pending',
@@ -84,11 +120,15 @@ export async function POST(request: NextRequest) {
         subscription: {
           id: subscription._id,
           plan: subscription.plan,
+          planSlug: subscription.planSlug,
+          billingCycle: subscription.billingCycle,
           status: subscription.status,
           startDate: subscription.startDate,
           endDate: subscription.endDate,
           licenseLimit: subscription.licenseLimit,
           totalPrice: subscription.totalPrice,
+          pricingSnapshot: subscription.pricingSnapshot,
+          entitlements: subscription.entitlements,
         },
         payment: {
           transactionId: paymentResult.transactionId,

@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const user = await getUserFromRequest(request);
-    if (!user || (user.role !== 'admin' && user.role !== 'owner')) {
+    if (!user || (user.role !== 'admin' && user.role !== 'user')) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
